@@ -55,10 +55,10 @@ const DynamicLogo: React.FC<DynamicLogoProps> = ({ className }) => {
   // Calculate the semicircular path length and offset for the ring animation
   const circleRadius = 210; // Radius for the semicircle
   const circumference = Math.PI * circleRadius; // Only half circle
-  const dashOffset = circumference * (1 - progressValue / 100);
+  const dashOffset = circumference * (1 + progressValue / 100); 
   
   // Calculate the position of the dot along the semicircular path
-  // Angle goes from PI (bottom) to 0 (top right)
+  // Moving from left to right (PI to 0)
   const dotAngle = Math.PI * (1 - progressValue / 100);
   const dotX = 190 + circleRadius * Math.cos(dotAngle);
   const dotY = 215 - circleRadius * Math.sin(dotAngle);
