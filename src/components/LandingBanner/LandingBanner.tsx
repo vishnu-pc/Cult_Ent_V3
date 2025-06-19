@@ -73,10 +73,10 @@ const LandingBanner: React.FC<LandingBannerProps> = () => {
       
       {/* Fixed demo button that stays visible while scrolling */}
       <DemoButton 
-        whileHover={{ scale: 1.05 }}
+        whileHover={{ scale: 1.2 }}
         whileTap={{ scale: 0.95 }}
       >
-        Demo
+        Request Demo {'>>'} 
       </DemoButton>
     </>
   );

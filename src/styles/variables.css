@@ -53,6 +53,7 @@
   --z-index-modal: 500;
   --z-index-popover: 600;
   --z-index-tooltip: 700;
+  --z-index-floating: 800;
   
   /* Breakpoints */
   --breakpoint-sm: 640px;

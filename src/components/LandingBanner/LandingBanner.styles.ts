@@ -28,6 +28,19 @@ export const gradientTextAnimation = keyframes`
   }
 `;
 
+// Button gradient animation
+export const buttonBorderAnimation = keyframes`
+  0% {
+    border-color: #FDD914;
+  }
+  50% {
+    border-color: #FF3278;
+  }
+  100% {
+    border-color: #FDD914;
+  }
+`;
+
 export const BannerContainer = styled.section`
   height: 100vh;
   width: 100vw;
@@ -143,24 +156,28 @@ export const DemoButton = styled(motion.button)`
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  width: 70px;
-  height: 70px;
+  width: 97px;
+  height: 97px;
   border-radius: 50%;
-  background: var(--color-grey-dark);
+  background: linear-gradient(217deg, var(--color-grey-dark) 12.09%, var(--color-grey-dark) 95.46%);
   color: var(--color-text);
   font-size: var(--font-size-sm);
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  border: none;
+  border: 0.93px solid;
+  border-color: #FDD914;
   outline: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  filter: drop-shadow(0px 3.7px 18.6px rgba(254, 162, 54, 0.23));
+  box-shadow: 4px 4px 8px rgba(254, 162, 54, 0.23);
   z-index: var(--z-index-floating);
+  animation: ${buttonBorderAnimation} 8s ease infinite;
   
   &:hover {
-    background: var(--color-accent-primary);
+    background: linear-gradient(217deg, var(--color-grey-dark) 12.09%, var(--color-grey-dark) 95.46%);
+    border-color: #FF3278;
   }
   
   @media (max-width: 768px) {
