@@ -75,6 +75,7 @@ export const Title = styled.h1`
 export const HighlightedWord = styled.span<{ isScrolled: boolean }>`
   font-family: 'Inter', sans-serif;
   font-weight: 900;
+  cursor: pointer;
   
   ${props => props.isScrolled && css`
     color: transparent;
@@ -84,7 +85,7 @@ export const HighlightedWord = styled.span<{ isScrolled: boolean }>`
     background-clip: text;
     -webkit-text-stroke: 0;
     text-stroke: 0;
-    animation: ${gradientTextAnimation} 21s ease infinite;
+    animation: ${gradientTextAnimation} 11s ease infinite;
   `}
   
   ${props => !props.isScrolled && css`
@@ -139,17 +140,34 @@ export const StyledDynamicLogo = styled(DynamicLogo)`
 `;
 
 export const DemoButton = styled(motion.button)`
-  background: var(--color-accent-primary);
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: var(--color-grey-dark);
   color: var(--color-text);
-  padding: var(--spacing-md) var(--spacing-xl);
-  border-radius: var(--border-radius-full);
   font-size: var(--font-size-sm);
   font-weight: 600;
   cursor: pointer;
   border: none;
   outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: var(--z-index-floating);
   
   &:hover {
-    background: var(--color-accent-secondary);
+    background: var(--color-accent-primary);
+  }
+  
+  @media (max-width: 768px) {
+    width: 60px;
+    height: 60px;
+    font-size: var(--font-size-xs);
+    bottom: 1.5rem;
+    right: 1.5rem;
   }
 `; 

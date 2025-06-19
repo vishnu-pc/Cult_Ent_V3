@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import type { DynamicLogoProps } from './DynamicLogo.types';
 import { SVGContainer, LogoSVG } from './DynamicLogo.styles';
 
-const DynamicLogo: React.FC<DynamicLogoProps> = ({ className }) => {
+const DynamicLogo: React.FC<DynamicLogoProps> = ({ className, forceHighlight }) => {
   const [isHighlighted, setIsHighlighted] = useState(false);
   const [progressValue, setProgressValue] = useState(0);
   const logoRef = useRef<HTMLDivElement>(null);
@@ -11,6 +11,39 @@ const DynamicLogo: React.FC<DynamicLogoProps> = ({ className }) => {
   const ringGradientId = useRef(`ring-gradient-${Math.random().toString(36).substring(2, 9)}`);
   const dotGradientId = useRef(`dot-gradient-${Math.random().toString(36).substring(2, 9)}`);
   const fillGradientId = useRef(`fill-gradient-${Math.random().toString(36).substring(2, 9)}`);
+
+  // Effect to handle forceHighlight prop
+  useEffect(() => {
+    if (forceHighlight !== undefined) {
+      setIsHighlighted(forceHighlight);
+    }
+  }, [forceHighlight]);
+
+  // Intersection Observer for scroll detection (only used when forceHighlight is not provided)
+  useEffect(() => {
+    // Skip observer if forceHighlight is provided
+    if (forceHighlight !== undefined) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        setIsHighlighted(!entry.isIntersecting);
+      },
+      { threshold: 0.3 }
+    );
+
+    if (logoRef.current) {
+      observer.observe(logoRef.current);
+    }
+
+    return () => {
+      if (logoRef.current) {
+        observer.unobserve(logoRef.current);
+      }
+    };
+  }, [forceHighlight]);
 
   // Progress animation effect
   useEffect(() => {
@@ -59,8 +92,8 @@ const DynamicLogo: React.FC<DynamicLogoProps> = ({ className }) => {
     <SVGContainer 
       className={className}
       ref={logoRef}
-      onMouseEnter={() => setIsHighlighted(true)}
-      onMouseLeave={() => setIsHighlighted(false)}
+      onMouseEnter={() => forceHighlight === undefined && setIsHighlighted(true)}
+      onMouseLeave={() => forceHighlight === undefined && setIsHighlighted(false)}
     >
       <LogoSVG 
         viewBox="0 0 381 431" 

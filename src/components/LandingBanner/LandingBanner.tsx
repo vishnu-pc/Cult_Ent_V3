@@ -14,6 +14,7 @@ import type { LandingBannerProps } from './LandingBanner.types';
 
 const LandingBanner: React.FC<LandingBannerProps> = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   
   // Add scroll event listener
   useEffect(() => {
@@ -35,35 +36,49 @@ const LandingBanner: React.FC<LandingBannerProps> = () => {
     };
   }, []);
   
+  // Combined state for both scroll and hover effects
+  const isHighlighted = isScrolled || isHovered;
+  
   return (
-    <BannerContainer>
-      <ContentContainer>
-        <Title>
-          <HighlightedWord isScrolled={isScrolled}>ENERGISE</HighlightedWord> YOUR WORKFORCE
-        </Title>
-        <Subtitle>
-          Transform employee wellness from buzzword to business advantage with <b>cult for corporates.</b>
-        </Subtitle>
-      </ContentContainer>
-      
-      <LogoContainer>
-        <LogoWrapper 
-          whileHover={{ 
-            scale: 1.1,
-            transition: { duration: 0.3 }
-          }}
-        >
-          <StyledDynamicLogo />
-        </LogoWrapper>
+    <>
+      <BannerContainer>
+        <ContentContainer>
+          <Title>
+            <HighlightedWord 
+              isScrolled={isHighlighted}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              ENERGISE
+            </HighlightedWord> YOUR WORKFORCE
+          </Title>
+          <Subtitle>
+            Transform employee wellness from buzzword to business advantage with <b>cult for corporates.</b>
+          </Subtitle>
+        </ContentContainer>
         
-        <DemoButton 
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          Request a Demo
-        </DemoButton>
-      </LogoContainer>
-    </BannerContainer>
+        <LogoContainer>
+          <LogoWrapper 
+            whileHover={{ 
+              scale: 1.1,
+              transition: { duration: 0.3 }
+            }}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            <StyledDynamicLogo forceHighlight={isHighlighted} />
+          </LogoWrapper>
+        </LogoContainer>
+      </BannerContainer>
+      
+      {/* Fixed demo button that stays visible while scrolling */}
+      <DemoButton 
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        Demo
+      </DemoButton>
+    </>
   );
 };
 
