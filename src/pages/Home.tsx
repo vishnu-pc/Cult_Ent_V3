@@ -8,7 +8,6 @@ import WhyChooseCult from '../components/WhyChooseCult/WhyChooseCult';
 import ContactUs from '../components/ContactUs/ContactUs';
 import Testimonials from '../components/Testimonials/Testimonials';
 import OurImpact from '../components/OurImpact/OurImpact';
-import DynamicLogo from '../components/DynamicLogo/DynamicLogo';
 import Hashtag from '../components/Hashtag/Hashtag';
 
 interface HomeProps {}
@@ -29,7 +28,6 @@ const Home: React.FC<HomeProps> = () => {
       <ContactUs />
       <Testimonials />
       <OurImpact />
-      <DynamicLogo />
       <Hashtag />
     </HomeContainer>
   );

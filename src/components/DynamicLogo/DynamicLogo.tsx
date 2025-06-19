@@ -70,8 +70,8 @@ const DynamicLogo: React.FC<DynamicLogoProps> = ({ className }) => {
   // Parametric equations for dot position on the semicircle
   // Using standard parametric circle equations: x = r * cos(θ), y = r * sin(θ)
   // Center point is at (190, 215)
-  const dotX = 190 + circleRadius * Math.cos(dotAngle); // x = center_x + r * cos(θ)
-  const dotY = 215 - circleRadius * Math.sin(dotAngle); // y = center_y - r * sin(θ) (negative for screen coordinates)
+  //const dotX = 190 + circleRadius * Math.cos(dotAngle); // x = center_x + r * cos(θ)
+  //const dotY = 215 - circleRadius * Math.sin(dotAngle); // y = center_y - r * sin(θ) (negative for screen coordinates)
 
   // Scale factor for inner logo elements to create spacing
   const innerScale = 0.7; // 70% of original size

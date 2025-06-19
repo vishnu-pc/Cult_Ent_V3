@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   BannerContainer,
   ContentContainer,
   Title,
+  HighlightedWord,
   Subtitle,
   LogoContainer,
   LogoWrapper,
@@ -12,10 +13,28 @@ import {
 import type { LandingBannerProps } from './LandingBanner.types';
 
 const LandingBanner: React.FC<LandingBannerProps> = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  
+  // Add scroll event listener
+  useEffect(() => {
+    const handleScroll = () => {
+      // Check if user has scrolled more than 1px
+      const scrolled = window.scrollY > 1;
+      setIsScrolled(scrolled);
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+  
   return (
     <BannerContainer>
       <ContentContainer>
-        <Title>Energise Your Workforce</Title>
+        <Title>
+          <HighlightedWord isScrolled={isScrolled}>ENERGISE</HighlightedWord> YOUR WORKFORCE
+        </Title>
         <Subtitle>
           Transform employee wellness from buzzword to business advantage with <b>cult for corporates.</b>
         </Subtitle>

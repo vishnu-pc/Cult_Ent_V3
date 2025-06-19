@@ -23,6 +23,7 @@
   --font-size-3xl: 1.875rem; /* 30px */
   --font-size-4xl: 2.25rem;  /* 36px */
   --font-size-5xl: 3rem;     /* 48px */
+  --font-size-xxl: 8vw;    
   
   /* Spacing */
   --spacing-xs: 0.25rem;   /* 4px */
