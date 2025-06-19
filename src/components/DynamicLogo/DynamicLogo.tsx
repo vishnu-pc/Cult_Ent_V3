@@ -38,13 +38,13 @@ const DynamicLogo: React.FC<DynamicLogoProps> = ({ className }) => {
     if (isHighlighted) {
       let progress = 0;
       const interval = setInterval(() => {
-        progress += 2;
+        progress += 2; // Increment by 2% each interval for smooth animation
         if (progress >= 100) {
           clearInterval(interval);
           progress = 100;
         }
         setProgressValue(progress);
-      }, 20);
+      }, 20); // 20ms interval = 50 frames per second
       
       return () => clearInterval(interval);
     } else {
@@ -52,19 +52,29 @@ const DynamicLogo: React.FC<DynamicLogoProps> = ({ className }) => {
     }
   }, [isHighlighted]);
 
-  // Calculate the semicircular path length and offset for the ring animation
-  const circleRadius = 210; // Radius for the semicircle
-  const circumference = Math.PI * circleRadius; // Only half circle
+  // Semicircle Animation Parameters
+  const circleRadius = 210; // Radius in pixels for the semicircular path
+  const circumference = Math.PI * circleRadius; // Length of semicircle = π * radius
+  
+  // dashOffset controls the "filling" animation of the semicircle
+  // When progressValue = 0: dashOffset = circumference (empty semicircle)
+  // When progressValue = 100: dashOffset = 2 * circumference (filled semicircle)
   const dashOffset = circumference * (1 + progressValue / 100); 
   
-  // Calculate the position of the dot along the semicircular path
-  // Moving from left to right (PI to 0)
+  // Dot Position Calculations
+  // dotAngle maps progress (0-100) to angle (π-0) for clockwise movement
+  // At progress = 0: angle = π (bottom position)
+  // At progress = 100: angle = 0 (top position)
   const dotAngle = Math.PI * (1 - progressValue / 100);
-  const dotX = 190 + circleRadius * Math.cos(dotAngle);
-  const dotY = 215 - circleRadius * Math.sin(dotAngle);
+  
+  // Parametric equations for dot position on the semicircle
+  // Using standard parametric circle equations: x = r * cos(θ), y = r * sin(θ)
+  // Center point is at (190, 215)
+  const dotX = 190 + circleRadius * Math.cos(dotAngle); // x = center_x + r * cos(θ)
+  const dotY = 215 - circleRadius * Math.sin(dotAngle); // y = center_y - r * sin(θ) (negative for screen coordinates)
 
-  // Scale factor to create more space between the circle and inner elements
-  const innerScale = 0.7; // Scale inner elements to 70% of original size
+  // Scale factor for inner logo elements to create spacing
+  const innerScale = 0.7; // 70% of original size
 
   return (
     <SVGContainer 
@@ -102,15 +112,15 @@ const DynamicLogo: React.FC<DynamicLogoProps> = ({ className }) => {
           strokeWidth="1.5"
           strokeDasharray={circumference}
           strokeDashoffset={isHighlighted ? dashOffset : 0}
-          transform="rotate(180 190 215)"
+          transform="rotate(90 190 215)"
           strokeLinecap="round"
           opacity="0.8"
         />
         
         {/* Moving dot along the semicircular path - always visible but only moves when highlighted */}
         <circle
-          cx={isHighlighted ? dotX : 190 - circleRadius}
-          cy={isHighlighted ? dotY : 215}
+          cx={isHighlighted ? 190 - circleRadius * Math.sin(dotAngle) : 190}
+          cy={isHighlighted ? 215 - circleRadius * Math.cos(dotAngle) : 215 + circleRadius}
           r="5"
           fill={isHighlighted ? `url(#${dotGradientId.current})` : "white"}
         />
