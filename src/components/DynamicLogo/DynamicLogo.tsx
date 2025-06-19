@@ -12,27 +12,6 @@ const DynamicLogo: React.FC<DynamicLogoProps> = ({ className }) => {
   const dotGradientId = useRef(`dot-gradient-${Math.random().toString(36).substring(2, 9)}`);
   const fillGradientId = useRef(`fill-gradient-${Math.random().toString(36).substring(2, 9)}`);
 
-  // Intersection Observer for scroll detection
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
-        setIsHighlighted(!entry.isIntersecting);
-      },
-      { threshold: 0.3 }
-    );
-
-    if (logoRef.current) {
-      observer.observe(logoRef.current);
-    }
-
-    return () => {
-      if (logoRef.current) {
-        observer.unobserve(logoRef.current);
-      }
-    };
-  }, []);
-
   // Progress animation effect
   useEffect(() => {
     if (isHighlighted) {

@@ -17,13 +17,19 @@ const LandingBanner: React.FC<LandingBannerProps> = () => {
   
   // Add scroll event listener
   useEffect(() => {
+    // Set initial state based on current scroll position
+    setIsScrolled(window.scrollY > 0);
+    
     const handleScroll = () => {
-      // Check if user has scrolled more than 1px
-      const scrolled = window.scrollY > 1;
-      setIsScrolled(scrolled);
+      // Detect any scroll movement (Not in Use)
+      //setIsScrolled(window.scrollY > 0);
+      // Once activated, don't turn it off when scrolling back to top
+      if (window.scrollY > 0) {
+        setIsScrolled(true);
+      }
     };
     
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
