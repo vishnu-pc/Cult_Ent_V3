@@ -43,18 +43,18 @@ export const gradientTextAnimation = keyframes`
 /**
  * BUTTON BORDER ANIMATION
  * Animates the demo button border color
- * Cycles between yellow (#FDD914) and pink (#FF3278)
+ * Cycles between yellow and pink using CSS variables
  * Creates a pulsing border effect to draw attention
  */
 export const buttonBorderAnimation = keyframes`
   0% {
-    border-color: #FDD914;
+    border-color: var(--color-yellow);
   }
   50% {
-    border-color: #FF3278;
+    border-color: var(--color-pink);
   }
   100% {
-    border-color: #FDD914;
+    border-color: var(--color-yellow);
   }
 `;
 
@@ -88,14 +88,8 @@ export const BannerContainer = styled.section`
   justify-content: space-between;
   padding: 0 var(--spacing-2xl);
   
-  /* SUBTLE GRADIENT: Making it darker and more transparent to match black theme */
-  background: linear-gradient(15deg, 
-    rgba(0, 0, 0, 1),           /* Pure black - fully opaque */
-    rgba(253, 217, 20, 0.15),   /* Yellow with 15% opacity - very subtle */
-    rgba(237, 58, 121, 0.1),    /* Pink with 10% opacity - barely visible */
-    rgba(0, 180, 255, 0.12),    /* Blue with 12% opacity - subtle hint */
-    rgba(0, 0, 0, 1)            /* Pure black - fully opaque */
-  );
+  /* SUBTLE GRADIENT: Using CSS variables for consistency */
+  background: var(--gradient-animated-subtle);
   background-size: 600% 600%;
   animation: ${gradientAnimation} 15s ease infinite;
   overflow: hidden;
@@ -156,16 +150,16 @@ export const HighlightedWord = styled.span<{ isScrolled: boolean }>`
   font-weight: 900;
   cursor: pointer;
   
-  /* ACTIVE STATE: Animated gradient text */
+  /* ACTIVE STATE: Animated gradient text using CSS variables */
   ${props => props.isScrolled && css`
     color: transparent;
-    background: linear-gradient(to right, #FDD914, #40B9EB, #FF3278);
+    background: var(--gradient-full);
     background-size: 200% auto;                /* Double width for animation */
     -webkit-background-clip: text;             /* Clip gradient to text shape */
     background-clip: text;                     /* Standard property */
     -webkit-text-stroke: 0;                   /* Remove outline */
     text-stroke: 0;                           /* Remove outline */
-    animation: ${gradientTextAnimation} 11s ease infinite;
+    animation: ${gradientTextAnimation} 17s ease infinite;
   `}
   
   /* DEFAULT STATE: Outlined transparent text */
@@ -260,21 +254,22 @@ export const DemoButton = styled(motion.button)`
   font-weight: 700;
   cursor: pointer;
   border: 0.93px solid;
-  border-color: #FDD914;
+  border-color: var(--color-yellow);
   outline: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  filter: drop-shadow(0px 3.7px 18.6px rgba(254, 162, 54, 0.23));
-  box-shadow: 4px 4px 8px rgba(254, 162, 54, 0.23);
+  filter: drop-shadow(0px 3.7px 18.6px rgba(253, 217, 20, 0.23));
+  box-shadow: 4px 4px 8px rgba(253, 217, 20, 0.23);
   z-index: var(--z-index-floating);
   
   /* BORDER ANIMATION: Cycles between yellow and pink */
   animation: ${buttonBorderAnimation} 8s ease infinite;
   
   &:hover {
-    background: linear-gradient(217deg, var(--color-grey-dark) 12.09%, var(--color-grey-dark) 95.46%);
-    border-color: #FF3278;
+    background: var(--gradient-primary);
+    border-color: var(--color-pink);
+    transform: scale(1.05);
   }
   
   @media (max-width: 768px) {

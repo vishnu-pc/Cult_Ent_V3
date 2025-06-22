@@ -57,9 +57,31 @@ export const NavLink = styled(Link)`
   font-size: var(--font-size-md);
   transition: color var(--transition-fast);
   text-transform: uppercase;
+  position: relative;
   
+  /* Gradient hover effect */
   &:hover {
-    color: var(--color-accent-primary);
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+  }
+  
+  /* Animated underline on hover */
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-primary);
+    transition: width var(--transition-normal);
+  }
+  
+  &:hover::after {
+    width: 100%;
   }
   
   @media (max-width: 768px) {
@@ -69,17 +91,26 @@ export const NavLink = styled(Link)`
 `;
 
 export const LoginButton = styled.button`
-  background-color: var(--color-grey-dark);
-  color: var(--color-text);
+  background: var(--gradient-primary);
+  color: var(--color-black);
   padding: var(--spacing-sm) var(--spacing-lg);
   border-radius: var(--border-radius-full);
   margin-left: var(--spacing-lg);
   font-weight: 500;
-  transition: background-color var(--transition-fast);
+  transition: all var(--transition-fast);
+  position: relative;
+  overflow: hidden;
   
+  /* Gradient hover effect */
   &:hover {
-    background-color: var(--color-accent-primary);
-    color: var(--color-background);
+    background: var(--gradient-secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(253, 217, 20, 0.3);
+  }
+  
+  /* Active/pressed effect */
+  &:active {
+    transform: translateY(0);
   }
   
   @media (max-width: 768px) {
@@ -106,7 +137,7 @@ export const HamburgerButton = styled.button<HamburgerProps>`
   div {
     width: 30px;
     height: 3px;
-    background-color: var(--color-text);
+    background: var(--gradient-primary);
     border-radius: 10px;
     transition: all var(--transition-fast);
     position: relative;

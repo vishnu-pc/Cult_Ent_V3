@@ -1,13 +1,46 @@
 :root {
-  /* Color Palette */
-  --color-background: #000000;
-  --color-text: #ffffff;
-  --color-accent-primary: #ff4d4d;
-  --color-accent-secondary: #4dffff;
-  --color-accent-tertiary: #4dff4d;
+  /* Primary Color Palette - Based on Gradient Pack */
+  --color-background: #000000;          /* Pure black background */
+  --color-text: #ffffff;                /* White text for contrast */
+  
+  /* Brand Colors from Gradient Pack */
+  --color-yellow: #FDD914;              /* Bright yellow */
+  --color-pink: #ED3A79;                /* Pink/magenta */
+  --color-blue: #00B4FF;                /* Bright blue */
+  --color-black: #000000;               /* Pure black */
+  
+  /* Accent Colors - Using brand colors */
+  --color-accent-primary: #FDD914;      /* Yellow as primary accent */
+  --color-accent-secondary: #00B4FF;    /* Blue as secondary accent */
+  --color-accent-tertiary: #ED3A79;     /* Pink as tertiary accent */
+  
+  /* Grey Scale - Keeping for UI elements */
   --color-grey-light: #e0e0e0;
   --color-grey: #9e9e9e;
   --color-grey-dark: #424242;
+  
+  /* Linear Gradient Accent Colors */
+  --gradient-primary: linear-gradient(45deg, #FDD914, #ED3A79);                    /* Yellow to Pink */
+  --gradient-secondary: linear-gradient(45deg, #ED3A79, #00B4FF);                  /* Pink to Blue */
+  --gradient-tertiary: linear-gradient(45deg, #00B4FF, #FDD914);                   /* Blue to Yellow */
+  --gradient-full: linear-gradient(93deg, #FDD914 -4.03%, #40B9EB 47.54%, #FF3278 93.16%);            /* All three colors */
+  --gradient-rainbow: linear-gradient(45deg, #FDD914, #ED3A79, #00B4FF, #FDD914); /* Rainbow loop */
+  
+  /* Subtle Gradient Variants - For backgrounds */
+  --gradient-subtle-primary: linear-gradient(45deg, rgba(253, 217, 20, 0.1), rgba(237, 58, 121, 0.1));
+  --gradient-subtle-secondary: linear-gradient(45deg, rgba(237, 58, 121, 0.1), rgba(0, 180, 255, 0.1));
+  --gradient-subtle-tertiary: linear-gradient(45deg, rgba(0, 180, 255, 0.1), rgba(253, 217, 20, 0.1));
+  --gradient-subtle-full: linear-gradient(45deg, rgba(253, 217, 20, 0.08), rgba(237, 58, 121, 0.08), rgba(0, 180, 255, 0.08));
+  
+  /* Animated Gradient - For moving backgrounds */
+  --gradient-animated: linear-gradient(45deg, #000000, #FDD914, #ED3A79, #00B4FF, #000000);
+  --gradient-animated-subtle: linear-gradient(15deg, 
+    rgba(0, 0, 0, 1), 
+    rgba(0, 180, 255, 0.09), /*initially 12%*/
+    rgba(237, 58, 121, 0.08),  /*initially 10%*/
+    rgba(253, 217, 20, 0.10),  /*initially 15%*/
+    rgba(0, 0, 0, 1)
+  );
   
   /* Typography */
   --font-primary: 'Poppins', sans-serif;
