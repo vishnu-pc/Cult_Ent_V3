@@ -1,156 +1,54 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 
-interface WellnessSolutionsProps {}
+import type { WellnessSolutionsProps } from './WellnessSolutions.types';
+import { solutions } from './constants';
+import {
+  ContentContainer,
+  ImageContainer,
+  OptionDescription,
+  OptionItem,
+  OptionsContainer,
+  OptionTitle,
+  SectionContainer,
+  SectionTitle,
+  StyledImage,
+} from './WellnessSolutions.styles';
 
-// Solution data
-interface Solution {
-  id: number;
-  title: string;
-  description: string;
-  imageUrl: string;
-}
-
-const solutions: Solution[] = [
-  {
-    id: 1,
-    title: 'Premium Fitness Access',
-    description: 'Provide your employees with unlimited access to premium fitness centers, classes, and personalized workout plans to promote physical wellbeing.',
-    imageUrl: 'fitness-placeholder.jpg',
-  },
-  {
-    id: 2,
-    title: 'Dynamic Employee Engagement',
-    description: 'Boost morale and team cohesion with interactive challenges, team-building activities, and wellness competitions tailored to your company culture.',
-    imageUrl: 'engagement-placeholder.jpg',
-  },
-  {
-    id: 3,
-    title: 'Comprehensive All-Round Wellness',
-    description: 'Address all aspects of wellbeing with holistic programs covering physical fitness, mental health, nutrition, and work-life balance.',
-    imageUrl: 'wellness-placeholder.jpg',
-  },
-  {
-    id: 4,
-    title: 'Flexible On-Campus Solutions',
-    description: 'Transform your workplace with on-site fitness centers, wellness rooms, and health-focused amenities designed for your specific space and needs.',
-    imageUrl: 'campus-placeholder.jpg',
-  },
-  {
-    id: 5,
-    title: 'Thoughtful Corporate Gifting',
-    description: 'Show appreciation with curated wellness packages, fitness equipment, and health-focused gifts that demonstrate your commitment to employee wellbeing.',
-    imageUrl: 'gifting-placeholder.jpg',
-  },
-];
-
-const SectionContainer = styled.section`
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  background-color: var(--color-background);
-  overflow: hidden;
-  
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
-`;
-
-const ImageContainer = styled.div`
-  flex: 1;
-  position: relative;
-  overflow: hidden;
-  
-  @media (max-width: 768px) {
-    height: 40vh;
-  }
-`;
-
-const StyledImage = styled(motion.div)<{ $imageUrl: string }>`
-  width: 100%;
-  height: 100%;
-  background-image: url(${props => props.$imageUrl});
-  background-size: cover;
-  background-position: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-`;
-
-const ContentContainer = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: var(--spacing-2xl);
-  
-  @media (max-width: 768px) {
-    padding: var(--spacing-lg);
-  }
-`;
-
-const SectionTitle = styled.h2`
-  font-size: var(--font-size-3xl);
-  margin-bottom: var(--spacing-xl);
-  
-  @media (max-width: 768px) {
-    font-size: var(--font-size-2xl);
-    margin-bottom: var(--spacing-lg);
-  }
-`;
-
-const OptionsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-md);
-`;
-
-const OptionItem = styled(motion.div)<{ $isActive: boolean }>`
-  padding: var(--spacing-md) var(--spacing-lg);
-  border-radius: var(--border-radius-md);
-  cursor: pointer;
-  background-color: ${props => props.$isActive ? 'rgba(255, 77, 77, 0.1)' : 'transparent'};
-  border-left: 4px solid ${props => props.$isActive ? 'var(--color-accent-primary)' : 'transparent'};
-  transition: all var(--transition-normal);
-  
-  &:hover {
-    background-color: rgba(255, 77, 77, 0.05);
-  }
-`;
-
-interface OptionTitleProps {
-  $isActive?: boolean;
-  $hasDescription?: boolean;
-}
-
-const OptionTitle = styled.h3<OptionTitleProps>`
-  font-size: var(--font-size-lg);
-  margin-bottom: ${props => props.$hasDescription ? 'var(--spacing-sm)' : '0'};
-  color: ${props => props.$isActive ? 'var(--color-accent-primary)' : 'var(--color-text)'};
-`;
-
-const OptionDescription = styled(motion.p)`
-  font-size: var(--font-size-md);
-  color: var(--color-grey);
-  line-height: 1.6;
-`;
-
+/**
+ * WellnessSolutions is a feature section that showcases different wellness solutions.
+ * It consists of an image gallery and a list of selectable options, where selecting
+ * an option updates the displayed image and reveals more details.
+ *
+ * @param {WellnessSolutionsProps} props - The props for the component.
+ * @returns {JSX.Element} The rendered WellnessSolutions component.
+ */
 const WellnessSolutions: React.FC<WellnessSolutionsProps> = () => {
+  // State to keep track of the currently active solution. Defaults to the first solution.
   const [activeOption, setActiveOption] = useState<number>(1);
-  
+
+  /**
+   * Handles the click event on a solution option.
+   * Updates the activeOption state with the ID of the clicked solution.
+   *
+   * @param {number} id - The ID of the solution that was clicked.
+   */
   const handleOptionClick = (id: number) => {
     setActiveOption(id);
   };
-  
+
+  // Finds the full solution object that is currently active.
+  // If no active solution is found (which shouldn't happen), it defaults to the first solution.
   const activeSolution = solutions.find(solution => solution.id === activeOption) || solutions[0];
-  
+
   return (
     <SectionContainer>
+      {/* The left side of the section, displaying the image for the active solution. */}
       <ImageContainer>
+        {/* AnimatePresence is used to gracefully animate the exit and entry of the image. */}
         <AnimatePresence mode="wait">
           <StyledImage
-            key={activeSolution.id}
+            key={activeSolution.id} // The key is crucial for AnimatePresence to detect changes.
             $imageUrl={activeSolution.imageUrl}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -159,30 +57,33 @@ const WellnessSolutions: React.FC<WellnessSolutionsProps> = () => {
           />
         </AnimatePresence>
       </ImageContainer>
-      
+
+      {/* The right side of the section, displaying the title and the list of solutions. */}
       <ContentContainer>
         <SectionTitle>Wellness Solutions</SectionTitle>
         <OptionsContainer>
+          {/* Maps over the solutions array to render each solution as a clickable option. */}
           {solutions.map((solution) => (
             <OptionItem
               key={solution.id}
               $isActive={activeOption === solution.id}
               onClick={() => handleOptionClick(solution.id)}
-              whileHover={{ x: 5 }}
+              whileHover={{ x: 5 }} // A subtle hover animation for better UX.
             >
-              <OptionTitle 
+              <OptionTitle
                 $isActive={activeOption === solution.id}
                 $hasDescription={activeOption === solution.id}
               >
                 {solution.title}
               </OptionTitle>
-              
+
+              {/* AnimatePresence manages the mounting and unmounting of the description. */}
               <AnimatePresence>
                 {activeOption === solution.id && (
                   <OptionDescription
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
+                    initial={{ opacity: 0, height: 0 }} // Starts invisible and with no height.
+                    animate={{ opacity: 1, height: 'auto' }} // Fades in and expands height.
+                    exit={{ opacity: 0, height: 0 }} // Fades out and collapses height.
                     transition={{ duration: 0.3 }}
                   >
                     {solution.description}

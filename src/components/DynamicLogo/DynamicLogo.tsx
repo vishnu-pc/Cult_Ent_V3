@@ -64,27 +64,33 @@ const DynamicLogo: React.FC<DynamicLogoProps> = ({ className, forceHighlight }) 
     }
   }, [isHighlighted]);
 
-  // Full Circle Animation Parameters
+  // Arc Animation Parameters
   const circleRadius = 210; // Radius in pixels for the circular path
-  const circumference = 2 * Math.PI * circleRadius; // Full circle circumference = 2π * radius
-  
-  // dashOffset controls the "filling" animation of the circle
-  // When progressValue = 0: dashOffset = circumference (empty circle)
-  // When progressValue = 100: dashOffset = 0 (filled circle)
-  const dashOffset = circumference * (1 - progressValue / 100); 
-  
+  const arcSweepRads = (3 * Math.PI) / 2; // 270 degrees in radians
+  const arcLength = circleRadius * arcSweepRads; // Length of the 270-degree arc
+
+  // dashOffset controls the "filling" animation of the arc
+  // When progressValue = 0: dashOffset = arcLength (empty arc)
+  // When progressValue = 100: dashOffset = 0 (filled arc)
+  const dashOffset = arcLength * (1 - progressValue / 100);
+
   // Dot Position Calculations
-  // dotAngle maps progress (0-100) to angle (π/2 to π/2 + 2π) for full clockwise rotation
-  // Starting at bottom (π/2) and completing full circle back to bottom
-  // At progress = 0: angle = π/2 (bottom position - 90 degrees)
-  // At progress = 100: angle = π/2 + 2π (back to bottom after full rotation)
-  const dotAngle = (Math.PI / 2) + (2 * Math.PI * progressValue / 100);
-  
-  // Parametric equations for dot position on the full circle
-  // Using standard parametric circle equations: x = r * cos(θ), y = r * sin(θ)
+  // The arc is rotated -45deg (CCW), so it starts at π/4 (45deg)
+  const startAngleRads = Math.PI / 4; 
+  // dotAngle maps progress (0-100) to an angle sweeping 270 degrees clockwise.
+  const dotAngle = startAngleRads + (arcSweepRads * progressValue / 100);
+
+  // Parametric equations for dot position on the circular arc
   // Center point is at (190, 215)
   const dotX = 190 + circleRadius * Math.cos(dotAngle); // x = center_x + r * cos(θ)
   const dotY = 215 + circleRadius * Math.sin(dotAngle); // y = center_y + r * sin(θ)
+
+  // Calculate static start and end points for the path and initial dot position
+  const startX = 190 + circleRadius * Math.cos(startAngleRads);
+  const startY = 215 + circleRadius * Math.sin(startAngleRads);
+  const endAngleRads = startAngleRads + arcSweepRads;
+  const endX = 190 + circleRadius * Math.cos(endAngleRads);
+  const endY = 215 + circleRadius * Math.sin(endAngleRads);
 
   // Scale factor for inner logo elements to create spacing
   const innerScale = 0.7; // 70% of original size
@@ -117,23 +123,22 @@ const DynamicLogo: React.FC<DynamicLogoProps> = ({ className, forceHighlight }) 
           </linearGradient>
         </defs>
         
-        {/* Full circular ring - animated - positioned behind everything */}
+        {/* 270-degree circular arc - animated and rotated -45deg */}
         <path
-          d="M 190,215 m -210,0 a 210,210 0 1,1 420,0 a 210,210 0 1,1 -420,0"
+          d={`M ${startX} ${startY} A ${circleRadius} ${circleRadius} 0 1 1 ${endX} ${endY}`}
           fill="none"
           stroke={isHighlighted ? `url(#${ringGradientId.current})` : "white"}
           strokeWidth="1.5"
-          strokeDasharray={circumference}
+          strokeDasharray={arcLength}
           strokeDashoffset={isHighlighted ? dashOffset : 0}
-          transform="rotate(-90 190 215)"
           strokeLinecap="round"
           opacity="0.8"
         />
         
         {/* Moving dot along the circular path - always visible but only moves when highlighted */}
         <circle
-          cx={isHighlighted ? dotX : 190}
-          cy={isHighlighted ? dotY : 215 + circleRadius}
+          cx={isHighlighted ? dotX : startX}
+          cy={isHighlighted ? dotY : startY}
           r="5"
           fill={isHighlighted ? `url(#${dotGradientId.current})` : "white"}
         />

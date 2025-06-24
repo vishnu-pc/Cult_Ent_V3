@@ -36,9 +36,9 @@
   --gradient-animated: linear-gradient(45deg, #000000, #FDD914, #ED3A79, #00B4FF, #000000);
   --gradient-animated-subtle: linear-gradient(15deg, 
     rgba(0, 0, 0, 1), 
-    rgba(0, 180, 255, 0.09), /*initially 12%*/
-    rgba(237, 58, 121, 0.08),  /*initially 10%*/
-    rgba(253, 217, 20, 0.10),  /*initially 15%*/
+    rgba(0, 180, 255, 0.12), /*initially 12%*/
+    rgba(237, 58, 121, 0.10),  /*initially 10%*/
+    rgba(253, 217, 20, 0.15),  /*initially 15%*/
     rgba(0, 0, 0, 1)
   );
   
