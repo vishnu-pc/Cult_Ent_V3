@@ -24,8 +24,10 @@ import {
  * @returns {JSX.Element} The rendered WellnessSolutions component.
  */
 const WellnessSolutions: React.FC<WellnessSolutionsProps> = () => {
-  // State to keep track of the currently active solution. Defaults to the first solution.
+  // State to keep track of the currently active (clicked) solution. Defaults to the first solution.
   const [activeOption, setActiveOption] = useState<number>(1);
+  // State to keep track of the currently hovered solution. Null if no option is hovered.
+  const [hoveredOption, setHoveredOption] = useState<number | null>(null);
 
   /**
    * Handles the click event on a solution option.
@@ -37,9 +39,30 @@ const WellnessSolutions: React.FC<WellnessSolutionsProps> = () => {
     setActiveOption(id);
   };
 
-  // Finds the full solution object that is currently active.
-  // If no active solution is found (which shouldn't happen), it defaults to the first solution.
-  const activeSolution = solutions.find(solution => solution.id === activeOption) || solutions[0];
+  /**
+   * Handles the mouse enter event on a solution option.
+   * Updates the hoveredOption state with the ID of the hovered solution.
+   *
+   * @param {number} id - The ID of the solution that was hovered.
+   */
+  const handleMouseEnter = (id: number) => {
+    setHoveredOption(id);
+  };
+
+  /**
+   * Handles the mouse leave event on a solution option.
+   * Resets the hoveredOption state to null.
+   */
+  const handleMouseLeave = () => {
+    setHoveredOption(null);
+  };
+
+  // Determine which solution to display. Prioritize the hovered option,
+  // otherwise, fall back to the active (clicked) option.
+  const displaySolutionId = hoveredOption ?? activeOption;
+  const displaySolution =
+    solutions.find((solution) => solution.id === displaySolutionId) ||
+    solutions[0];
 
   return (
     <SectionContainer>
@@ -48,8 +71,8 @@ const WellnessSolutions: React.FC<WellnessSolutionsProps> = () => {
         {/* AnimatePresence is used to gracefully animate the exit and entry of the image. */}
         <AnimatePresence mode="wait">
           <StyledImage
-            key={activeSolution.id} // The key is crucial for AnimatePresence to detect changes.
-            $imageUrl={activeSolution.imageUrl}
+            key={displaySolution.id} // The key is crucial for AnimatePresence to detect changes.
+            $imageUrl={displaySolution.imageUrl}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -63,35 +86,45 @@ const WellnessSolutions: React.FC<WellnessSolutionsProps> = () => {
         <SectionTitle>Wellness Solutions</SectionTitle>
         <OptionsContainer>
           {/* Maps over the solutions array to render each solution as a clickable option. */}
-          {solutions.map((solution) => (
-            <OptionItem
-              key={solution.id}
-              $isActive={activeOption === solution.id}
-              onClick={() => handleOptionClick(solution.id)}
-              whileHover={{ x: 5 }} // A subtle hover animation for better UX.
-            >
-              <OptionTitle
-                $isActive={activeOption === solution.id}
-                $hasDescription={activeOption === solution.id}
-              >
-                {solution.title}
-              </OptionTitle>
+          {solutions.map((solution) => {
+            // Determine if the description for this option should be visible.
+            // It shows for a hovered item, or for the active item when nothing is hovered.
+            const showDescription =
+              hoveredOption === solution.id ||
+              (activeOption === solution.id && hoveredOption === null);
 
-              {/* AnimatePresence manages the mounting and unmounting of the description. */}
-              <AnimatePresence>
-                {activeOption === solution.id && (
-                  <OptionDescription
-                    initial={{ opacity: 0, height: 0 }} // Starts invisible and with no height.
-                    animate={{ opacity: 1, height: 'auto' }} // Fades in and expands height.
-                    exit={{ opacity: 0, height: 0 }} // Fades out and collapses height.
-                    transition={{ duration: 0.3 }}
-                  >
-                    {solution.description}
-                  </OptionDescription>
-                )}
-              </AnimatePresence>
-            </OptionItem>
-          ))}
+            return (
+              <OptionItem
+                key={solution.id}
+                $isActive={activeOption === solution.id}
+                onClick={() => handleOptionClick(solution.id)}
+                onMouseEnter={() => handleMouseEnter(solution.id)}
+                onMouseLeave={handleMouseLeave}
+                whileHover={{ x: 5 }} // A subtle hover animation for better UX.
+              >
+                <OptionTitle
+                  $isActive={activeOption === solution.id}
+                  $hasDescription={showDescription}
+                >
+                  {solution.title}
+                </OptionTitle>
+
+                {/* AnimatePresence manages the mounting and unmounting of the description. */}
+                <AnimatePresence>
+                  {showDescription && (
+                    <OptionDescription
+                      initial={{ opacity: 0, height: 0 }} // Starts invisible and with no height.
+                      animate={{ opacity: 1, height: 'auto' }} // Fades in and expands height.
+                      exit={{ opacity: 0, height: 0 }} // Fades out and collapses height.
+                      transition={{ duration: 0.3 }}
+                    >
+                      {solution.description}
+                    </OptionDescription>
+                  )}
+                </AnimatePresence>
+              </OptionItem>
+            );
+          })}
         </OptionsContainer>
       </ContentContainer>
     </SectionContainer>
