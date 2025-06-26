@@ -7,11 +7,13 @@ export interface WellnessSolutionsProps {}
 
 /**
  * Defines the structure for a single wellness solution object.
- * Each solution has a unique ID, a title, a description, and an image URL.
+ * Each solution has a unique ID, a title, a description, an image URL,
+ * and a hover color for styling purposes.
  */
 export interface Solution {
   id: number;
   title: string;
   description: string;
   imageUrl: string;
+  hoverColor: string;
 } 

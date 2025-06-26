@@ -4,12 +4,19 @@ import { AnimatePresence } from 'framer-motion';
 import type { WellnessSolutionsProps } from './WellnessSolutions.types';
 import { solutions } from './constants';
 import {
+  BackgroundNumber,
   ContentContainer,
   ImageContainer,
+  ImageDisplayContainer,
   OptionDescription,
+  OptionHeader,
   OptionItem,
+  OptionNumber,
   OptionsContainer,
   OptionTitle,
+  OverlaySubtitle,
+  OverlayTextContainer,
+  OverlayTitle,
   SectionContainer,
   SectionTitle,
   StyledImage,
@@ -17,8 +24,8 @@ import {
 
 /**
  * WellnessSolutions is a feature section that showcases different wellness solutions.
- * It consists of an image gallery and a list of selectable options, where selecting
- * an option updates the displayed image and reveals more details.
+ * It features a 35/65 layout with an image gallery on the left and interactive options on the right.
+ * The component includes overlay text, animated gradients, and dynamic hover effects.
  *
  * @param {WellnessSolutionsProps} props - The props for the component.
  * @returns {JSX.Element} The rendered WellnessSolutions component.
@@ -66,26 +73,38 @@ const WellnessSolutions: React.FC<WellnessSolutionsProps> = () => {
 
   return (
     <SectionContainer>
-      {/* The left side of the section, displaying the image for the active solution. */}
+      {/* Large background "05" element positioned behind the image container */}
+      <BackgroundNumber>05</BackgroundNumber>
+      
+      {/* The left side of the section, displaying overlay text and the image */}
       <ImageContainer>
-        {/* AnimatePresence is used to gracefully animate the exit and entry of the image. */}
-        <AnimatePresence mode="wait">
-          <StyledImage
-            key={displaySolution.id} // The key is crucial for AnimatePresence to detect changes.
-            $imageUrl={displaySolution.imageUrl}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-          />
-        </AnimatePresence>
+        {/* Overlay text container with "WELLNESS SOLUTIONS" and "05 WAYS" */}
+        <OverlayTextContainer>
+          <OverlayTitle>Wellness Solutions</OverlayTitle>
+          <OverlaySubtitle>05 WAYS</OverlaySubtitle>
+        </OverlayTextContainer>
+        
+        {/* The image display area */}
+        <ImageDisplayContainer>
+          {/* AnimatePresence is used to gracefully animate the exit and entry of the image */}
+          <AnimatePresence mode="wait">
+            <StyledImage
+              key={displaySolution.id} // The key is crucial for AnimatePresence to detect changes
+              $imageUrl={displaySolution.imageUrl}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+            />
+          </AnimatePresence>
+        </ImageDisplayContainer>
       </ImageContainer>
 
-      {/* The right side of the section, displaying the title and the list of solutions. */}
+      {/* The right side of the section, displaying the title and the list of solutions */}
       <ContentContainer>
-        <SectionTitle>Wellness Solutions</SectionTitle>
+        <SectionTitle>We're crushing the corporate wellness game in India.</SectionTitle>
         <OptionsContainer>
-          {/* Maps over the solutions array to render each solution as a clickable option. */}
+          {/* Maps over the solutions array to render each solution as a clickable option */}
           {solutions.map((solution) => {
             // Determine if the description for this option should be visible.
             // It shows for a hovered item, or for the active item when nothing is hovered.
@@ -97,25 +116,29 @@ const WellnessSolutions: React.FC<WellnessSolutionsProps> = () => {
               <OptionItem
                 key={solution.id}
                 $isActive={activeOption === solution.id}
+                $hoverColor={solution.hoverColor}
                 onClick={() => handleOptionClick(solution.id)}
                 onMouseEnter={() => handleMouseEnter(solution.id)}
                 onMouseLeave={handleMouseLeave}
-                whileHover={{ x: 5 }} // A subtle hover animation for better UX.
+                whileHover={{ x: 5 }} // A subtle hover animation for better UX
               >
-                <OptionTitle
-                  $isActive={activeOption === solution.id}
-                  $hasDescription={showDescription}
-                >
-                  {solution.title}
-                </OptionTitle>
+                <OptionHeader>
+                  <OptionNumber>#{solution.id}</OptionNumber>
+                  <OptionTitle
+                    $isActive={activeOption === solution.id}
+                    $hasDescription={showDescription}
+                  >
+                    {solution.title}
+                  </OptionTitle>
+                </OptionHeader>
 
-                {/* AnimatePresence manages the mounting and unmounting of the description. */}
+                {/* AnimatePresence manages the mounting and unmounting of the description */}
                 <AnimatePresence>
                   {showDescription && (
                     <OptionDescription
-                      initial={{ opacity: 0, height: 0 }} // Starts invisible and with no height.
-                      animate={{ opacity: 1, height: 'auto' }} // Fades in and expands height.
-                      exit={{ opacity: 0, height: 0 }} // Fades out and collapses height.
+                      initial={{ opacity: 0, height: 0 }} // Starts invisible and with no height
+                      animate={{ opacity: 1, height: 'auto' }} // Fades in and expands height
+                      exit={{ opacity: 0, height: 0 }} // Fades out and collapses height
                       transition={{ duration: 0.3 }}
                     >
                       {solution.description}

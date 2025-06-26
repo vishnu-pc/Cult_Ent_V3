@@ -34,6 +34,7 @@
   
   /* Animated Gradient - For moving backgrounds */
   --gradient-animated: linear-gradient(45deg, #000000, #FDD914, #ED3A79, #00B4FF, #000000);
+  --gradient-animated-colour: linear-gradient(45deg, #FDD914, #ED3A79, #00B4FF);
   --gradient-animated-subtle: linear-gradient(15deg, 
     rgba(0, 0, 0, 1), 
     rgba(0, 180, 255, 0.12), /*initially 12%*/
@@ -56,9 +57,14 @@
   --font-size-3xl: 1.875rem; /* 30px */
   --font-size-4xl: 2.25rem;  /* 36px */
   --font-size-5xl: 3rem;     /* 48px */
-  --font-size-xxl: 8vw;    
+  --font-size-6xl: 4rem;     /* 64px */
+  --font-size-7xl: 5rem;     /* 80px */
+  --font-size-8xl: 6rem;     /* 96px */
+  --font-size-9xl: 7rem;     /* 112px */
+  --font-size-xxl: 8vw;      /* 128px */
   
   /* Spacing */
+  --spacing-xxs: 0rem;     /* 0px */
   --spacing-xs: 0.25rem;   /* 4px */
   --spacing-sm: 0.5rem;    /* 8px */
   --spacing-md: 1rem;      /* 16px */
