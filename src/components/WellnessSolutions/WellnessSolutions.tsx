@@ -31,29 +31,20 @@ import {
  * @returns {JSX.Element} The rendered WellnessSolutions component.
  */
 const WellnessSolutions: React.FC<WellnessSolutionsProps> = () => {
-  // State to keep track of the currently active (clicked) solution. Defaults to the first solution.
-  const [activeOption, setActiveOption] = useState<number>(1);
+  // State to keep track of the last hovered solution. Defaults to the first solution.
+  const [lastHoveredOption, setLastHoveredOption] = useState<number>(1);
   // State to keep track of the currently hovered solution. Null if no option is hovered.
   const [hoveredOption, setHoveredOption] = useState<number | null>(null);
 
   /**
-   * Handles the click event on a solution option.
-   * Updates the activeOption state with the ID of the clicked solution.
-   *
-   * @param {number} id - The ID of the solution that was clicked.
-   */
-  const handleOptionClick = (id: number) => {
-    setActiveOption(id);
-  };
-
-  /**
    * Handles the mouse enter event on a solution option.
-   * Updates the hoveredOption state with the ID of the hovered solution.
+   * Updates the hoveredOption state and tracks the last hovered option.
    *
    * @param {number} id - The ID of the solution that was hovered.
    */
   const handleMouseEnter = (id: number) => {
     setHoveredOption(id);
+    setLastHoveredOption(id);
   };
 
   /**
@@ -64,11 +55,9 @@ const WellnessSolutions: React.FC<WellnessSolutionsProps> = () => {
     setHoveredOption(null);
   };
 
-  // Determine which solution to display. Prioritize the hovered option,
-  // otherwise, fall back to the active (clicked) option.
-  const displaySolutionId = hoveredOption ?? activeOption;
+  // The image to display is either the currently hovered option or the last hovered option
   const displaySolution =
-    solutions.find((solution) => solution.id === displaySolutionId) ||
+    solutions.find((solution) => solution.id === lastHoveredOption) ||
     solutions[0];
 
   return (
@@ -99,35 +88,27 @@ const WellnessSolutions: React.FC<WellnessSolutionsProps> = () => {
           </AnimatePresence>
         </ImageDisplayContainer>
       </ImageContainer>
-
+      
       {/* The right side of the section, displaying the title and the list of solutions */}
       <ContentContainer>
         <SectionTitle>We're crushing the corporate wellness game in India.</SectionTitle>
         <OptionsContainer>
-          {/* Maps over the solutions array to render each solution as a clickable option */}
+          {/* Maps over the solutions array to render each solution as a hoverable option */}
           {solutions.map((solution) => {
-            // Determine if the description for this option should be visible.
-            // It shows for a hovered item, or for the active item when nothing is hovered.
-            const showDescription =
-              hoveredOption === solution.id ||
-              (activeOption === solution.id && hoveredOption === null);
+            // Description is only visible when actively hovering over this specific option
+            const showDescription = hoveredOption === solution.id;
 
             return (
               <OptionItem
                 key={solution.id}
-                $isActive={activeOption === solution.id}
                 $hoverColor={solution.hoverColor}
-                onClick={() => handleOptionClick(solution.id)}
                 onMouseEnter={() => handleMouseEnter(solution.id)}
                 onMouseLeave={handleMouseLeave}
-                whileHover={{ x: 5 }} // A subtle hover animation for better UX
+                // whileHover={{ x: 5 }} // A subtle hover animation for better UX (disabled for now)
               >
                 <OptionHeader>
                   <OptionNumber>#{solution.id}</OptionNumber>
-                  <OptionTitle
-                    $isActive={activeOption === solution.id}
-                    $hasDescription={showDescription}
-                  >
+                  <OptionTitle $hasDescription={showDescription}>
                     {solution.title}
                   </OptionTitle>
                 </OptionHeader>

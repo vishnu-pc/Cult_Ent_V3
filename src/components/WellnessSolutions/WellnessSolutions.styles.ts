@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
  * Uses the animated gradient background and implements a 35/65 split layout.
  */
 export const SectionContainer = styled.section`
-  height: 100vh;
+  height: 110vh;
   width: 100vw;
   display: flex;
   background: var(--gradient-animated-subtle);
@@ -31,7 +31,7 @@ export const SectionContainer = styled.section`
  */
 export const BackgroundNumber = styled.div`
   position: absolute;
-  top: 2rem;
+  top: -2rem;
   left: -5rem;
   font-size: 20rem;
   font-weight: 900;
@@ -53,13 +53,15 @@ export const BackgroundNumber = styled.div`
  * Takes up 35% of the width with fixed dimensions.
  */
 export const ImageContainer = styled.div`
-  flex: 0 0 35%;
+  flex: 0 0 30%;
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   z-index: 2;
-  margin-left: 7rem;
+  margin-left: 10%;
+  margin-top: 3vh;
+  margin-bottom: 1vh;
   
   @media (max-width: 768px) {
     height: 40vh;
@@ -69,10 +71,13 @@ export const ImageContainer = styled.div`
 
 /**
  * Container for the overlay text above the image.
+ * This should be vertically aligned with the SectionTitle on the right.
  */
 export const OverlayTextContainer = styled.div`
   padding: var(--spacing-xxs) var(--spacing-xxs);
   z-index: 3;
+  height: auto;
+  flex-shrink: 0;
   
   @media (max-width: 768px) {
     padding: var(--spacing-lg);
@@ -118,6 +123,7 @@ export const OverlaySubtitle = styled.h2`
 
 /**
  * The actual image display area.
+ * This should be vertically aligned with the OptionsContainer on the right.
  */
 export const ImageDisplayContainer = styled.div`
   flex: 1;
@@ -144,14 +150,15 @@ export const StyledImage = styled(motion.div)<{ $imageUrl: string }>`
 
 /**
  * Container for the content (title and options).
- * Takes up 55% of the width.
+ * Takes up 55% of the width and implements the two-part vertical structure.
  */
 export const ContentContainer = styled.div`
   flex: 0 0 55%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   padding: var(--spacing-xxs);
+  margin-top: 3vh;
+  margin-bottom: 1vh;
   z-index: 2;
   
   @media (max-width: 768px) {
@@ -162,39 +169,52 @@ export const ContentContainer = styled.div`
 
 /**
  * The main section header.
+ * This should be vertically aligned with the OverlayTextContainer on the left.
  */
 export const SectionTitle = styled.h2`
   font-size: var(--font-size-2xl);
-  margin-bottom: var(--spacing-2xl);
   color: var(--color-text);
   font-weight: 300;
   line-height: 1.2;
+  margin: 0;
+  padding: var(--spacing-lg) var(--spacing-xxs);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
   
   @media (max-width: 768px) {
     font-size: var(--font-size-2xl);
-    margin-bottom: var(--spacing-xl);
   }
 `;
 
 /**
  * Container for the list of solution options.
+ * This should be vertically aligned with the ImageDisplayContainer on the left.
+ * Options should take up 80% of this container's vertical space.
  */
 export const OptionsContainer = styled.div`
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0;
+  justify-content: space-between;
+  padding: 10% var(--spacing-xxs);
 `;
 
 /**
  * An individual option item in the list.
  * Changes background color on hover based on the solution's hover color.
+ * Spacing is calculated to distribute options evenly across 80% of the container height.
  */
-export const OptionItem = styled(motion.div)<{ $isActive: boolean; $hoverColor: string }>`
-  padding: var(--spacing-lg) var(--spacing-xl);
+export const OptionItem = styled(motion.div)<{ $hoverColor: string }>`
   cursor: pointer;
   transition: all var(--transition-normal);
   border-bottom: 2px solid ${props => props.$hoverColor};
   position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--spacing-md) var(--spacing-xl);
   
   &:hover {
     background-color: ${props => props.$hoverColor};
@@ -234,17 +254,16 @@ export const OptionNumber = styled.span`
  * Props for the OptionTitle component to handle conditional styling.
  */
 export interface OptionTitleProps {
-  $isActive?: boolean;
   $hasDescription?: boolean;
 }
 
 /**
  * The title of an option.
- * Becomes bold when active or hovered.
+ * Becomes bold when the description is visible (on hover).
  */
 export const OptionTitle = styled.h3<OptionTitleProps>`
   font-size: var(--font-size-2xl);
-  font-weight: ${props => props.$isActive ? '700' : '600'};
+  font-weight: ${props => props.$hasDescription ? '700' : '600'};
   color: inherit;
   margin: 0;
   
@@ -255,7 +274,7 @@ export const OptionTitle = styled.h3<OptionTitleProps>`
 
 /**
  * The description of an option.
- * This is an animated component that appears when an option is active or hovered.
+ * This is an animated component that appears when an option is hovered.
  */
 export const OptionDescription = styled(motion.p)`
   font-size: var(--font-size-md);

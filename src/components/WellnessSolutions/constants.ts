@@ -31,14 +31,14 @@ export const solutions: Solution[] = [
     title: 'Comprehensive All-Round Wellness',
     description: 'Because brilliant minds need balanced bodies. Cutting-edge nutrition, mental wellness support, and health check-ups that employees actually look forward to.',
     imageUrl: Wellness3,
-    hoverColor: 'var(--color-pink)', // Pink/magenta from the design
+    hoverColor: 'var(--color-blue)', // Pink/magenta from the design
   },
   {
     id: 4,
     title: 'Flexible On-Campus Solutions',
     description: 'That forgotten corner of your office? It\'s your next culture-building hotspot. Or let us elevate your existing gym into something extraordinary.',
     imageUrl: Wellness4,
-    hoverColor: 'var(--color-pink)', // Pink/magenta from the design
+    hoverColor: 'var(--color-yellow)', // Pink/magenta from the design
   },
   {
     id: 5,
