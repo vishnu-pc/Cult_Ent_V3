@@ -1,319 +1,89 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import { motion } from 'framer-motion';
-import { simulateSalesforceSubmission } from '../../services/salesforce';
+import type { ContactUsProps, ContactFormData } from './ContactUs.types';
+import {
+  SectionContainer,
+  ContentWrapper,
+  ImageSection,
+  JumpingGirlImage,
+  FormSection,
+  TitleSection,
+  ContactTitle,
+  MainHeadline,
+  CutToTheText,
+  ChaseText,
+  Subtitle,
+  Form,
+  FormRow,
+  FormGroup,
+  FullWidthFormGroup,
+  Input,
+  Select,
+  TextArea,
+  RecaptchaContainer,
+  RecaptchaCheckbox,
+  RecaptchaText,
+  SubmitButton,
+} from './ContactUs.styles';
 
-interface ContactUsProps {}
-
-interface FormData {
-  firstName: string;
-  lastName: string;
-  email: string;
-  company: string;
-  employeeCount: string;
-  phone: string;
-  message: string;
-}
-
-interface FormErrors {
-  firstName?: string;
-  lastName?: string;
-  email?: string;
-  company?: string;
-  employeeCount?: string;
-  phone?: string;
-  message?: string;
-}
-
-const SectionContainer = styled.section`
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--color-background);
-  padding: var(--spacing-2xl) 0;
-  overflow: hidden;
-`;
-
-const ContentWrapper = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
-`;
-
-const InfoContainer = styled.div`
-  flex: 1;
-  padding: var(--spacing-xl);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  
-  @media (max-width: 768px) {
-    padding: var(--spacing-lg);
-  }
-`;
-
-const FormContainer = styled.div`
-  flex: 1;
-  padding: var(--spacing-xl);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  
-  @media (max-width: 768px) {
-    padding: var(--spacing-lg);
-  }
-`;
-
-const SectionTitle = styled.h2`
-  font-size: var(--font-size-4xl);
-  margin-bottom: var(--spacing-md);
-  
-  @media (max-width: 768px) {
-    font-size: var(--font-size-3xl);
-  }
-`;
-
-const SectionSubtitle = styled.p`
-  font-size: var(--font-size-lg);
-  color: var(--color-grey-light);
-  margin-bottom: var(--spacing-xl);
-  max-width: 90%;
-  
-  @media (max-width: 768px) {
-    font-size: var(--font-size-md);
-  }
-`;
-
-const ContactInfo = styled.div`
-  margin-top: var(--spacing-xl);
-`;
-
-const ContactItem = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: var(--spacing-md);
-`;
-
-const ContactIcon = styled.div`
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: var(--color-accent-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: var(--spacing-md);
-`;
-
-const ContactText = styled.div`
-  font-size: var(--font-size-md);
-  color: var(--color-text);
-`;
-
-const Form = styled.form`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-`;
-
-const FormRow = styled.div`
-  display: flex;
-  gap: var(--spacing-md);
-  margin-bottom: var(--spacing-md);
-  
-  @media (max-width: 640px) {
-    flex-direction: column;
-  }
-`;
-
-const FormGroup = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-`;
-
-const Label = styled.label`
-  font-size: var(--font-size-sm);
-  color: var(--color-grey-light);
-  margin-bottom: var(--spacing-xs);
-`;
-
-const Input = styled.input<{ $hasError?: boolean }>`
-  padding: var(--spacing-sm) var(--spacing-md);
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid ${props => props.$hasError ? 'var(--color-accent-primary)' : 'var(--color-grey-dark)'};
-  border-radius: var(--border-radius-md);
-  color: var(--color-text);
-  font-size: var(--font-size-md);
-  outline: none;
-  transition: border-color var(--transition-fast);
-  
-  &:focus {
-    border-color: var(--color-accent-secondary);
-  }
-`;
-
-const Select = styled.select<{ $hasError?: boolean }>`
-  padding: var(--spacing-sm) var(--spacing-md);
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid ${props => props.$hasError ? 'var(--color-accent-primary)' : 'var(--color-grey-dark)'};
-  border-radius: var(--border-radius-md);
-  color: var(--color-text);
-  font-size: var(--font-size-md);
-  outline: none;
-  transition: border-color var(--transition-fast);
-  
-  &:focus {
-    border-color: var(--color-accent-secondary);
-  }
-  
-  option {
-    background-color: var(--color-background);
-  }
-`;
-
-const TextArea = styled.textarea<{ $hasError?: boolean }>`
-  padding: var(--spacing-sm) var(--spacing-md);
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid ${props => props.$hasError ? 'var(--color-accent-primary)' : 'var(--color-grey-dark)'};
-  border-radius: var(--border-radius-md);
-  color: var(--color-text);
-  font-size: var(--font-size-md);
-  outline: none;
-  transition: border-color var(--transition-fast);
-  min-height: 120px;
-  resize: vertical;
-  
-  &:focus {
-    border-color: var(--color-accent-secondary);
-  }
-`;
-
-const ErrorMessage = styled.div`
-  color: var(--color-accent-primary);
-  font-size: var(--font-size-xs);
-  margin-top: var(--spacing-xs);
-`;
-
-const SubmitButton = styled(motion.button)`
-  background-color: var(--color-accent-primary);
-  color: var(--color-text);
-  border: none;
-  border-radius: var(--border-radius-full);
-  padding: var(--spacing-md) var(--spacing-xl);
-  font-size: var(--font-size-md);
-  font-weight: 600;
-  cursor: pointer;
-  margin-top: var(--spacing-md);
-  align-self: flex-start;
-  
-  &:disabled {
-    background-color: var(--color-grey-dark);
-    cursor: not-allowed;
-  }
-`;
-
-const SuccessMessage = styled(motion.div)`
-  background-color: rgba(77, 255, 77, 0.1);
-  border: 1px solid var(--color-accent-tertiary);
-  border-radius: var(--border-radius-md);
-  padding: var(--spacing-md);
-  margin-top: var(--spacing-md);
-  color: var(--color-accent-tertiary);
-  font-size: var(--font-size-md);
-`;
-
-const ContactUs: React.FC<ContactUsProps> = () => {
-  const [formData, setFormData] = useState<FormData>({
-    firstName: '',
-    lastName: '',
-    email: '',
-    company: '',
-    employeeCount: '',
-    phone: '',
-    message: '',
+const ContactUs: React.FC<ContactUsProps> = ({ onSubmit }) => {
+  const [formData, setFormData] = useState<ContactFormData>({
+    fullName: '',
+    designation: '',
+    companyName: '',
+    mobileNumber: '',
+    workEmail: '',
+    industry: '',
+    city: '',
+    employeeStrength: '',
+    requirement: '',
   });
   
-  const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  
-  const validateForm = (): boolean => {
-    const newErrors: FormErrors = {};
-    
-    if (!formData.firstName.trim()) {
-      newErrors.firstName = 'First name is required';
-    }
-    
-    if (!formData.lastName.trim()) {
-      newErrors.lastName = 'Last name is required';
-    }
-    
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Email is invalid';
-    }
-    
-    if (!formData.company.trim()) {
-      newErrors.company = 'Company name is required';
-    }
-    
-    if (!formData.employeeCount) {
-      newErrors.employeeCount = 'Please select employee count';
-    }
-    
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+  const [recaptchaChecked, setRecaptchaChecked] = useState(false);
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-    
-    // Clear error when field is edited
-    if (errors[name as keyof FormErrors]) {
-      setErrors(prev => ({ ...prev, [name]: undefined }));
-    }
   };
   
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!validateForm()) {
+    if (!recaptchaChecked) {
+      alert('Please complete the reCAPTCHA verification');
       return;
     }
     
     setIsSubmitting(true);
     
     try {
-      // Use the Salesforce service to submit the form data
-      const response = await simulateSalesforceSubmission(formData);
-      
-      if (response.success) {
-        setIsSubmitted(true);
-        setFormData({
-          firstName: '',
-          lastName: '',
-          email: '',
-          company: '',
-          employeeCount: '',
-          phone: '',
-          message: '',
-        });
-      } else if (response.errors && response.errors.length > 0) {
-        setErrors({ ...errors, message: response.errors[0] });
+      // Placeholder function call
+      if (onSubmit) {
+        await onSubmit(formData);
+      } else {
+        // Default placeholder behavior
+        console.log('Form submitted:', formData);
+        await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate API call
+        alert('Demo request submitted successfully!');
       }
+      
+      // Reset form
+      setFormData({
+        fullName: '',
+        designation: '',
+        companyName: '',
+        mobileNumber: '',
+        workEmail: '',
+        industry: '',
+        city: '',
+        employeeStrength: '',
+        requirement: '',
+      });
+      setRecaptchaChecked(false);
+      
     } catch (error) {
       console.error('Error submitting form:', error);
-      setErrors({ ...errors, message: 'Failed to submit form. Please try again.' });
+      alert('Failed to submit form. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -322,153 +92,167 @@ const ContactUs: React.FC<ContactUsProps> = () => {
   return (
     <SectionContainer>
       <ContentWrapper>
-        <InfoContainer>
-          <SectionTitle>Contact Us</SectionTitle>
-          <SectionSubtitle>
-            Ready to transform your corporate wellness experience? Get in touch with our team to discuss how CULT can help your organization thrive.
-          </SectionSubtitle>
-          
-          <ContactInfo>
-            <ContactItem>
-              <ContactIcon>
-                <i className="fas fa-map-marker-alt"></i>
-              </ContactIcon>
-              <ContactText>123 Wellness Street, Fitness City, FC 12345</ContactText>
-            </ContactItem>
-            
-            <ContactItem>
-              <ContactIcon>
-                <i className="fas fa-phone-alt"></i>
-              </ContactIcon>
-              <ContactText>+1 (555) 123-4567</ContactText>
-            </ContactItem>
-            
-            <ContactItem>
-              <ContactIcon>
-                <i className="fas fa-envelope"></i>
-              </ContactIcon>
-              <ContactText>contact@cultenterprise.com</ContactText>
-            </ContactItem>
-          </ContactInfo>
-        </InfoContainer>
+        <ImageSection>
+          <JumpingGirlImage
+            src="/src/assets/images/ContactUs/girljump.png" // Placeholder image path
+            alt="Jumping Girl"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            whileHover={{ 
+              scale: 1.05,
+              transition: { duration: 0.3 }
+            }}
+          />
+        </ImageSection>
         
-        <FormContainer>
+        <FormSection>
+          <TitleSection>
+            <ContactTitle>Contact Us</ContactTitle>
+            <MainHeadline>
+              <CutToTheText>LET'S CUT TO THE </CutToTheText>
+              <ChaseText>CHASE</ChaseText>
+            </MainHeadline>
+            <Subtitle>
+              Your employees want this. Your bottom line needs this. What are you waiting for?
+            </Subtitle>
+          </TitleSection>
+          
           <Form onSubmit={handleSubmit}>
             <FormRow>
               <FormGroup>
-                <Label htmlFor="firstName">First Name*</Label>
                 <Input
-                  id="firstName"
-                  name="firstName"
-                  value={formData.firstName}
+                  name="fullName"
+                  placeholder="Full Name"
+                  value={formData.fullName}
                   onChange={handleChange}
-                  $hasError={!!errors.firstName}
+                  required
                 />
-                {errors.firstName && <ErrorMessage>{errors.firstName}</ErrorMessage>}
               </FormGroup>
-              
               <FormGroup>
-                <Label htmlFor="lastName">Last Name*</Label>
                 <Input
-                  id="lastName"
-                  name="lastName"
-                  value={formData.lastName}
+                  name="designation"
+                  placeholder="Your Designation"
+                  value={formData.designation}
                   onChange={handleChange}
-                  $hasError={!!errors.lastName}
+                  required
                 />
-                {errors.lastName && <ErrorMessage>{errors.lastName}</ErrorMessage>}
               </FormGroup>
             </FormRow>
             
             <FormRow>
               <FormGroup>
-                <Label htmlFor="email">Email*</Label>
                 <Input
-                  id="email"
-                  name="email"
+                  name="companyName"
+                  placeholder="Company Name"
+                  value={formData.companyName}
+                  onChange={handleChange}
+                  required
+                />
+              </FormGroup>
+              <FormGroup>
+                <Input
+                  name="mobileNumber"
+                  placeholder="Mobile Number"
+                  type="tel"
+                  value={formData.mobileNumber}
+                  onChange={handleChange}
+                  required
+                />
+              </FormGroup>
+            </FormRow>
+            
+            <FormRow>
+              <FormGroup>
+                <Input
+                  name="workEmail"
+                  placeholder="Work E-mail"
                   type="email"
-                  value={formData.email}
+                  value={formData.workEmail}
                   onChange={handleChange}
-                  $hasError={!!errors.email}
+                  required
                 />
-                {errors.email && <ErrorMessage>{errors.email}</ErrorMessage>}
               </FormGroup>
-              
               <FormGroup>
-                <Label htmlFor="phone">Phone Number</Label>
-                <Input
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
+                <Select
+                  name="industry"
+                  value={formData.industry}
                   onChange={handleChange}
-                />
+                  required
+                >
+                  <option value="">Industry</option>
+                  <option value="technology">Technology</option>
+                  <option value="healthcare">Healthcare</option>
+                  <option value="finance">Finance</option>
+                  <option value="manufacturing">Manufacturing</option>
+                  <option value="retail">Retail</option>
+                  <option value="education">Education</option>
+                  <option value="other">Other</option>
+                </Select>
               </FormGroup>
             </FormRow>
             
             <FormRow>
               <FormGroup>
-                <Label htmlFor="company">Company Name*</Label>
                 <Input
-                  id="company"
-                  name="company"
-                  value={formData.company}
+                  name="city"
+                  placeholder="Which City Is This Enquiry For?"
+                  value={formData.city}
                   onChange={handleChange}
-                  $hasError={!!errors.company}
+                  required
                 />
-                {errors.company && <ErrorMessage>{errors.company}</ErrorMessage>}
               </FormGroup>
-              
               <FormGroup>
-                <Label htmlFor="employeeCount">Number of Employees*</Label>
                 <Select
-                  id="employeeCount"
-                  name="employeeCount"
-                  value={formData.employeeCount}
+                  name="employeeStrength"
+                  value={formData.employeeStrength}
                   onChange={handleChange}
-                  $hasError={!!errors.employeeCount}
+                  required
                 >
-                  <option value="">Select...</option>
+                  <option value="">Employee Strength</option>
                   <option value="1-50">1-50</option>
                   <option value="51-200">51-200</option>
                   <option value="201-500">201-500</option>
                   <option value="501-1000">501-1000</option>
-                  <option value="1001+">1001+</option>
+                  <option value="1001-5000">1001-5000</option>
+                  <option value="5000+">5000+</option>
                 </Select>
-                {errors.employeeCount && <ErrorMessage>{errors.employeeCount}</ErrorMessage>}
               </FormGroup>
             </FormRow>
             
-            <FormGroup>
-              <Label htmlFor="message">Message</Label>
+            <FullWidthFormGroup>
               <TextArea
-                id="message"
-                name="message"
-                value={formData.message}
+                name="requirement"
+                placeholder="Briefly Describe Your Corporate Requirement"
+                value={formData.requirement}
                 onChange={handleChange}
+                rows={4}
               />
-              {errors.message && <ErrorMessage>{errors.message}</ErrorMessage>}
-            </FormGroup>
+            </FullWidthFormGroup>
+            
+            <RecaptchaContainer>
+              <RecaptchaCheckbox
+                type="checkbox"
+                checked={recaptchaChecked}
+                onChange={(e) => setRecaptchaChecked(e.target.checked)}
+                required
+              />
+              <RecaptchaText>I'm not a robot (reCAPTCHA placeholder)</RecaptchaText>
+            </RecaptchaContainer>
             
             <SubmitButton
               type="submit"
               disabled={isSubmitting}
-              whileHover={{ scale: isSubmitting ? 1 : 1.05 }}
-              whileTap={{ scale: isSubmitting ? 1 : 0.95 }}
+              whileHover={{ 
+                scale: isSubmitting ? 1 : 1.02,
+                transition: { duration: 0.2 }
+              }}
+              whileTap={{ scale: 0.98 }}
             >
-              {isSubmitting ? 'Submitting...' : 'Submit'}
+              {isSubmitting ? 'Submitting...' : 'Request A Demo'}
             </SubmitButton>
-            
-            {isSubmitted && (
-              <SuccessMessage
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                Thank you for your message! Our team will get back to you shortly.
-              </SuccessMessage>
-            )}
           </Form>
-        </FormContainer>
+        </FormSection>
       </ContentWrapper>
     </SectionContainer>
   );
