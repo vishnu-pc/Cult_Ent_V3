@@ -1,5 +1,4 @@
-import React, { useState, useCallback } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useCallback } from 'react';
 import type { OurImpactProps } from './OurImpact.types';
 import { DEFAULT_VIDEOS, VIDEOS_PER_PAGE } from './constants';
 import {

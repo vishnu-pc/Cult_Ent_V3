@@ -1,4 +1,3 @@
-import React from 'react';
 import type { LogoLoaderProps } from './LogoLoader.types';
 import {
   LoaderContainer,

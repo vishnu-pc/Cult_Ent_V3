@@ -1,27 +1,15 @@
 // Updated WhyChooseCult component
-import React, { useState } from 'react';
 import type { WhyChooseCultProps } from './WhyChooseCult.types';
-import { reasons } from './constants';
 import ExpandableTiles from '../ExpandableTiles';
 import type { TileData } from '../ExpandableTiles';
 import {
   SectionContainer,
-  SectionTitle,
-  ReasonsContainer,
-  ReasonColumn,
-  ReasonTitle,
-  ReasonDescription,
   ResultsSection,
   ResultsTitle,
   ResultsSubtitle,
 } from './WhyChooseCult.styles';
 
 const WhyChooseCult: React.FC<WhyChooseCultProps> = () => {
-  const [expandedId, setExpandedId] = useState<number | null>(null);
-  
-  const handleColumnClick = (id: number) => {
-    setExpandedId(expandedId === id ? null : id);
-  };
 
   // Sample data for the ExpandableTiles component
   const sampleTiles: TileData[] = [
