@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import girljumpImage from '../../assets/images/ContactUs/girljump.png';
 import type { ContactUsProps, ContactFormData } from './ContactUs.types';
 import {
   SectionContainer,
@@ -94,7 +95,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ onSubmit }) => {
       <ContentWrapper>
         <ImageSection>
           <JumpingGirlImage
-            src="/src/assets/images/ContactUs/girljump.png" // Placeholder image path
+            src={girljumpImage}
             alt="Jumping Girl"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}

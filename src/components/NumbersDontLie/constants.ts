@@ -1,11 +1,13 @@
 import type { TileData } from './NumbersDontLie.types';
+import Wellness1 from '../../assets/images/Wellness/Wellness-1.jpg';
+import Wellness2 from '../../assets/images/Wellness/Wellness-2.jpeg';
 
 export const tilesData: TileData[] = [
   {
     id: 1,
     value: '70%',
     description: 'increase in employee engagement',
-    backgroundImage: '/src/assets/images/Wellness/Wellness-1.jpg',
+    backgroundImage: Wellness1,
     hasImage: true,
   },
   {
@@ -30,7 +32,7 @@ export const tilesData: TileData[] = [
     id: 5,
     value: '40%',
     description: 'increase in employee productivity',
-    backgroundImage: '/src/assets/images/Wellness/Wellness-2.jpeg',
+    backgroundImage: Wellness2,
     hasImage: true,
   },
   {
