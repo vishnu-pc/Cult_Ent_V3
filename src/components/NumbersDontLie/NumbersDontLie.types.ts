@@ -5,6 +5,7 @@ export interface TileData {
   description: string;
   backgroundImage?: string;
   hasImage: boolean;
+  position?: string;
 }
 
 export interface NumbersDontLieProps {

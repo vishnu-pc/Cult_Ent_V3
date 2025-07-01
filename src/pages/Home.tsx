@@ -9,6 +9,7 @@ import ContactUs from '../components/ContactUs/ContactUs';
 import Testimonials from '../components/Testimonials/Testimonials';
 import OurImpact from '../components/OurImpact/OurImpact';
 import LogoLoader from '../components/LogoLoader/LogoLoader';
+import BeBetterSection from '../components/BeBetterSection/BeBetterSection';
 import Hashtag from '../components/Hashtag/Hashtag';
 
 interface HomeProps {}
@@ -30,7 +31,8 @@ const Home: React.FC<HomeProps> = () => {
       <Testimonials />
       <OurImpact />
       <LogoLoader />
-      <Hashtag />
+      <BeBetterSection />
+      {/* <Hashtag /> */}
     </HomeContainer>
   );
 };

@@ -98,20 +98,18 @@ export default function OurImpact({ videos = DEFAULT_VIDEOS }: OurImpactProps) {
         <NavigationContainer>
           <NavigationButton
             $disabled={currentPage === 0}
+            $isNext={false}
             onClick={handlePrevPage}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-          >
-            &lt;
-          </NavigationButton>
+          />
           <NavigationButton
             $disabled={currentPage >= totalPages - 1}
+            $isNext={true}
             onClick={handleNextPage}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-          >
-            &gt;
-          </NavigationButton>
+          />
         </NavigationContainer>
       </ContentWrapper>
     </SectionContainer>

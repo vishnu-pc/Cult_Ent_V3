@@ -10,14 +10,29 @@ import {
   NumbersText,
   DontLieText,
   Subheadline,
+  TilesContainer,
   TilesGrid,
   Tile,
+  WideColumnContainer,
   TileValue,
   TileTitle,
   TileDescription,
 } from './NumbersDontLie.styles';
 
 const NumbersDontLie: React.FC<NumbersDontLieProps> = ({ tiles = tilesData }) => {
+  // Separate tiles for specific layout
+  const regularTiles = tiles.filter(tile => 
+    !tile.position?.includes('row2-col2')
+  );
+  
+  const wideColumnTopTile = tiles.find(tile => 
+    tile.position === 'row2-col2-top'
+  );
+  
+  const wideColumnBottomTile = tiles.find(tile => 
+    tile.position === 'row2-col2-bottom'
+  );
+
   return (
     <SectionContainer>
       <ContentWrapper>
@@ -30,47 +45,103 @@ const NumbersDontLie: React.FC<NumbersDontLieProps> = ({ tiles = tilesData }) =>
           <Subheadline>Real Results from Real Companies</Subheadline>
         </HeaderSection>
 
-        <TilesGrid>
-          {tiles.map((tile) => (
-            <Tile
-              key={tile.id}
-              $hasImage={tile.hasImage}
-              $backgroundImage={tile.backgroundImage}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.6,
-                delay: tile.id * 0.1,
-                ease: "easeOut"
-              }}
-              whileHover={{
-                scale: 1.03,
-                boxShadow: tile.hasImage 
-                  ? "0 20px 40px rgba(253, 217, 20, 0.2), 0 0 0 1px var(--gradient-full)"
-                  : "0 20px 40px rgba(255, 255, 255, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.2)",
-                transition: { duration: 0.3 }
-              }}
-              whileTap={{
-                scale: 0.98,
-                transition: { duration: 0.1 }
-              }}
-            >
-              {tile.value && (
-                <TileValue>
-                  {tile.value}
-                </TileValue>
+        <TilesContainer>
+          <TilesGrid>
+            {/* Regular tiles (first 4 + row2-col1) */}
+            {regularTiles.map((tile) => (
+              <Tile
+                key={tile.id}
+                $hasImage={tile.hasImage}
+                $backgroundImage={tile.backgroundImage}
+                $position={tile.position}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.6,
+                  delay: tile.id * 0.1,
+                  ease: "easeOut"
+                }}
+              >
+                {tile.value && (
+                  <TileValue>
+                    {tile.value}
+                  </TileValue>
+                )}
+                {tile.title && (
+                  <TileTitle>
+                    {tile.title}
+                  </TileTitle>
+                )}
+                <TileDescription>
+                  {tile.description}
+                </TileDescription>
+              </Tile>
+            ))}
+
+            {/* Wide column container for row 2, columns 2-3 */}
+            <WideColumnContainer>
+              {/* Top section of wide column */}
+              {wideColumnTopTile && (
+                <Tile
+                  key={wideColumnTopTile.id}
+                  $hasImage={wideColumnTopTile.hasImage}
+                  $backgroundImage={wideColumnTopTile.backgroundImage}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.6,
+                    delay: wideColumnTopTile.id * 0.1,
+                    ease: "easeOut"
+                  }}
+                >
+                  {wideColumnTopTile.value && (
+                    <TileValue>
+                      {wideColumnTopTile.value}
+                    </TileValue>
+                  )}
+                  {wideColumnTopTile.title && (
+                    <TileTitle>
+                      {wideColumnTopTile.title}
+                    </TileTitle>
+                  )}
+                  <TileDescription>
+                    {wideColumnTopTile.description}
+                  </TileDescription>
+                </Tile>
               )}
-              {tile.title && (
-                <TileTitle>
-                  {tile.title}
-                </TileTitle>
+
+              {/* Bottom section of wide column */}
+              {wideColumnBottomTile && (
+                <Tile
+                  key={wideColumnBottomTile.id}
+                  $hasImage={wideColumnBottomTile.hasImage}
+                  $backgroundImage={wideColumnBottomTile.backgroundImage}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.6,
+                    delay: wideColumnBottomTile.id * 0.1,
+                    ease: "easeOut"
+                  }}
+                >
+                  {wideColumnBottomTile.value && (
+                    <TileValue>
+                      {wideColumnBottomTile.value}
+                    </TileValue>
+                  )}
+                  {wideColumnBottomTile.title && (
+                    <TileTitle>
+                      {wideColumnBottomTile.title}
+                    </TileTitle>
+                  )}
+                  <TileDescription>
+                    {wideColumnBottomTile.description}
+                  </TileDescription>
+                </Tile>
               )}
-              <TileDescription>
-                {tile.description}
-              </TileDescription>
-            </Tile>
-          ))}
-        </TilesGrid>
+            </WideColumnContainer>
+          </TilesGrid>
+        </TilesContainer>
       </ContentWrapper>
     </SectionContainer>
   );

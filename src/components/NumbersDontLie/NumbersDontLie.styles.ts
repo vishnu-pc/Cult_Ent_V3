@@ -4,24 +4,14 @@ import { motion } from 'framer-motion';
 export const SectionContainer = styled.section`
   min-height: 100vh;
   width: 100vw;
-  background: linear-gradient(135deg, #000000 0%, #1a0033 100%);
+  background: #000000;
   position: relative;
   padding: var(--spacing-3xl) var(--spacing-xl);
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   
-  /* Purple tint in bottom right */
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 40%;
-    height: 40%;
-    background: radial-gradient(circle at center, rgba(138, 43, 226, 0.15) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
   @media (max-width: 768px) {
     padding: var(--spacing-2xl) var(--spacing-md);
   }
@@ -35,9 +25,11 @@ export const ContentWrapper = styled.div`
 
 export const HeaderSection = styled.div`
   margin-bottom: var(--spacing-3xl);
+  text-align: left;
   
   @media (max-width: 768px) {
     margin-bottom: var(--spacing-2xl);
+    text-align: center;
   }
 `;
 
@@ -48,25 +40,31 @@ export const ProvenImpactText = styled.div`
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.7);
   margin-bottom: var(--spacing-md);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
 `;
 
 export const MainHeadline = styled.h1`
-  font-size: var(--font-size-6xl);
-  font-weight: 800;
-  line-height: 1.1;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 54px;
+  line-height: 119%;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  vertical-align: middle;
   margin-bottom: var(--spacing-lg);
   
   @media (max-width: 1024px) {
-    font-size: var(--font-size-5xl);
+    font-size: 42px;
   }
   
   @media (max-width: 768px) {
-    font-size: var(--font-size-4xl);
+    font-size: 32px;
+    letter-spacing: 0.2em;
   }
 `;
 
 export const NumbersText = styled.span`
-  background: var(--gradient-tertiary);
+  background: linear-gradient(90deg, #22c55e 0%, #facc15 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -80,10 +78,23 @@ export const Subheadline = styled.p`
   font-size: var(--font-size-xl);
   color: rgba(255, 255, 255, 0.8);
   font-weight: 400;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   
   @media (max-width: 768px) {
     font-size: var(--font-size-lg);
   }
+`;
+
+export const TilesContainer = styled.div`
+  /* Translucent glass container with dotted border */
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 2px dashed rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  padding: 2px;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 `;
 
 export const TilesGrid = styled.div`
@@ -91,82 +102,85 @@ export const TilesGrid = styled.div`
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(2, 1fr);
   gap: 2px;
-  min-height: 500px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: var(--border-radius-lg);
-  overflow: hidden;
+  min-height: 600px;
   
   @media (max-width: 1024px) {
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-    min-height: 800px;
+    grid-template-rows: auto;
+    min-height: auto;
   }
   
   @media (max-width: 640px) {
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(7, 1fr);
-    min-height: 1200px;
+    min-height: auto;
   }
 `;
 
 export const Tile = styled(motion.div)<{ 
   $hasImage: boolean; 
   $backgroundImage?: string;
-  $isWide?: boolean;
+  $position?: string;
 }>`
   position: relative;
   background: ${props => props.$hasImage && props.$backgroundImage 
     ? `url(${props.$backgroundImage})` 
-    : 'rgba(0, 0, 0, 0.4)'
+    : 'rgba(255, 255, 255, 0.03)'
   };
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding: var(--spacing-xl);
+  padding: var(--spacing-lg);
   display: flex;
   flex-direction: column;
-  justify-content: ${props => props.$hasImage ? 'flex-end' : 'center'};
-  align-items: ${props => props.$hasImage ? 'flex-start' : 'flex-start'};
+  justify-content: ${props => props.$hasImage ? 'flex-end' : 'flex-start'};
+  align-items: flex-start;
   text-align: left;
-  cursor: pointer;
   overflow: hidden;
-  border: none;
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   
-  /* Grid positioning for specific layout */
-  &:nth-child(1) {
-    grid-column: 1;
-    grid-row: 1;
-  }
+  /* Apply grayscale filter to images */
+  ${props => props.$hasImage && `
+    filter: grayscale(100%);
+  `}
   
-  &:nth-child(2) {
-    grid-column: 2;
-    grid-row: 1;
-  }
+  /* Round corners for corner tiles */
+  ${props => {
+    switch (props.$position) {
+      case 'row1-col1':
+        return 'border-top-left-radius: 14px;';
+      case 'row1-col4':
+        return 'border-top-right-radius: 14px;';
+      case 'row2-col1':
+        return 'border-bottom-left-radius: 14px;';
+      case 'row2-col2-bottom':
+        return 'border-bottom-right-radius: 14px;';
+      default:
+        return '';
+    }
+  }}
   
-  &:nth-child(3) {
-    grid-column: 3;
-    grid-row: 1;
-  }
-  
-  &:nth-child(4) {
-    grid-column: 4;
-    grid-row: 1;
-  }
-  
-  &:nth-child(5) {
-    grid-column: 1;
-    grid-row: 2;
-  }
-  
-  &:nth-child(6) {
-    grid-column: 2 / 4;
-    grid-row: 2;
-  }
-  
-  &:nth-child(7) {
-    grid-column: 4;
-    grid-row: 2;
-  }
+  /* Specific grid positioning based on layout */
+  ${props => {
+    switch (props.$position) {
+      case 'row1-col1':
+        return 'grid-column: 1; grid-row: 1;';
+      case 'row1-col2':
+        return 'grid-column: 2; grid-row: 1;';
+      case 'row1-col3':
+        return 'grid-column: 3; grid-row: 1;';
+      case 'row1-col4':
+        return 'grid-column: 4; grid-row: 1;';
+      case 'row2-col1':
+        return 'grid-column: 1; grid-row: 2;';
+      case 'row2-col2-top':
+        return 'grid-column: 2 / 5; grid-row: 2; display: grid; grid-template-rows: 1fr 1fr; gap: 2px;';
+      case 'row2-col2-bottom':
+        return 'grid-column: 2 / 5; grid-row: 2;';
+      default:
+        return '';
+    }
+  }}
   
   /* Dark overlay for image tiles */
   ${props => props.$hasImage && `
@@ -177,7 +191,7 @@ export const Tile = styled(motion.div)<{
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(transparent 50%, rgba(0, 0, 0, 0.8));
+      background: linear-gradient(transparent 50%, rgba(0, 0, 0, 0.7));
       z-index: 1;
     }
   `}
@@ -189,50 +203,69 @@ export const Tile = styled(motion.div)<{
   }
   
   @media (max-width: 1024px) {
-    &:nth-child(1), &:nth-child(2), &:nth-child(3), &:nth-child(4), &:nth-child(5), &:nth-child(6), &:nth-child(7) {
-      grid-column: auto;
-      grid-row: auto;
-    }
+    grid-column: auto !important;
+    grid-row: auto !important;
+    display: flex !important;
+    grid-template-rows: none !important;
+    border-radius: 8px !important;
   }
   
   @media (max-width: 640px) {
-    padding: var(--spacing-lg);
-    min-height: 140px;
+    padding: var(--spacing-md);
+    min-height: 120px;
+  }
+`;
+
+export const WideColumnContainer = styled.div`
+  grid-column: 2 / 5;
+  grid-row: 2;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 2px;
+  
+  @media (max-width: 1024px) {
+    grid-column: auto;
+    grid-row: auto;
+    display: block;
   }
 `;
 
 export const TileValue = styled.div`
   font-size: 4rem;
   font-weight: 800;
-  color: var(--color-accent-primary);
+  color: #ffffff;
   margin-bottom: var(--spacing-xs);
   line-height: 1;
   
   @media (max-width: 768px) {
     font-size: 3rem;
   }
+  
+  @media (max-width: 640px) {
+    font-size: 2.5rem;
+  }
 `;
 
 export const TileTitle = styled.h3`
-  font-size: var(--font-size-2xl);
+  font-size: var(--font-size-lg);
   font-weight: 700;
-  color: var(--color-text);
+  color: #ffffff;
   margin-bottom: var(--spacing-xs);
   line-height: 1.2;
   
   @media (max-width: 768px) {
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-md);
   }
 `;
 
 export const TileDescription = styled.p`
-  font-size: var(--font-size-md);
+  font-size: var(--font-size-sm);
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.4;
   font-weight: 400;
   margin: 0;
   
   @media (max-width: 768px) {
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-xs);
   }
 `; 

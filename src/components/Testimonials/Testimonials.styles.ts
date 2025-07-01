@@ -58,6 +58,7 @@ export const ContentWrapper = styled.div`
 `;
 
 export const TestimonialCard = styled(motion.div)<{ $animationType: number }>`
+  z-index: 13;
   position: absolute;
   width: 380px;
 padding: 1rem;
@@ -153,6 +154,7 @@ export const CompanyLogo = styled.div`
 
 export const CentralTextSection = styled.div`
   position: relative;
+  margin-left: -7vw;
   z-index: 10;
   text-align: center;
   display: flex;

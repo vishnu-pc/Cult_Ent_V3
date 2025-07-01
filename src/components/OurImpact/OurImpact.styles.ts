@@ -1,15 +1,31 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import LeftIcon from '../../assets/images/OurImpact/left-icon.png';
+import EllipseBackground from '../../assets/images/OurImpact/Ellipse-1.png';
 
 export const SectionContainer = styled.section`
-  min-height: 100vh;
+ min-height: 100vh;
   width: 100vw;
-  background: linear-gradient(135deg, #3a4d00 0%, #1a4a4a 50%, #003366 100%);
+  background: 
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.4) 30%,
+      rgba(0, 0, 0, 0.7) 50%,
+      #000000 65%,
+      #000000 100%
+    ),
+    linear-gradient(
+      to right,
+      rgba(255, 221, 0, 0.6) 0%,     /* yellow */
+      rgba(0, 255, 102, 0.4) 35%,    /* green */
+      rgba(0, 102, 255, 0.4) 70%     /* blue */
+    );
   padding: var(--spacing-3xl) var(--spacing-xl);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  
+
   @media (max-width: 768px) {
     padding: var(--spacing-2xl) var(--spacing-md);
   }
@@ -111,10 +127,12 @@ export const VideoCardsContainer = styled.div`
 export const VideoCard = styled(motion.div)`
   background: rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--border-radius-lg);
+  border-radius: 12px;
   padding: var(--spacing-lg);
   overflow: hidden;
   transition: all var(--transition-normal);
+  width: 350px;
+  height: 380px;
   
   &:hover {
     border-color: rgba(255, 255, 255, 0.3);
@@ -125,7 +143,7 @@ export const VideoCard = styled(motion.div)`
 export const ThumbnailContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 200px;
+  height: 240px;
   border-radius: var(--border-radius-md);
   overflow: hidden;
   margin-bottom: var(--spacing-lg);
@@ -150,17 +168,15 @@ export const PlayButton = styled.div`
   transform: translate(-50%, -50%);
   width: 60px;
   height: 60px;
-  background: rgba(255, 255, 255, 0.2);
+  background: transparent;
   border: 2px solid rgba(255, 255, 255, 0.8);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  backdrop-filter: blur(10px);
   transition: all var(--transition-normal);
   
   &:hover {
-    background: rgba(255, 255, 255, 0.3);
     border-color: rgba(255, 255, 255, 1);
     transform: translate(-50%, -50%) scale(1.1);
   }
@@ -208,15 +224,12 @@ export const NavigationContainer = styled.div`
   gap: var(--spacing-md);
 `;
 
-export const NavigationButton = styled(motion.button)<{ $disabled?: boolean }>`
+export const NavigationButton = styled(motion.button)<{ $disabled?: boolean; $isNext?: boolean }>`
   width: 50px;
   height: 50px;
-  background: rgba(0, 0, 0, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: url(${EllipseBackground}) center/contain no-repeat;
+  border: none;
   border-radius: 50%;
-  color: var(--color-text);
-  font-size: 1.5rem;
-  font-weight: bold;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -224,10 +237,17 @@ export const NavigationButton = styled(motion.button)<{ $disabled?: boolean }>`
   transition: all var(--transition-normal);
   opacity: ${props => props.$disabled ? 0.3 : 1};
   pointer-events: ${props => props.$disabled ? 'none' : 'auto'};
+  position: relative;
+  
+  &::before {
+    content: '';
+    width: 24px;
+    height: 24px;
+    background: url(${LeftIcon}) center/cover no-repeat;
+    transform: ${props => props.$isNext ? 'scaleX(-1)' : 'scaleX(1)'};
+  }
   
   &:hover:not(:disabled) {
-    background: rgba(0, 0, 0, 1);
-    border-color: rgba(255, 255, 255, 0.4);
     transform: scale(1.05);
   }
   
