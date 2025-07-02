@@ -4,10 +4,11 @@ import type { ContactUsProps, ContactFormData } from './ContactUs.types';
 import {
   SectionContainer,
   ContentWrapper,
+  LeftSection,
+  TitleSection,
   ImageSection,
   JumpingGirlImage,
   FormSection,
-  TitleSection,
   ContactTitle,
   MainHeadline,
   CutToTheText,
@@ -93,21 +94,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ onSubmit }) => {
   return (
     <SectionContainer>
       <ContentWrapper>
-        <ImageSection>
-          <JumpingGirlImage
-            src={girljumpImage}
-            alt="Jumping Girl"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            whileHover={{ 
-              scale: 1.05,
-              transition: { duration: 0.3 }
-            }}
-          />
-        </ImageSection>
-        
-        <FormSection>
+        <LeftSection>
           <TitleSection>
             <ContactTitle>Contact Us</ContactTitle>
             <MainHeadline>
@@ -119,6 +106,22 @@ const ContactUs: React.FC<ContactUsProps> = ({ onSubmit }) => {
             </Subtitle>
           </TitleSection>
           
+          <ImageSection>
+            <JumpingGirlImage
+              src={girljumpImage}
+              alt="Jumping Girl"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              whileHover={{ 
+                scale: 1.05,
+                transition: { duration: 0.3 }
+              }}
+            />
+          </ImageSection>
+        </LeftSection>
+        
+        <FormSection>
           <Form onSubmit={handleSubmit}>
             <FormRow>
               <FormGroup>

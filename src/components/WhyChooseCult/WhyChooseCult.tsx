@@ -8,6 +8,18 @@ import WhyChooseCult3 from '../../assets/images/WhyChooseCult/WhyChooseCult-3.jp
 import WhyChooseCult4 from '../../assets/images/WhyChooseCult/WhyChooseCult-4.jpg';
 import WhyChooseCult5 from '../../assets/images/WhyChooseCult/WhyChooseCult-5.jpg';
 import {
+  CultAdvantageSection,
+  CultAdvantageContainer,
+  LeftContent,
+  TopHeading,
+  MainHeadingContainer,
+  FirstLine,
+  CultLayersContainer,
+  CultLayer,
+  MainHeadingLine1,
+  MainHeadingLine2,
+  RightContent,
+  RightText,
   SectionContainer,
   ResultsSection,
   ResultsTitle,
@@ -52,17 +64,37 @@ const WhyChooseCult: React.FC<WhyChooseCultProps> = () => {
   
   return (
     <>
-      {/* New Results Section */}
-      <ResultsSection>
-        <ResultsTitle>Results You Can See, ROI You Can Measure</ResultsTitle>
-        <ResultsSubtitle>
-          Analytics-powered wellness with metrics that directly impact your performance indicators.
-        </ResultsSubtitle>
-      </ResultsSection>
+      {/* New Cult Advantage Section */}
+      <CultAdvantageSection>
+        <CultAdvantageContainer>
+          <LeftContent>
+            <TopHeading>Why Choose Cult For Corporates</TopHeading>
+            <MainHeadingContainer>
+              <FirstLine>
+                <MainHeadingLine1>THE</MainHeadingLine1>
+                <CultLayersContainer>
+                  <CultLayer $opacity={1} $zIndex={3}>CULT</CultLayer>
+                  <CultLayer $opacity={0.4} $zIndex={2}>CULT</CultLayer>
+                  <CultLayer $opacity={0.2} $zIndex={1}>CULT</CultLayer>
+                </CultLayersContainer>
+              </FirstLine>
+              <MainHeadingLine2>ADVANTAGE</MainHeadingLine2>
+            </MainHeadingContainer>
+          </LeftContent>
+          <RightContent>
+            <RightText>
+              Our employee wellness programs<br />
+              meets your business sense.
+            </RightText>
+          </RightContent>
+        </CultAdvantageContainer>
+      </CultAdvantageSection>
 
-      {/* New Expandable Tiles Component */}
+      {/* Existing Results Section */}
+  
+
+      {/* Existing Expandable Tiles Component */}
       <SectionContainer>
-        {/* <SectionTitle>Our Wellness Solutions</SectionTitle> */}
         <ExpandableTiles tiles={sampleTiles} />
       </SectionContainer>
     </>

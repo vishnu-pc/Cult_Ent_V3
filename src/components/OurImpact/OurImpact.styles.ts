@@ -131,8 +131,8 @@ export const VideoCard = styled(motion.div)`
   padding: var(--spacing-lg);
   overflow: hidden;
   transition: all var(--transition-normal);
-  width: 350px;
-  height: 380px;
+  width: 400px;
+  height: 450px;
   
   &:hover {
     border-color: rgba(255, 255, 255, 0.3);

@@ -7,7 +7,7 @@ export const SectionContainer = styled.section`
   background: linear-gradient(135deg, #0f0120 0%, #000000 100%);
   display: flex;
   align-items: center;
-  padding: var(--spacing-3xl) var(--spacing-xl);
+
   
   @media (max-width: 768px) {
     flex-direction: column;
@@ -21,7 +21,7 @@ export const ContentWrapper = styled.div`
   margin: 0 auto;
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--spacing-3xl);
   
   @media (max-width: 768px) {
@@ -30,11 +30,11 @@ export const ContentWrapper = styled.div`
   }
 `;
 
-export const ImageSection = styled.div`
+export const LeftSection = styled.div`
   flex: 1;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  gap: var(--spacing-xl);
   
   @media (max-width: 768px) {
     order: 1;
@@ -42,14 +42,35 @@ export const ImageSection = styled.div`
   }
 `;
 
+export const TitleSection = styled.div`
+  margin-bottom: var(--spacing-lg);
+  
+  @media (max-width: 768px) {
+    margin-bottom: var(--spacing-xl);
+    text-align: center;
+  }
+`;
+
+export const ImageSection = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+`;
+
 export const JumpingGirlImage = styled(motion.img)`
-  max-width: 100%;
+  width: 100%;
   height: auto;
-  max-height: 120vh;
+  max-height: 90vh;
+  min-height: 1000px;
   object-fit: contain;
   
   @media (max-width: 768px) {
-    max-height: 50vh;
+    max-height: 60vh;
+    min-height: 400px;
   }
 `;
 
@@ -61,15 +82,6 @@ export const FormSection = styled.div`
     order: 2;
     width: 100%;
     max-width: none;
-  }
-`;
-
-export const TitleSection = styled.div`
-  margin-bottom: var(--spacing-3xl);
-  
-  @media (max-width: 768px) {
-    margin-bottom: var(--spacing-2xl);
-    text-align: center;
   }
 `;
 
@@ -115,6 +127,7 @@ export const Subtitle = styled.p`
 `;
 
 export const Form = styled.form`
+margin-top: 250px;
   display: flex;
   flex-direction: column;
   gap: var(--spacing-lg);
