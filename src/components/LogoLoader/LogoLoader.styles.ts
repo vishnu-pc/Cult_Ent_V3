@@ -166,38 +166,27 @@ export const GifSection = styled.div`
 `;
 
 export const LogoGif = styled.img`
-  max-width: 100%;
-  max-height: 100vh;
-  width: auto;
+  width: 100%;
   height: auto;
+  max-width: 600px;
   object-fit: contain;
-  
-  /* Add subtle fade-in animation */
-  opacity: 0;
-  animation: fadeIn 0.5s ease-in-out forwards;
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  
-  /* Responsive sizing */
-  @media (max-width: 1200px) {
-    max-width: 90%;
-    max-height: 50vh;
-  }
+  display: block;
   
   @media (max-width: 768px) {
-    max-width: 85%;
-    max-height: 40vh;
+    max-width: 400px;
   }
   
   @media (max-width: 480px) {
-    max-width: 80%;
-    max-height: 35vh;
+    max-width: 300px;
   }
+`;
+
+export const GradientDivider = styled.div`
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    to right,
+    #0066ff 0%,    /* blue left */
+    #ffff00 100%   /* yellow right */
+  );
 `; 

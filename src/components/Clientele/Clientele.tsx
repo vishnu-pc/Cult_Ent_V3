@@ -11,7 +11,8 @@ import {
   LogoCarouselContainer,
   LogoSlider,
   LogoGroup,
-  LogoImage
+  LogoImage,
+  GradientDivider
 } from './Clientele.styles';
 
 const Clientele: React.FC<ClienteleProps> = () => {
@@ -46,6 +47,8 @@ const Clientele: React.FC<ClienteleProps> = () => {
   }, []);
   
   return (
+    <>
+    <GradientDivider />
     <ClienteleSection ref={sectionRef}>
       <ContentContainer>
         <SectionTitle isVisible={isVisible}>OUR CLIENTELE</SectionTitle>
@@ -70,6 +73,7 @@ const Clientele: React.FC<ClienteleProps> = () => {
         </LogoSlider>
       </LogoCarouselContainer>
     </ClienteleSection>
+    </>
   );
 };
 

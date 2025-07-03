@@ -254,4 +254,19 @@ export const NavigationButton = styled(motion.button)<{ $disabled?: boolean; $is
   &:active {
     transform: scale(0.95);
   }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+`;
+
+export const GradientDivider = styled.div`
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    to right,
+    #0066ff 0%,    /* blue left */
+    #ffff00 100%   /* yellow right */
+  );
 `; 

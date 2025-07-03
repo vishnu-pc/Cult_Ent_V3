@@ -277,14 +277,19 @@ export const OptionTitle = styled.h3<OptionTitleProps>`
  * This is an animated component that appears when an option is hovered.
  */
 export const OptionDescription = styled(motion.p)`
-  font-size: var(--font-size-md);
-  color: inherit;
-  line-height: 1.6;
-  margin: 0;
-  padding-left: calc(3rem + var(--spacing-lg));
-  
-  @media (max-width: 768px) {
-    padding-left: var(--spacing-lg);
-    font-size: var(--font-size-sm);
-  }
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  line-height: 1.5;
+  margin-top: 8px;
+  overflow: hidden;
+`;
+
+export const GradientDivider = styled.div`
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    to right,
+    #0066ff 0%,    /* blue left */
+    #ffff00 100%   /* yellow right */
+  );
 `; 

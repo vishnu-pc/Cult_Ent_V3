@@ -20,7 +20,8 @@ import {
   CardSubtitle,
   CardDescription,
   NavigationContainer,
-  NavigationButton
+  NavigationButton,
+  GradientDivider
 } from './OurImpact.styles';
 
 export default function OurImpact({ videos = DEFAULT_VIDEOS }: OurImpactProps) {
@@ -52,6 +53,8 @@ export default function OurImpact({ videos = DEFAULT_VIDEOS }: OurImpactProps) {
   };
 
   return (
+    <>
+    <GradientDivider />
     <SectionContainer>
       <ContentWrapper>
         <HeaderSection>
@@ -113,5 +116,6 @@ export default function OurImpact({ videos = DEFAULT_VIDEOS }: OurImpactProps) {
         </NavigationContainer>
       </ContentWrapper>
     </SectionContainer>
+    </>
   );
 }

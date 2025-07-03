@@ -14,12 +14,15 @@ import {
   CreatedBy,
   DownloadIcon,
   GifSection,
-  LogoGif
+  LogoGif,
+  GradientDivider
 } from './LogoLoader.styles';
 import LastLogoGif from '../../assets/images/LastLogo/LastLogo.gif';
 
 export default function LogoLoader({ className }: LogoLoaderProps) {
   return (
+    <>
+    <GradientDivider />
     <LoaderContainer className={className}>
       <TopSection>
         <TitleBlock>
@@ -65,5 +68,6 @@ export default function LogoLoader({ className }: LogoLoaderProps) {
         />
       </GifSection>
     </LoaderContainer>
+    </>
   );
 } 

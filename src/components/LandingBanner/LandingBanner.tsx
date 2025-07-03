@@ -8,7 +8,8 @@ import {
   LogoContainer,
   LogoWrapper,
   StyledDynamicLogo,
-  DemoButton
+  DemoButton,
+  GradientDivider
 } from './LandingBanner.styles';
 import type { LandingBannerProps } from './LandingBanner.types';
 
@@ -64,6 +65,7 @@ const LandingBanner: React.FC<LandingBannerProps> = () => {
   
   return (
     <>
+    <GradientDivider />
     <BannerContainer>
       <ContentContainer>
           <Title>

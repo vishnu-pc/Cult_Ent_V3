@@ -243,40 +243,43 @@ export const StyledDynamicLogo = styled(DynamicLogo)`
  */
 export const DemoButton = styled(motion.button)`
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  width: 97px;
-  height: 97px;
-  border-radius: 50%;
-  background: linear-gradient(217deg, var(--color-grey-dark) 12.09%, var(--color-grey-dark) 95.46%);
-  color: var(--color-text);
-  font-size: var(--font-size-sm);
-  font-weight: 700;
+  bottom: 30px;
+  right: 30px;
+  background: #0a0b0d;
+  color: white;
+  border: 2px solid;
+  border-radius: 50px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
-  border: 0.93px solid;
-  border-color: var(--color-yellow);
-  outline: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  filter: drop-shadow(0px 3.7px 18.6px rgba(253, 217, 20, 0.23));
-  box-shadow: 4px 4px 8px rgba(253, 217, 20, 0.23);
-  z-index: var(--z-index-floating);
-  
-  /* BORDER ANIMATION: Cycles between yellow and pink */
-  animation: ${buttonBorderAnimation} 8s ease infinite;
+  z-index: 1000;
+  animation: borderColorCycle 3s ease-in-out infinite;
+  transition: all 0.3s ease;
   
   &:hover {
-    background: var(--gradient-primary);
-    border-color: var(--color-pink);
-    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  @keyframes borderColorCycle {
+    0%, 100% { border-color: #ffff00; }
+    50% { border-color: #ff69b4; }
   }
   
   @media (max-width: 768px) {
-    width: 60px;
-    height: 60px;
-    font-size: var(--font-size-xs);
-    bottom: 1.5rem;
-    right: 1.5rem;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 14px;
   }
+`;
+
+export const GradientDivider = styled.div`
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    to right,
+    #0066ff 0%,    /* blue left */
+    #ffff00 100%   /* yellow right */
+  );
 `; 

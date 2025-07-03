@@ -1,5 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 import backgroundImage from '../../assets/images/Our_Clientele/Our_Clientele.jpg';
+import corporateLogos from '../../assets/icons/Corporate_Logos.png';
 import type { StyledComponentProps, HeadingLineProps } from './Clientele.types';
 
 // Animation for logo carousel
@@ -44,6 +45,20 @@ export const ClienteleSection = styled.section`
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1;
+  }
+
+  // Duplicate the carousel to create seamless loop
+  &::after {
+    content: '';
+    background-image: url(${corporateLogos});
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 100%;
+    animation: ${slideAnimation} 15s linear infinite;
   }
 `;
 
@@ -135,4 +150,14 @@ export const LogoImage = styled.img`
   width: 150%;
   //min-width: 100vw;
   object-fit: fill;
+`;
+
+export const GradientDivider = styled.div`
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    to right,
+    #0066ff 0%,    /* blue left */
+    #ffff00 100%   /* yellow right */
+  );
 `; 

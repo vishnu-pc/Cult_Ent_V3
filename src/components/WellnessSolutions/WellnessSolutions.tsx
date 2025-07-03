@@ -20,6 +20,7 @@ import {
   SectionContainer,
   SectionTitle,
   StyledImage,
+  GradientDivider,
 } from './WellnessSolutions.styles';
 
 /**
@@ -61,6 +62,8 @@ const WellnessSolutions: React.FC<WellnessSolutionsProps> = () => {
     solutions[0];
 
   return (
+    <>
+    <GradientDivider />
     <SectionContainer>
       {/* Large background "05" element positioned behind the image container */}
       <BackgroundNumber>05</BackgroundNumber>
@@ -132,6 +135,7 @@ const WellnessSolutions: React.FC<WellnessSolutionsProps> = () => {
         </OptionsContainer>
       </ContentContainer>
     </SectionContainer>
+    </>
   );
 };
 

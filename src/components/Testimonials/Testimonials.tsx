@@ -17,10 +17,13 @@ import {
   WhiteText,
   GradientText,
   MobileTestimonialContainer,
+  GradientDivider,
 } from './Testimonials.styles';
 
 const Testimonials: React.FC<TestimonialsProps> = ({ testimonials = testimonialsData }) => {
   return (
+    <>
+    <GradientDivider />
     <SectionContainer>
       <ContentWrapper>
         {/* Floating Testimonial Cards */}
@@ -93,6 +96,7 @@ const Testimonials: React.FC<TestimonialsProps> = ({ testimonials = testimonials
         </CentralTextSection>
       </ContentWrapper>
     </SectionContainer>
+    </>
   );
 };
 
