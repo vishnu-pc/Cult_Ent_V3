@@ -249,20 +249,71 @@ export const DemoButton = styled(motion.button)`
   position: fixed;
   bottom: 30px;
   right: 30px;
-  background: #0a0b0d;
-  color: white;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
   border: 2px solid;
-  border-radius: 50px;
-  padding: 12px 24px;
-  font-size: 16px;
-  font-weight: 600;
   cursor: pointer;
   z-index: 1000;
-  animation: borderColorCycle 3s ease-in-out infinite;
-  transition: all 0.3s ease;
 
+  /* Glass Morphism Background */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  /* Text Styling */
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1;
+  padding: 4px;
+
+  /* Multi-layered Glass Shadows */
+  box-shadow: 
+    /* Outer glow */
+    0 0 30px rgba(255, 255, 255, 0.1),
+    /* Main shadow */ 0 8px 32px rgba(0, 0, 0, 0.3),
+    /* Inner highlight */ inset 0 2px 4px rgba(255, 255, 255, 0.1),
+    /* Inner shadow */ inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+
+  /* Animated Border */
+  animation: ${buttonBorderAnimation} 3s ease-in-out infinite;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Hover State - Enhanced Glass Effect */
   &:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.25) 0%,
+      rgba(255, 255, 255, 0.15) 50%,
+      rgba(255, 255, 255, 0.08) 100%
+    );
+
+    box-shadow: 
+      /* Enhanced outer glow */
+      0 0 40px rgba(255, 255, 255, 0.2),
+      /* Lifted shadow */ 0 12px 40px rgba(0, 0, 0, 0.4),
+      /* Brighter inner highlight */ inset 0 3px 6px rgba(255, 255, 255, 0.15),
+      /* Inner shadow */ inset 0 -3px 6px rgba(0, 0, 0, 0.1);
+
+    transform: translateY(-2px);
+  }
+
+  /* Active/Focus State */
+  &:active,
+  &:focus {
+    outline: none;
+    box-shadow:
+      0 0 50px rgba(255, 255, 255, 0.3),
+      0 6px 25px rgba(0, 0, 0, 0.3),
+      inset 0 2px 4px rgba(255, 255, 255, 0.2),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.15);
   }
 
   @keyframes borderColorCycle {
@@ -275,10 +326,20 @@ export const DemoButton = styled(motion.button)`
     }
   }
 
+  /* Responsive Design */
   @media (max-width: 768px) {
     bottom: 20px;
     right: 20px;
-    padding: 10px 20px;
-    font-size: 14px;
+    width: 85px;
+    height: 85px;
+    font-size: 13px;
+    padding: 2px;
+  }
+
+  @media (max-width: 480px) {
+    width: 75px;
+    height: 75px;
+    font-size: 12px;
+    padding: 2px;
   }
 `;

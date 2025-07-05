@@ -120,15 +120,17 @@ const LandingBanner: React.FC<LandingBannerProps> = () => {
       </BannerContainer>
 
       {/* 
-        FIXED DEMO BUTTON
+        FIXED GLASS DEMO BUTTON
+        - Apple-inspired liquid glass design with round shape
         - position: fixed keeps it visible while scrolling
-        - whileHover: Scales to 1.2x (20% larger) on hover
-        - whileTap: Scales to 0.95x (5% smaller) when clicked for tactile feedback
-        - CSS animation: Border color cycles between yellow and pink
+        - whileHover: Scales to 1.2x with enhanced glass effect
+        - whileTap: Scales to 0.95x when clicked for tactile feedback
+        - Glass morphism: backdrop-filter blur with multi-layered shadows
+        - Animated border: Color cycles between yellow and pink
         - z-index: High value to stay above other content
       */}
       <DemoButton whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.95 }}>
-        Request Demo {'>>'}
+        REQUEST DEMO &gt;&gt;
       </DemoButton>
     </>
   );

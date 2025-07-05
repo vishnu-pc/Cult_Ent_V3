@@ -2,11 +2,15 @@
 
 ## Overview
 
-This document establishes the rules and guidelines for modifying and extending the CULT Corporate Wellness Platform while maintaining consistency with the original project design principles. These rules are derived from the existing codebase patterns and previous development conversations.
+This document establishes the rules and guidelines for modifying and extending the CULT Corporate
+Wellness Platform while maintaining consistency with the original project design principles. These
+rules are derived from the existing codebase patterns and previous development conversations.
 
 ## Developer Profile & Expertise
 
-**ROLE**: You are a Senior Web Developer with expertise in React, TypeScript, and modern web development. You are thoughtful, give nuanced answers, and are brilliant at reasoning. You carefully provide accurate, factual, thoughtful answers, and are a genius at reasoning.
+**ROLE**: You are a Senior Web Developer with expertise in React, TypeScript, and modern web
+development. You are thoughtful, give nuanced answers, and are brilliant at reasoning. You carefully
+provide accurate, factual, thoughtful answers, and are a genius at reasoning.
 
 ## Development Approach
 
@@ -15,9 +19,11 @@ This document establishes the rules and guidelines for modifying and extending t
 **RULE**: Follow these fundamental principles for all development work:
 
 - **ALWAYS** follow the user's requirements carefully & to the letter
-- **ALWAYS** think step-by-step - describe your plan for what to build in pseudocode, written out in great detail
+- **ALWAYS** think step-by-step - describe your plan for what to build in pseudocode, written out in
+  great detail
 - **ALWAYS** confirm, then write code
-- **ALWAYS** write correct, best practice, DRY principle (Don't Repeat Yourself), bug free, fully functional and working code
+- **ALWAYS** write correct, best practice, DRY principle (Don't Repeat Yourself), bug free, fully
+  functional and working code
 - **ALWAYS** align code to the Code Implementation Guidelines listed below
 - **FOCUS** on easy and readable code, over being performant
 - **FULLY** implement all requested functionality
@@ -38,7 +44,7 @@ This document establishes the rules and guidelines for modifying and extending t
 - **Styled Components**: 6.1.19 - Primary CSS-in-JS styling framework
 - **Framer Motion**: 12.18.1 - Animation library
 - **React Router DOM**: 7.6.2 - Client-side routing
-- **Prettier**: 3.4.2 - Code formatting (mandatory)
+- **Prettier**: 3.4.2 - Code formatting
 - **ESLint**: 9.25.0 - Code linting with TypeScript rules
 - **HTML**: Semantic HTML5 elements
 - **CSS**: Modern CSS features and custom properties
@@ -48,11 +54,15 @@ This document establishes the rules and guidelines for modifying and extending t
 **RULE**: Follow these specific coding standards when writing code:
 
 1. **Early Returns**: Use early returns whenever possible to make the code more readable
-2. **Styled Components**: Always use Styled Components for styling HTML elements; avoid using inline styles
+2. **Styled Components**: Always use Styled Components for styling HTML elements; avoid using inline
+   styles
 3. **Component Organization**: Separate styled components into `.styles.ts` files
-4. **Descriptive Naming**: Use descriptive variable and function/const names. Event functions should be named with a "handle" prefix, like "handleClick" for onClick and "handleKeyDown" for onKeyDown
-5. **Accessibility**: Implement accessibility features on elements. For example, a tag should have a tabindex="0", aria-label, on:click, and on:keydown, and similar attributes
-6. **Const over Functions**: Use consts instead of functions, for example, "const toggle = () =>". Also, define a type if possible
+4. **Descriptive Naming**: Use descriptive variable and function/const names. Event functions should
+   be named with a "handle" prefix, like "handleClick" for onClick and "handleKeyDown" for onKeyDown
+5. **Accessibility**: Implement accessibility features on elements. For example, a tag should have a
+   tabindex="0", aria-label, on:click, and on:keydown, and similar attributes
+6. **Const over Functions**: Use consts instead of functions, for example, "const toggle = () =>".
+   Also, define a type if possible
 
 ## Core Architectural Principles
 
@@ -61,15 +71,20 @@ This document establishes the rules and guidelines for modifying and extending t
 **RULE**: Components follow a tiered structure based on complexity:
 
 #### **Tier 1: Simple Components (1 file)**
+
 For basic components with minimal logic and no separate styling:
+
 ```
 ComponentName/
 └── ComponentName.tsx           # Single file with inline styles (styled-components)
 ```
+
 **Examples**: Footer, Hashtag, ProvenImpact, Layout
 
 #### **Tier 2: Medium Components (3-4 files)**
+
 For components with moderate complexity requiring separate styling:
+
 ```
 ComponentName/
 ├── ComponentName.tsx           # Main component
@@ -77,10 +92,13 @@ ComponentName/
 ├── ComponentName.types.ts      # TypeScript interfaces
 └── index.ts                   # Barrel export (optional)
 ```
+
 **Examples**: Navigation, LandingBanner, ContactUs, DynamicLogo
 
 #### **Tier 3: Complex Components (5 files)**
+
 For components with significant logic, data, and styling:
+
 ```
 ComponentName/
 ├── index.ts                    # Barrel export (MANDATORY)
@@ -89,9 +107,11 @@ ComponentName/
 ├── ComponentName.types.ts      # TypeScript interfaces
 └── constants.ts               # Component data/constants
 ```
+
 **Examples**: WellnessSolutions, NumbersDontLie, WhyChooseCult, OurImpact
 
 **Enforcement**:
+
 - **CHOOSE** appropriate tier based on component complexity
 - **ALWAYS** separate concerns into appropriate files
 - **USE** barrel exports via `index.ts` for Tier 2 and Tier 3 components
@@ -118,6 +138,7 @@ ComponentName/
 - **ALWAYS** provide JSDoc comments for complex interfaces
 
 Example:
+
 ```typescript
 /**
  * Props for the WellnessSolutions component.
@@ -139,6 +160,7 @@ export interface WellnessSolutionsProps {}
 - **ALWAYS** use responsive design patterns
 
 Example:
+
 ```typescript
 import styled from 'styled-components';
 
@@ -146,7 +168,7 @@ export const SectionContainer = styled.section`
   background-color: var(--color-background);
   color: var(--color-text);
   padding: var(--spacing-2xl);
-  
+
   @media (max-width: 768px) {
     padding: var(--spacing-lg);
   }
@@ -187,20 +209,20 @@ const ComponentName: React.FC<ComponentNameProps> = ({ prop1, prop2 }) => {
   if (!prop1) {
     return null;
   }
-  
+
   // Event handlers with proper naming
   const handleClick = () => {
     // Handle click logic
   };
-  
+
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === 'Enter' || event.key === ' ') {
       handleClick();
     }
   };
-  
+
   return (
-    <StyledSection 
+    <StyledSection
       tabIndex={0}
       aria-label="Component description"
       onClick={handleClick}
@@ -237,6 +259,7 @@ export default ComponentName;
 - **ALWAYS** include proper ARIA attributes
 
 Example:
+
 ```typescript
 type HandleMouseEnterType = (id: number) => void;
 
@@ -264,6 +287,7 @@ const handleKeyDown = (event: React.KeyboardEvent, id: number) => {
 - **ALWAYS** implement proper AnimatePresence for mount/unmount animations
 
 Example:
+
 ```typescript
 <AnimatePresence mode="wait">
   <StyledImage
@@ -289,6 +313,7 @@ Example:
 - **ALWAYS** use Styled Components for hover, focus, and active states
 
 Example:
+
 ```typescript
 import styled from 'styled-components';
 
@@ -296,11 +321,11 @@ const StyledButton = styled.button`
   background-color: var(--color-blue);
   color: var(--color-text);
   transition: all var(--transition-normal);
-  
+
   &:hover {
     background-color: var(--color-accent-secondary);
   }
-  
+
   &:focus {
     outline: none;
     box-shadow: 0 0 0 2px var(--color-accent-primary);
@@ -310,11 +335,11 @@ const StyledButton = styled.button`
 const StyledLink = styled.a`
   color: var(--color-blue);
   transition: all var(--transition-normal);
-  
+
   &:hover {
     color: var(--color-accent-secondary);
   }
-  
+
   &:focus {
     outline: none;
     box-shadow: 0 0 0 2px var(--color-accent-primary);
@@ -352,6 +377,7 @@ const StyledLink = styled.a`
 - **USE** const assertions for immutable data
 
 Example:
+
 ```typescript
 // constants.ts
 export interface Solution {
@@ -430,6 +456,7 @@ export const solutions: readonly Solution[] = [
 - **ALWAYS** provide meaningful link text (avoid "click here" or "read more")
 
 Example:
+
 ```typescript
 import styled from 'styled-components';
 
@@ -437,11 +464,11 @@ const StyledButton = styled.button`
   background-color: var(--color-blue);
   color: var(--color-text);
   transition: all var(--transition-normal);
-  
+
   &:hover {
     background-color: var(--color-accent-secondary);
   }
-  
+
   &:focus {
     outline: none;
     box-shadow: 0 0 0 2px var(--color-accent-primary);
@@ -451,11 +478,11 @@ const StyledButton = styled.button`
 const StyledLink = styled.a`
   color: var(--color-blue);
   transition: all var(--transition-normal);
-  
+
   &:hover {
     color: var(--color-accent-secondary);
   }
-  
+
   &:focus {
     outline: none;
     box-shadow: 0 0 0 2px var(--color-accent-primary);
@@ -733,16 +760,18 @@ const StyledLink = styled.a`
 
 ## Conclusion
 
-These rules are designed to maintain the high quality and consistency of the CULT Corporate Wellness Platform. They should be:
+These rules are designed to maintain the high quality and consistency of the CULT Corporate Wellness
+Platform. They should be:
 
 1. **REFERENCED** before making any changes
 2. **UPDATED** when new patterns are established
 3. **ENFORCED** through code reviews
 4. **FOLLOWED** by all team members
 
-**Remember**: When in doubt, follow existing patterns in the codebase and consult with the team before making significant changes.
+**Remember**: When in doubt, follow existing patterns in the codebase and consult with the team
+before making significant changes.
 
 ---
 
-*Last Updated: 2025-01-27*
-*This document should be updated whenever new rules or patterns are established during development.* 
+_Last Updated: 2025-01-27_ _This document should be updated whenever new rules or patterns are
+established during development._

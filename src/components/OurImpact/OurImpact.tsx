@@ -24,7 +24,7 @@ import {
   NavigationButton,
 } from './OurImpact.styles';
 
-export default function OurImpact({ videos = DEFAULT_VIDEOS }: OurImpactProps) {
+const OurImpact: React.FC<OurImpactProps> = ({ videos = DEFAULT_VIDEOS }) => {
   const [currentPage, setCurrentPage] = useState(0);
 
   const totalPages = Math.ceil(videos.length / VIDEOS_PER_PAGE);
@@ -123,4 +123,6 @@ export default function OurImpact({ videos = DEFAULT_VIDEOS }: OurImpactProps) {
       </SectionContainer>
     </>
   );
-}
+};
+
+export default OurImpact;
