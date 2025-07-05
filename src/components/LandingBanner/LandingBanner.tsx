@@ -9,13 +9,13 @@ import {
   LogoContainer,
   LogoWrapper,
   StyledDynamicLogo,
-  DemoButton
+  DemoButton,
 } from './LandingBanner.styles';
 import type { LandingBannerProps } from './LandingBanner.types';
 
 /**
  * LANDING BANNER COMPONENT
- * 
+ *
  * This component manages multiple animation states:
  * 1. Scroll-triggered animations (text gradient, logo animation)
  * 2. Hover animations (logo scale, text highlight)
@@ -24,9 +24,9 @@ import type { LandingBannerProps } from './LandingBanner.types';
  */
 const LandingBanner: React.FC<LandingBannerProps> = () => {
   // STATE MANAGEMENT FOR ANIMATIONS
-  const [isScrolled, setIsScrolled] = useState(false);  // Tracks if user has scrolled
-  const [isHovered, setIsHovered] = useState(false);    // Tracks hover state on logo/text
-  
+  const [isScrolled, setIsScrolled] = useState(false); // Tracks if user has scrolled
+  const [isHovered, setIsHovered] = useState(false); // Tracks hover state on logo/text
+
   /**
    * SCROLL DETECTION LOGIC
    * Sets up event listener to detect when user scrolls
@@ -39,35 +39,35 @@ const LandingBanner: React.FC<LandingBannerProps> = () => {
     const handleScroll = () => {
       // Detect any scroll movement (Not in Use)
       //setIsScrolled(window.scrollY > 0);
-      
+
       // PERSISTENT ACTIVATION: Once activated, don't turn it off when scrolling back to top
       // This ensures the gradient effect stays active after first scroll
       if (window.scrollY > 0) {
         setIsScrolled(true);
       }
     };
-    
+
     // Add scroll listener with passive flag for better performance
     window.addEventListener('scroll', handleScroll, { passive: true });
-    
+
     // Cleanup function to remove listener when component unmounts
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-  
+
   /**
    * COMBINED ANIMATION STATE
    * Combines scroll and hover states to trigger animations
    * Either scrolling OR hovering will activate the gradient effects
    */
   const isHighlighted = isScrolled || isHovered;
-  
+
   return (
     <>
-    <LandingBannerDivider />
-    <BannerContainer>
-      <ContentContainer>
+      <LandingBannerDivider />
+      <BannerContainer>
+        <ContentContainer>
           <Title>
             {/* 
               HIGHLIGHTED WORD WITH HOVER DETECTION
@@ -76,35 +76,37 @@ const LandingBanner: React.FC<LandingBannerProps> = () => {
               - When highlighted: Shows animated gradient text
               - When not highlighted: Shows outlined transparent text
             */}
-            <HighlightedWord 
+            <HighlightedWord
               isScrolled={isHighlighted}
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
               ENERGISE
-            </HighlightedWord> YOUR WORKFORCE
+            </HighlightedWord>{' '}
+            YOUR WORKFORCE
           </Title>
-        <Subtitle>
-          Transform employee wellness from buzzword to business advantage with <b>cult for corporates.</b>
-        </Subtitle>
-      </ContentContainer>
-      
-      <LogoContainer>
-        {/*
+          <Subtitle>
+            Transform employee wellness from buzzword to business advantage with{' '}
+            <b>cult for corporates.</b>
+          </Subtitle>
+        </ContentContainer>
+
+        <LogoContainer>
+          {/*
           LOGO WRAPPER WITH FRAMER MOTION ANIMATIONS
           - whileHover: Scales logo to 1.1x on hover (10% larger)
           - transition: Smooth 0.3s animation duration
           - onMouseEnter/Leave: Syncs hover state with text highlighting
           - This creates coordinated hover effects between logo and text
         */}
-        <LogoWrapper 
-          whileHover={{ 
-            scale: 1.1,
-            transition: { duration: 0.3 }
-          }}
+          <LogoWrapper
+            whileHover={{
+              scale: 1.1,
+              transition: { duration: 0.3 },
+            }}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-        >
+          >
             {/*
               DYNAMIC LOGO WITH FORCED HIGHLIGHT
               - forceHighlight prop: Passes combined scroll/hover state
@@ -113,10 +115,10 @@ const LandingBanner: React.FC<LandingBannerProps> = () => {
               - This synchronizes logo animation with text gradient
             */}
             <StyledDynamicLogo forceHighlight={isHighlighted} />
-        </LogoWrapper>
+          </LogoWrapper>
         </LogoContainer>
       </BannerContainer>
-        
+
       {/* 
         FIXED DEMO BUTTON
         - position: fixed keeps it visible while scrolling
@@ -125,14 +127,11 @@ const LandingBanner: React.FC<LandingBannerProps> = () => {
         - CSS animation: Border color cycles between yellow and pink
         - z-index: High value to stay above other content
       */}
-        <DemoButton 
-        whileHover={{ scale: 1.2 }}
-          whileTap={{ scale: 0.95 }}
-        >
-        Request Demo {'>>'} 
-        </DemoButton>
+      <DemoButton whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.95 }}>
+        Request Demo {'>>'}
+      </DemoButton>
     </>
   );
 };
 
-export default LandingBanner; 
+export default LandingBanner;

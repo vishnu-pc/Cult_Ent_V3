@@ -18,11 +18,11 @@ const FooterContent = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: var(--spacing-xl);
-  
+
   @media (max-width: 1024px) {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   @media (max-width: 640px) {
     grid-template-columns: 1fr;
   }
@@ -44,7 +44,7 @@ const FooterLink = styled(Link)`
   text-decoration: none;
   margin-bottom: var(--spacing-sm);
   transition: color var(--transition-fast);
-  
+
   &:hover {
     color: var(--color-accent-primary);
   }
@@ -65,7 +65,7 @@ const SocialIcon = styled.a`
   color: var(--color-grey);
   font-size: var(--font-size-xl);
   transition: color var(--transition-fast);
-  
+
   &:hover {
     color: var(--color-accent-primary);
   }
@@ -79,7 +79,7 @@ const BottomBar = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
+
   @media (max-width: 768px) {
     flex-direction: column;
     gap: var(--spacing-md);
@@ -95,7 +95,7 @@ const Copyright = styled.p`
 const LegalLinks = styled.div`
   display: flex;
   gap: var(--spacing-md);
-  
+
   @media (max-width: 768px) {
     flex-direction: column;
     gap: var(--spacing-sm);
@@ -107,7 +107,7 @@ const LegalLink = styled(Link)`
   font-size: var(--font-size-sm);
   text-decoration: none;
   transition: color var(--transition-fast);
-  
+
   &:hover {
     color: var(--color-accent-primary);
   }
@@ -115,49 +115,74 @@ const LegalLink = styled(Link)`
 
 const Footer: React.FC<FooterProps> = () => {
   const currentYear = new Date().getFullYear();
-  
+
   return (
     <FooterContainer>
       <FooterContent>
         <FooterSection>
           <FooterTitle>CULT</FooterTitle>
           <FooterText>
-            Transforming corporate wellness with innovative solutions that engage employees and improve overall wellbeing.
+            Transforming corporate wellness with innovative solutions that
+            engage employees and improve overall wellbeing.
           </FooterText>
           <SocialLinks>
-            <SocialIcon href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-              <i className="fab fa-facebook-f"></i>
+            <SocialIcon
+              href='https://facebook.com'
+              target='_blank'
+              rel='noopener noreferrer'
+              aria-label='Facebook'
+            >
+              <i className='fab fa-facebook-f'></i>
             </SocialIcon>
-            <SocialIcon href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-              <i className="fab fa-twitter"></i>
+            <SocialIcon
+              href='https://twitter.com'
+              target='_blank'
+              rel='noopener noreferrer'
+              aria-label='Twitter'
+            >
+              <i className='fab fa-twitter'></i>
             </SocialIcon>
-            <SocialIcon href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-              <i className="fab fa-instagram"></i>
+            <SocialIcon
+              href='https://instagram.com'
+              target='_blank'
+              rel='noopener noreferrer'
+              aria-label='Instagram'
+            >
+              <i className='fab fa-instagram'></i>
             </SocialIcon>
-            <SocialIcon href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              <i className="fab fa-linkedin-in"></i>
+            <SocialIcon
+              href='https://linkedin.com'
+              target='_blank'
+              rel='noopener noreferrer'
+              aria-label='LinkedIn'
+            >
+              <i className='fab fa-linkedin-in'></i>
             </SocialIcon>
           </SocialLinks>
         </FooterSection>
-        
+
         <FooterSection>
           <FooterTitle>Solutions</FooterTitle>
-          <FooterLink to="/solutions/fitness">Premium Fitness Access</FooterLink>
-          <FooterLink to="/solutions/engagement">Employee Engagement</FooterLink>
-          <FooterLink to="/solutions/wellness">All-Round Wellness</FooterLink>
-          <FooterLink to="/solutions/campus">On-Campus Solutions</FooterLink>
-          <FooterLink to="/solutions/gifting">Corporate Gifting</FooterLink>
+          <FooterLink to='/solutions/fitness'>
+            Premium Fitness Access
+          </FooterLink>
+          <FooterLink to='/solutions/engagement'>
+            Employee Engagement
+          </FooterLink>
+          <FooterLink to='/solutions/wellness'>All-Round Wellness</FooterLink>
+          <FooterLink to='/solutions/campus'>On-Campus Solutions</FooterLink>
+          <FooterLink to='/solutions/gifting'>Corporate Gifting</FooterLink>
         </FooterSection>
-        
+
         <FooterSection>
           <FooterTitle>Company</FooterTitle>
-          <FooterLink to="/about">About Us</FooterLink>
-          <FooterLink to="/impact">Our Impact</FooterLink>
-          <FooterLink to="/testimonials">Testimonials</FooterLink>
-          <FooterLink to="/careers">Careers</FooterLink>
-          <FooterLink to="/blog">Blog</FooterLink>
+          <FooterLink to='/about'>About Us</FooterLink>
+          <FooterLink to='/impact'>Our Impact</FooterLink>
+          <FooterLink to='/testimonials'>Testimonials</FooterLink>
+          <FooterLink to='/careers'>Careers</FooterLink>
+          <FooterLink to='/blog'>Blog</FooterLink>
         </FooterSection>
-        
+
         <FooterSection>
           <FooterTitle>Contact Us</FooterTitle>
           <FooterText>123 Wellness Street</FooterText>
@@ -166,17 +191,17 @@ const Footer: React.FC<FooterProps> = () => {
           <FooterText>+1 (555) 123-4567</FooterText>
         </FooterSection>
       </FooterContent>
-      
+
       <BottomBar>
         <Copyright>© {currentYear} CULT. All rights reserved.</Copyright>
         <LegalLinks>
-          <LegalLink to="/terms">Terms of Service</LegalLink>
-          <LegalLink to="/privacy">Privacy Policy</LegalLink>
-          <LegalLink to="/cookies">Cookie Policy</LegalLink>
+          <LegalLink to='/terms'>Terms of Service</LegalLink>
+          <LegalLink to='/privacy'>Privacy Policy</LegalLink>
+          <LegalLink to='/cookies'>Cookie Policy</LegalLink>
         </LegalLinks>
       </BottomBar>
     </FooterContainer>
   );
 };
 
-export default Footer; 
+export default Footer;

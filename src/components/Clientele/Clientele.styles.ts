@@ -35,7 +35,7 @@ export const ClienteleSection = styled.section`
   background-size: cover;
   background-position: center;
   overflow: hidden;
-  
+
   &::before {
     content: '';
     position: absolute;
@@ -78,7 +78,8 @@ export const SectionTitle = styled.h3<StyledComponentProps>`
   margin-bottom: var(--spacing-2xl);
   letter-spacing: 2px;
   opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
-  animation: ${({ isVisible }) => (isVisible ? fadeIn : 'none')} 1.6s ease-out forwards;
+  animation: ${({ isVisible }) => (isVisible ? fadeIn : 'none')} 1.6s ease-out
+    forwards;
 `;
 
 export const MainHeading = styled.div`
@@ -94,9 +95,10 @@ export const HeadingLine = styled.h2<HeadingLineProps>`
   letter-spacing: 4px;
   line-height: 1.2;
   opacity: 0;
-  animation: ${({ isVisible }) => (isVisible ? fadeIn : 'none')} 1.6s ease-out forwards;
+  animation: ${({ isVisible }) => (isVisible ? fadeIn : 'none')} 1.6s ease-out
+    forwards;
   animation-delay: ${({ delay }) => delay}s;
-  
+
   @media (max-width: 768px) {
     font-size: var(--font-size-3xl);
   }
@@ -107,13 +109,14 @@ export const StatText = styled.p<StyledComponentProps>`
   margin-top: var(--spacing-2xl);
   max-width: 800px;
   opacity: 0;
-  animation: ${({ isVisible }) => (isVisible ? fadeIn : 'none')} 1.6s ease-out forwards;
+  animation: ${({ isVisible }) => (isVisible ? fadeIn : 'none')} 1.6s ease-out
+    forwards;
   animation-delay: 1.6s;
-  
+
   @media (max-width: 768px) {
     font-size: var(--font-size-lg);
   }
-  
+
   strong {
     color: var(--color-text);
   }
@@ -150,4 +153,4 @@ export const LogoImage = styled.img`
   width: 150%;
   //min-width: 100vw;
   object-fit: fill;
-`; 
+`;

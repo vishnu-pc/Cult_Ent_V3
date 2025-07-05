@@ -19,22 +19,22 @@ export const Logo = styled(Link)`
   display: flex;
   align-items: center;
   text-decoration: none;
-  
+
   img {
     height: 70px;
   }
 
   @media (max-width: 1100px) {
     img {
-    height: 50px;
-  }
+      height: 50px;
+    }
   }
 `;
 
 export const NavLinks = styled.nav<{ isOpen: boolean }>`
   display: flex;
   align-items: center;
-  
+
   @media (max-width: 768px) {
     position: absolute;
     top: 80px;
@@ -44,9 +44,12 @@ export const NavLinks = styled.nav<{ isOpen: boolean }>`
     flex-direction: column;
     align-items: center;
     padding: var(--spacing-lg) 0;
-    transform: ${({ isOpen }) => isOpen ? 'translateY(0)' : 'translateY(-150%)'};
-    opacity: ${({ isOpen }) => isOpen ? 1 : 0};
-    transition: transform var(--transition-normal), opacity var(--transition-normal);
+    transform: ${({ isOpen }) =>
+      isOpen ? 'translateY(0)' : 'translateY(-150%)'};
+    opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
+    transition:
+      transform var(--transition-normal),
+      opacity var(--transition-normal);
     z-index: var(--z-index-dropdown);
   }
 `;
@@ -59,7 +62,7 @@ export const NavLink = styled(Link)`
   transition: color var(--transition-fast);
   text-transform: uppercase;
   position: relative;
-  
+
   /* Gradient hover effect */
   &:hover {
     background: var(--gradient-primary);
@@ -68,7 +71,7 @@ export const NavLink = styled(Link)`
     -webkit-text-fill-color: transparent;
     text-fill-color: transparent;
   }
-  
+
   /* Animated underline on hover */
   &::after {
     content: '';
@@ -80,11 +83,11 @@ export const NavLink = styled(Link)`
     background: var(--gradient-primary);
     transition: width var(--transition-normal);
   }
-  
+
   &:hover::after {
     width: 100%;
   }
-  
+
   @media (max-width: 768px) {
     margin: var(--spacing-sm) 0;
     font-size: var(--font-size-lg);
@@ -101,19 +104,19 @@ export const LoginButton = styled.button`
   transition: all var(--transition-fast);
   position: relative;
   overflow: hidden;
-  
+
   /* Gradient hover effect */
   &:hover {
     background: var(--gradient-secondary);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(253, 217, 20, 0.3);
   }
-  
+
   /* Active/pressed effect */
   &:active {
     transform: translateY(0);
   }
-  
+
   @media (max-width: 768px) {
     margin: var(--spacing-md) 0 0;
   }
@@ -130,11 +133,11 @@ export const HamburgerButton = styled.button<HamburgerProps>`
   cursor: pointer;
   padding: 0;
   z-index: 10;
-  
+
   @media (max-width: 768px) {
     display: flex;
   }
-  
+
   div {
     width: 30px;
     height: 3px;
@@ -143,18 +146,19 @@ export const HamburgerButton = styled.button<HamburgerProps>`
     transition: all var(--transition-fast);
     position: relative;
     transform-origin: 1px;
-    
+
     &:first-child {
-      transform: ${({ isOpen }) => isOpen ? 'rotate(45deg)' : 'rotate(0)'};
+      transform: ${({ isOpen }) => (isOpen ? 'rotate(45deg)' : 'rotate(0)')};
     }
-    
+
     &:nth-child(2) {
-      opacity: ${({ isOpen }) => isOpen ? '0' : '1'};
-      transform: ${({ isOpen }) => isOpen ? 'translateX(20px)' : 'translateX(0)'};
+      opacity: ${({ isOpen }) => (isOpen ? '0' : '1')};
+      transform: ${({ isOpen }) =>
+        isOpen ? 'translateX(20px)' : 'translateX(0)'};
     }
-    
+
     &:nth-child(3) {
-      transform: ${({ isOpen }) => isOpen ? 'rotate(-45deg)' : 'rotate(0)'};
+      transform: ${({ isOpen }) => (isOpen ? 'rotate(-45deg)' : 'rotate(0)')};
     }
   }
-`; 
+`;

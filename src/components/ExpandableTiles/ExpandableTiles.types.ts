@@ -7,4 +7,4 @@ export interface TileData {
 
 export interface ExpandableTilesProps {
   tiles: TileData[];
-} 
+}

@@ -27,7 +27,7 @@ import {
   FooterLink,
   SocialSection,
   SocialText,
-  SocialIcon
+  SocialIcon,
 } from './BeBetterSection.styles';
 
 export default function BeBetterSection({ className }: BeBetterSectionProps) {
@@ -38,18 +38,21 @@ export default function BeBetterSection({ className }: BeBetterSectionProps) {
         <HeroContent>
           <HashtagText>#BEBETTEREVERYDAY</HashtagText>
           <MainHeading>
-            ISN'T<br />
+            ISN'T
+            <br />
             &nbsp;&nbsp;&nbsp;&nbsp;JUST A<br />
             &nbsp;&nbsp;&nbsp;&nbsp;HASHTAG
           </MainHeading>
         </HeroContent>
-        
+
         <HeroDescription>
           <DescriptionText>
-            It's what happens when wellness becomes part of your company's DNA instead of just another checkbox.
+            It's what happens when wellness becomes part of your company's DNA
+            instead of just another checkbox.
           </DescriptionText>
           <CallToAction>
-            Your competitors are figuring this out.<br />
+            Your competitors are figuring this out.
+            <br />
             <strong>Are you?</strong>
           </CallToAction>
         </HeroDescription>
@@ -63,12 +66,14 @@ export default function BeBetterSection({ className }: BeBetterSectionProps) {
         <FooterContent>
           {/* Company Info */}
           <CompanyInfo>
-            <LogoImage src={CultLogo} alt="Cult Logo" />
+            <LogoImage src={CultLogo} alt='Cult Logo' />
             <CompanyTitle>
               India's largest fitness and wellness platform
             </CompanyTitle>
             <CompanyDescription>
-              At cult we're transforming how organisations approach employee wellness and build a sustainable culture of well-being that will benefit them for years to come
+              At cult we're transforming how organisations approach employee
+              wellness and build a sustainable culture of well-being that will
+              benefit them for years to come
             </CompanyDescription>
           </CompanyInfo>
 
@@ -77,12 +82,8 @@ export default function BeBetterSection({ className }: BeBetterSectionProps) {
             <StatsGrid>
               {STATS_DATA.map((stat, index) => (
                 <StatItem key={index}>
-                  <StatValue $color={stat.color}>
-                    {stat.value}
-                  </StatValue>
-                  <StatLabel $color={stat.color}>
-                    {stat.label}
-                  </StatLabel>
+                  <StatValue $color={stat.color}>{stat.value}</StatValue>
+                  <StatLabel $color={stat.color}>{stat.label}</StatLabel>
                 </StatItem>
               ))}
             </StatsGrid>
@@ -95,7 +96,7 @@ export default function BeBetterSection({ className }: BeBetterSectionProps) {
                   </FooterLink>
                 ))}
               </LeftLinks>
-              
+
               <SocialSection>
                 <SocialText>Stay connected</SocialText>
                 <SocialIcon />
@@ -106,4 +107,4 @@ export default function BeBetterSection({ className }: BeBetterSectionProps) {
       </FooterSection>
     </SectionContainer>
   );
-} 
+}

@@ -11,7 +11,7 @@ export const SectionContainer = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  
+
   @media (max-width: 768px) {
     padding: var(--spacing-2xl) var(--spacing-md);
   }
@@ -26,7 +26,7 @@ export const ContentWrapper = styled.div`
 export const HeaderSection = styled.div`
   margin-bottom: var(--spacing-3xl);
   text-align: left;
-  
+
   @media (max-width: 768px) {
     margin-bottom: var(--spacing-2xl);
     text-align: center;
@@ -40,11 +40,18 @@ export const ProvenImpactText = styled.div`
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.7);
   margin-bottom: var(--spacing-md);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
 `;
 
 export const MainHeadline = styled.h1`
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-family:
+    'Inter',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    'Roboto',
+    sans-serif;
   font-weight: 700;
   font-size: 54px;
   line-height: 119%;
@@ -52,11 +59,11 @@ export const MainHeadline = styled.h1`
   text-transform: uppercase;
   vertical-align: middle;
   margin-bottom: var(--spacing-lg);
-  
+
   @media (max-width: 1024px) {
     font-size: 42px;
   }
-  
+
   @media (max-width: 768px) {
     font-size: 32px;
     letter-spacing: 0.2em;
@@ -78,8 +85,9 @@ export const Subheadline = styled.p`
   font-size: var(--font-size-xl);
   color: rgba(255, 255, 255, 0.8);
   font-weight: 400;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+
   @media (max-width: 768px) {
     font-size: var(--font-size-lg);
   }
@@ -92,7 +100,7 @@ export const TilesContainer = styled.div`
   border: 2px dashed rgba(255, 255, 255, 0.3);
   border-radius: 16px;
   padding: 2px;
-  box-shadow: 
+  box-shadow:
     0 20px 40px rgba(0, 0, 0, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 `;
@@ -103,47 +111,50 @@ export const TilesGrid = styled.div`
   grid-template-rows: repeat(2, 1fr);
   gap: 2px;
   min-height: 600px;
-  
+
   @media (max-width: 1024px) {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto;
     min-height: auto;
   }
-  
+
   @media (max-width: 640px) {
     grid-template-columns: 1fr;
     min-height: auto;
   }
 `;
 
-export const Tile = styled(motion.div)<{ 
-  $hasImage: boolean; 
+export const Tile = styled(motion.div)<{
+  $hasImage: boolean;
   $backgroundImage?: string;
   $position?: string;
 }>`
   position: relative;
-  background: ${props => props.$hasImage && props.$backgroundImage 
-    ? `url(${props.$backgroundImage})` 
-    : 'rgba(255, 255, 255, 0.03)'
-  };
+  background: ${props =>
+    props.$hasImage && props.$backgroundImage
+      ? `url(${props.$backgroundImage})`
+      : 'rgba(255, 255, 255, 0.03)'};
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   padding: var(--spacing-lg);
   display: flex;
   flex-direction: column;
-  justify-content: ${props => props.$hasImage ? 'flex-end' : 'flex-start'};
+  justify-content: ${props => (props.$hasImage ? 'flex-end' : 'flex-start')};
   align-items: flex-start;
   text-align: left;
   overflow: hidden;
   border: 2px dashed rgba(255, 255, 255, 0.2);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+
   /* Apply grayscale filter to images */
-  ${props => props.$hasImage && `
+  ${props =>
+    props.$hasImage &&
+    `
     filter: grayscale(100%);
   `}
-  
+
   /* Round corners for corner tiles */
   ${props => {
     switch (props.$position) {
@@ -183,7 +194,9 @@ export const Tile = styled(motion.div)<{
   }}
   
   /* Dark overlay for image tiles */
-  ${props => props.$hasImage && `
+  ${props =>
+    props.$hasImage &&
+    `
     &::before {
       content: '';
       position: absolute;
@@ -201,7 +214,7 @@ export const Tile = styled(motion.div)<{
     position: relative;
     z-index: 2;
   }
-  
+
   @media (max-width: 1024px) {
     grid-column: auto !important;
     grid-row: auto !important;
@@ -209,7 +222,7 @@ export const Tile = styled(motion.div)<{
     grid-template-rows: none !important;
     border-radius: 8px !important;
   }
-  
+
   @media (max-width: 640px) {
     padding: var(--spacing-md);
     min-height: 120px;
@@ -222,7 +235,7 @@ export const WideColumnContainer = styled.div`
   display: grid;
   grid-template-rows: 1fr 1fr;
   gap: 2px;
-  
+
   @media (max-width: 1024px) {
     grid-column: auto;
     grid-row: auto;
@@ -236,11 +249,11 @@ export const TileValue = styled.div`
   color: #ffffff;
   margin-bottom: var(--spacing-xs);
   line-height: 1;
-  
+
   @media (max-width: 768px) {
     font-size: 3rem;
   }
-  
+
   @media (max-width: 640px) {
     font-size: 2.5rem;
   }
@@ -252,7 +265,7 @@ export const TileTitle = styled.h3`
   color: #ffffff;
   margin-bottom: var(--spacing-xs);
   line-height: 1.2;
-  
+
   @media (max-width: 768px) {
     font-size: var(--font-size-md);
   }
@@ -264,8 +277,8 @@ export const TileDescription = styled.p`
   line-height: 1.4;
   font-weight: 400;
   margin: 0;
-  
+
   @media (max-width: 768px) {
     font-size: var(--font-size-xs);
   }
-`; 
+`;

@@ -11,4 +11,4 @@ export interface StatData {
 export interface FooterLinkData {
   text: string;
   href: string;
-} 
+}

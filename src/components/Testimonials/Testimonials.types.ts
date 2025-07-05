@@ -14,4 +14,4 @@ export interface TestimonialData {
 
 export interface TestimonialsProps {
   testimonials?: TestimonialData[];
-} 
+}

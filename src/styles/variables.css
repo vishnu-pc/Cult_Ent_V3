@@ -1,89 +1,137 @@
 :root {
   /* Primary Color Palette - Based on Gradient Pack */
-  --color-background: #000000;          /* Pure black background */
-  --color-text: #ffffff;                /* White text for contrast */
-  
+  --color-background: #000000; /* Pure black background */
+  --color-text: #ffffff; /* White text for contrast */
+
   /* Brand Colors from Gradient Pack */
-  --color-yellow: #FDD914;              /* Bright yellow */
-  --color-pink: #ED3A79;                /* Pink/magenta */
-  --color-blue: #00B4FF;                /* Bright blue */
-  --color-black: #000000;               /* Pure black */
-  
+  --color-yellow: #fdd914; /* Bright yellow */
+  --color-pink: #ed3a79; /* Pink/magenta */
+  --color-blue: #00b4ff; /* Bright blue */
+  --color-black: #000000; /* Pure black */
+
   /* Accent Colors - Using brand colors */
-  --color-accent-primary: #FDD914;      /* Yellow as primary accent */
-  --color-accent-secondary: #00B4FF;    /* Blue as secondary accent */
-  --color-accent-tertiary: #ED3A79;     /* Pink as tertiary accent */
-  
+  --color-accent-primary: #fdd914; /* Yellow as primary accent */
+  --color-accent-secondary: #00b4ff; /* Blue as secondary accent */
+  --color-accent-tertiary: #ed3a79; /* Pink as tertiary accent */
+
   /* Grey Scale - Keeping for UI elements */
   --color-grey-light: #e0e0e0;
   --color-grey: #9e9e9e;
   --color-grey-dark: #424242;
-  
+
   /* Linear Gradient Accent Colors */
-  --gradient-primary: linear-gradient(45deg, #FDD914, #ED3A79);                    /* Yellow to Pink */
-  --gradient-secondary: linear-gradient(45deg, #ED3A79, #00B4FF);                  /* Pink to Blue */
-  --gradient-tertiary: linear-gradient(45deg, #00B4FF, #FDD914);                   /* Blue to Yellow */
-  --gradient-full: linear-gradient(93deg, #FDD914 -4.03%, #40B9EB 47.54%, #FF3278 93.16%);            /* All three colors */
-  --gradient-rainbow: linear-gradient(45deg, #FDD914, #ED3A79, #00B4FF, #FDD914); /* Rainbow loop */
-  
+  --gradient-primary: linear-gradient(
+    45deg,
+    #fdd914,
+    #ed3a79
+  ); /* Yellow to Pink */
+  --gradient-secondary: linear-gradient(
+    45deg,
+    #ed3a79,
+    #00b4ff
+  ); /* Pink to Blue */
+  --gradient-tertiary: linear-gradient(
+    45deg,
+    #00b4ff,
+    #fdd914
+  ); /* Blue to Yellow */
+  --gradient-full: linear-gradient(
+    93deg,
+    #fdd914 -4.03%,
+    #40b9eb 47.54%,
+    #ff3278 93.16%
+  ); /* All three colors */
+  --gradient-rainbow: linear-gradient(
+    45deg,
+    #fdd914,
+    #ed3a79,
+    #00b4ff,
+    #fdd914
+  ); /* Rainbow loop */
+
   /* Subtle Gradient Variants - For backgrounds */
-  --gradient-subtle-primary: linear-gradient(45deg, rgba(253, 217, 20, 0.1), rgba(237, 58, 121, 0.1));
-  --gradient-subtle-secondary: linear-gradient(45deg, rgba(237, 58, 121, 0.1), rgba(0, 180, 255, 0.1));
-  --gradient-subtle-tertiary: linear-gradient(45deg, rgba(0, 180, 255, 0.1), rgba(253, 217, 20, 0.1));
-  --gradient-subtle-full: linear-gradient(45deg, rgba(253, 217, 20, 0.08), rgba(237, 58, 121, 0.08), rgba(0, 180, 255, 0.08));
-  
-  /* Animated Gradient - For moving backgrounds */
-  --gradient-animated: linear-gradient(45deg, #000000, #FDD914, #ED3A79, #00B4FF, #000000);
-  --gradient-animated-colour: linear-gradient(45deg, #FDD914, #ED3A79, #00B4FF);
-  --gradient-animated-subtle: linear-gradient(15deg, 
-    rgba(0, 0, 0, 1), 
-    rgba(0, 180, 255, 0.12), /*initially 12%*/
-    rgba(237, 58, 121, 0.10),  /*initially 10%*/
-    rgba(253, 217, 20, 0.15),  /*initially 15%*/
-    rgba(0, 0, 0, 1)
+  --gradient-subtle-primary: linear-gradient(
+    45deg,
+    rgba(253, 217, 20, 0.1),
+    rgba(237, 58, 121, 0.1)
   );
-  
+  --gradient-subtle-secondary: linear-gradient(
+    45deg,
+    rgba(237, 58, 121, 0.1),
+    rgba(0, 180, 255, 0.1)
+  );
+  --gradient-subtle-tertiary: linear-gradient(
+    45deg,
+    rgba(0, 180, 255, 0.1),
+    rgba(253, 217, 20, 0.1)
+  );
+  --gradient-subtle-full: linear-gradient(
+    45deg,
+    rgba(253, 217, 20, 0.08),
+    rgba(237, 58, 121, 0.08),
+    rgba(0, 180, 255, 0.08)
+  );
+
+  /* Animated Gradient - For moving backgrounds */
+  --gradient-animated: linear-gradient(
+    45deg,
+    #000000,
+    #fdd914,
+    #ed3a79,
+    #00b4ff,
+    #000000
+  );
+  --gradient-animated-colour: linear-gradient(45deg, #fdd914, #ed3a79, #00b4ff);
+  --gradient-animated-subtle: linear-gradient(
+    15deg,
+    rgba(0, 0, 0, 1),
+    rgba(0, 180, 255, 0.12),
+    /*initially 12%*/ rgba(237, 58, 121, 0.1),
+    /*initially 10%*/ rgba(253, 217, 20, 0.15),
+    /*initially 15%*/ rgba(0, 0, 0, 1)
+  );
+
   /* Typography */
   --font-primary: 'Poppins', sans-serif;
   --font-secondary: 'Inter', sans-serif;
-  
+
   /* Font Sizes */
-  --font-size-xs: 0.75rem;   /* 12px */
-  --font-size-sm: 0.875rem;  /* 14px */
-  --font-size-md: 1rem;      /* 16px */
-  --font-size-lg: 1.125rem;  /* 18px */
-  --font-size-xl: 1.25rem;   /* 20px */
-  --font-size-2xl: 1.5rem;   /* 24px */
+  --font-size-xs: 0.75rem; /* 12px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-md: 1rem; /* 16px */
+  --font-size-lg: 1.125rem; /* 18px */
+  --font-size-xl: 1.25rem; /* 20px */
+  --font-size-2xl: 1.5rem; /* 24px */
   --font-size-3xl: 1.875rem; /* 30px */
-  --font-size-4xl: 2.25rem;  /* 36px */
-  --font-size-5xl: 3rem;     /* 48px */
-  --font-size-6xl: 4rem;     /* 64px */
-  --font-size-7xl: 5rem;     /* 80px */
-  --font-size-8xl: 6rem;     /* 96px */
-  --font-size-9xl: 7rem;     /* 112px */
-  --font-size-xxl: 8vw;      /* 128px */
-  
+  --font-size-4xl: 2.25rem; /* 36px */
+  --font-size-5xl: 3rem; /* 48px */
+  --font-size-6xl: 4rem; /* 64px */
+  --font-size-7xl: 5rem; /* 80px */
+  --font-size-8xl: 6rem; /* 96px */
+  --font-size-9xl: 7rem; /* 112px */
+  --font-size-xxl: 8vw; /* 128px */
+
   /* Spacing */
-  --spacing-xxs: 0rem;     /* 0px */
-  --spacing-xs: 0.25rem;   /* 4px */
-  --spacing-sm: 0.5rem;    /* 8px */
-  --spacing-md: 1rem;      /* 16px */
-  --spacing-lg: 1.5rem;    /* 24px */
-  --spacing-xl: 2rem;      /* 32px */
-  --spacing-2xl: 3rem;     /* 48px */
-  --spacing-3xl: 4rem;     /* 64px */
-  
+  --spacing-xxs: 0rem; /* 0px */
+  --spacing-xs: 0.25rem; /* 4px */
+  --spacing-sm: 0.5rem; /* 8px */
+  --spacing-md: 1rem; /* 16px */
+  --spacing-lg: 1.5rem; /* 24px */
+  --spacing-xl: 2rem; /* 32px */
+  --spacing-2xl: 3rem; /* 48px */
+  --spacing-3xl: 4rem; /* 64px */
+
   /* Borders */
-  --border-radius-sm: 0.25rem;  /* 4px */
-  --border-radius-md: 0.5rem;   /* 8px */
-  --border-radius-lg: 1rem;     /* 16px */
+  --border-radius-sm: 0.25rem; /* 4px */
+  --border-radius-md: 0.5rem; /* 8px */
+  --border-radius-lg: 1rem; /* 16px */
   --border-radius-full: 9999px;
-  
+
   /* Transitions */
   --transition-fast: 0.2s ease;
   --transition-normal: 0.3s ease;
   --transition-slow: 0.5s ease;
-  
+
   /* Z-index */
   --z-index-dropdown: 100;
   --z-index-sticky: 200;
@@ -93,15 +141,15 @@
   --z-index-popover: 600;
   --z-index-tooltip: 700;
   --z-index-floating: 800;
-  
+
   /* Breakpoints */
   --breakpoint-sm: 640px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 1024px;
   --breakpoint-xl: 1280px;
   --breakpoint-2xl: 1536px;
-  
+
   /* Section Heights */
   --section-height: 100vh;
   --section-width: 100vw;
-} 
+}

@@ -4,9 +4,9 @@ import LeftIcon from '../../assets/images/OurImpact/left-icon.png';
 import EllipseBackground from '../../assets/images/OurImpact/Ellipse-1.png';
 
 export const SectionContainer = styled.section`
- min-height: 100vh;
+  min-height: 100vh;
   width: 100%;
-  background: 
+  background:
     linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0) 0%,
@@ -17,9 +17,9 @@ export const SectionContainer = styled.section`
     ),
     linear-gradient(
       to right,
-      rgba(255, 221, 0, 0.6) 0%,     /* yellow */
-      rgba(0, 255, 102, 0.4) 35%,    /* green */
-      rgba(0, 102, 255, 0.4) 70%     /* blue */
+      rgba(255, 221, 0, 0.6) 0%,
+      /* yellow */ rgba(0, 255, 102, 0.4) 35%,
+      /* green */ rgba(0, 102, 255, 0.4) 70% /* blue */
     );
   padding: var(--spacing-3xl) var(--spacing-xl);
   display: flex;
@@ -43,7 +43,7 @@ export const HeaderSection = styled.div`
   align-items: flex-start;
   margin-bottom: var(--spacing-3xl);
   gap: var(--spacing-2xl);
-  
+
   @media (max-width: 768px) {
     flex-direction: column;
     gap: var(--spacing-xl);
@@ -70,11 +70,11 @@ export const MainTitle = styled.h1`
   color: var(--color-text);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  
+
   @media (max-width: 768px) {
     font-size: var(--font-size-5xl);
   }
-  
+
   @media (max-width: 480px) {
     font-size: var(--font-size-4xl);
   }
@@ -91,7 +91,7 @@ export const DescriptionSection = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
-  
+
   @media (max-width: 768px) {
     align-items: flex-start;
   }
@@ -102,7 +102,7 @@ export const Description = styled.p`
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.6;
   max-width: 400px;
-  
+
   @media (max-width: 768px) {
     font-size: var(--font-size-lg);
   }
@@ -113,11 +113,11 @@ export const VideoCardsContainer = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: var(--spacing-xl);
   margin-bottom: var(--spacing-3xl);
-  
+
   @media (max-width: 1024px) {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   @media (max-width: 640px) {
     grid-template-columns: 1fr;
     gap: var(--spacing-lg);
@@ -133,7 +133,7 @@ export const VideoCard = styled(motion.div)`
   transition: all var(--transition-normal);
   width: 400px;
   height: 450px;
-  
+
   &:hover {
     border-color: rgba(255, 255, 255, 0.3);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
@@ -148,14 +148,14 @@ export const ThumbnailContainer = styled.div`
   overflow: hidden;
   margin-bottom: var(--spacing-lg);
   cursor: pointer;
-  
+
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform var(--transition-normal);
   }
-  
+
   &:hover img {
     transform: scale(1.05);
   }
@@ -175,12 +175,12 @@ export const PlayButton = styled.div`
   align-items: center;
   justify-content: center;
   transition: all var(--transition-normal);
-  
+
   &:hover {
     border-color: rgba(255, 255, 255, 1);
     transform: translate(-50%, -50%) scale(1.1);
   }
-  
+
   &::after {
     content: '';
     width: 0;
@@ -224,7 +224,10 @@ export const NavigationContainer = styled.div`
   gap: var(--spacing-md);
 `;
 
-export const NavigationButton = styled(motion.button)<{ $disabled?: boolean; $isNext?: boolean }>`
+export const NavigationButton = styled(motion.button)<{
+  $disabled?: boolean;
+  $isNext?: boolean;
+}>`
   width: 50px;
   height: 50px;
   background: url(${EllipseBackground}) center/contain no-repeat;
@@ -235,22 +238,22 @@ export const NavigationButton = styled(motion.button)<{ $disabled?: boolean; $is
   align-items: center;
   justify-content: center;
   transition: all var(--transition-normal);
-  opacity: ${props => props.$disabled ? 0.3 : 1};
-  pointer-events: ${props => props.$disabled ? 'none' : 'auto'};
+  opacity: ${props => (props.$disabled ? 0.3 : 1)};
+  pointer-events: ${props => (props.$disabled ? 'none' : 'auto')};
   position: relative;
-  
+
   &::before {
     content: '';
     width: 24px;
     height: 24px;
     background: url(${LeftIcon}) center/cover no-repeat;
-    transform: ${props => props.$isNext ? 'scaleX(-1)' : 'scaleX(1)'};
+    transform: ${props => (props.$isNext ? 'scaleX(-1)' : 'scaleX(1)')};
   }
-  
+
   &:hover:not(:disabled) {
     transform: scale(1.05);
   }
-  
+
   &:active {
     transform: scale(0.95);
   }
@@ -259,4 +262,4 @@ export const NavigationButton = styled(motion.button)<{ $disabled?: boolean; $is
     opacity: 0.5;
     cursor: not-allowed;
   }
-`; 
+`;

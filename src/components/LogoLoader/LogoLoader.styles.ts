@@ -8,11 +8,11 @@ export const LoaderContainer = styled.div`
   flex-direction: column;
   padding: var(--spacing-xl);
   box-sizing: border-box;
-  
+
   @media (max-width: 768px) {
     padding: var(--spacing-lg);
   }
-  
+
   @media (max-width: 480px) {
     padding: var(--spacing-md);
   }
@@ -26,7 +26,7 @@ export const TopSection = styled.div`
   width: 100%;
   margin: 0 auto;
   padding: var(--spacing-3xl) 0;
-  
+
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     gap: var(--spacing-2xl);
@@ -48,7 +48,7 @@ export const MainTitle = styled.h1`
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin: 0;
-  
+
   @media (max-width: 768px) {
     font-size: clamp(2rem, 8vw, 3rem);
   }
@@ -73,7 +73,7 @@ export const Description = styled.p`
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.6;
   margin: 0;
-  
+
   @media (max-width: 768px) {
     font-size: var(--font-size-lg);
   }
@@ -86,7 +86,7 @@ export const GuideBox = styled.div`
   padding: var(--spacing-xl);
   position: relative;
   backdrop-filter: blur(10px);
-  
+
   @media (max-width: 768px) {
     padding: var(--spacing-lg);
   }
@@ -110,7 +110,7 @@ export const GuideTitle = styled.h2`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  
+
   @media (max-width: 768px) {
     font-size: var(--font-size-lg);
   }
@@ -139,13 +139,13 @@ export const DownloadIcon = styled.div`
   justify-content: center;
   cursor: pointer;
   transition: all var(--transition-normal);
-  
+
   &:hover {
     background: rgba(255, 255, 255, 0.2);
     border-color: rgba(255, 255, 255, 0.4);
     transform: scale(1.05);
   }
-  
+
   svg {
     width: 20px;
     height: 20px;
@@ -159,7 +159,7 @@ export const GifSection = styled.div`
   justify-content: center;
   flex: 1;
   padding: var(--spacing-3xl) 0;
-  
+
   @media (max-width: 768px) {
     padding: var(--spacing-2xl) 0;
   }
@@ -171,12 +171,12 @@ export const LogoGif = styled.img`
   max-width: 600px;
   object-fit: contain;
   display: block;
-  
+
   @media (max-width: 768px) {
     max-width: 400px;
   }
-  
+
   @media (max-width: 480px) {
     max-width: 300px;
   }
-`; 
+`;

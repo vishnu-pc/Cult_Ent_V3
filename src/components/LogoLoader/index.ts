@@ -1,2 +1,2 @@
 export { default } from './LogoLoader';
-export type { LogoLoaderProps } from './LogoLoader.types'; 
+export type { LogoLoaderProps } from './LogoLoader.types';

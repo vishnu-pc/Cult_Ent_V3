@@ -6,4 +6,4 @@ export interface StyledComponentProps {
 
 export interface HeadingLineProps extends StyledComponentProps {
   delay: number;
-} 
+}

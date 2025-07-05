@@ -12,4 +12,4 @@ export interface ContactFormData {
 
 export interface ContactUsProps {
   onSubmit?: (data: ContactFormData) => void;
-} 
+}

@@ -24,41 +24,45 @@ import {
 } from './WhyChooseCult.styles';
 
 const WhyChooseCult: React.FC<WhyChooseCultProps> = () => {
-
   // Sample data for the ExpandableTiles component
   const sampleTiles: TileData[] = [
     {
       id: 1,
       image: WhyChooseCult1,
       title: 'Results You Can See, ROI You Can Measure',
-      description: 'Analytics-powered wellness with metrics that directly impact your performance indicators..'
+      description:
+        'Analytics-powered wellness with metrics that directly impact your performance indicators..',
     },
     {
       id: 2,
       image: WhyChooseCult2,
       title: 'Mental Wellness',
-      description: 'Mindfulness and stress management programs to enhance mental clarity and emotional resilience in the workplace.'
+      description:
+        'Mindfulness and stress management programs to enhance mental clarity and emotional resilience in the workplace.',
     },
     {
       id: 3,
       image: WhyChooseCult3,
       title: 'Nutrition Guidance',
-      description: 'Expert nutritional counseling and meal planning to fuel productivity and maintain optimal health throughout the workday.'
+      description:
+        'Expert nutritional counseling and meal planning to fuel productivity and maintain optimal health throughout the workday.',
     },
     {
       id: 4,
       image: WhyChooseCult4,
       title: 'Team Building',
-      description: 'Engaging group activities and challenges that strengthen team bonds while promoting healthy lifestyle choices.'
+      description:
+        'Engaging group activities and challenges that strengthen team bonds while promoting healthy lifestyle choices.',
     },
     {
       id: 5,
       image: WhyChooseCult5,
       title: 'Recovery & Rest',
-      description: 'Specialized recovery programs and sleep optimization techniques to ensure peak performance and prevent burnout.'
-    }
+      description:
+        'Specialized recovery programs and sleep optimization techniques to ensure peak performance and prevent burnout.',
+    },
   ];
-  
+
   return (
     <>
       {/* New Cult Advantage Section */}
@@ -70,9 +74,15 @@ const WhyChooseCult: React.FC<WhyChooseCultProps> = () => {
               <FirstLine>
                 <MainHeadingLine1>THE</MainHeadingLine1>
                 <CultLayersContainer>
-                  <CultLayer $opacity={1} $zIndex={3}>CULT</CultLayer>
-                  <CultLayer $opacity={0.4} $zIndex={2}>CULT</CultLayer>
-                  <CultLayer $opacity={0.2} $zIndex={1}>CULT</CultLayer>
+                  <CultLayer $opacity={1} $zIndex={3}>
+                    CULT
+                  </CultLayer>
+                  <CultLayer $opacity={0.4} $zIndex={2}>
+                    CULT
+                  </CultLayer>
+                  <CultLayer $opacity={0.2} $zIndex={1}>
+                    CULT
+                  </CultLayer>
                 </CultLayersContainer>
               </FirstLine>
               <MainHeadingLine2>ADVANTAGE</MainHeadingLine2>
@@ -80,7 +90,8 @@ const WhyChooseCult: React.FC<WhyChooseCultProps> = () => {
           </LeftContent>
           <RightContent>
             <RightText>
-              Our employee wellness programs<br />
+              Our employee wellness programs
+              <br />
               meets your business sense.
             </RightText>
           </RightContent>
@@ -88,7 +99,6 @@ const WhyChooseCult: React.FC<WhyChooseCultProps> = () => {
       </CultAdvantageSection>
 
       {/* Existing Results Section */}
-  
 
       {/* Existing Expandable Tiles Component */}
       <SectionContainer>

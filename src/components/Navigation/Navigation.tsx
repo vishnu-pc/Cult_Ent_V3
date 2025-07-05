@@ -7,12 +7,12 @@ import {
   NavLinks,
   NavLink,
   LoginButton,
-  HamburgerButton
+  HamburgerButton,
 } from './Navigation.styles';
 
 const Navigation: React.FC<NavigationProps> = () => {
   const [isOpen, setIsOpen] = useState(false);
-  
+
   // Close mobile menu when window is resized above mobile breakpoint
   useEffect(() => {
     const handleResize = () => {
@@ -20,38 +20,38 @@ const Navigation: React.FC<NavigationProps> = () => {
         setIsOpen(false);
       }
     };
-    
+
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, [isOpen]);
-  
+
   return (
     <NavContainer>
-      <Logo to="/">
-        <img src={cultLogo} alt="Cult for Corporates" />
+      <Logo to='/'>
+        <img src={cultLogo} alt='Cult for Corporates' />
       </Logo>
-      
-      <HamburgerButton 
-        isOpen={isOpen} 
+
+      <HamburgerButton
+        isOpen={isOpen}
         onClick={() => setIsOpen(!isOpen)}
-        aria-label={isOpen ? "Close menu" : "Open menu"}
+        aria-label={isOpen ? 'Close menu' : 'Open menu'}
         aria-expanded={isOpen}
       >
         <div />
         <div />
         <div />
       </HamburgerButton>
-      
+
       <NavLinks isOpen={isOpen}>
-        <NavLink to="/franchise">FRANCHISE</NavLink>
-        <NavLink to="/cultpass">CULTPASS</NavLink>
-        <NavLink to="/corporates">CORPORATES</NavLink>
-        <NavLink to="/equipment-solutions">EQUIPMENT SOLUTIONS</NavLink>
-        <NavLink to="/contact">CONTACT US</NavLink>
+        <NavLink to='/franchise'>FRANCHISE</NavLink>
+        <NavLink to='/cultpass'>CULTPASS</NavLink>
+        <NavLink to='/corporates'>CORPORATES</NavLink>
+        <NavLink to='/equipment-solutions'>EQUIPMENT SOLUTIONS</NavLink>
+        <NavLink to='/contact'>CONTACT US</NavLink>
         <LoginButton>LOGIN / SIGN UP</LoginButton>
       </NavLinks>
     </NavContainer>
   );
 };
 
-export default Navigation; 
+export default Navigation;

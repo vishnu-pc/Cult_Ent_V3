@@ -9,4 +9,4 @@ export interface VideoData {
 
 export interface OurImpactProps {
   videos?: VideoData[];
-} 
+}

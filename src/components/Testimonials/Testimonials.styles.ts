@@ -40,7 +40,7 @@ export const SectionContainer = styled.section`
   align-items: center;
   justify-content: center;
   padding: var(--spacing-3xl) var(--spacing-2xl);
-  
+
   @media (max-width: 768px) {
     min-height: 100vh;
     padding: var(--spacing-2xl) var(--spacing-md);
@@ -61,36 +61,42 @@ export const TestimonialCard = styled(motion.div)<{ $animationType: number }>`
   z-index: 13;
   position: absolute;
   width: 380px;
-padding: 1rem;
+  padding: 1rem;
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: var(--border-radius-lg);
   color: var(--color-text);
-  box-shadow: 
+  box-shadow:
     0 12px 40px rgba(0, 0, 0, 0.4),
     0 4px 12px rgba(255, 255, 255, 0.1) inset;
-  
+
   animation: ${props => {
-    switch (props.$animationType) {
-      case 1: return float1;
-      case 2: return float2;
-      case 3: return float3;
-      case 4: return float4;
-      default: return float1;
-    }
-  }} 10s ease-in-out infinite;
-  
+      switch (props.$animationType) {
+        case 1:
+          return float1;
+        case 2:
+          return float2;
+        case 3:
+          return float3;
+        case 4:
+          return float4;
+        default:
+          return float1;
+      }
+    }}
+    10s ease-in-out infinite;
+
   @media (max-width: 1024px) {
     width: 320px;
     padding: var(--spacing-xl);
   }
-  
+
   @media (max-width: 768px) {
     width: 280px;
     padding: var(--spacing-lg);
   }
-  
+
   @media (max-width: 480px) {
     width: 260px;
     position: relative;
@@ -105,11 +111,11 @@ export const TestimonialText = styled.p`
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: var(--spacing-xl);
   font-weight: 400;
-  
+
   @media (max-width: 1024px) {
     font-size: var(--font-size-md);
   }
-  
+
   @media (max-width: 768px) {
     font-size: var(--font-size-sm);
     margin-bottom: var(--spacing-lg);
@@ -144,7 +150,7 @@ export const CompanyLogo = styled.div`
   color: var(--color-text);
   border: 1px solid rgba(255, 255, 255, 0.2);
   flex-shrink: 0;
-  
+
   @media (max-width: 768px) {
     width: 40px;
     height: 40px;
@@ -161,7 +167,7 @@ export const CentralTextSection = styled.div`
   align-items: center;
   justify-content: center;
   gap: var(--spacing-lg);
-  
+
   @media (max-width: 768px) {
     flex-direction: column;
     gap: var(--spacing-md);
@@ -169,21 +175,23 @@ export const CentralTextSection = styled.div`
 `;
 
 export const QuoteSymbol = styled.img`
-  height: calc(var(--font-size-6xl) * 2.2); /* Height of approximately 2 lines of text */
+  height: calc(
+    var(--font-size-6xl) * 2.2
+  ); /* Height of approximately 2 lines of text */
   width: auto;
   flex-shrink: 0;
   margin-top: -10rem;
   object-fit: contain;
-  
+
   @media (max-width: 1024px) {
     height: calc(var(--font-size-5xl) * 2.2);
   }
-  
+
   @media (max-width: 768px) {
     height: calc(var(--font-size-4xl) * 2.2);
     margin-top: -0.5rem;
   }
-  
+
   @media (max-width: 480px) {
     height: calc(var(--font-size-3xl) * 2.2);
     margin-top: 0;
@@ -192,7 +200,7 @@ export const QuoteSymbol = styled.img`
 
 export const TextBlock = styled.div`
   position: relative;
-  
+
   /* Circular background gradient behind text */
   &::before {
     content: '';
@@ -202,24 +210,30 @@ export const TextBlock = styled.div`
     width: 800px;
     height: 800px;
     transform: translate(-50%, -50%);
-    background: radial-gradient(circle at center, rgba(255, 50, 120, 0.4) 0%, rgba(255, 50, 120, 0.2) 30%, rgba(255, 50, 120, 0.1) 50%, transparent 70%);
+    background: radial-gradient(
+      circle at center,
+      rgba(255, 50, 120, 0.4) 0%,
+      rgba(255, 50, 120, 0.2) 30%,
+      rgba(255, 50, 120, 0.1) 50%,
+      transparent 70%
+    );
     z-index: -1;
   }
-  
+
   @media (max-width: 1024px) {
     &::before {
       width: 600px;
       height: 600px;
     }
   }
-  
+
   @media (max-width: 768px) {
     &::before {
       width: 400px;
       height: 400px;
     }
   }
-  
+
   @media (max-width: 480px) {
     &::before {
       width: 300px;
@@ -235,16 +249,16 @@ export const TextLine = styled.div`
   text-transform: uppercase;
   letter-spacing: 0.02em;
   margin-bottom: var(--spacing-sm);
-  
+
   @media (max-width: 1024px) {
     font-size: var(--font-size-5xl);
   }
-  
+
   @media (max-width: 768px) {
     font-size: var(--font-size-4xl);
     margin-bottom: var(--spacing-xs);
   }
-  
+
   @media (max-width: 480px) {
     font-size: var(--font-size-3xl);
   }
@@ -255,7 +269,7 @@ export const WhiteText = styled.span`
 `;
 
 export const GradientText = styled.span`
-  background: linear-gradient(90deg, #FDD914 0%, #FF3278 100%);
+  background: linear-gradient(90deg, #fdd914 0%, #ff3278 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -263,7 +277,7 @@ export const GradientText = styled.span`
 
 export const MobileTestimonialContainer = styled.div`
   display: none;
-  
+
   @media (max-width: 480px) {
     display: block;
     position: absolute;
@@ -275,4 +289,4 @@ export const MobileTestimonialContainer = styled.div`
     overflow-y: auto;
     z-index: 5;
   }
-`; 
+`;

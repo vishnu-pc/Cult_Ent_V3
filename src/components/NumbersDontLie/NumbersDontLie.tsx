@@ -19,18 +19,20 @@ import {
   TileDescription,
 } from './NumbersDontLie.styles';
 
-const NumbersDontLie: React.FC<NumbersDontLieProps> = ({ tiles = tilesData }) => {
+const NumbersDontLie: React.FC<NumbersDontLieProps> = ({
+  tiles = tilesData,
+}) => {
   // Separate tiles for specific layout
-  const regularTiles = tiles.filter(tile => 
-    !tile.position?.includes('row2-col2')
+  const regularTiles = tiles.filter(
+    tile => !tile.position?.includes('row2-col2')
   );
-  
-  const wideColumnTopTile = tiles.find(tile => 
-    tile.position === 'row2-col2-top'
+
+  const wideColumnTopTile = tiles.find(
+    tile => tile.position === 'row2-col2-top'
   );
-  
-  const wideColumnBottomTile = tiles.find(tile => 
-    tile.position === 'row2-col2-bottom'
+
+  const wideColumnBottomTile = tiles.find(
+    tile => tile.position === 'row2-col2-bottom'
   );
 
   return (
@@ -48,7 +50,7 @@ const NumbersDontLie: React.FC<NumbersDontLieProps> = ({ tiles = tilesData }) =>
         <TilesContainer>
           <TilesGrid>
             {/* Regular tiles (first 4 + row2-col1) */}
-            {regularTiles.map((tile) => (
+            {regularTiles.map(tile => (
               <Tile
                 key={tile.id}
                 $hasImage={tile.hasImage}
@@ -59,22 +61,12 @@ const NumbersDontLie: React.FC<NumbersDontLieProps> = ({ tiles = tilesData }) =>
                 transition={{
                   duration: 0.6,
                   delay: tile.id * 0.1,
-                  ease: "easeOut"
+                  ease: 'easeOut',
                 }}
               >
-                {tile.value && (
-                  <TileValue>
-                    {tile.value}
-                  </TileValue>
-                )}
-                {tile.title && (
-                  <TileTitle>
-                    {tile.title}
-                  </TileTitle>
-                )}
-                <TileDescription>
-                  {tile.description}
-                </TileDescription>
+                {tile.value && <TileValue>{tile.value}</TileValue>}
+                {tile.title && <TileTitle>{tile.title}</TileTitle>}
+                <TileDescription>{tile.description}</TileDescription>
               </Tile>
             ))}
 
@@ -91,18 +83,14 @@ const NumbersDontLie: React.FC<NumbersDontLieProps> = ({ tiles = tilesData }) =>
                   transition={{
                     duration: 0.6,
                     delay: wideColumnTopTile.id * 0.1,
-                    ease: "easeOut"
+                    ease: 'easeOut',
                   }}
                 >
                   {wideColumnTopTile.value && (
-                    <TileValue>
-                      {wideColumnTopTile.value}
-                    </TileValue>
+                    <TileValue>{wideColumnTopTile.value}</TileValue>
                   )}
                   {wideColumnTopTile.title && (
-                    <TileTitle>
-                      {wideColumnTopTile.title}
-                    </TileTitle>
+                    <TileTitle>{wideColumnTopTile.title}</TileTitle>
                   )}
                   <TileDescription>
                     {wideColumnTopTile.description}
@@ -121,18 +109,14 @@ const NumbersDontLie: React.FC<NumbersDontLieProps> = ({ tiles = tilesData }) =>
                   transition={{
                     duration: 0.6,
                     delay: wideColumnBottomTile.id * 0.1,
-                    ease: "easeOut"
+                    ease: 'easeOut',
                   }}
                 >
                   {wideColumnBottomTile.value && (
-                    <TileValue>
-                      {wideColumnBottomTile.value}
-                    </TileValue>
+                    <TileValue>{wideColumnBottomTile.value}</TileValue>
                   )}
                   {wideColumnBottomTile.title && (
-                    <TileTitle>
-                      {wideColumnBottomTile.title}
-                    </TileTitle>
+                    <TileTitle>{wideColumnBottomTile.title}</TileTitle>
                   )}
                   <TileDescription>
                     {wideColumnBottomTile.description}
@@ -147,4 +131,4 @@ const NumbersDontLie: React.FC<NumbersDontLieProps> = ({ tiles = tilesData }) =>
   );
 };
 
-export default NumbersDontLie; 
+export default NumbersDontLie;

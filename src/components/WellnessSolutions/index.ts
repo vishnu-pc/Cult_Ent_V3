@@ -1,2 +1,2 @@
 export { default } from './WellnessSolutions';
-export * from './WellnessSolutions.types'; 
+export * from './WellnessSolutions.types';

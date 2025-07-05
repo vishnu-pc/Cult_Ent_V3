@@ -10,7 +10,7 @@ export const tilesData: TileData[] = [
     description: 'increase in employee engagement',
     backgroundImage: Wellness1,
     hasImage: true,
-    position: 'row1-col1'
+    position: 'row1-col1',
   },
   // Row 1, Column 2
   {
@@ -18,7 +18,7 @@ export const tilesData: TileData[] = [
     title: 'Significant reduction',
     description: 'in absenteeism rates',
     hasImage: false,
-    position: 'row1-col2'
+    position: 'row1-col2',
   },
   // Row 1, Column 3
   {
@@ -26,7 +26,7 @@ export const tilesData: TileData[] = [
     title: 'Complete User Privacy',
     description: 'your data stays yours',
     hasImage: false,
-    position: 'row1-col3'
+    position: 'row1-col3',
   },
   // Row 1, Column 4
   {
@@ -34,7 +34,7 @@ export const tilesData: TileData[] = [
     title: 'Exclusive Corporate Dashboard',
     description: 'to track and monitor program performance',
     hasImage: false,
-    position: 'row1-col4'
+    position: 'row1-col4',
   },
   // Row 2, Column 1
   {
@@ -49,9 +49,10 @@ export const tilesData: TileData[] = [
     id: 6,
     title: '100% Customized Programs',
     description: 'tailored to your company culture',
-    backgroundImage: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&h=200&fit=crop&auto=format',
+    backgroundImage:
+      'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&h=200&fit=crop&auto=format',
     hasImage: true,
-    position: 'row2-col2-top'
+    position: 'row2-col2-top',
   },
   // Row 2, Columns 2-4 (wide) - Bottom row
   {
@@ -59,6 +60,6 @@ export const tilesData: TileData[] = [
     title: 'ISO 9001 & 45001',
     description: 'certified wellness solutions you can trust',
     hasImage: false,
-    position: 'row2-col2-bottom'
+    position: 'row2-col2-bottom',
   },
-]; 
+];

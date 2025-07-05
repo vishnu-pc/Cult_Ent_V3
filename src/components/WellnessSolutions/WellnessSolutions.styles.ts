@@ -14,13 +14,19 @@ export const SectionContainer = styled.section`
   animation: gradientShift 8s ease infinite;
   overflow: hidden;
   position: relative;
-  
+
   @keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
-  
+
   @media (max-width: 768px) {
     flex-direction: column;
   }
@@ -40,7 +46,7 @@ export const BackgroundNumber = styled.div`
   line-height: 1;
   pointer-events: none;
   user-select: none;
-  
+
   @media (max-width: 768px) {
     font-size: 12rem;
     top: -1rem;
@@ -62,7 +68,7 @@ export const ImageContainer = styled.div`
   margin-left: 10%;
   margin-top: 3vh;
   margin-bottom: 1vh;
-  
+
   @media (max-width: 768px) {
     height: 40vh;
     flex: none;
@@ -78,7 +84,7 @@ export const OverlayTextContainer = styled.div`
   z-index: 3;
   height: auto;
   flex-shrink: 0;
-  
+
   @media (max-width: 768px) {
     padding: var(--spacing-lg);
   }
@@ -109,13 +115,19 @@ export const OverlaySubtitle = styled.h2`
   -webkit-text-fill-color: transparent;
   animation: gradientShift 21s ease infinite;
   margin-bottom: var(--spacing-xxs);
-  
+
   @keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
-  
+
   @media (max-width: 768px) {
     font-size: var(--font-size-3xl);
   }
@@ -160,7 +172,7 @@ export const ContentContainer = styled.div`
   margin-top: 3vh;
   margin-bottom: 1vh;
   z-index: 2;
-  
+
   @media (max-width: 768px) {
     padding: var(--spacing-lg);
     flex: none;
@@ -181,7 +193,7 @@ export const SectionTitle = styled.h2`
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  
+
   @media (max-width: 768px) {
     font-size: var(--font-size-2xl);
   }
@@ -215,16 +227,16 @@ export const OptionItem = styled(motion.div)<{ $hoverColor: string }>`
   flex-direction: column;
   justify-content: center;
   padding: var(--spacing-md) var(--spacing-xl);
-  
+
   &:hover {
     background-color: ${props => props.$hoverColor};
     color: var(--color-black);
   }
-  
+
   &:last-child {
     border-bottom: none;
   }
-  
+
   @media (max-width: 768px) {
     padding: var(--spacing-md) var(--spacing-lg);
   }
@@ -263,10 +275,10 @@ export interface OptionTitleProps {
  */
 export const OptionTitle = styled.h3<OptionTitleProps>`
   font-size: var(--font-size-2xl);
-  font-weight: ${props => props.$hasDescription ? '700' : '600'};
+  font-weight: ${props => (props.$hasDescription ? '700' : '600')};
   color: inherit;
   margin: 0;
-  
+
   @media (max-width: 768px) {
     font-size: var(--font-size-lg);
   }
@@ -282,4 +294,4 @@ export const OptionDescription = styled(motion.p)`
   line-height: 1.5;
   margin-top: 8px;
   overflow: hidden;
-`; 
+`;

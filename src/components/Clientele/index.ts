@@ -1,1 +1,1 @@
-export { default } from './Clientele'; 
+export { default } from './Clientele';

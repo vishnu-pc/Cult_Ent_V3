@@ -9,28 +9,27 @@ export const SectionContainer = styled.section`
 export const HeroSection = styled.div`
   min-height: 60vh;
   padding: var(--spacing-3xl) var(--spacing-xl);
-  background: 
+  background:
     linear-gradient(
       to bottom,
       #000000 0%,
       #000000 70%,
-       rgba(255, 20, 147, 0.3) 95%,
-       rgba(152, 5, 113, 0.5) 100%
-      // rgba(255, 20, 147, 0.3) 95%,
-      // rgba(255, 20, 147, 0.5) 100%
+      rgba(255, 20, 147, 0.3) 95%,
+      rgba(152, 5, 113, 0.5) 100% // rgba(255, 20, 147, 0.3) 95%,
+       // rgba(255, 20, 147, 0.5) 100%
     ),
     linear-gradient(
       to right,
-      rgba(255, 20, 147, 0.2) 0%,   /* pink left corner at bottom */
-      #000000 20%,
+      rgba(255, 20, 147, 0.2) 0%,
+      /* pink left corner at bottom */ #000000 20%,
       #000000 40%,
-      rgba(0, 102, 255, 0.9) 100%   /* blue right corner at bottom */
+      rgba(0, 102, 255, 0.9) 100% /* blue right corner at bottom */
     );
   display: flex;
   justify-content: center;
   align-items: center;
   gap: var(--spacing-3xl);
-  
+
   @media (max-width: 768px) {
     flex-direction: column;
     padding: var(--spacing-2xl) var(--spacing-md);
@@ -54,7 +53,7 @@ export const HashtagText = styled.h1`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  
+
   @media (max-width: 768px) {
     font-size: var(--font-size-xl);
   }
@@ -68,11 +67,11 @@ export const MainHeading = styled.h2`
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: var(--spacing-xl);
-  
+
   @media (max-width: 768px) {
     font-size: var(--font-size-4xl);
   }
-  
+
   @media (max-width: 480px) {
     font-size: var(--font-size-3xl);
   }
@@ -91,7 +90,7 @@ export const DescriptionText = styled.p`
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.6;
   margin-bottom: var(--spacing-md);
-  
+
   @media (max-width: 768px) {
     font-size: var(--font-size-md);
   }
@@ -101,12 +100,12 @@ export const CallToAction = styled.p`
   font-size: var(--font-size-lg);
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.6;
-  
+
   strong {
     color: var(--color-text);
     font-weight: 700;
   }
-  
+
   @media (max-width: 768px) {
     font-size: var(--font-size-md);
   }
@@ -115,7 +114,7 @@ export const CallToAction = styled.p`
 export const FooterSection = styled.div`
   background: #000000;
   padding: var(--spacing-4xl) var(--spacing-xl);
-  
+
   @media (max-width: 768px) {
     padding: var(--spacing-3xl) var(--spacing-md);
   }
@@ -128,7 +127,7 @@ export const FooterContent = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   gap: var(--spacing-3xl);
-  
+
   @media (max-width: 768px) {
     flex-direction: column;
     gap: var(--spacing-xl);
@@ -143,7 +142,7 @@ export const CompanyInfo = styled.div`
 export const LogoImage = styled.img`
   height: 80px;
   margin-bottom: var(--spacing-xl);
-  
+
   @media (max-width: 768px) {
     height: 70px;
   }
@@ -155,7 +154,7 @@ export const CompanyTitle = styled.h3`
   color: var(--color-text);
   margin-bottom: var(--spacing-lg);
   line-height: 1.3;
-  
+
   @media (max-width: 768px) {
     font-size: var(--font-size-xl);
   }
@@ -165,7 +164,7 @@ export const CompanyDescription = styled.p`
   font-size: var(--font-size-lg);
   color: rgba(255, 255, 255, 0.7);
   line-height: 1.6;
-  
+
   @media (max-width: 768px) {
     font-size: var(--font-size-md);
   }
@@ -183,7 +182,7 @@ export const StatsGrid = styled.div`
   grid-template-columns: repeat(2, 1fr);
   gap: var(--spacing-2xl) var(--spacing-3xl);
   margin-bottom: var(--spacing-2xl);
-  
+
   @media (max-width: 480px) {
     grid-template-columns: 1fr;
     gap: var(--spacing-lg);
@@ -205,7 +204,7 @@ export const StatValue = styled.div<{ $color: 'pink' | 'gradient' }>`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  
+
   @media (max-width: 768px) {
     font-size: var(--font-size-4xl);
   }
@@ -218,7 +217,7 @@ export const StatLabel = styled.div<{ $color: 'pink' | 'gradient' }>`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  
+
   @media (max-width: 768px) {
     font-size: var(--font-size-md);
   }
@@ -235,7 +234,7 @@ export const FooterLinks = styled.div`
 export const LeftLinks = styled.div`
   display: flex;
   gap: var(--spacing-lg);
-  
+
   @media (max-width: 480px) {
     flex-direction: column;
     gap: var(--spacing-sm);
@@ -247,11 +246,11 @@ export const FooterLink = styled.a`
   color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
   transition: color var(--transition-normal);
-  
+
   &:hover {
     color: var(--color-text);
   }
-  
+
   @media (max-width: 768px) {
     font-size: var(--font-size-md);
   }
@@ -266,7 +265,7 @@ export const SocialSection = styled.div`
 export const SocialText = styled.span`
   font-size: var(--font-size-lg);
   color: rgba(255, 255, 255, 0.8);
-  
+
   @media (max-width: 768px) {
     font-size: var(--font-size-md);
   }
@@ -282,15 +281,15 @@ export const SocialIcon = styled.div`
   justify-content: center;
   cursor: pointer;
   transition: background var(--transition-normal);
-  
+
   &:hover {
     background: rgba(255, 255, 255, 0.3);
   }
-  
+
   &::after {
     content: 'in';
     color: var(--color-text);
     font-size: var(--font-size-xs);
     font-weight: 600;
   }
-`; 
+`;

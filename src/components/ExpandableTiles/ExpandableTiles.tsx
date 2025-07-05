@@ -24,10 +24,8 @@ const ExpandableTiles: React.FC<ExpandableTilesProps> = ({ tiles }) => {
 
   return (
     <ComponentWrapper>
-      <TilesContainer
-        onMouseLeave={handleTileLeave}
-      >
-        {tiles.map((tile) => {
+      <TilesContainer onMouseLeave={handleTileLeave}>
+        {tiles.map(tile => {
           const isExpanded = expandedId === tile.id;
           const isGrayscale = !isExpanded;
 
@@ -44,18 +42,18 @@ const ExpandableTiles: React.FC<ExpandableTilesProps> = ({ tiles }) => {
               transition={{
                 duration: 0.5,
                 delay: tile.id * 0.1,
-                ease: "easeOut"
+                ease: 'easeOut',
               }}
               whileHover={{
                 scale: 1.02,
-                transition: { duration: 0.2 }
+                transition: { duration: 0.2 },
               }}
               whileTap={{
                 scale: 0.98,
-                transition: { duration: 0.1 }
+                transition: { duration: 0.1 },
               }}
             >
-              <AnimatePresence mode="wait">
+              <AnimatePresence mode='wait'>
                 {isExpanded && (
                   <TileContent
                     initial={{ opacity: 0, y: 20 }}
@@ -64,7 +62,7 @@ const ExpandableTiles: React.FC<ExpandableTilesProps> = ({ tiles }) => {
                     transition={{
                       duration: 0.3,
                       delay: 0.1,
-                      ease: "easeOut"
+                      ease: 'easeOut',
                     }}
                   >
                     <TileTitle
@@ -73,7 +71,7 @@ const ExpandableTiles: React.FC<ExpandableTilesProps> = ({ tiles }) => {
                       transition={{
                         duration: 0.4,
                         delay: 0.2,
-                        ease: "easeOut"
+                        ease: 'easeOut',
                       }}
                     >
                       {tile.title}
@@ -84,7 +82,7 @@ const ExpandableTiles: React.FC<ExpandableTilesProps> = ({ tiles }) => {
                       transition={{
                         duration: 0.4,
                         delay: 0.3,
-                        ease: "easeOut"
+                        ease: 'easeOut',
                       }}
                     >
                       {tile.description}
@@ -100,4 +98,4 @@ const ExpandableTiles: React.FC<ExpandableTilesProps> = ({ tiles }) => {
   );
 };
 
-export default ExpandableTiles; 
+export default ExpandableTiles;

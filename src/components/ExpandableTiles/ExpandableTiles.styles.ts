@@ -16,9 +16,9 @@ export const TilesContainer = styled.div`
   }
 `;
 
-export const Tile = styled(motion.div)<{ 
-  $backgroundImage: string; 
-  $isExpanded: boolean; 
+export const Tile = styled(motion.div)<{
+  $backgroundImage: string;
+  $isExpanded: boolean;
   $isGrayscale: boolean;
 }>`
   position: relative;
@@ -30,25 +30,27 @@ export const Tile = styled(motion.div)<{
   overflow: hidden;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  
+
   /* Flex properties for expansion */
-  flex: ${props => props.$isExpanded ? '3' : '1'};
-  
+  flex: ${props => (props.$isExpanded ? '3' : '1')};
+
   /* Grayscale filter for non-expanded tiles */
-  filter: ${props => props.$isGrayscale ? 'grayscale(100%)' : 'grayscale(0%)'};
-  
+  filter: ${props =>
+    props.$isGrayscale ? 'grayscale(100%)' : 'grayscale(0%)'};
+
   /* Border for expanded tile */
-  border: ${props => props.$isExpanded ? '3px solid #ff6b35' : '3px solid transparent'}; 
-  
+  border: ${props =>
+    props.$isExpanded ? '3px solid #ff6b35' : '3px solid transparent'};
+
   /* Shadow for expanded tile */
-  box-shadow: ${props => props.$isExpanded 
-    ? '0 20px 40px rgba(255, 107, 53, 0.3)' 
-    : '0 4px 8px rgba(0, 0, 0, 0.1)'
-  };
+  box-shadow: ${props =>
+    props.$isExpanded
+      ? '0 20px 40px rgba(255, 107, 53, 0.3)'
+      : '0 4px 8px rgba(0, 0, 0, 0.1)'};
 
   @media (max-width: 768px) {
     flex: none;
-    height: ${props => props.$isExpanded ? '400px' : '120px'};
+    height: ${props => (props.$isExpanded ? '400px' : '120px')};
     width: 100%;
   }
 
@@ -60,10 +62,10 @@ export const Tile = styled(motion.div)<{
     left: 0;
     right: 0;
     bottom: 0;
-    background: ${props => props.$isExpanded 
-      ? 'linear-gradient(transparent 50%, rgba(0, 0, 0, 0.7))' 
-      : 'rgba(0, 0, 0, 0.2)'
-    };
+    background: ${props =>
+      props.$isExpanded
+        ? 'linear-gradient(transparent 50%, rgba(0, 0, 0, 0.7))'
+        : 'rgba(0, 0, 0, 0.2)'};
     transition: background 0.4s ease;
   }
 `;
@@ -113,4 +115,4 @@ export const ComponentWrapper = styled.div`
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-`; 
+`;

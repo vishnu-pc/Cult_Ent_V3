@@ -1,2 +1,2 @@
 export { default } from './BeBetterSection';
-export type { BeBetterSectionProps } from './BeBetterSection.types'; 
+export type { BeBetterSectionProps } from './BeBetterSection.types';

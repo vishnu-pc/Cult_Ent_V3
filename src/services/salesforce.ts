@@ -1,6 +1,6 @@
 /**
  * Salesforce API Integration Service
- * 
+ *
  * This service handles the integration with Salesforce API for lead generation
  * and contact form submissions. It provides methods to submit form data to
  * Salesforce and handle responses.
@@ -24,16 +24,18 @@ interface SalesforceResponse {
 
 /**
  * Submits a lead to Salesforce
- * 
+ *
  * @param data - The lead data from the contact form
  * @returns A promise that resolves to the Salesforce response
  */
-export const submitLeadToSalesforce = async (data: LeadData): Promise<SalesforceResponse> => {
+export const submitLeadToSalesforce = async (
+  data: LeadData
+): Promise<SalesforceResponse> => {
   try {
     // In a real implementation, this would be an actual API endpoint
     // const apiEndpoint = process.env.REACT_APP_SALESFORCE_ENDPOINT || '/api/salesforce/lead';
     const apiEndpoint = '/api/salesforce/lead'; // Placeholder endpoint
-    
+
     // Simulate API call to Salesforce
     // In production, replace this with an actual API call
     const response = await fetch(apiEndpoint, {
@@ -55,11 +57,13 @@ export const submitLeadToSalesforce = async (data: LeadData): Promise<Salesforce
         Status: 'Open - Not Contacted',
       }),
     });
-    
+
     if (!response.ok) {
-      throw new Error(`Failed to submit form: ${response.status} ${response.statusText}`);
+      throw new Error(
+        `Failed to submit form: ${response.status} ${response.statusText}`
+      );
     }
-    
+
     return await response.json();
   } catch (error) {
     console.error('Error submitting to Salesforce:', error);
@@ -70,26 +74,28 @@ export const submitLeadToSalesforce = async (data: LeadData): Promise<Salesforce
 /**
  * For development and testing purposes only
  * This function simulates a Salesforce API response
- * 
+ *
  * @param data - The lead data from the contact form
  * @returns A promise that resolves to a mock Salesforce response
  */
-export const simulateSalesforceSubmission = async (_data: LeadData): Promise<SalesforceResponse> => {
+export const simulateSalesforceSubmission = async (
+  _data: LeadData
+): Promise<SalesforceResponse> => {
   // Simulate API delay
   await new Promise(resolve => setTimeout(resolve, 1500));
-  
+
   // Simulate random success/failure for demo
   const isSuccess = Math.random() > 0.1; // 90% success rate
-  
+
   if (isSuccess) {
     return {
       success: true,
-      id: `lead_${Date.now()}`
+      id: `lead_${Date.now()}`,
     };
   } else {
     return {
       success: false,
-      errors: ['Failed to submit lead to Salesforce']
+      errors: ['Failed to submit lead to Salesforce'],
     };
   }
 };
@@ -97,4 +103,4 @@ export const simulateSalesforceSubmission = async (_data: LeadData): Promise<Sal
 export default {
   submitLeadToSalesforce,
   simulateSalesforceSubmission,
-}; 
+};

@@ -2,11 +2,12 @@
 
 ## Section-Specific Variants (Recommended)
 
-Each section has its own variant component for easy maintenance and future customization. Both animated and static versions are available:
+Each section has its own variant component for easy maintenance and future customization. Both
+animated and static versions are available:
 
 ```tsx
 // Import section-specific variants
-import { 
+import {
   LandingBannerDivider,
   LogoLoaderDivider,
   WellnessSolutionsDivider,
@@ -38,22 +39,23 @@ All gradient configurations are now in `variants.tsx` with the `GRADIENT_CONFIGS
 // Current structure in variants.tsx:
 export const GRADIENT_CONFIGS = {
   LANDING_BANNER: {
-    leftColor: '#0066ff',  // Blue (for static)
+    leftColor: '#0066ff', // Blue (for static)
     rightColor: '#ffff00', // Yellow (for static)
     cssVariable: '--gradient-full', // For animated
   },
   WELLNESS_SOLUTIONS: {
-    leftColor: '#00b4ff',  // Light Blue (for static)
+    leftColor: '#00b4ff', // Light Blue (for static)
     rightColor: '#ed3a79', // Pink (for static)
     cssVariable: '--gradient-full', // For animated
   },
   // ... etc
-}
+};
 ```
 
 ## Changing Colors Per Section (Future)
 
 **Option 1: Change CSS Variable (Animated)**
+
 ```tsx
 // In variants.tsx, change the cssVariable:
 LANDING_BANNER: {
@@ -64,6 +66,7 @@ LANDING_BANNER: {
 ```
 
 **Option 2: Change Static Colors**
+
 ```tsx
 // In variants.tsx, change leftColor/rightColor:
 WELLNESS_SOLUTIONS: {
@@ -76,10 +79,11 @@ WELLNESS_SOLUTIONS: {
 ## Available CSS Variables
 
 From `variables.css`:
+
 - `--gradient-primary` (Yellow to Pink)
-- `--gradient-secondary` (Pink to Blue)  
+- `--gradient-secondary` (Pink to Blue)
 - `--gradient-tertiary` (Blue to Yellow)
-- `--gradient-full` (All three colors) *currently used*
+- `--gradient-full` (All three colors) _currently used_
 - `--gradient-rainbow` (Rainbow loop)
 
 ## Manual Usage (Advanced)

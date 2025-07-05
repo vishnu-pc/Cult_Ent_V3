@@ -17,19 +17,19 @@ const gradientAnimation = keyframes`
 export const StyledGradientDivider = styled.div<StyledGradientDividerProps>`
   width: 100%;
   height: ${props => props.$height};
-  
-  ${props => props.$animated 
-    ? css`
-        background: var(${props.$cssVariable || '--gradient-full'});
-        background-size: 200% auto;
-        animation: ${gradientAnimation} 17s ease infinite;
-      `
-    : css`
-        background: linear-gradient(
-          to right,
-          ${props.$leftColor || '#0066ff'} 0%,
-          ${props.$rightColor || '#ffff00'} 100%
-        );
-      `
-  }
+
+  ${props =>
+    props.$animated
+      ? css`
+          background: var(${props.$cssVariable || '--gradient-full'});
+          background-size: 200% auto;
+          animation: ${gradientAnimation} 17s ease infinite;
+        `
+      : css`
+          background: linear-gradient(
+            to right,
+            ${props.$leftColor || '#0066ff'} 0%,
+            ${props.$rightColor || '#ffff00'} 100%
+          );
+        `}
 `;

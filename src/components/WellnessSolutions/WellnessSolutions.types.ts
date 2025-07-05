@@ -16,4 +16,4 @@ export interface Solution {
   description: string;
   imageUrl: string;
   hoverColor: string;
-} 
+}

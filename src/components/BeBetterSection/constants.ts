@@ -4,32 +4,32 @@ export const STATS_DATA: StatData[] = [
   {
     value: '30+',
     label: 'Cities',
-    color: 'gradient'
+    color: 'gradient',
   },
   {
     value: '2K+',
     label: 'Facilities',
-    color: 'gradient'
+    color: 'gradient',
   },
   {
     value: '20MN',
     label: 'Users',
-    color: 'gradient'
+    color: 'gradient',
   },
   {
     value: '1.5K+',
     label: 'Corporates',
-    color: 'gradient'
-  }
+    color: 'gradient',
+  },
 ];
 
 export const FOOTER_LINKS: FooterLinkData[] = [
   {
     text: 'FAQ',
-    href: '#'
+    href: '#',
   },
   {
     text: 'Contact us',
-    href: '#'
-  }
-]; 
+    href: '#',
+  },
+];
