@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const SectionContainer = styled.section`
-  width: 100vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
 `;
@@ -110,16 +110,6 @@ export const CallToAction = styled.p`
   @media (max-width: 768px) {
     font-size: var(--font-size-md);
   }
-`;
-
-export const GradientDivider = styled.div`
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(
-    to right,
-    #0066ff 0%,    /* blue left */
-    #ffff00 100%   /* yellow right */
-  );
 `;
 
 export const FooterSection = styled.div`

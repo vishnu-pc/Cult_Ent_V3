@@ -1,4 +1,5 @@
 import React from 'react';
+import { TestimonialsDivider } from '../ui/GradientDivider';
 import type { TestimonialsProps } from './Testimonials.types';
 import { testimonialsData } from './constants';
 import InvertedCommaImg from '../../assets/images/Testimonials/Invertedcomma.png';
@@ -17,13 +18,12 @@ import {
   WhiteText,
   GradientText,
   MobileTestimonialContainer,
-  GradientDivider,
 } from './Testimonials.styles';
 
 const Testimonials: React.FC<TestimonialsProps> = ({ testimonials = testimonialsData }) => {
   return (
     <>
-    <GradientDivider />
+    <TestimonialsDivider />
     <SectionContainer>
       <ContentWrapper>
         {/* Floating Testimonial Cards */}

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const LoaderContainer = styled.div`
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   background-color: #000000;
   display: flex;
@@ -179,14 +179,4 @@ export const LogoGif = styled.img`
   @media (max-width: 480px) {
     max-width: 300px;
   }
-`;
-
-export const GradientDivider = styled.div`
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(
-    to right,
-    #0066ff 0%,    /* blue left */
-    #ffff00 100%   /* yellow right */
-  );
 `; 

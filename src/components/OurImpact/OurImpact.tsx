@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react';
+import { OurImpactDivider } from '../ui/GradientDivider';
 import type { OurImpactProps } from './OurImpact.types';
 import { DEFAULT_VIDEOS, VIDEOS_PER_PAGE } from './constants';
 import {
@@ -20,8 +21,7 @@ import {
   CardSubtitle,
   CardDescription,
   NavigationContainer,
-  NavigationButton,
-  GradientDivider
+  NavigationButton
 } from './OurImpact.styles';
 
 export default function OurImpact({ videos = DEFAULT_VIDEOS }: OurImpactProps) {
@@ -54,7 +54,7 @@ export default function OurImpact({ videos = DEFAULT_VIDEOS }: OurImpactProps) {
 
   return (
     <>
-    <GradientDivider />
+    <OurImpactDivider />
     <SectionContainer>
       <ContentWrapper>
         <HeaderSection>

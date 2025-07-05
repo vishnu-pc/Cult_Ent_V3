@@ -12,6 +12,7 @@ export const NavContainer = styled.header`
   background-color: var(--color-background);
   position: relative;
   z-index: var(--z-index-sticky);
+  box-sizing: border-box;
 `;
 
 export const Logo = styled(Link)`

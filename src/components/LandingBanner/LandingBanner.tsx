@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { LandingBannerDivider } from '../ui/GradientDivider';
 import {
   BannerContainer,
   ContentContainer,
@@ -8,8 +9,7 @@ import {
   LogoContainer,
   LogoWrapper,
   StyledDynamicLogo,
-  DemoButton,
-  GradientDivider
+  DemoButton
 } from './LandingBanner.styles';
 import type { LandingBannerProps } from './LandingBanner.types';
 
@@ -65,7 +65,7 @@ const LandingBanner: React.FC<LandingBannerProps> = () => {
   
   return (
     <>
-    <GradientDivider />
+    <LandingBannerDivider />
     <BannerContainer>
       <ContentContainer>
           <Title>

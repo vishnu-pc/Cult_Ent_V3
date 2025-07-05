@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
  */
 export const SectionContainer = styled.section`
   height: 110vh;
-  width: 100vw;
+  width: 100%;
   display: flex;
   background: var(--gradient-animated-subtle);
   background-size: 400% 400%;
@@ -282,14 +282,4 @@ export const OptionDescription = styled(motion.p)`
   line-height: 1.5;
   margin-top: 8px;
   overflow: hidden;
-`;
-
-export const GradientDivider = styled.div`
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(
-    to right,
-    #0066ff 0%,    /* blue left */
-    #ffff00 100%   /* yellow right */
-  );
 `; 

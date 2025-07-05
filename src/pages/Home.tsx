@@ -10,7 +10,6 @@ import Testimonials from '../components/Testimonials/Testimonials';
 import OurImpact from '../components/OurImpact/OurImpact';
 import LogoLoader from '../components/LogoLoader/LogoLoader';
 import BeBetterSection from '../components/BeBetterSection/BeBetterSection';
-import Hashtag from '../components/Hashtag/Hashtag';
 
 interface HomeProps {}
 

@@ -5,7 +5,7 @@ import EllipseBackground from '../../assets/images/OurImpact/Ellipse-1.png';
 
 export const SectionContainer = styled.section`
  min-height: 100vh;
-  width: 100vw;
+  width: 100%;
   background: 
     linear-gradient(
       to bottom,
@@ -259,14 +259,4 @@ export const NavigationButton = styled(motion.button)<{ $disabled?: boolean; $is
     opacity: 0.5;
     cursor: not-allowed;
   }
-`;
-
-export const GradientDivider = styled.div`
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(
-    to right,
-    #0066ff 0%,    /* blue left */
-    #ffff00 100%   /* yellow right */
-  );
 `; 

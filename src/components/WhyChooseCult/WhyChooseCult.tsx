@@ -21,9 +21,6 @@ import {
   RightContent,
   RightText,
   SectionContainer,
-  ResultsSection,
-  ResultsTitle,
-  ResultsSubtitle,
 } from './WhyChooseCult.styles';
 
 const WhyChooseCult: React.FC<WhyChooseCultProps> = () => {

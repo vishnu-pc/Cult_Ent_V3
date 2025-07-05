@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export const SectionContainer = styled.section`
   min-height: 100vh;
-  width: 100vw;
+  width: 100%;
   background: linear-gradient(135deg, #0f0120 0%, #000000 100%);
   display: flex;
   align-items: center;

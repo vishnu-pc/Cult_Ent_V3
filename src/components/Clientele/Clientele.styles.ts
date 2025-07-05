@@ -150,14 +150,4 @@ export const LogoImage = styled.img`
   width: 150%;
   //min-width: 100vw;
   object-fit: fill;
-`;
-
-export const GradientDivider = styled.div`
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(
-    to right,
-    #0066ff 0%,    /* blue left */
-    #ffff00 100%   /* yellow right */
-  );
 `; 

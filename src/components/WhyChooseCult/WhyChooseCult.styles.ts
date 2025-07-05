@@ -23,7 +23,7 @@ export const ResultsSubtitle = styled.p`
 
 export const SectionContainer = styled.section`
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
   background-color: var(--color-background);
@@ -131,7 +131,7 @@ export const ReasonDescription = styled(motion.p)`
 export const CultAdvantageSection = styled.section`
 margin-left: 80px;
   min-height: 60vh;
-  width: 100vw;
+  width: 100%;
   background-color: var(--color-background);
   display: flex;
   align-items: center;

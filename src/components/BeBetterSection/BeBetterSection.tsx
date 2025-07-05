@@ -1,3 +1,4 @@
+import { BeBetterSectionDivider } from '../ui/GradientDivider';
 import type { BeBetterSectionProps } from './BeBetterSection.types';
 import { STATS_DATA, FOOTER_LINKS } from './constants';
 import CultLogo from '../../assets/images/Footer/cult_logo.png';
@@ -10,7 +11,6 @@ import {
   HeroDescription,
   DescriptionText,
   CallToAction,
-  GradientDivider,
   FooterSection,
   FooterContent,
   CompanyInfo,
@@ -56,7 +56,7 @@ export default function BeBetterSection({ className }: BeBetterSectionProps) {
       </HeroSection>
 
       {/* Gradient Divider */}
-      <GradientDivider />
+      <BeBetterSectionDivider />
 
       {/* Footer Section */}
       <FooterSection>

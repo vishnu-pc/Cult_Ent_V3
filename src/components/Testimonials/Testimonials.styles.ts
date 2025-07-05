@@ -275,14 +275,4 @@ export const MobileTestimonialContainer = styled.div`
     overflow-y: auto;
     z-index: 5;
   }
-`;
-
-export const GradientDivider = styled.div`
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(
-    to right,
-    #0066ff 0%,    /* blue left */
-    #ffff00 100%   /* yellow right */
-  );
 `; 

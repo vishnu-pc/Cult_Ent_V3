@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
+import { WellnessSolutionsDivider } from '../ui/GradientDivider';
 
 import type { WellnessSolutionsProps } from './WellnessSolutions.types';
 import { solutions } from './constants';
@@ -20,7 +21,6 @@ import {
   SectionContainer,
   SectionTitle,
   StyledImage,
-  GradientDivider,
 } from './WellnessSolutions.styles';
 
 /**
@@ -63,7 +63,7 @@ const WellnessSolutions: React.FC<WellnessSolutionsProps> = () => {
 
   return (
     <>
-    <GradientDivider />
+    <WellnessSolutionsDivider />
     <SectionContainer>
       {/* Large background "05" element positioned behind the image container */}
       <BackgroundNumber>05</BackgroundNumber>

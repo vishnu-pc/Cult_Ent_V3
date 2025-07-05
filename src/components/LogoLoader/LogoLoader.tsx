@@ -1,3 +1,4 @@
+import { LogoLoaderDivider } from '../ui/GradientDivider';
 import type { LogoLoaderProps } from './LogoLoader.types';
 import {
   LoaderContainer,
@@ -14,15 +15,14 @@ import {
   CreatedBy,
   DownloadIcon,
   GifSection,
-  LogoGif,
-  GradientDivider
+  LogoGif
 } from './LogoLoader.styles';
 import LastLogoGif from '../../assets/images/LastLogo/LastLogo.gif';
 
 export default function LogoLoader({ className }: LogoLoaderProps) {
   return (
     <>
-    <GradientDivider />
+    <LogoLoaderDivider />
     <LoaderContainer className={className}>
       <TopSection>
         <TitleBlock>

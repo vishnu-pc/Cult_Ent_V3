@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { ClienteleDivider } from '../ui/GradientDivider';
 import corporateLogos from '../../assets/icons/Corporate_Logos.png';
 import type { ClienteleProps } from './Clientele.types';
 import {
@@ -11,8 +12,7 @@ import {
   LogoCarouselContainer,
   LogoSlider,
   LogoGroup,
-  LogoImage,
-  GradientDivider
+  LogoImage
 } from './Clientele.styles';
 
 const Clientele: React.FC<ClienteleProps> = () => {
@@ -48,7 +48,7 @@ const Clientele: React.FC<ClienteleProps> = () => {
   
   return (
     <>
-    <GradientDivider />
+    <ClienteleDivider />
     <ClienteleSection ref={sectionRef}>
       <ContentContainer>
         <SectionTitle isVisible={isVisible}>OUR CLIENTELE</SectionTitle>

@@ -82,7 +82,7 @@ export const buttonBorderAnimation = keyframes`
  */
 export const BannerContainer = styled.section`
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -272,14 +272,4 @@ export const DemoButton = styled(motion.button)`
     padding: 10px 20px;
     font-size: 14px;
   }
-`;
-
-export const GradientDivider = styled.div`
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(
-    to right,
-    #0066ff 0%,    /* blue left */
-    #ffff00 100%   /* yellow right */
-  );
 `; 
