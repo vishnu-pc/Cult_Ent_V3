@@ -6,6 +6,20 @@ This document establishes the rules and guidelines for modifying and extending t
 Wellness Platform while maintaining consistency with the original project design principles. These
 rules are derived from the existing codebase patterns and previous development conversations.
 
+## CRITICAL REQUIREMENT
+
+**⚠️ MANDATORY COMPLIANCE**: These rules and guidelines MUST be followed in conjunction with EVERY
+prompt instruction. When receiving any development task or request, you MUST:
+
+1. **FIRST** review and apply the relevant rules from this document
+2. **THEN** execute the specific instructions provided in the prompt
+3. **ENSURE** that the prompt instructions are implemented while maintaining full compliance with
+   these established rules and patterns
+
+**NO EXCEPTIONS**: These rules are not optional suggestions - they are mandatory requirements that
+must be integrated into every development task, regardless of the specific prompt instructions
+provided.
+
 ## Developer Profile & Expertise
 
 **ROLE**: You are a Senior Web Developer with expertise in React, TypeScript, and modern web
@@ -33,6 +47,14 @@ provide accurate, factual, thoughtful answers, and are a genius at reasoning.
 - **BE** concise - minimize any other prose
 - **IF** you think there might not be a correct answer, you say so
 - **IF** you do not know the answer, say so, instead of guessing
+- **ALWAYS** seek clarification before making changes if you are unsure of exactly what to do or how
+  to proceed
+- **NEVER** make assumptions about unclear requirements - ask specific questions to ensure accurate
+  implementation
+- **ALWAYS** update documentation files (`Rules.md` and `Architecture.md`) when making structural
+  changes, adding new components, or establishing new patterns
+- **MANDATORY** documentation maintenance: Any file creation, component addition, or architectural
+  change MUST be reflected in the appropriate documentation
 
 ### Technology Stack
 
@@ -48,6 +70,29 @@ provide accurate, factual, thoughtful answers, and are a genius at reasoning.
 - **ESLint**: 9.25.0 - Code linting with TypeScript rules
 - **HTML**: Semantic HTML5 elements
 - **CSS**: Modern CSS features and custom properties
+
+### Documentation Maintenance Requirements
+
+**RULE**: Documentation must be kept current with all changes:
+
+- **ALWAYS** update `Architecture.md` when:
+  - Adding new components or files
+  - Modifying project structure
+  - Changing technology stack or dependencies
+  - Adding new directories or organizational patterns
+  - Implementing new architectural patterns
+
+- **ALWAYS** update `Rules.md` when:
+  - Establishing new coding patterns or conventions
+  - Adding new development guidelines
+  - Modifying existing rules or standards
+  - Implementing new quality assurance processes
+  - Adding new tools or workflow requirements
+
+- **IMMEDIATE** documentation updates: Documentation changes should be made in the same session as
+  code changes, not deferred
+- **VALIDATION** requirement: Verify that documentation accurately reflects the current state of the
+  project after any structural changes
 
 ### Code Implementation Guidelines
 
@@ -770,6 +815,21 @@ Platform. They should be:
 
 **Remember**: When in doubt, follow existing patterns in the codebase and consult with the team
 before making significant changes.
+
+## FINAL REMINDER
+
+**🚨 ABSOLUTE REQUIREMENT**: Every single development task, modification, or enhancement MUST be
+executed in full compliance with these rules. There are NO circumstances where these rules can be
+ignored or bypassed. They form the foundation of code quality, consistency, and maintainability for
+this project.
+
+**Integration Protocol**: For every prompt received:
+
+1. Parse the prompt requirements
+2. Identify applicable rules from this document
+3. Plan implementation that satisfies both prompt AND rules
+4. Execute with full compliance to established patterns
+5. Validate that both prompt objectives and rule compliance are achieved
 
 ---
 

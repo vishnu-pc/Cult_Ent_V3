@@ -82,11 +82,15 @@ export const buttonBorderAnimation = keyframes`
  */
 export const BannerContainer = styled.section`
   height: 100vh;
+  min-height: 100vh; /* Override global section min-height */
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 var(--spacing-2xl);
+  justify-content: center;
+  padding: 0 var(--spacing-2xl); /* Override global section padding */
+  position: relative;
+  box-sizing: border-box; /* Ensure padding is included in height calculation */
 
   /* SUBTLE GRADIENT: Using CSS variables for consistency */
   background: var(--gradient-animated-subtle);
@@ -95,15 +99,29 @@ export const BannerContainer = styled.section`
   overflow: hidden;
 
   @media (max-width: 768px) {
+    padding: 0 var(--spacing-xl);
+  }
+`;
+
+export const MainContent = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  flex: 1;
+
+  @media (max-width: 768px) {
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    padding: var(--spacing-xl);
   }
 `;
 
 export const ContentContainer = styled.div`
   max-width: 50%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
   //background: rgb(58, 11, 11);
 
   @media (max-width: 768px) {
@@ -180,7 +198,7 @@ export const HighlightedWord = styled.span<{ isScrolled: boolean }>`
 export const Subtitle = styled.p`
   font-size: var(--font-size-xl);
   color: var(--color-grey-light);
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-xxs);
   max-width: 80%;
 
   @media (max-width: 768px) {
@@ -247,8 +265,8 @@ export const StyledDynamicLogo = styled(DynamicLogo)`
  */
 export const DemoButton = styled(motion.button)`
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  bottom: 20px;
+  right: 20px;
   width: 100px;
   height: 100px;
   border-radius: 50%;
@@ -328,8 +346,8 @@ export const DemoButton = styled(motion.button)`
 
   /* Responsive Design */
   @media (max-width: 768px) {
-    bottom: 20px;
-    right: 20px;
+    bottom: 15px;
+    right: 15px;
     width: 85px;
     height: 85px;
     font-size: 13px;
@@ -337,9 +355,107 @@ export const DemoButton = styled(motion.button)`
   }
 
   @media (max-width: 480px) {
+    bottom: 10px;
+    right: 10px;
     width: 75px;
     height: 75px;
     font-size: 12px;
     padding: 2px;
+  }
+`;
+
+/**
+ * CTA BUTTON - Bottom section call-to-action button
+ *
+ * DESIGN FEATURES:
+ * - Rectangular button with rounded corners
+ * - Gradient background matching brand colors
+ * - Hover animations with scale and glow effects
+ * - Positioned at bottom of banner section
+ */
+export const CTAButton = styled(motion.button)`
+  margin-top: var(--spacing-xl);
+  align-self: center;
+  width: 100%;
+
+  /* Button Dimensions */
+  padding: 16px 48px;
+  border-radius: 12px;
+  /* border: 2px solid var(--color-pink); */
+  cursor: pointer;
+
+  /* Typography */
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-pink);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+  /* Default State - White background with red text */
+  background: white;
+
+  /* Shadow Effects */
+  box-shadow:
+    0 4px 16px rgba(237, 58, 121, 0.2),
+    0 2px 8px rgba(0, 0, 0, 0.1);
+
+  /* Smooth Transitions */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Hover State - Gradient background with white text */
+  &:hover {
+    transform: scale(1.05);
+    color: white;
+    background: linear-gradient(
+      135deg,
+      var(--color-pink) 0%,
+      var(--color-blue) 50%,
+      var(--color-yellow) 100%
+    );
+    background-size: 200% 200%;
+    animation: ${gradientAnimation} 8s ease infinite;
+    border-color: transparent;
+    box-shadow:
+      0 12px 48px rgba(237, 58, 121, 0.4),
+      0 8px 24px rgba(0, 180, 255, 0.3),
+      inset 0 2px 4px rgba(255, 255, 255, 0.2);
+  }
+
+  /* Active State - Gradient background with white text */
+  &:active {
+    transform: scale(1.02);
+    color: white;
+    background: linear-gradient(
+      135deg,
+      var(--color-pink) 0%,
+      var(--color-blue) 50%,
+      var(--color-yellow) 100%
+    );
+    background-size: 200% 200%;
+    animation: ${gradientAnimation} 8s ease infinite;
+    border-color: transparent;
+  }
+
+  /* Focus State for Accessibility */
+  &:focus {
+    outline: none;
+    box-shadow:
+      0 4px 16px rgba(237, 58, 121, 0.2),
+      0 2px 8px rgba(0, 0, 0, 0.1),
+      0 0 0 3px rgba(237, 58, 121, 0.3);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    width: 90%;
+    padding: 14px 36px;
+    font-size: 16px;
+  }
+
+  @media (max-width: 480px) {
+    width: 95%;
+    padding: 12px 28px;
+    font-size: 14px;
+    letter-spacing: 0.5px;
   }
 `;
