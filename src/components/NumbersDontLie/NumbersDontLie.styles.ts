@@ -136,7 +136,7 @@ export const Tile = styled(motion.div)<{
   align-items: flex-start;
   text-align: left;
   overflow: hidden;
-  border: 1px dashed rgba(255, 255, 255, 0.2);
+  border: 2px dashed rgba(255, 255, 255, 0.2);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   
   /* Apply grayscale filter to images */

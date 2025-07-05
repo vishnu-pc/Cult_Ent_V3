@@ -52,6 +52,7 @@ export const TitleSection = styled.div`
 `;
 
 export const ImageSection = styled.div`
+margin-top: -150px;
   display: flex;
   justify-content: center;
   align-items: center;
