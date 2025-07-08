@@ -55,7 +55,7 @@ const OurImpact: React.FC<OurImpactProps> = ({ videos = DEFAULT_VIDEOS }) => {
   return (
     <>
       <OurImpactDivider />
-      <SectionContainer>
+      <SectionContainer id='our-impact'>
         <ContentWrapper>
           <HeaderSection>
             <TitleSection>

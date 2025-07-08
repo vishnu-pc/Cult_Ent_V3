@@ -95,7 +95,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ onSubmit }) => {
   };
 
   return (
-    <SectionContainer>
+    <SectionContainer id='contact-us'>
       <ContentWrapper>
         <LeftSection>
           <TitleSection>

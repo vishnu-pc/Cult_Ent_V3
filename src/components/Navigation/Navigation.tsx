@@ -25,6 +25,25 @@ const Navigation: React.FC<NavigationProps> = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, [isOpen]);
 
+  // Smooth scroll to section function
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+    // Close mobile menu after clicking
+    setIsOpen(false);
+  };
+
+  // Handle smooth scroll navigation
+  const handleNavClick = (sectionId: string) => (event: React.MouseEvent) => {
+    event.preventDefault();
+    scrollToSection(sectionId);
+  };
+
   return (
     <NavContainer>
       <Logo to='/'>
@@ -43,11 +62,27 @@ const Navigation: React.FC<NavigationProps> = () => {
       </HamburgerButton>
 
       <NavLinks isOpen={isOpen}>
-        <NavLink to='/franchise'>FRANCHISE</NavLink>
-        <NavLink to='/cultpass'>CULTPASS</NavLink>
-        <NavLink to='/corporates'>CORPORATES</NavLink>
-        <NavLink to='/equipment-solutions'>EQUIPMENT SOLUTIONS</NavLink>
-        <NavLink to='/contact'>CONTACT US</NavLink>
+        <NavLink
+          to='#wellness-solutions'
+          onClick={handleNavClick('wellness-solutions')}
+        >
+          SOLUTIONS
+        </NavLink>
+        <NavLink
+          to='#why-choose-cult'
+          onClick={handleNavClick('why-choose-cult')}
+        >
+          WHY CULT
+        </NavLink>
+        <NavLink to='#contact-us' onClick={handleNavClick('contact-us')}>
+          CONTACT
+        </NavLink>
+        <NavLink to='#our-impact' onClick={handleNavClick('our-impact')}>
+          IMPACT
+        </NavLink>
+        <NavLink to='#testimonials' onClick={handleNavClick('testimonials')}>
+          Testimonials
+        </NavLink>
         <LoginButton>LOGIN / SIGN UP</LoginButton>
       </NavLinks>
     </NavContainer>

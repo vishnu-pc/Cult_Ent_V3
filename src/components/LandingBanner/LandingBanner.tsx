@@ -73,12 +73,12 @@ const LandingBanner: React.FC<LandingBannerProps> = () => {
           <ContentContainer>
             <Title>
               {/* 
-                HIGHLIGHTED WORD WITH HOVER DETECTION
-                - Receives isScrolled prop to determine animation state
-                - onMouseEnter/Leave: Updates hover state for immediate feedback
-                - When highlighted: Shows animated gradient text
-                - When not highlighted: Shows outlined transparent text
-              */}
+              HIGHLIGHTED WORD WITH HOVER DETECTION
+              - Receives isScrolled prop to determine animation state
+              - onMouseEnter/Leave: Updates hover state for immediate feedback
+              - When highlighted: Shows animated gradient text
+              - When not highlighted: Shows outlined transparent text
+            */}
               <HighlightedWord
                 isScrolled={isHighlighted}
                 onMouseEnter={() => setIsHovered(true)}
@@ -115,12 +115,12 @@ const LandingBanner: React.FC<LandingBannerProps> = () => {
 
           <LogoContainer>
             {/*
-            LOGO WRAPPER WITH FRAMER MOTION ANIMATIONS
-            - whileHover: Scales logo to 1.1x on hover (10% larger)
-            - transition: Smooth 0.3s animation duration
-            - onMouseEnter/Leave: Syncs hover state with text highlighting
-            - This creates coordinated hover effects between logo and text
-          */}
+          LOGO WRAPPER WITH FRAMER MOTION ANIMATIONS
+          - whileHover: Scales logo to 1.1x on hover (10% larger)
+          - transition: Smooth 0.3s animation duration
+          - onMouseEnter/Leave: Syncs hover state with text highlighting
+          - This creates coordinated hover effects between logo and text
+        */}
             <LogoWrapper
               whileHover={{
                 scale: 1.1,
@@ -130,12 +130,12 @@ const LandingBanner: React.FC<LandingBannerProps> = () => {
               onMouseLeave={() => setIsHovered(false)}
             >
               {/*
-                DYNAMIC LOGO WITH FORCED HIGHLIGHT
-                - forceHighlight prop: Passes combined scroll/hover state
-                - When true: Logo shows colored/animated state
-                - When false: Logo shows outlined/static state
-                - This synchronizes logo animation with text gradient
-              */}
+              DYNAMIC LOGO WITH FORCED HIGHLIGHT
+              - forceHighlight prop: Passes combined scroll/hover state
+              - When true: Logo shows colored/animated state
+              - When false: Logo shows outlined/static state
+              - This synchronizes logo animation with text gradient
+            */}
               <StyledDynamicLogo forceHighlight={isHighlighted} />
             </LogoWrapper>
           </LogoContainer>

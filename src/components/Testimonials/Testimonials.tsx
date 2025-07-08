@@ -26,7 +26,7 @@ const Testimonials: React.FC<TestimonialsProps> = ({
   return (
     <>
       <TestimonialsDivider />
-      <SectionContainer>
+      <SectionContainer id='testimonials'>
         <ContentWrapper>
           {/* Floating Testimonial Cards */}
           {testimonials.map((testimonial, index) => (

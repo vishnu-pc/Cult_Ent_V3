@@ -66,7 +66,7 @@ const WhyChooseCult: React.FC<WhyChooseCultProps> = () => {
   return (
     <>
       {/* New Cult Advantage Section */}
-      <CultAdvantageSection>
+      <CultAdvantageSection id='why-choose-cult'>
         <CultAdvantageContainer>
           <LeftContent>
             <TopHeading>Why Choose Cult For Corporates</TopHeading>

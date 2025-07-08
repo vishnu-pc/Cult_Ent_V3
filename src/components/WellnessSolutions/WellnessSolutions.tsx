@@ -64,7 +64,7 @@ const WellnessSolutions: React.FC<WellnessSolutionsProps> = () => {
   return (
     <>
       <WellnessSolutionsDivider />
-      <SectionContainer>
+      <SectionContainer id='wellness-solutions'>
         {/* Large background "05" element positioned behind the image container */}
         <BackgroundNumber>05</BackgroundNumber>
 
