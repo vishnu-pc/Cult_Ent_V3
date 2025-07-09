@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { LandingBannerDivider } from '../ui/GradientDivider';
 import {
   BannerContainer,
@@ -18,36 +18,68 @@ import type { LandingBannerProps } from './LandingBanner.types';
 /**
  * LANDING BANNER COMPONENT
  *
- * This component manages multiple animation states:
- * 1. Scroll-triggered animations (text gradient, logo animation)
- * 2. Hover animations (logo scale, text highlight)
+ * This component manages multiple animation states with priority-based system:
+ * 1. Scroll-triggered animations (persistent, one-way activation)
+ * 2. Hover animations (secondary priority, mobile-disabled)
  * 3. Background gradient animation (always running)
  * 4. Button animations (border color, hover/tap effects)
+ *
+ * STATE PRIORITY: Scroll takes precedence over hover for seamless transitions
  */
 const LandingBanner: React.FC<LandingBannerProps> = () => {
   // STATE MANAGEMENT FOR ANIMATIONS
-  const [isScrolled, setIsScrolled] = useState(false); // Tracks if user has scrolled
-  const [isHovered, setIsHovered] = useState(false); // Tracks hover state on logo/text
+  const [scrollTriggered, setScrollTriggered] = useState(false); // One-way scroll activation
+  const [hoverActive, setHoverActive] = useState(false); // Hover state for desktop
+  const [isMobile, setIsMobile] = useState(false); // Mobile detection state
+
+  // COMMENTED OUT FOR FUTURE USE - PERSISTENT ACTIVATION
+  // const [persistentActivation, setPersistentActivation] = useState(false);
+  // This can be used later to maintain state across page reloads/navigation
 
   /**
-   * SCROLL DETECTION LOGIC
-   * Sets up event listener to detect when user scrolls
-   * Once triggered, the effect persists (doesn't reset when scrolling back to top)
+   * MOBILE DETECTION LOGIC
+   * Detects mobile devices based on project's standard breakpoint (768px)
+   * Disables hover interactions on mobile devices
    */
   useEffect(() => {
-    // Set initial state based on current scroll position
-    setIsScrolled(window.scrollY > 0);
-
-    const handleScroll = () => {
-      // Detect any scroll movement (Not in Use)
-      //setIsScrolled(window.scrollY > 0);
-
-      // PERSISTENT ACTIVATION: Once activated, don't turn it off when scrolling back to top
-      // This ensures the gradient effect stays active after first scroll
-      if (window.scrollY > 0) {
-        setIsScrolled(true);
-      }
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768); // Project standard mobile breakpoint
     };
+
+    // Set initial mobile state
+    checkMobile();
+
+    // Listen for window resize to update mobile state
+    window.addEventListener('resize', checkMobile);
+
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
+
+  /**
+   * SCROLL DETECTION LOGIC WITH DEBOUNCING
+   * - Threshold: 5px (modified from original 1px)
+   * - One-time activation: Listener removed after first trigger
+   * - Performance optimized: No excessive state updates
+   */
+  const handleScroll = useCallback(() => {
+    const scrollY = window.scrollY;
+
+    // Only activate if crossing threshold for the first time
+    if (scrollY > 5 && !scrollTriggered) {
+      setScrollTriggered(true);
+      // Remove listener after activation - no more updates needed
+      window.removeEventListener('scroll', handleScroll);
+    }
+  }, [scrollTriggered]);
+
+  useEffect(() => {
+    // Set initial state based on current scroll position
+    if (window.scrollY > 5) {
+      setScrollTriggered(true);
+      return; // Don't add listener if already scrolled
+    }
 
     // Add scroll listener with passive flag for better performance
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -56,14 +88,39 @@ const LandingBanner: React.FC<LandingBannerProps> = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [handleScroll]);
 
   /**
-   * COMBINED ANIMATION STATE
-   * Combines scroll and hover states to trigger animations
-   * Either scrolling OR hovering will activate the gradient effects
+   * PRIORITY-BASED HIGHLIGHT STATE
+   * Scroll takes priority over hover for seamless transitions
+   * - If scroll is triggered: Always highlighted (hover state irrelevant)
+   * - If no scroll: Hover can activate/deactivate freely
+   * - Mobile: Only scroll triggers highlight (no hover)
    */
-  const isHighlighted = isScrolled || isHovered;
+  const getHighlightState = (): boolean => {
+    if (scrollTriggered) return true; // Scroll always wins
+    if (isMobile) return false; // No hover on mobile
+    return hoverActive; // Hover only when no scroll and not mobile
+  };
+
+  const isHighlighted = getHighlightState();
+
+  /**
+   * HOVER EVENT HANDLERS
+   * Only active on desktop devices
+   * Smooth transitions: 0.3s duration (tunable in styles)
+   */
+  const handleMouseEnter = () => {
+    if (!isMobile) {
+      setHoverActive(true);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (!isMobile) {
+      setHoverActive(false);
+    }
+  };
 
   return (
     <>
@@ -73,16 +130,17 @@ const LandingBanner: React.FC<LandingBannerProps> = () => {
           <ContentContainer>
             <Title>
               {/* 
-              HIGHLIGHTED WORD WITH HOVER DETECTION
-              - Receives isScrolled prop to determine animation state
-              - onMouseEnter/Leave: Updates hover state for immediate feedback
+              HIGHLIGHTED WORD WITH PRIORITY-BASED ANIMATION
+              - Receives isHighlighted prop from priority-based state
+              - Hover handlers: Only active on desktop (mobile detection)
+              - Smooth transitions: 0.3s duration (tunable in styles)
               - When highlighted: Shows animated gradient text
               - When not highlighted: Shows outlined transparent text
             */}
               <HighlightedWord
                 isScrolled={isHighlighted}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
               >
                 ENERGISE
               </HighlightedWord>{' '}
@@ -117,24 +175,24 @@ const LandingBanner: React.FC<LandingBannerProps> = () => {
             {/*
           LOGO WRAPPER WITH FRAMER MOTION ANIMATIONS
           - whileHover: Scales logo to 1.1x on hover (10% larger)
-          - transition: Smooth 0.3s animation duration
-          - onMouseEnter/Leave: Syncs hover state with text highlighting
-          - This creates coordinated hover effects between logo and text
+          - transition: Smooth 0.3s animation duration (tunable)
+          - Hover handlers: Synced with text highlighting system
+          - Mobile: Hover disabled, only scroll triggers animation
         */}
             <LogoWrapper
               whileHover={{
                 scale: 1.1,
-                transition: { duration: 0.3 },
+                transition: { duration: 0.3 }, // Tunable: adjust hover animation speed
               }}
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
             >
               {/*
-              DYNAMIC LOGO WITH FORCED HIGHLIGHT
-              - forceHighlight prop: Passes combined scroll/hover state
+              DYNAMIC LOGO WITH PRIORITY-BASED HIGHLIGHT
+              - forceHighlight prop: Passes priority-based highlight state
               - When true: Logo shows colored/animated state
               - When false: Logo shows outlined/static state
-              - This synchronizes logo animation with text gradient
+              - Synchronized with text gradient through priority system
             */}
               <StyledDynamicLogo forceHighlight={isHighlighted} />
             </LogoWrapper>

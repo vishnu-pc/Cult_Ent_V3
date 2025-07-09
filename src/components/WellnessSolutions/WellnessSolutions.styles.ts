@@ -214,13 +214,18 @@ export const OptionsContainer = styled.div`
 
 /**
  * An individual option item in the list.
- * Changes background color on hover based on the solution's hover color.
+ * Changes background to gradient on hover based on the solution's background gradient.
+ * Uses linear gradient for border-bottom with matching colors.
  * Spacing is calculated to distribute options evenly across 80% of the container height.
  */
-export const OptionItem = styled(motion.div)<{ $hoverColor: string }>`
+export const OptionItem = styled(motion.div)<{
+  $backgroundGradient: string;
+  $borderGradient: string;
+}>`
   cursor: pointer;
   transition: all var(--transition-normal);
-  border-bottom: 2px solid ${props => props.$hoverColor};
+  border-bottom: 2px solid;
+  border-image: ${props => props.$borderGradient} 1;
   position: relative;
   flex: 1;
   display: flex;
@@ -229,12 +234,13 @@ export const OptionItem = styled(motion.div)<{ $hoverColor: string }>`
   padding: var(--spacing-md) var(--spacing-xl);
 
   &:hover {
-    background-color: ${props => props.$hoverColor};
+    background: ${props => props.$backgroundGradient};
     color: var(--color-black);
   }
 
   &:last-child {
     border-bottom: none;
+    border-image: none;
   }
 
   @media (max-width: 768px) {

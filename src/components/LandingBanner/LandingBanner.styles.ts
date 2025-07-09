@@ -192,7 +192,7 @@ export const HighlightedWord = styled.span<{ isScrolled: boolean }>`
     `}
   
   /* SMOOTH TRANSITION: When switching between states */
-  transition: all 0.3s ease;
+  transition: all 0.3s ease; /* Tunable: adjust text highlight transition speed */
 `;
 
 export const Subtitle = styled.p`
@@ -302,7 +302,7 @@ export const DemoButton = styled(motion.button)`
 
   /* Animated Border */
   animation: ${buttonBorderAnimation} 3s ease-in-out infinite;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Tunable: adjust demo button transition speed */
 
   /* Hover State - Enhanced Glass Effect */
   &:hover {
@@ -400,7 +400,7 @@ export const CTAButton = styled(motion.button)`
     0 2px 8px rgba(0, 0, 0, 0.1);
 
   /* Smooth Transitions */
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Tunable: adjust CTA button transition speed */
 
   /* Hover State - Gradient background with white text */
   &:hover {

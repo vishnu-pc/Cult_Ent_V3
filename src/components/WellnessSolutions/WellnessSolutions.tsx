@@ -106,7 +106,8 @@ const WellnessSolutions: React.FC<WellnessSolutionsProps> = () => {
               return (
                 <OptionItem
                   key={solution.id}
-                  $hoverColor={solution.hoverColor}
+                  $backgroundGradient={solution.backgroundGradient}
+                  $borderGradient={solution.borderGradient}
                   onMouseEnter={() => handleMouseEnter(solution.id)}
                   onMouseLeave={handleMouseLeave}
                   // whileHover={{ x: 5 }} // A subtle hover animation for better UX (disabled for now)

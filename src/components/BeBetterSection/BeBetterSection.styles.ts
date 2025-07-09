@@ -15,15 +15,14 @@ export const HeroSection = styled.div`
       #000000 0%,
       #000000 70%,
       rgba(255, 20, 147, 0.3) 95%,
-      rgba(152, 5, 113, 0.5) 100% // rgba(255, 20, 147, 0.3) 95%,
-       // rgba(255, 20, 147, 0.5) 100%
+      rgba(152, 5, 113, 0.5) 100%
     ),
     linear-gradient(
       to right,
       rgba(255, 20, 147, 0.2) 0%,
-      /* pink left corner at bottom */ #000000 20%,
+      #000000 20%,
       #000000 40%,
-      rgba(0, 102, 255, 0.9) 100% /* blue right corner at bottom */
+      rgba(0, 102, 255, 0.9) 100%
     );
   display: flex;
   justify-content: center;
