@@ -90,6 +90,14 @@
     /*initially 10%*/ rgba(253, 217, 20, 0.15),
     /*initially 15%*/ rgba(0, 0, 0, 1)
   );
+  --gradient-animated-very-subtle: linear-gradient(
+    15deg,
+    rgba(0, 0, 0, 1),
+    rgba(0, 180, 255, 0.08),
+    /*initially 12%*/ rgba(237, 58, 121, 0.075),
+    /*initially 10%*/ rgba(253, 217, 20, 0.12),
+    /*initially 15%*/ rgba(0, 0, 0, 1)
+  );
 
   /* Wellness Option Border Gradients - For WellnessSolutions OptionItem borders */
   /* Each gradient uses different combinations of brand colors for border-bottom */
@@ -147,7 +155,7 @@
   --font-size-7xl: 5rem; /* 80px */
   --font-size-8xl: 6rem; /* 96px */
   --font-size-9xl: 7rem; /* 112px */
-  --font-size-xxl: 8vw; /* 128px */
+  --font-size-xxl: 7.3vw; /* 128px */
 
   /* Spacing */
   --spacing-xxs: 0rem; /* 0px */

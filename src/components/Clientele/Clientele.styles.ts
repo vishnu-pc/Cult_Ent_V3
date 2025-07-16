@@ -46,7 +46,7 @@ export const fadeInToSeventy = keyframes`
 `;
 
 // SECTION TITLE FADE-IN ANIMATION (80% opacity)
-// Custom animation for SectionTitle that ends at 80% opacity
+// Custom animation for SectionTitle that ends at 80% opacity and maintains upward position
 export const fadeInToEighty = keyframes`
   from {
     opacity: 0;
@@ -54,7 +54,31 @@ export const fadeInToEighty = keyframes`
   }
   to {
     opacity: 0.8; // TUNABLE: Final opacity at 80% (0.1-1.0)
-    transform: translateY(0); // Final position (no transform)
+    transform: translateY(-10vh); // Final position (maintains the upward positioning)
+  }
+`;
+
+// MOBILE VERSION - Section Title Animation with less upward movement
+export const fadeInToEightyMobile = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 0.8;
+    transform: translateY(-3vh);
+  }
+`;
+
+// SMALL MOBILE VERSION - Section Title Animation with minimal upward movement
+export const fadeInToEightySmall = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 0.8;
+    transform: translateY(0vh);
   }
 `;
 
@@ -118,7 +142,7 @@ export const GrayscaleOverlay = styled.div<{ isActive: boolean }>`
 
   // TRANSITION CONTROL
   opacity: ${({ isActive }) =>
-    isActive ? 0 : 1}; // Show when inactive, hide when active
+    isActive ? 0.7 : 1}; // 30% when active, 100% when inactive
   transition: opacity 0.8s ease; // TUNABLE: Transition duration and easing
   // Adjust transition for different effects:
   // - 0.3s = Fast transition
@@ -179,7 +203,7 @@ export const GradientOverlay = styled.div<{ isActive: boolean }>`
 // Holds all text content and positions it above overlays
 export const ContentContainer = styled.div`
   position: relative;
-  height: 85%; // TUNABLE: Content area height (85% leaves 15% for logo carousel)
+  height: 87%; // TUNABLE: Content area height (85% leaves 15% for logo carousel)
   display: flex;
   flex-direction: column;
   justify-content: center; // TUNABLE: vertical alignment (flex-start, flex-end, center)
@@ -200,11 +224,21 @@ export const SectionTitle = styled.h3<StyledComponentProps>`
   max-width: 1800px; // TUNABLE: Match the heading block width
   text-align: left; // TUNABLE: Left align the section title
 
-  // ANIMATION CONTROL - starts hidden, animates to 80% opacity
+  // ANIMATION CONTROL - starts hidden, animates to 80% opacity and moves to final position
   opacity: 0;
   animation: ${({ isVisible }) => (isVisible ? fadeInToEighty : 'none')} 1.6s
     ease-out forwards;
   // TUNABLE: Animation duration (1.6s) and easing
+
+  @media (max-width: 1668px) {
+    animation: ${({ isVisible }) => (isVisible ? fadeInToEightyMobile : 'none')}
+      1.6s ease-out forwards;
+  }
+
+  @media (max-width: 480px) {
+    animation: ${({ isVisible }) => (isVisible ? fadeInToEightySmall : 'none')}
+      1.6s ease-out forwards;
+  }
 `;
 
 // MAIN HEADING CONTAINER
@@ -251,7 +285,7 @@ export const StatText = styled.p<StyledComponentProps>`
   font-size: var(--font-size-xl); // TUNABLE: Text size
   font-weight: 400; // TUNABLE: Font weight
   margin-top: var(
-    --spacing-2xl
+    --spacing-3xl
   ); // TUNABLE: Space above text (reduced from 2xl)
   max-width: 1800px; // TUNABLE: Maximum text width (increased from 800px)
   text-align: center; // TUNABLE: Center align the statistics text
@@ -275,7 +309,7 @@ export const StatText = styled.p<StyledComponentProps>`
 // LOGO CAROUSEL CONTAINER
 export const LogoCarouselContainer = styled.div`
   position: relative;
-  height: 15%; // TUNABLE: Carousel height (matches ContentContainer's 85%)
+  height: 13%; // TUNABLE: Carousel height (matches ContentContainer's 85%)
   width: 100%;
   overflow: hidden; // TUNABLE: Hide overflow for smooth scrolling effect
   background-color: transparent;
@@ -292,7 +326,7 @@ export const LogoSlider = styled.div`
   display: flex;
   width: fit-content;
   animation: ${slideAnimation} 60s linear infinite; // TUNABLE: Adjusted timing for 3-set seamless loop
-  height: 100%;
+  height: 90%;
   align-items: center;
   // CONTAINMENT: Ensure slider doesn't affect parent layout
   flex-shrink: 0; // Don't shrink the slider itself

@@ -10,7 +10,7 @@ import {
   LogoContainer,
   LogoWrapper,
   StyledDynamicLogo,
-  DemoButton,
+  // DemoButton,
   CTAButton,
 } from './LandingBanner.styles';
 import type { LandingBannerProps } from './LandingBanner.types';
@@ -210,9 +210,10 @@ const LandingBanner: React.FC<LandingBannerProps> = () => {
         - Animated border: Color cycles between yellow and pink
         - z-index: High value to stay above other content
       */}
-      <DemoButton whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.95 }}>
+      {/* Temporarily removed in order to change the design and add back later */}
+      {/* <DemoButton whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.95 }}>
         REQUEST DEMO &gt;&gt;
-      </DemoButton>
+      </DemoButton> */}
     </>
   );
 };

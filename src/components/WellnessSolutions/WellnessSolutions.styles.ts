@@ -9,7 +9,7 @@ export const SectionContainer = styled.section`
   height: 110vh;
   width: 100%;
   display: flex;
-  background: var(--gradient-animated-subtle);
+  background: var(--gradient-animated-very-subtle);
   background-size: 400% 400%;
   animation: gradientShift 8s ease infinite;
   overflow: hidden;
@@ -98,7 +98,7 @@ export const OverlayTitle = styled.h3`
   letter-spacing: 0.2em;
   color: var(--color-text);
   margin-bottom: var(--spacing-xxs);
-  font-weight: 400;
+  font-weight: 500;
   text-transform: uppercase;
 `;
 
@@ -107,7 +107,7 @@ export const OverlayTitle = styled.h3`
  */
 export const OverlaySubtitle = styled.h2`
   font-size: var(--font-size-7xl);
-  font-weight: 900;
+  font-weight: 700;
   background: var(--gradient-animated-colour);
   background-size: 400% 400%;
   background-clip: text;
@@ -165,7 +165,7 @@ export const StyledImage = styled(motion.div)<{ $imageUrl: string }>`
  * Takes up 55% of the width and implements the two-part vertical structure.
  */
 export const ContentContainer = styled.div`
-  flex: 0 0 55%;
+  flex: 0 0 50%;
   display: flex;
   flex-direction: column;
   padding: var(--spacing-xxs);
@@ -186,7 +186,7 @@ export const ContentContainer = styled.div`
 export const SectionTitle = styled.h2`
   font-size: var(--font-size-2xl);
   color: var(--color-text);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.2;
   margin: 0;
   padding: var(--spacing-lg) var(--spacing-xxs);
@@ -262,8 +262,8 @@ export const OptionHeader = styled.div`
  * The option number (e.g., "#1", "#2").
  */
 export const OptionNumber = styled.span`
-  font-size: var(--font-size-xl);
-  font-weight: 600;
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
   color: var(--color-grey);
   min-width: 3rem;
 `;
@@ -280,8 +280,8 @@ export interface OptionTitleProps {
  * Becomes bold when the description is visible (on hover).
  */
 export const OptionTitle = styled.h3<OptionTitleProps>`
-  font-size: var(--font-size-2xl);
-  font-weight: ${props => (props.$hasDescription ? '700' : '600')};
+  font-size: var(--font-size-3xl);
+  font-weight: ${props => (props.$hasDescription ? '800' : '700')};
   color: inherit;
   margin: 0;
 
@@ -295,8 +295,8 @@ export const OptionTitle = styled.h3<OptionTitleProps>`
  * This is an animated component that appears when an option is hovered.
  */
 export const OptionDescription = styled(motion.p)`
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 14px;
+  color: rgba(0, 0, 0);
+  font-size: var(--font-size-lg);
   line-height: 1.5;
   margin-top: 8px;
   overflow: hidden;

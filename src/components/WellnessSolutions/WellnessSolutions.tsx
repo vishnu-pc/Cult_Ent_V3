@@ -113,7 +113,9 @@ const WellnessSolutions: React.FC<WellnessSolutionsProps> = () => {
                   // whileHover={{ x: 5 }} // A subtle hover animation for better UX (disabled for now)
                 >
                   <OptionHeader>
-                    <OptionNumber>#{solution.id}</OptionNumber>
+                    {!showDescription && (
+                      <OptionNumber>#{solution.id}</OptionNumber>
+                    )}
                     <OptionTitle $hasDescription={showDescription}>
                       {solution.title}
                     </OptionTitle>

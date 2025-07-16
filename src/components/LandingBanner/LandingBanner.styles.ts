@@ -109,6 +109,8 @@ export const MainContent = styled.div`
   justify-content: space-between;
   width: 100%;
   flex: 1;
+  /* margin-top: 1vh; */
+  margin-bottom: 3vh;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -122,6 +124,7 @@ export const ContentContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  margin-left: 1.7vw;
   //background: rgb(58, 11, 11);
 
   @media (max-width: 768px) {
@@ -138,7 +141,7 @@ export const ContentContainer = styled.div`
 export const Title = styled.h1`
   font-size: var(--font-size-xxl);
   margin-bottom: var(--spacing-lg);
-  font-family: 'Arial', 'Helvetica', sans-serif;
+  font-family: 'Inter';
   font-weight: 900;
   color: transparent; /* Makes text transparent */
   -webkit-text-stroke: 1.5px var(--color-text); /* Creates white outline */
@@ -164,7 +167,8 @@ export const Title = styled.h1`
  * - -webkit-text-stroke: 0: Removes outline when gradient is active
  */
 export const HighlightedWord = styled.span<{ isScrolled: boolean }>`
-  font-family: 'Arial', 'Helvetica', sans-serif;
+  /* font-family: 'Arial', 'Helvetica', sans-serif; */
+  font-family: 'Inter';
   font-weight: 900;
   cursor: pointer;
 
@@ -211,6 +215,7 @@ export const LogoContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* margin-top: var(--spacing-xl); */
   //background: rgb(60, 37, 162);
 
   @media (max-width: 768px) {
@@ -229,8 +234,8 @@ export const LogoContainer = styled.div`
  * This creates a smooth scale-up effect when hovering over the logo
  */
 export const LogoWrapper = styled(motion.div)`
-  width: 500px;
-  height: 500px;
+  width: 33vw;
+  height: 33vw;
   display: flex;
   align-items: center;
   justify-content: center;
