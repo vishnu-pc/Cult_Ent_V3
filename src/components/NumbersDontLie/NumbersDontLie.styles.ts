@@ -1,26 +1,40 @@
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
 
+/**
+ * Main section container with animated gradient background
+ */
 export const SectionContainer = styled.section`
-  min-height: 100vh;
-  width: 100vw;
-  background: #000000;
+  background: var(--gradient-animated-subtle);
+  background-size: 400% 400%;
+  animation: gradientShift 8s ease infinite;
+  padding: var(--spacing-3xl) 0;
   position: relative;
-  padding: var(--spacing-3xl) var(--spacing-xl);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  overflow: hidden;
 
-  @media (max-width: 768px) {
-    padding: var(--spacing-2xl) var(--spacing-md);
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
 `;
 
+/**
+ * Content wrapper with max-width and centered alignment
+ */
 export const ContentWrapper = styled.div`
-  max-width: 1400px;
+  max-width: 80vw;
   margin: 0 auto;
-  width: 100%;
+  padding: 0 var(--spacing-xl);
+
+  @media (max-width: 768px) {
+    padding: 0 var(--spacing-lg);
+  }
 `;
 
 export const HeaderSection = styled.div`
@@ -40,18 +54,11 @@ export const ProvenImpactText = styled.div`
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.7);
   margin-bottom: var(--spacing-md);
-  font-family:
-    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-family: var(--font-primary);
 `;
 
 export const MainHeadline = styled.h1`
-  font-family:
-    'Inter',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    'Roboto',
-    sans-serif;
+  font-family: var(--font-primary);
   font-weight: 700;
   font-size: 54px;
   line-height: 119%;
@@ -85,118 +92,77 @@ export const Subheadline = styled.p`
   font-size: var(--font-size-xl);
   color: rgba(255, 255, 255, 0.8);
   font-weight: 400;
-  font-family:
-    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-family: var(--font-primary);
 
   @media (max-width: 768px) {
     font-size: var(--font-size-lg);
   }
 `;
 
-export const TilesContainer = styled.div`
-  /* Translucent glass container with dotted border */
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(20px);
-  border: 2px dashed rgba(255, 255, 255, 0.3);
-  border-radius: 16px;
-  padding: 2px;
-  box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-`;
-
-export const TilesGrid = styled.div`
+/**
+ * Grid container with fixed height and responsive layout
+ */
+export const GridContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 2px;
-  min-height: 600px;
+  width: 100%;
+  height: 600px;
+  gap: 0;
+  border: 1px dotted rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+  overflow: hidden;
 
-  @media (max-width: 1024px) {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto;
-    min-height: auto;
-  }
+  /* Desktop Layout */
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 0.5fr 0.5fr;
+  grid-template-areas:
+    'A B C D'
+    'E F F F'
+    'E G G G';
 
-  @media (max-width: 640px) {
-    grid-template-columns: 1fr;
-    min-height: auto;
+  /* Mobile Layout */
+  @media (max-width: 768px) {
+    height: 800px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 3fr 1fr 1fr 1fr;
+    grid-template-areas:
+      'A E'
+      'F B'
+      'F C'
+      'F D'
+      'G G';
   }
 `;
 
-export const Tile = styled(motion.div)<{
-  $hasImage: boolean;
+/**
+ * Individual grid cell with selective borders and background image support
+ */
+export const GridCell = styled.div<{
+  $gridArea: string;
+  $hasBackgroundImage?: boolean;
   $backgroundImage?: string;
-  $position?: string;
 }>`
+  grid-area: ${props => props.$gridArea};
   position: relative;
-  background: ${props =>
-    props.$hasImage && props.$backgroundImage
-      ? `url(${props.$backgroundImage})`
-      : 'rgba(255, 255, 255, 0.03)'};
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   padding: var(--spacing-lg);
   display: flex;
   flex-direction: column;
-  justify-content: ${props => (props.$hasImage ? 'flex-end' : 'flex-start')};
+  justify-content: center;
   align-items: flex-start;
-  text-align: left;
-  overflow: hidden;
-  border: 2px dashed rgba(255, 255, 255, 0.2);
-  font-family:
-    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  color: var(--color-text);
+  font-family: var(--font-primary);
+  background-color: rgba(0, 0, 0, 0.3);
 
-  /* Apply grayscale filter to images */
+  /* Background image with overlay */
   ${props =>
-    props.$hasImage &&
+    props.$hasBackgroundImage &&
+    props.$backgroundImage &&
     `
+    background-image: url(${props.$backgroundImage});
+    background-size: cover;
+    // background-position: center;
+    background-position: ${props.$gridArea === 'A' ? 'center bottom' : 'center center'};
     filter: grayscale(100%);
-  `}
-
-  /* Round corners for corner tiles */
-  ${props => {
-    switch (props.$position) {
-      case 'row1-col1':
-        return 'border-top-left-radius: 14px;';
-      case 'row1-col4':
-        return 'border-top-right-radius: 14px;';
-      case 'row2-col1':
-        return 'border-bottom-left-radius: 14px;';
-      case 'row2-col2-bottom':
-        return 'border-bottom-right-radius: 14px;';
-      default:
-        return '';
-    }
-  }}
-  
-  /* Specific grid positioning based on layout */
-  ${props => {
-    switch (props.$position) {
-      case 'row1-col1':
-        return 'grid-column: 1; grid-row: 1;';
-      case 'row1-col2':
-        return 'grid-column: 2; grid-row: 1;';
-      case 'row1-col3':
-        return 'grid-column: 3; grid-row: 1;';
-      case 'row1-col4':
-        return 'grid-column: 4; grid-row: 1;';
-      case 'row2-col1':
-        return 'grid-column: 1; grid-row: 2;';
-      case 'row2-col2-top':
-        return 'grid-column: 2 / 5; grid-row: 2; display: grid; grid-template-rows: 1fr 1fr; gap: 2px;';
-      case 'row2-col2-bottom':
-        return 'grid-column: 2 / 5; grid-row: 2;';
-      default:
-        return '';
-    }
-  }}
-  
-  /* Dark overlay for image tiles */
-  ${props =>
-    props.$hasImage &&
-    `
+    
     &::before {
       content: '';
       position: absolute;
@@ -204,81 +170,183 @@ export const Tile = styled(motion.div)<{
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(transparent 50%, rgba(0, 0, 0, 0.7));
+      background: rgba(0, 0, 0, 0.5);
       z-index: 1;
     }
+    
+    > * {
+      position: relative;
+      z-index: 2;
+    }
   `}
+
+  /* Selective borders - only between adjacent cells */
   
-  /* Content above overlay */
-  > * {
-    position: relative;
-    z-index: 2;
+  /* Desktop borders and alignment */
+  @media (min-width: 769px) {
+    /* Right borders for A, B, C */
+    ${props =>
+      ['A', 'B', 'C'].includes(props.$gridArea) &&
+      `
+      border-right: 1px dotted rgba(255, 255, 255, 0.7);
+    `}
+
+    /* Bottom borders for A, B, C, D */
+    ${props =>
+      ['A', 'B', 'C', 'D'].includes(props.$gridArea) &&
+      `
+      border-bottom: 1px dotted rgba(255, 255, 255, 0.7);
+    `}
+    
+    /* Right border for E */
+    ${props =>
+      props.$gridArea === 'E' &&
+      `
+      border-right: 1px dotted rgba(255, 255, 255, 0.7);
+    `}
+    
+    /* Bottom border for F */
+    ${props =>
+      props.$gridArea === 'F' &&
+      `
+      border-bottom: 1px dotted rgba(255, 255, 255, 0.7);
+    `}
+
+    /* Desktop text alignment */
+    /* A: Top Left */
+    ${props =>
+      props.$gridArea === 'A' &&
+      `
+      justify-content: flex-start;
+      align-items: flex-start;
+    `}
+
+    /* B: Top Center */
+    ${props =>
+      props.$gridArea === 'B' &&
+      `
+      justify-content: flex-start;
+      align-items: flex-start;
+    `}
+
+    /* C: Top Center */
+    ${props =>
+      props.$gridArea === 'C' &&
+      `
+      justify-content: flex-start;
+      align-items: flex-start;
+    `}
+
+    /* D: Top Right */
+    ${props =>
+      props.$gridArea === 'D' &&
+      `
+      justify-content: flex-start;
+      align-items: flex-start;
+    `}
+
+    /* E: Bottom Left */
+    ${props =>
+      props.$gridArea === 'E' &&
+      `
+      justify-content: flex-end;
+      align-items: flex-start;
+    `}
+
+    /* F: Top Left */
+    ${props =>
+      props.$gridArea === 'F' &&
+      `
+      justify-content: flex-start;
+      align-items: flex-start;
+    `}
+
+    /* G: Bottom Left */
+    ${props =>
+      props.$gridArea === 'G' &&
+      `
+      justify-content: flex-end;
+      align-items: flex-start;
+    `}
   }
 
-  @media (max-width: 1024px) {
-    grid-column: auto !important;
-    grid-row: auto !important;
-    display: flex !important;
-    grid-template-rows: none !important;
-    border-radius: 8px !important;
+  /* Mobile borders */
+  @media (max-width: 768px) {
+    /* Right border for A */
+    ${props =>
+      props.$gridArea === 'A' &&
+      `
+      border-right: 1px dotted rgba(255, 255, 255, 0.7);
+    `}
+
+    /* Bottom borders for A, E, F */
+    ${props =>
+      ['A', 'E', 'F'].includes(props.$gridArea) &&
+      `
+      border-bottom: 1px dotted rgba(255, 255, 255, 0.7);
+    `}
+    
+    /* Right borders for F (spanning multiple rows) */
+    ${props =>
+      props.$gridArea === 'F' &&
+      `
+      border-right: 1px dotted rgba(255, 255, 255, 0.7);
+    `}
+    
+    /* Bottom borders for B, C */
+    ${props =>
+      ['B', 'C'].includes(props.$gridArea) &&
+      `
+      border-bottom: 1px dotted rgba(255, 255, 255, 0.7);
+    `}
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 768px) {
     padding: var(--spacing-md);
-    min-height: 120px;
   }
 `;
 
-export const WideColumnContainer = styled.div`
-  grid-column: 2 / 5;
-  grid-row: 2;
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  gap: 2px;
-
-  @media (max-width: 1024px) {
-    grid-column: auto;
-    grid-row: auto;
-    display: block;
-  }
-`;
-
-export const TileValue = styled.div`
-  font-size: 4rem;
-  font-weight: 800;
-  color: #ffffff;
-  margin-bottom: var(--spacing-xs);
+/**
+ * Large percentage value display
+ */
+export const CellValue = styled.div`
+  font-size: var(--font-size-5xl);
+  font-weight: 900;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-sm);
   line-height: 1;
 
   @media (max-width: 768px) {
-    font-size: 3rem;
-  }
-
-  @media (max-width: 640px) {
-    font-size: 2.5rem;
+    font-size: var(--font-size-4xl);
   }
 `;
 
-export const TileTitle = styled.h3`
-  font-size: var(--font-size-lg);
+/**
+ * Bold title text
+ */
+export const CellTitle = styled.h3`
+  font-size: var(--font-size-xl);
   font-weight: 700;
-  color: #ffffff;
-  margin-bottom: var(--spacing-xs);
+  color: var(--color-text);
+  margin-bottom: var(--spacing-sm);
   line-height: 1.2;
 
   @media (max-width: 768px) {
-    font-size: var(--font-size-md);
+    font-size: var(--font-size-lg);
   }
 `;
 
-export const TileDescription = styled.p`
-  font-size: var(--font-size-sm);
-  color: rgba(255, 255, 255, 0.8);
+/**
+ * Description text
+ */
+export const CellDescription = styled.p`
+  font-size: var(--font-size-md);
+  color: var(--color-text);
+  opacity: 0.9;
   line-height: 1.4;
-  font-weight: 400;
   margin: 0;
 
   @media (max-width: 768px) {
-    font-size: var(--font-size-xs);
+    font-size: var(--font-size-sm);
   }
 `;

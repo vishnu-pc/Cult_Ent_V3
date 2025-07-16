@@ -131,7 +131,7 @@ ComponentName/
 └── ComponentName.tsx           # Single file with inline styled-components
 ```
 
-**Examples**: Footer, Hashtag, ProvenImpact, Layout
+**Examples**: Footer, Hashtag, Layout
 
 #### **Tier 2: Medium Components (3-4 files)**
 
@@ -160,7 +160,7 @@ ComponentName/
 └── constants.ts               # Component-specific constants
 ```
 
-**Examples**: WellnessSolutions, NumbersDontLie, WhyChooseCult, OurImpact
+**Examples**: WellnessSolutions, NumbersDontLie, WhyChooseCult, OurImpact, ProvenImpact
 
 ### Key Architectural Principles
 

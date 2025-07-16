@@ -1,65 +1,75 @@
-import type { TileData } from './NumbersDontLie.types';
-import Wellness1 from '../../assets/images/Wellness/Wellness-1.jpg';
-import Wellness2 from '../../assets/images/Wellness/Wellness-2.jpeg';
+import type { TableCellData } from './NumbersDontLie.types';
+import Wellness1 from '../../assets/images/Wellness/Numbers-1.png';
+import Wellness2 from '../../assets/images/Wellness/Numbers-2.jpg';
 
-export const tilesData: TileData[] = [
-  // Row 1, Column 1 - with image
+/**
+ * Grid data structure for the NumbersDontLie component.
+ * Uses CSS Grid with named areas for precise layout control.
+ *
+ * Desktop Layout (4 columns, 3 rows: 1fr, 0.5fr, 0.5fr):
+ * grid-template-areas:
+ *   "A B C D"
+ *   "E F F F"
+ *   "E G G G"
+ *
+ * Mobile Layout (2 columns, 5 rows: 1fr, 3fr, 1fr, 1fr, 1fr):
+ * grid-template-areas:
+ *   "A E"
+ *   "F B"
+ *   "F C"
+ *   "F D"
+ *   "G G"
+ */
+export const tableData: readonly TableCellData[] = [
+  // Grid Area A - Cell 1: 70% with background image
   {
     id: 1,
     value: '70%',
     description: 'increase in employee engagement',
     backgroundImage: Wellness1,
-    hasImage: true,
-    position: 'row1-col1',
+    gridArea: 'A',
   },
-  // Row 1, Column 2
+  // Grid Area B - Cell 2: Significant reduction
   {
     id: 2,
     title: 'Significant reduction',
     description: 'in absenteeism rates',
-    hasImage: false,
-    position: 'row1-col2',
+    gridArea: 'B',
   },
-  // Row 1, Column 3
+  // Grid Area C - Cell 3: Complete User Privacy
   {
     id: 3,
     title: 'Complete User Privacy',
     description: 'your data stays yours',
-    hasImage: false,
-    position: 'row1-col3',
+    gridArea: 'C',
   },
-  // Row 1, Column 4
+  // Grid Area D - Cell 4: Exclusive Corporate Dashboard
   {
     id: 4,
     title: 'Exclusive Corporate Dashboard',
     description: 'to track and monitor program performance',
-    hasImage: false,
-    position: 'row1-col4',
+    gridArea: 'D',
   },
-  // Row 2, Column 1
+  // Grid Area E - Cell 5: 40% (spans vertically on desktop)
   {
     id: 5,
     value: '40%',
     description: 'increase in employee productivity',
-    backgroundImage: Wellness2,
-    hasImage: true,
+    gridArea: 'E',
   },
-  // Row 2, Columns 2-4 (wide) - Top row with image
+  // Grid Area F - Cell 6: 100% Customized Programs with background image
   {
     id: 6,
     title: '100% Customized Programs',
     description: 'tailored to your company culture',
-    backgroundImage:
-      'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&h=200&fit=crop&auto=format',
-    hasImage: true,
-    position: 'row2-col2-top',
+    backgroundImage: Wellness2,
+    gridArea: 'F',
   },
-  // Row 2, Columns 2-4 (wide) - Bottom row
+  // Grid Area G - Cell 7: ISO 9001 & 45001
   {
     id: 7,
     title: 'ISO 9001 & 45001',
     description: 'certified wellness solutions you can trust',
-    hasImage: false,
-    position: 'row2-col2-bottom',
+    gridArea: 'G',
   },
-];
+] as const;

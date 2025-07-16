@@ -124,7 +124,7 @@ ComponentName/
 └── ComponentName.tsx           # Single file with inline styles (styled-components)
 ```
 
-**Examples**: Footer, Hashtag, ProvenImpact, Layout
+**Examples**: Footer, Hashtag, Layout
 
 #### **Tier 2: Medium Components (3-4 files)**
 
@@ -153,7 +153,7 @@ ComponentName/
 └── constants.ts               # Component data/constants
 ```
 
-**Examples**: WellnessSolutions, NumbersDontLie, WhyChooseCult, OurImpact
+**Examples**: WellnessSolutions, NumbersDontLie, WhyChooseCult, OurImpact, ProvenImpact
 
 **Enforcement**:
 
