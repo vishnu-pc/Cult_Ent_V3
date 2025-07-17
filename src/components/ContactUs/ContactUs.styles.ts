@@ -64,7 +64,7 @@ export const ImageSection = styled.div`
 export const JumpingGirlImage = styled(motion.img)`
   width: 100%;
   height: auto;
-  max-height: 90vh;
+  max-height: 120vh;
   min-height: 1000px;
   object-fit: contain;
 
@@ -107,10 +107,13 @@ export const MainHeadline = styled.h1`
 
 export const CutToTheText = styled.span`
   color: var(--color-text);
+  font-weight: 700;
 `;
 
 export const ChaseText = styled.span`
-  background: linear-gradient(90deg, #b96aff 0%, #fa7e29 100%);
+  background: linear-gradient(90deg, #40b9eb 0%, #ff3278 100%);
+  background-size: 120% 120%;
+  font-weight: 700;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -185,7 +188,7 @@ export const Select = styled.select`
   background: transparent;
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: var(--border-radius-md);
-  color: var(--color-text);
+  color: rgba(255, 255, 255, 0.6);
   font-size: var(--font-size-md);
   font-family: var(--font-primary);
   outline: none;

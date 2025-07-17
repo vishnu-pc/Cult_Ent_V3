@@ -14,7 +14,7 @@ export const DEFAULT_VIDEOS: VideoData[] = [
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna.',
     thumbnail: Wellness1,
-    videoUrl: 'https://example.com/video1.mp4',
+    videoUrl: 'https://www.youtube.com/embed/0HX4fNVqLC0',
   },
   {
     id: 2,

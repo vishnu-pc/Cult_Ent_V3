@@ -46,9 +46,9 @@ export const HashtagText = styled.h1`
   font-size: var(--font-size-2xl);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.17em;
   margin-bottom: var(--spacing-sm);
-  background: linear-gradient(90deg, #ff0000 0%, #ff8800 50%, #ffff00 100%);
+  background: linear-gradient(90deg, #ff3278 -17.4%, #ffdb17 71.96%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -199,7 +199,8 @@ export const StatValue = styled.div<{ $color: 'pink' | 'gradient' }>`
   font-weight: 800;
   line-height: 1;
   margin-bottom: var(--spacing-sm);
-  background: linear-gradient(90deg, #ff1493 0%, #ff8c00 100%);
+  background: linear-gradient(84.15deg, #ff3278 22.2%, #fdd914 70.63%);
+  background-size: 250% 250%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -212,7 +213,8 @@ export const StatValue = styled.div<{ $color: 'pink' | 'gradient' }>`
 export const StatLabel = styled.div<{ $color: 'pink' | 'gradient' }>`
   font-size: var(--font-size-lg);
   font-weight: 600;
-  background: linear-gradient(90deg, #ff1493 0%, #ff8c00 100%);
+  background: #ffffffff;
+  background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

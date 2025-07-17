@@ -10,16 +10,16 @@ export const SectionContainer = styled.section`
     linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0.4) 30%,
-      rgba(0, 0, 0, 0.7) 50%,
+      rgba(0, 0, 0, 0.4) 10%,
+      rgba(0, 0, 0, 0.7) 30%,
       #000000 65%,
       #000000 100%
     ),
     linear-gradient(
       to right,
       rgba(255, 221, 0, 0.6) 0%,
-      /* yellow */ rgba(0, 255, 102, 0.4) 35%,
-      /* green */ rgba(0, 102, 255, 0.4) 70% /* blue */
+      /* yellow */ rgba(0, 255, 102, 0.4) 25%,
+      /* green */ rgba(0, 102, 255, 0.4) 50% /* blue */
     );
   padding: var(--spacing-3xl) var(--spacing-xl);
   display: flex;
@@ -40,13 +40,14 @@ export const ContentWrapper = styled.div`
 export const HeaderSection = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   margin-bottom: var(--spacing-3xl);
   gap: var(--spacing-2xl);
 
   @media (max-width: 768px) {
     flex-direction: column;
     gap: var(--spacing-xl);
+    align-items: flex-start;
   }
 `;
 
@@ -98,7 +99,8 @@ export const DescriptionSection = styled.div`
 `;
 
 export const Description = styled.p`
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-2xl);
+  font-weight: 400;
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.6;
   max-width: 400px;

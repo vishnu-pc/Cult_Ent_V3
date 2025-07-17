@@ -218,12 +218,15 @@ export const CultLayersContainer = styled.div`
 export const CultLayer = styled.span<{ $opacity: number; $zIndex: number }>`
   position: absolute;
   top: ${props =>
-    props.$zIndex === 1 ? '-110px' : props.$zIndex === 2 ? '-90px' : '-70px'};
+    props.$zIndex === 1 ? '-130px' : props.$zIndex === 2 ? '-100px' : '-70px'};
   left: 0;
   font-size: var(--font-size-6xl);
   font-weight: 800;
   text-transform: uppercase;
-  background: linear-gradient(90deg, #ff8c00 0%, #ffd700 100%);
+  background: ${props =>
+    props.$zIndex === 3
+      ? '#ff8c00'
+      : 'linear-gradient(0deg, #000000 0%, #000000 40%, #ff8c00 60%, #ff8c00 100%)'};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -284,7 +287,6 @@ export const RightContent = styled.div`
   text-align: left;
   display: flex;
   align-items: center;
-  margin-top: 150px;
 
   @media (max-width: 768px) {
     flex: none;

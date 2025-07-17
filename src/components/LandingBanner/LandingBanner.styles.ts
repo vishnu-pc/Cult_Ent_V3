@@ -141,7 +141,8 @@ export const ContentContainer = styled.div`
 export const Title = styled.h1`
   font-size: var(--font-size-xxl);
   margin-bottom: var(--spacing-lg);
-  font-family: 'Inter';
+  // font-family: 'Inter';
+  font-family: 'Arial', 'Helvetica', sans-serif;
   font-weight: 900;
   color: transparent; /* Makes text transparent */
   -webkit-text-stroke: 1.5px var(--color-text); /* Creates white outline */
@@ -167,8 +168,8 @@ export const Title = styled.h1`
  * - -webkit-text-stroke: 0: Removes outline when gradient is active
  */
 export const HighlightedWord = styled.span<{ isScrolled: boolean }>`
-  /* font-family: 'Arial', 'Helvetica', sans-serif; */
-  font-family: 'Inter';
+  font-family: 'Arial', 'Helvetica', sans-serif;
+  // font-family: 'Inter';
   font-weight: 900;
   cursor: pointer;
 

@@ -18,8 +18,8 @@ const ExpandableTiles: React.FC<ExpandableTilesProps> = ({ tiles }) => {
   };
 
   const handleTileLeave = () => {
-    // Keep the first tile expanded by default when not hovering
-    setExpandedId(tiles[0]?.id || 1);
+    // Keep the last hovered tile expanded (do nothing - maintain current state)
+    // The expandedId will remain as the last tile that was hovered
   };
 
   return (

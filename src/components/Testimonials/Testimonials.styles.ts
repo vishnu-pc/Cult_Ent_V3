@@ -2,27 +2,31 @@ import styled, { keyframes } from 'styled-components';
 import { motion } from 'framer-motion';
 
 // Floating animations with different patterns
+// Warner Brothers - Animation ID: 1
 const float1 = keyframes`
   0%, 100% { transform: translateY(0px) translateX(0px); }
-  25% { transform: translateY(-15px) translateX(5px); }
-  50% { transform: translateY(-5px) translateX(-8px); }
-  75% { transform: translateY(-20px) translateX(3px); }
+  25% { transform: translateY(-11.25px) translateX(3.75px); }
+  50% { transform: translateY(-3.75px) translateX(-6px); }
+  75% { transform: translateY(-15px) translateX(2.25px); }
 `;
 
+// Meesho - Animation ID: 2
 const float2 = keyframes`
   0%, 100% { transform: translateY(0px) translateX(0px); }
-  20% { transform: translateY(12px) translateX(-6px); }
-  40% { transform: translateY(-8px) translateX(4px); }
-  60% { transform: translateY(18px) translateX(-3px); }
-  80% { transform: translateY(-12px) translateX(7px); }
+  20% { transform: translateY(9px) translateX(-4.5px); }
+  40% { transform: translateY(-6px) translateX(3px); }
+  60% { transform: translateY(13.5px) translateX(-2.25px); }
+  80% { transform: translateY(-9px) translateX(5.25px); }
 `;
 
+// Google - Animation ID: 3
 const float3 = keyframes`
   0%, 100% { transform: translateY(0px) translateX(0px); }
   33% { transform: translateY(-18px) translateX(-4px); }
   66% { transform: translateY(10px) translateX(6px); }
 `;
 
+// Amazon - Animation ID: 4
 const float4 = keyframes`
   0%, 100% { transform: translateY(0px) translateX(0px); }
   30% { transform: translateY(15px) translateX(8px); }
@@ -60,7 +64,7 @@ export const ContentWrapper = styled.div`
 export const TestimonialCard = styled(motion.div)<{ $animationType: number }>`
   z-index: 13;
   position: absolute;
-  width: 380px;
+  width: 480px;
   padding: 1rem;
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(20px);
@@ -160,7 +164,6 @@ export const CompanyLogo = styled.div`
 
 export const CentralTextSection = styled.div`
   position: relative;
-  margin-left: -7vw;
   z-index: 10;
   text-align: center;
   display: flex;
