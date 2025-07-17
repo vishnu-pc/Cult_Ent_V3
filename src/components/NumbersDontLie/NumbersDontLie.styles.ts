@@ -4,24 +4,10 @@ import styled from 'styled-components';
  * Main section container with animated gradient background
  */
 export const SectionContainer = styled.section`
-  background: var(--gradient-animated-subtle);
-  background-size: 400% 400%;
   animation: gradientShift 8s ease infinite;
   padding: var(--spacing-3xl) 0;
   position: relative;
   overflow: hidden;
-
-  @keyframes gradientShift {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
 `;
 
 /**

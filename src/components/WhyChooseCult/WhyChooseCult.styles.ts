@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 export const ResultsSection = styled.div`
   padding: var(--spacing-xl) 0;
   text-align: center;
-  background-color: var(--color-primary);
+  /* Background removed - inherited from CombinedWellnessSection */
   color: var(--color-text-light);
 `;
 
@@ -26,7 +26,7 @@ export const SectionContainer = styled.section`
   width: 100%;
   display: flex;
   flex-direction: column;
-  background-color: var(--color-background);
+  /* Background removed - inherited from CombinedWellnessSection */
   padding: var(--spacing-2xl) 0;
   overflow: hidden;
 `;
@@ -137,12 +137,16 @@ export const ReasonDescription = styled(motion.p)`
   }
 `;
 
-// New Cult Advantage Section Styles
+export const WhyCultContainer = styled.div`
+  // background-color: red;
+  // height: 100vh;
+`;
+
 export const CultAdvantageSection = styled.section`
   margin-left: 80px;
   min-height: 60vh;
   width: 100%;
-  background-color: var(--color-background);
+  /* Background removed - inherited from CombinedWellnessSection */
   display: flex;
   align-items: center;
   justify-content: center;

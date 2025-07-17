@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import { WellnessSolutionsDivider } from '../ui/GradientDivider';
 
 import type { WellnessSolutionsProps } from './WellnessSolutions.types';
 import { solutions } from './constants';
@@ -62,85 +61,82 @@ const WellnessSolutions: React.FC<WellnessSolutionsProps> = () => {
     solutions[0];
 
   return (
-    <>
-      <WellnessSolutionsDivider />
-      <SectionContainer id='wellness-solutions'>
-        {/* Large background "05" element positioned behind the image container */}
-        <BackgroundNumber>05</BackgroundNumber>
+    <SectionContainer id='wellness-solutions'>
+      {/* Large background "05" element positioned behind the image container */}
+      <BackgroundNumber>05</BackgroundNumber>
 
-        {/* The left side of the section, displaying overlay text and the image */}
-        <ImageContainer>
-          {/* Overlay text container with "WELLNESS SOLUTIONS" and "05 WAYS" */}
-          <OverlayTextContainer>
-            <OverlayTitle>Wellness Solutions</OverlayTitle>
-            <OverlaySubtitle>05 WAYS</OverlaySubtitle>
-          </OverlayTextContainer>
+      {/* The left side of the section, displaying overlay text and the image */}
+      <ImageContainer>
+        {/* Overlay text container with "WELLNESS SOLUTIONS" and "05 WAYS" */}
+        <OverlayTextContainer>
+          <OverlayTitle>Wellness Solutions</OverlayTitle>
+          <OverlaySubtitle>05 WAYS</OverlaySubtitle>
+        </OverlayTextContainer>
 
-          {/* The image display area */}
-          <ImageDisplayContainer>
-            {/* AnimatePresence is used to gracefully animate the exit and entry of the image */}
-            <AnimatePresence mode='wait'>
-              <StyledImage
-                key={displaySolution.id} // The key is crucial for AnimatePresence to detect changes
-                $imageUrl={displaySolution.imageUrl}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
-              />
-            </AnimatePresence>
-          </ImageDisplayContainer>
-        </ImageContainer>
+        {/* The image display area */}
+        <ImageDisplayContainer>
+          {/* AnimatePresence is used to gracefully animate the exit and entry of the image */}
+          <AnimatePresence mode='wait'>
+            <StyledImage
+              key={displaySolution.id} // The key is crucial for AnimatePresence to detect changes
+              $imageUrl={displaySolution.imageUrl}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+            />
+          </AnimatePresence>
+        </ImageDisplayContainer>
+      </ImageContainer>
 
-        {/* The right side of the section, displaying the title and the list of solutions */}
-        <ContentContainer>
-          <SectionTitle>
-            We're crushing the corporate wellness game in India.
-          </SectionTitle>
-          <OptionsContainer>
-            {/* Maps over the solutions array to render each solution as a hoverable option */}
-            {solutions.map(solution => {
-              // Description is only visible when actively hovering over this specific option
-              const showDescription = hoveredOption === solution.id;
+      {/* The right side of the section, displaying the title and the list of solutions */}
+      <ContentContainer>
+        <SectionTitle>
+          We're crushing the corporate wellness game in India.
+        </SectionTitle>
+        <OptionsContainer>
+          {/* Maps over the solutions array to render each solution as a hoverable option */}
+          {solutions.map(solution => {
+            // Description is only visible when actively hovering over this specific option
+            const showDescription = hoveredOption === solution.id;
 
-              return (
-                <OptionItem
-                  key={solution.id}
-                  $backgroundGradient={solution.backgroundGradient}
-                  $borderGradient={solution.borderGradient}
-                  onMouseEnter={() => handleMouseEnter(solution.id)}
-                  onMouseLeave={handleMouseLeave}
-                  // whileHover={{ x: 5 }} // A subtle hover animation for better UX (disabled for now)
-                >
-                  <OptionHeader>
-                    {!showDescription && (
-                      <OptionNumber>#{solution.id}</OptionNumber>
-                    )}
-                    <OptionTitle $hasDescription={showDescription}>
-                      {solution.title}
-                    </OptionTitle>
-                  </OptionHeader>
+            return (
+              <OptionItem
+                key={solution.id}
+                $backgroundGradient={solution.backgroundGradient}
+                $borderGradient={solution.borderGradient}
+                onMouseEnter={() => handleMouseEnter(solution.id)}
+                onMouseLeave={handleMouseLeave}
+                // whileHover={{ x: 5 }} // A subtle hover animation for better UX (disabled for now)
+              >
+                <OptionHeader>
+                  {!showDescription && (
+                    <OptionNumber>#{solution.id}</OptionNumber>
+                  )}
+                  <OptionTitle $hasDescription={showDescription}>
+                    {solution.title}
+                  </OptionTitle>
+                </OptionHeader>
 
-                  {/* AnimatePresence manages the mounting and unmounting of the description */}
-                  <AnimatePresence>
-                    {showDescription && (
-                      <OptionDescription
-                        initial={{ opacity: 0, height: 0 }} // Starts invisible and with no height
-                        animate={{ opacity: 1, height: 'auto' }} // Fades in and expands height
-                        exit={{ opacity: 0, height: 0 }} // Fades out and collapses height
-                        transition={{ duration: 0.3 }}
-                      >
-                        {solution.description}
-                      </OptionDescription>
-                    )}
-                  </AnimatePresence>
-                </OptionItem>
-              );
-            })}
-          </OptionsContainer>
-        </ContentContainer>
-      </SectionContainer>
-    </>
+                {/* AnimatePresence manages the mounting and unmounting of the description */}
+                <AnimatePresence>
+                  {showDescription && (
+                    <OptionDescription
+                      initial={{ opacity: 0, height: 0 }} // Starts invisible and with no height
+                      animate={{ opacity: 1, height: 'auto' }} // Fades in and expands height
+                      exit={{ opacity: 0, height: 0 }} // Fades out and collapses height
+                      transition={{ duration: 0.3 }}
+                    >
+                      {solution.description}
+                    </OptionDescription>
+                  )}
+                </AnimatePresence>
+              </OptionItem>
+            );
+          })}
+        </OptionsContainer>
+      </ContentContainer>
+    </SectionContainer>
   );
 };
 

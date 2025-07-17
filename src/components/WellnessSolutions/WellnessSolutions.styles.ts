@@ -9,23 +9,9 @@ export const SectionContainer = styled.section`
   height: 110vh;
   width: 100%;
   display: flex;
-  background: var(--gradient-animated-very-subtle);
-  background-size: 400% 400%;
-  animation: gradientShift 8s ease infinite;
+  /* Background removed - inherited from CombinedWellnessSection */
   overflow: hidden;
   position: relative;
-
-  @keyframes gradientShift {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
 
   @media (max-width: 768px) {
     flex-direction: column;
