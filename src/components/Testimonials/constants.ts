@@ -20,7 +20,7 @@ export const testimonialsData: TestimonialData[] = [
     message:
       "Since offering Cult gym benefits, we've seen a noticeable boost in employee morale and overall wellness.",
     position: {
-      top: '115%',
+      top: '105%',
       right: '2%',
     },
     animationDelay: 2,
@@ -44,7 +44,7 @@ export const testimonialsData: TestimonialData[] = [
     message:
       'An engaging way to keep employees active and motivated. The program has exceeded our expectations in terms of participation.',
     position: {
-      bottom: '120%',
+      bottom: '110%',
       right: '2%',
     },
     animationDelay: 6,

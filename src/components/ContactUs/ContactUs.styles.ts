@@ -1,5 +1,21 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { motion } from 'framer-motion';
+
+/**
+ * GRADIENT ANIMATION for Submit Button
+ * Creates a continuous left-to-right-to-left movement
+ */
+export const gradientAnimation = keyframes`
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+`;
 
 export const SectionContainer = styled.section`
   min-height: 100vh;
@@ -257,38 +273,102 @@ export const RecaptchaText = styled.span`
 
 export const SubmitButton = styled(motion.button)`
   width: 100%;
-  padding: var(--spacing-lg) var(--spacing-xl);
-  background-color: var(--color-text);
-  color: #ff3c3c;
+
+  /* Button Dimensions */
+  padding: 16px 48px;
+  border-radius: 12px;
   border: none;
-  border-radius: 50px;
-  font-size: var(--font-size-lg);
-  font-weight: 700;
-  font-family: var(--font-primary);
   cursor: pointer;
+
+  /* Typography */
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-pink);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  transition: all var(--transition-normal);
+  letter-spacing: 1px;
+  font-family: var(--font-primary);
 
+  /* Default State - White background with pink text */
+  background: white;
+
+  /* Shadow Effects */
+  box-shadow:
+    0 4px 16px rgba(237, 58, 121, 0.2),
+    0 2px 8px rgba(0, 0, 0, 0.1);
+
+  /* Smooth Transitions */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Hover State - Gradient background with white text */
   &:hover {
-    background-color: #ff3c3c;
-    color: var(--color-text);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(255, 60, 60, 0.3);
+    transform: scale(1.05);
+    color: white;
+    background: linear-gradient(
+      135deg,
+      var(--color-pink) 0%,
+      var(--color-blue) 50%,
+      var(--color-yellow) 100%
+    );
+    background-size: 200% 200%;
+    animation: ${gradientAnimation} 8s ease infinite;
+    border-color: transparent;
+    box-shadow:
+      0 12px 48px rgba(237, 58, 121, 0.4),
+      0 8px 24px rgba(0, 180, 255, 0.3),
+      inset 0 2px 4px rgba(255, 255, 255, 0.2);
   }
 
+  /* Active State - Gradient background with white text */
   &:active {
-    transform: translateY(0);
+    transform: scale(1.02);
+    color: white;
+    background: linear-gradient(
+      135deg,
+      var(--color-pink) 0%,
+      var(--color-blue) 50%,
+      var(--color-yellow) 100%
+    );
+    background-size: 200% 200%;
+    animation: ${gradientAnimation} 8s ease infinite;
+    border-color: transparent;
   }
 
+  /* Focus State for Accessibility */
+  &:focus {
+    outline: none;
+    box-shadow:
+      0 4px 16px rgba(237, 58, 121, 0.2),
+      0 2px 8px rgba(0, 0, 0, 0.1),
+      0 0 0 3px rgba(237, 58, 121, 0.3);
+  }
+
+  /* Disabled State */
   &:disabled {
     background-color: rgba(255, 255, 255, 0.3);
     color: rgba(255, 255, 255, 0.5);
     cursor: not-allowed;
+    transform: none;
 
     &:hover {
       transform: none;
-      box-shadow: none;
+      box-shadow:
+        0 4px 16px rgba(237, 58, 121, 0.2),
+        0 2px 8px rgba(0, 0, 0, 0.1);
+      animation: none;
+      background: rgba(255, 255, 255, 0.3);
+      color: rgba(255, 255, 255, 0.5);
     }
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    padding: 14px 36px;
+    font-size: 16px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 12px 28px;
+    font-size: 14px;
+    letter-spacing: 0.5px;
   }
 `;

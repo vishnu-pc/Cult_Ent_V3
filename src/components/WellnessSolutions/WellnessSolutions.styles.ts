@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
  * Uses the animated gradient background and implements a 35/65 split layout.
  */
 export const SectionContainer = styled.section`
-  height: 110vh;
+  height: 100vh;
   width: 100%;
   display: flex;
   /* Background removed - inherited from CombinedWellnessSection */

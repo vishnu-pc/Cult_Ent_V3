@@ -68,20 +68,20 @@ const Navigation: React.FC<NavigationProps> = () => {
         >
           SOLUTIONS
         </NavLink>
+        <NavLink to='#our-impact' onClick={handleNavClick('our-impact')}>
+          IMPACT
+        </NavLink>
         <NavLink
           to='#why-choose-cult'
           onClick={handleNavClick('why-choose-cult')}
         >
-          WHY CULT
-        </NavLink>
-        <NavLink to='#contact-us' onClick={handleNavClick('contact-us')}>
-          CONTACT
-        </NavLink>
-        <NavLink to='#our-impact' onClick={handleNavClick('our-impact')}>
-          IMPACT
+          BENIFITS
         </NavLink>
         <NavLink to='#testimonials' onClick={handleNavClick('testimonials')}>
-          Testimonials
+          INSIGHTS
+        </NavLink>
+        <NavLink to='#contact-us' onClick={handleNavClick('contact-us')}>
+          CONTACT US
         </NavLink>
         <LoginButton>LOGIN / SIGN UP</LoginButton>
       </NavLinks>

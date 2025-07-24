@@ -100,6 +100,7 @@ export const NavLink = styled(Link)`
   color: var(--color-text); /* Default text color - tune for link color */
   text-decoration: none; /* Removes underline from links */
   font-size: var(--font-size-md); /* Text size - tune for desktop font size */
+  font-weight: 500;
   transition: color var(--transition-fast); /* Color change animation speed - tune for hover transition */
   text-transform: uppercase; /* Makes text uppercase - remove this line to use normal case */
   position: relative; /* Required for absolute positioning of underline */

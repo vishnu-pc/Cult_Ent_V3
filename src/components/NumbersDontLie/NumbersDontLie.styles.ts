@@ -4,6 +4,9 @@ import styled from 'styled-components';
  * Main section container with animated gradient background
  */
 export const SectionContainer = styled.section`
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
   animation: gradientShift 8s ease infinite;
   padding: var(--spacing-3xl) 0;
   position: relative;
@@ -15,8 +18,10 @@ export const SectionContainer = styled.section`
  */
 export const ContentWrapper = styled.div`
   max-width: 80vw;
+  width: 100%;
   margin: 0 auto;
   padding: 0 var(--spacing-xl);
+  box-sizing: border-box;
 
   @media (max-width: 768px) {
     padding: 0 var(--spacing-lg);

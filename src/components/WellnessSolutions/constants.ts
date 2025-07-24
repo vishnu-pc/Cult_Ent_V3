@@ -1,10 +1,10 @@
 import type { Solution } from './WellnessSolutions.types';
 
-import Wellness1 from '../../assets/images/Wellness/Wellness-1.jpg';
-import Wellness2 from '../../assets/images/Wellness/Wellness-2.jpeg';
-import Wellness3 from '../../assets/images/Wellness/Wellness-3.avif';
-import Wellness4 from '../../assets/images/Wellness/Wellness-4.avif';
-import Wellness5 from '../../assets/images/Wellness/Wellness-5.avif';
+import Wellness1 from '../../assets/images/Wellness/Wellness-1.png';
+import Wellness2 from '../../assets/images/Wellness/Wellness-2.png';
+import Wellness3 from '../../assets/images/Wellness/Wellness-3.png';
+import Wellness4 from '../../assets/images/Wellness/Wellness-4.png';
+import Wellness5 from '../../assets/images/Wellness/Wellness-5.png';
 
 /**
  * An array of wellness solution objects used to populate the component.

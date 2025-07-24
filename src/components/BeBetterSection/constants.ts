@@ -24,10 +24,10 @@ export const STATS_DATA: StatData[] = [
 ];
 
 export const FOOTER_LINKS: FooterLinkData[] = [
-  {
-    text: 'FAQ',
-    href: '#',
-  },
+  // {
+  //   text: 'FAQ',
+  //   href: '#',
+  // },
   {
     text: 'Contact us',
     href: '#',
