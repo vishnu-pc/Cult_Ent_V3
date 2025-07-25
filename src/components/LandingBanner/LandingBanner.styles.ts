@@ -93,10 +93,27 @@ export const BannerContainer = styled.section`
   box-sizing: border-box; /* Ensure padding is included in height calculation */
 
   /* SUBTLE GRADIENT: Using CSS variables for consistency */
-  background: var(--gradient-animated-subtle);
+  /* background: var(--gradient-animated-subtle);
   background-size: 600% 600%;
   animation: ${gradientAnimation} 15s ease infinite;
+  overflow: hidden; */
+
+  /* NEW BLACK BASE BACKGROUND & ANIMATED GRADIENT OVERLAY*/
+  background: black;
   overflow: hidden;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-animated-subtle);
+    background-size: 600% 600%;
+    animation: ${gradientAnimation} 15s ease infinite;
+    z-index: 3;
+    pointer-events: none;
+  }
 
   @media (max-width: 768px) {
     padding: 0 var(--spacing-xl);
@@ -125,6 +142,7 @@ export const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 1.7vw;
+  z-index: 2;
   //background: rgb(58, 11, 11);
 
   @media (max-width: 768px) {
@@ -139,14 +157,19 @@ export const ContentContainer = styled.div`
  * This allows the background gradient to show through while maintaining readability
  */
 export const Title = styled.h1`
+  /* font-family: -apple-system, BlinkMacSystemFont, sans-serif; */
+  font-family: 'Inter', sans-serif;
   font-size: var(--font-size-xxl);
   margin-bottom: var(--spacing-lg);
-  // font-family: 'Inter';
-  font-family: 'Arial', 'Helvetica', sans-serif;
   font-weight: 900;
-  color: transparent; /* Makes text transparent */
-  -webkit-text-stroke: 1.5px var(--color-text); /* Creates white outline */
-  text-stroke: 1.5px var(--color-text); /* Fallback for non-webkit browsers */
+
+  color: black;
+  paint-order: stroke fill;
+  position: relative;
+  z-index: 1;
+
+  -webkit-text-stroke: 3px var(--color-text); /* Creates white outline */
+  text-stroke: 3px var(--color-text); /* Fallback for non-webkit browsers */
 
   @media (max-width: 768px) {
     font-size: var(--font-size-4xl);
@@ -168,8 +191,10 @@ export const Title = styled.h1`
  * - -webkit-text-stroke: 0: Removes outline when gradient is active
  */
 export const HighlightedWord = styled.span<{ isScrolled: boolean }>`
-  font-family: 'Arial', 'Helvetica', sans-serif;
-  // font-family: 'Inter';
+  /* font-family: -apple-system, BlinkMacSystemFont, sans-serif; */
+  font-family: 'Inter', sans-serif;
+  position: relative;
+  z-index: 1;
   font-weight: 900;
   cursor: pointer;
 
@@ -191,13 +216,34 @@ export const HighlightedWord = styled.span<{ isScrolled: boolean }>`
   ${props =>
     !props.isScrolled &&
     css`
-      color: transparent;
-      -webkit-text-stroke: 1.5px var(--color-text);
-      text-stroke: 1.5px var(--color-text);
+      color: black;
+      paint-order: stroke fill;
+      -webkit-text-stroke: 3px var(--color-text);
+      text-stroke: 3px var(--color-text);
     `}
   
   /* SMOOTH TRANSITION: When switching between states */
   transition: all 0.3s ease; /* Tunable: adjust text highlight transition speed */
+`;
+
+/**
+ * SPECIAL LETTER N - Uses different font specifically for individual letters
+ * Inherits all styling from parent HighlightedWord but overrides font-family only
+ */
+export const SpecialLetterN = styled.span`
+  font-family: 'Arial', 'Helvetica', sans-serif;
+  letter-spacing: -0.03em;
+
+  /* transform: scaleX(1.1);
+  display: inline-block;
+  transform-origin: center;
+  background: inherit;
+  background-size: 1000% 1000%; */
+`;
+
+export const SpecialLetterK = styled.span`
+  font-family: 'Arial', 'Helvetica', sans-serif;
+  letter-spacing: 0.02em;
 `;
 
 export const Subtitle = styled.p`
@@ -216,6 +262,8 @@ export const LogoContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  z-index: 11;
   /* margin-top: var(--spacing-xl); */
   //background: rgb(60, 37, 162);
 
@@ -383,6 +431,7 @@ export const CTAButton = styled(motion.button)`
   margin-top: var(--spacing-xl);
   align-self: center;
   width: 100%;
+  z-index: 11;
 
   /* Button Dimensions */
   padding: 16px 48px;

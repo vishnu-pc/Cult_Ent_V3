@@ -6,6 +6,8 @@ import {
   ContentContainer,
   Title,
   HighlightedWord,
+  // SpecialLetterN,
+  // SpecialLetterK,
   Subtitle,
   LogoContainer,
   LogoWrapper,
@@ -144,7 +146,7 @@ const LandingBanner: React.FC<LandingBannerProps> = () => {
               >
                 ENERGISE
               </HighlightedWord>{' '}
-              YOUR WORKFORCE
+              YOUR<br></br>WORKFORCE
             </Title>
             <Subtitle>
               Transform employee wellness from buzzword to business advantage
