@@ -231,12 +231,156 @@ export const SectionContainer = styled.section`
 
 ### 3. Responsive Design Requirements
 
-**RULE**: Mobile-first responsive design:
+**RULE**: Mobile-first responsive design with standard breakpoints:
 
-- **ALWAYS** design for mobile first
-- **ALWAYS** use established breakpoints
+#### **Standard Responsive Breakpoints**
+
+- **ALWAYS** use project-defined breakpoints from `variables.css`:
+  - `--breakpoint-sm: 640px` - Small mobile devices
+  - `--breakpoint-md: 768px` - Standard mobile/tablet transition
+  - `--breakpoint-lg: 1024px` - Tablet/desktop transition
+  - `--breakpoint-xl: 1280px` - Large desktop
+  - `--breakpoint-2xl: 1536px` - Extra large desktop
+
+#### **Responsive Implementation Standards**
+
+- **ALWAYS** design for mobile first (min-width approach)
+- **ALWAYS** use standard breakpoints consistently across all components
 - **ALWAYS** test on all breakpoint sizes
-- **ALWAYS** ensure touch-friendly interactions
+- **ALWAYS** ensure touch-friendly interactions on mobile devices
+- **NEVER** create custom breakpoints unless absolutely necessary
+- **ALWAYS** comment breakpoints with their purpose (e.g., `/* --breakpoint-md */`)
+
+#### **Responsive Sizing Best Practices**
+
+- **Typography**: Use `rem` for font sizes (scales with user preferences)
+- **Spacing**: Use `rem` for margins, padding, and gaps (consistent scaling)
+- **Container Dimensions**: Use `rem` or `%` for component sizing
+- **Viewport Units**: Only for full-viewport sections (`100vh`) or large decorative elements
+- **Fixed Units**: Use `px` only for borders, shadows, and precise pixel requirements
+
+#### **Unified Spacing System**
+
+**RULE**: All spacing must use the standardized spacing scale optimized for 13" laptop displays:
+
+```css
+/* Unified Spacing Scale */
+--spacing-xxs: 0rem; /* 0px - No spacing */
+--spacing-xs: 0.25rem; /* 4px - Micro spacing */
+--spacing-sm: 0.5rem; /* 8px - Small spacing */
+--spacing-md: 1rem; /* 16px - Standard spacing */
+--spacing-lg: 1.5rem; /* 24px - Medium spacing */
+--spacing-xl: 2rem; /* 32px - Large spacing */
+--spacing-2xl: 3rem; /* 48px - Extra large spacing */
+--spacing-3xl: 4rem; /* 64px - Section spacing */
+--spacing-4xl: 6rem; /* 96px - Large section spacing */
+--spacing-5xl: 8rem; /* 128px - Hero section spacing */
+--spacing-6xl: 12rem; /* 192px - Major section spacing */
+```
+
+#### **Responsive Spacing Behavior**
+
+**RULE**: Spacing automatically scales based on screen size using multipliers:
+
+```css
+/* Responsive Scaling Multipliers */
+--spacing-scale-desktop: 1; /* 13" laptop baseline */
+--spacing-scale-large-desktop: 1.25; /* 15"+ displays (25% larger) */
+--spacing-scale-tablet: 0.875; /* Tablets (12.5% smaller) */
+--spacing-scale-mobile: 0.75; /* Mobile (25% smaller) */
+--spacing-scale-small-mobile: 0.625; /* Small mobile (37.5% smaller) */
+```
+
+#### **Section Spacing Standards**
+
+**RULE**: All sections must follow standardized spacing patterns:
+
+```css
+/* ✅ GOOD - Regular section spacing */
+section {
+  /* Vertical spacing - padding within sections */
+  padding-top: var(--section-padding-vertical);     /* 96px base */
+  padding-bottom: var(--section-padding-vertical);  /* 96px base */
+
+  /* Horizontal spacing - matches navigation pattern */
+  padding-left: var(--section-padding-horizontal);  /* 48px base */
+  padding-right: var(--section-padding-horizontal); /* 48px base */
+
+  /* Vertical margins between sections */
+  margin-top: var(--section-margin-vertical);       /* 64px base */
+  margin-bottom: var(--section-margin-vertical);    /* 64px base */
+}
+
+/* ✅ GOOD - Hero section spacing (special full-viewport sections) */
+section.hero-section {
+  /* Hero-specific spacing - no vertical padding/margins */
+  padding-top: 0;    /* Full viewport hero */
+  padding-bottom: 0; /* Full viewport hero */
+  padding-left: var(--section-padding-horizontal);  /* Horizontal only */
+  padding-right: var(--section-padding-horizontal); /* Horizontal only */
+
+  /* Hero layout */
+  margin: 0;         /* No margins */
+  height: 100vh;     /* Full viewport height */
+  min-height: 100vh; /* Ensure full height */
+}
+
+/* ✅ GOOD - Using spacing variables */
+margin: var(--spacing-xl);
+padding: var(--spacing-lg);
+gap: var(--spacing-md);
+
+/* ✅ GOOD - Using utility classes */
+<div className="mt-xl px-2xl py-4xl">Content</div>
+
+/* ✅ GOOD - Hero section implementation */
+export const HeroContainer = styled.section.attrs({
+  className: 'hero-section'
+})`
+  /* Only hero-specific styles here */
+  /* Spacing handled by .hero-section class in global.css */
+`;
+
+/* ❌ AVOID - Hardcoded values */
+margin: 32px;                  /* Use var(--spacing-xl) instead */
+padding: 24px 16px;           /* Use var(--spacing-lg) var(--spacing-md) */
+margin: 3vh;                  /* Use spacing variables instead */
+```
+
+#### **Spacing Usage Guidelines**
+
+**RULE**: Choose appropriate spacing sizes based on context:
+
+- **xxs-xs (0-4px)**: Borders, fine adjustments, micro spacing
+- **sm-md (8-16px)**: Text spacing, small component gaps, list items
+- **lg-xl (24-32px)**: Component margins, card spacing, form elements
+- **2xl-3xl (48-64px)**: Section internal spacing, large component gaps
+- **4xl-5xl (96-128px)**: Section padding, hero sections, major spacing
+- **6xl (192px)**: Major section dividers, landing page spacing
+
+#### **Implementation Guidelines**
+
+**RULE**: Consistent spacing implementation across all components:
+
+- **ALWAYS** use spacing CSS variables instead of hardcoded values
+- **ALWAYS** use utility classes for quick spacing application
+- **ALWAYS** follow the section spacing standards for new sections
+- **NEVER** create custom spacing values outside the established scale
+- **ALWAYS** consider responsive scaling when designing layouts
+
+#### **Utility Classes Usage**
+
+**RULE**: Use standardized utility classes for rapid development:
+
+```css
+/* Margin utilities: .m-{size}, .mt-{size}, .mb-{size}, .mx-{size}, .my-{size} */
+<div className="mt-xl mb-2xl">...</div>
+
+/* Padding utilities: .p-{size}, .pt-{size}, .pb-{size}, .px-{size}, .py-{size} */
+<div className="px-lg py-4xl">...</div>
+
+/* Available sizes: xxs, xs, sm, md, lg, xl, 2xl, 3xl, 4xl, 5xl, 6xl */
+```
 
 ## Component Development Rules
 
@@ -615,12 +759,45 @@ const StyledLink = styled.a`
 
 ### 1. Navigation Component
 
-**RULE**: Navigation-specific guidelines:
+**RULE**: Navigation-specific guidelines with standard responsive implementation:
+
+#### **Responsive Navigation Standards**
+
+- **ALWAYS** use standard breakpoints for navigation transformations:
+  - Desktop: Full horizontal navigation
+  - Tablet (≤1024px): Reduced logo size, standard navigation
+  - Mobile (≤768px): Hamburger menu with slide-down animation
+  - Small mobile (≤640px): Compact spacing and sizing
+
+#### **Navigation Sizing Standards**
+
+- **Navigation heights**: Touch-optimized for mobile/tablet devices
+  - Desktop: `var(--nav-height-desktop)` (4.5rem / 72px)
+  - Tablet: `var(--nav-height-tablet)` (5rem / 80px)
+  - Mobile: `var(--nav-height-mobile)` (5.5rem / 88px)
+  - Small Mobile: `var(--nav-height-small-mobile)` (5rem / 80px)
+- **Logo sizing**: Proportional to navigation height using CSS variables
+  - Desktop: `var(--nav-logo-desktop)` (4.25rem / 68px)
+  - Tablet: `var(--nav-logo-tablet)` (3.5rem / 56px)
+  - Mobile: `var(--nav-logo-mobile)` (3rem / 48px)
+  - Small Mobile: `var(--nav-logo-small-mobile)` (2.75rem / 44px)
+- **Touch targets**: Minimum 44px (2.75rem) for all interactive elements
+- **Spacing**: Use CSS variables (`var(--spacing-xl)`, etc.) for consistent margins
+
+#### **Mobile Menu Implementation**
+
+- **ALWAYS** position mobile menu using `rem` units relative to nav height
+- **ALWAYS** use standard z-index values from CSS variables
+- **ALWAYS** implement slide and fade animations with project transition variables
+- **ALWAYS** ensure hamburger button transforms properly (lines to X animation)
+
+#### **Navigation Behavior Standards**
 
 - **ALWAYS** maintain responsive hamburger menu functionality
-- **ALWAYS** use established logo and brand colors
-- **ALWAYS** implement proper mobile menu transitions
-- **NEVER** break existing navigation structure
+- **ALWAYS** use established logo and brand colors with gradient hover effects
+- **ALWAYS** implement proper mobile menu transitions using CSS variables
+- **ALWAYS** ensure touch-friendly interaction areas on mobile (44px minimum)
+- **NEVER** break existing navigation structure or accessibility features
 
 ### 2. Form Components
 

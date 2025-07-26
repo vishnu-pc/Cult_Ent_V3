@@ -154,18 +154,67 @@
   --font-size-6xl: 4rem; /* 64px */
   --font-size-7xl: 5rem; /* 80px */
   --font-size-8xl: 6rem; /* 96px */
-  --font-size-9xl: 7rem; /* 112px */
-  --font-size-xxl: 7.3vw; /* 128px */
+  --font-size-9xl: 6.75rem; /* 112px */
+  --font-size-xxl: 7.3vw; /* 128px - converted from 7.3vw for consistent scaling */
 
-  /* Spacing */
-  --spacing-xxs: 0rem; /* 0px */
-  --spacing-xs: 0.25rem; /* 4px */
-  --spacing-sm: 0.5rem; /* 8px */
-  --spacing-md: 1rem; /* 16px */
-  --spacing-lg: 1.5rem; /* 24px */
-  --spacing-xl: 2rem; /* 32px */
-  --spacing-2xl: 3rem; /* 48px */
-  --spacing-3xl: 4rem; /* 64px */
+  /* Unified Spacing Scale - Optimized for 13" laptop displays */
+  --spacing-xxs: 0rem; /* 0px - No spacing */
+  --spacing-xs: 0.25rem; /* 4px - Micro spacing */
+  --spacing-sm: 0.5rem; /* 8px - Small spacing */
+  --spacing-md: 1rem; /* 16px - Standard spacing */
+  --spacing-lg: 1.5rem; /* 24px - Medium spacing */
+  --spacing-xl: 2rem; /* 32px - Large spacing */
+  --spacing-2xl: 3rem; /* 48px - Extra large spacing */
+  --spacing-3xl: 4rem; /* 64px - Section spacing */
+  --spacing-4xl: 6rem; /* 96px - Large section spacing */
+  --spacing-5xl: 8rem; /* 128px - Hero section spacing */
+  --spacing-6xl: 12rem; /* 192px - Major section spacing */
+
+  /* Component-Specific Spacing Standards */
+  --section-padding-vertical: var(
+    --spacing-2xl
+  ); /* 96px - Standard vertical section padding */
+  --section-padding-horizontal: var(
+    --spacing-3xl
+  ); /* 48px - Standard horizontal section padding */
+  --section-margin-vertical: var(
+    --spacing-3xl
+  ); /* 64px - Standard vertical margin between sections */
+
+  /* Content Container Spacing */
+  --container-padding-desktop: var(
+    --spacing-2xl
+  ); /* 48px - Container horizontal padding desktop */
+  --container-padding-tablet: var(
+    --spacing-xl
+  ); /* 32px - Container horizontal padding tablet */
+  --container-padding-mobile: var(
+    --spacing-lg
+  ); /* 24px - Container horizontal padding mobile */
+  --container-padding-small: var(
+    --spacing-md
+  ); /* 16px - Container horizontal padding small mobile */
+
+  /* Responsive Spacing Multipliers for Different Screen Sizes */
+  --spacing-scale-desktop: 1; /* 13" laptop baseline (no scaling) */
+  --spacing-scale-large-desktop: 1.25; /* 15"+ displays (25% larger) */
+  --spacing-scale-tablet: 0.875; /* Tablets (12.5% smaller) */
+  --spacing-scale-mobile: 0.75; /* Mobile (25% smaller) */
+  --spacing-scale-small-mobile: 0.625; /* Small mobile (37.5% smaller) */
+
+  /* Responsive Section Spacing */
+  --section-spacing-desktop: calc(
+    var(--spacing-4xl) * var(--spacing-scale-desktop)
+  );
+  --section-spacing-tablet: calc(
+    var(--spacing-4xl) * var(--spacing-scale-tablet)
+  );
+  --section-spacing-mobile: calc(
+    var(--spacing-4xl) * var(--spacing-scale-mobile)
+  );
+  --section-spacing-small: calc(
+    var(--spacing-4xl) * var(--spacing-scale-small-mobile)
+  );
 
   /* Borders */
   --border-radius-sm: 0.25rem; /* 4px */
@@ -176,7 +225,7 @@
   /* Transitions */
   --transition-fast: 0.2s ease;
   --transition-normal: 0.3s ease;
-  --transition-slow: 0.5s ease;
+  --transition-slow: 0.8s ease;
 
   /* Z-index */
   --z-index-dropdown: 100;
@@ -198,4 +247,16 @@
   /* Section Heights */
   --section-height: 100vh;
   --section-width: 100vw;
+
+  /* Navigation Heights - Optimized for touch interfaces */
+  --nav-height-desktop: 4.5rem; /* 72px - Standard desktop height */
+  --nav-height-tablet: 5rem; /* 80px - Larger for tablet touch */
+  --nav-height-mobile: 5.5rem; /* 88px - Optimized for mobile touch */
+  --nav-height-small-mobile: 5rem; /* 80px - Compact but still touch-friendly */
+
+  /* Navigation Logo Heights - Proportional to nav height */
+  --nav-logo-desktop: 4.25rem; /* 68px - Fits within desktop nav */
+  --nav-logo-tablet: 4.25rem; /* 56px - Balanced for tablet */
+  --nav-logo-mobile: 4rem; /* 48px - Clear but not overwhelming */
+  --nav-logo-small-mobile: 4rem; /* 44px - Minimum recommended touch size */
 }

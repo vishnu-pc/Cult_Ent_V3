@@ -15,7 +15,7 @@ const gradientAnimation = keyframes`
 `;
 
 export const StyledGradientDivider = styled.div<StyledGradientDividerProps>`
-  width: 100%;
+  width: 100vw;
   height: ${props => props.$height};
 
   ${props =>

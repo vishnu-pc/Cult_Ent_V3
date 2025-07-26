@@ -75,7 +75,7 @@ const Navigation: React.FC<NavigationProps> = () => {
           to='#why-choose-cult'
           onClick={handleNavClick('why-choose-cult')}
         >
-          BENIFITS
+          BENEFITS
         </NavLink>
         <NavLink to='#testimonials' onClick={handleNavClick('testimonials')}>
           INSIGHTS

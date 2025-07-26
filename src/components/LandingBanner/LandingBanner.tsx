@@ -144,9 +144,10 @@ const LandingBanner: React.FC<LandingBannerProps> = () => {
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >
-                ENERGISE
+                ENERGISE<br></br>
               </HighlightedWord>{' '}
-              YOUR<br></br>WORKFORCE
+              YOUR<br></br>
+              WORKFORCE
             </Title>
             <Subtitle>
               Transform employee wellness from buzzword to business advantage
@@ -183,7 +184,7 @@ const LandingBanner: React.FC<LandingBannerProps> = () => {
         */}
             <LogoWrapper
               whileHover={{
-                scale: 1.1,
+                scale: 1.03,
                 transition: { duration: 0.3 }, // Tunable: adjust hover animation speed
               }}
               onMouseEnter={handleMouseEnter}

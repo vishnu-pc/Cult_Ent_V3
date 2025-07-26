@@ -20,15 +20,11 @@ export const slideAnimation = keyframes`
 export const fadeIn = keyframes`
   from {
     opacity: 0;
-    transform: translateY(20px); // TUNABLE: Starting position (20px = slides up from below)
-    // Adjust this value to change text entrance direction:
-    // - translateY(-20px) = Text slides down from above
-    // - translateX(20px) = Text slides in from right
-    // - scale(0.8) = Text scales up from smaller size
+    transform: translateY(1.25rem); /* 20px - slides up from below */
   }
   to {
     opacity: 1;
-    transform: translateY(0); // Final position (no transform)
+    transform: translateY(0); /* Final position (no transform) */
   }
 `;
 
@@ -37,11 +33,11 @@ export const fadeIn = keyframes`
 export const fadeInToSeventy = keyframes`
   from {
     opacity: 0;
-    transform: translateY(20px); // TUNABLE: Starting position (20px = slides up from below)
+    transform: translateY(1.25rem); /* 20px - slides up from below */
   }
   to {
-    opacity: 0.80; // TUNABLE: Final opacity at 80% (0.1-1.0)
-    transform: translateY(0); // Final position (no transform)
+    opacity: 0.80; /* Final opacity at 80% */
+    transform: translateY(0); /* Final position (no transform) */
   }
 `;
 
@@ -50,11 +46,11 @@ export const fadeInToSeventy = keyframes`
 export const fadeInToEighty = keyframes`
   from {
     opacity: 0;
-    transform: translateY(20px); // TUNABLE: Starting position (20px = slides up from below)
+    transform: translateY(1.25rem); /* 20px - slides up from below */
   }
   to {
-    opacity: 0.8; // TUNABLE: Final opacity at 80% (0.1-1.0)
-    transform: translateY(-10vh); // Final position (maintains the upward positioning)
+    opacity: 0.8; /* Final opacity at 80% */
+    transform: translateY(0); /* Final position */
   }
 `;
 
@@ -62,7 +58,7 @@ export const fadeInToEighty = keyframes`
 export const fadeInToEightyMobile = keyframes`
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(1.25rem); /* 20px */
   }
   to {
     opacity: 0.8;
@@ -74,11 +70,11 @@ export const fadeInToEightyMobile = keyframes`
 export const fadeInToEightySmall = keyframes`
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(1.25rem); /* 20px */
   }
   to {
     opacity: 0.8;
-    transform: translateY(0vh);
+    transform: translateY(0);
   }
 `;
 
@@ -105,7 +101,7 @@ export const ClienteleSection = styled.section<{ isActive: boolean }>`
   position: relative;
   height: 100vh; // TUNABLE: Section height (100vh = full viewport height)
   // Alternative values: 80vh, 120vh, 800px
-  width: 100%;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   background-image: url(${backgroundImage}); // Base background image
@@ -119,7 +115,7 @@ export const ClienteleSection = styled.section<{ isActive: boolean }>`
   // GRAYSCALE EFFECT ON ENTIRE SECTION
   filter: ${({ isActive }) =>
     isActive ? 'none' : 'grayscale(1)'}; // TUNABLE: Grayscale when inactive
-  transition: filter 0.8s ease; // TUNABLE: Smooth transition for grayscale effect
+  transition: filter var(--transition-slow); /* Use standardized transition timing */
 `;
 
 // GRAYSCALE OVERLAY - INACTIVE STATE
@@ -143,11 +139,7 @@ export const GrayscaleOverlay = styled.div<{ isActive: boolean }>`
   // TRANSITION CONTROL
   opacity: ${({ isActive }) =>
     isActive ? 0.7 : 1}; // 30% when active, 100% when inactive
-  transition: opacity 0.8s ease; // TUNABLE: Transition duration and easing
-  // Adjust transition for different effects:
-  // - 0.3s = Fast transition
-  // - 1.5s = Slow transition
-  // - ease-in-out = Different easing curve
+  transition: opacity var(--transition-slow); /* Use standardized slow transition */
 
   z-index: 1; // Layer above background, below text
   pointer-events: none; // Don't block user interactions
@@ -194,7 +186,7 @@ export const GradientOverlay = styled.div<{ isActive: boolean }>`
   // - 0.6 = Moderate gradient overlay
   // - 1.0 = Full intensity gradient overlay
 
-  transition: opacity 0.8s ease; // TUNABLE: Same as grayscale overlay for smooth transition
+  transition: opacity var(--transition-slow); /* Use standardized slow transition */
   z-index: 1; // Same layer as grayscale overlay
   pointer-events: none; // Don't block user interactions
 `;
@@ -204,11 +196,13 @@ export const GradientOverlay = styled.div<{ isActive: boolean }>`
 export const ContentContainer = styled.div`
   position: relative;
   height: 87%; // TUNABLE: Content area height (85% leaves 15% for logo carousel)
+  width: 100%;
+  margin: 0 auto; // TUNABLE: Center the container horizontally
   display: flex;
   flex-direction: column;
-  justify-content: center; // TUNABLE: vertical alignment (flex-start, flex-end, center)
+  justify-content: top; // TUNABLE: vertical alignment (flex-start, flex-end, center)
   align-items: center; // TUNABLE: horizontal alignment - center the text block
-  padding: var(--spacing-2xl); // TUNABLE: Content padding
+  //padding: var(--spacing-6xl); // TUNABLE: Content padding
   z-index: 2; // Above overlays (z-index: 1)
 `;
 
@@ -216,20 +210,22 @@ export const ContentContainer = styled.div`
 export const SectionTitle = styled.h3<StyledComponentProps>`
   font-family: 'Inter', sans-serif; // TUNABLE: Font family - changed to Inter
   font-size: var(--font-size-xl); // TUNABLE: Title size
-  font-weight: 300; // TUNABLE: Font weight (300=Light, 400=Regular, 500=Medium)
+  font-weight: 900; // TUNABLE: Font weight (300=Light, 400=Regular, 500=Medium)
   text-transform: uppercase;
-  margin-bottom: var(--spacing-2xl); // TUNABLE: Space below title
-  letter-spacing: 0; // TUNABLE: Minimal letter spacing (removed 2px)
-  width: 100%; // TUNABLE: Full width to allow text-align to work
-  max-width: 1800px; // TUNABLE: Match the heading block width
-  text-align: left; // TUNABLE: Left align the section title
+  letter-spacing: 0;
+  width: 100%;
+  text-align: left;
 
-  // ANIMATION CONTROL - starts hidden, animates to 80% opacity and moves to final position
+  /* Standardized spacing */
+  margin-bottom: var(--spacing-4xl);
+
+  /* Animation control - starts hidden, animates to 80% opacity */
   opacity: 0;
   animation: ${({ isVisible }) => (isVisible ? fadeInToEighty : 'none')} 1.6s
     ease-out forwards;
   // TUNABLE: Animation duration (1.6s) and easing
 
+  /* Responsive animations using standard breakpoints */
   @media (max-width: 1668px) {
     animation: ${({ isVisible }) => (isVisible ? fadeInToEightyMobile : 'none')}
       1.6s ease-out forwards;
@@ -251,74 +247,70 @@ export const MainHeading = styled.div`
 
 // INDIVIDUAL HEADING LINES
 export const HeadingLine = styled.h2<HeadingLineProps & { alignment?: string }>`
-  font-family: 'Inter', sans-serif; // TUNABLE: Font family - changed to Inter
-  font-size: var(--font-size-5xl); // TUNABLE: Heading size
-  font-weight: 400; // TUNABLE: Font weight (300=Light, 400=Regular, 500=Medium, 600=SemiBold)
+  font-family: var(--font-primary); /* Use standardized font family */
+  font-size: var(--font-size-5xl);
+  font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: 33px; // TUNABLE: Wide letter spacing for dramatic effect (increased from 0px)
-  line-height: 1.33; // TUNABLE: Increased line height for better spacing (increased from 0.95)
+  letter-spacing: 2.0625rem; /* 33px - Wide letter spacing for dramatic effect */
+  line-height: 1.77; /* Better spacing between lines */
 
-  // INDIVIDUAL LINE ALIGNMENT
-  text-align: ${({ alignment }) =>
-    alignment || 'left'}; // TUNABLE: Individual line alignment
+  /* Individual line alignment */
+  text-align: ${({ alignment }) => alignment || 'left'};
 
-  // STAGGERED ANIMATION
+  /* Staggered animation */
   opacity: 0;
   animation: ${({ isVisible }) => (isVisible ? fadeIn : 'none')} 1.6s ease-out
     forwards;
-  animation-delay: ${({ delay }) => delay}s; // TUNABLE: Individual line delays
-  // Current delays: 1.0s, 1.5s, 2.3s, 2.8s
-  // Adjust for different timing:
-  // - Faster: 0.3s, 0.6s, 0.9s, 1.2s
-  // - Slower: 1.5s, 2.0s, 2.5s, 3.0s
+  animation-delay: ${({ delay }) => delay}s; /* Individual line delays */
 
+  /* Responsive typography using standard breakpoints */
   @media (max-width: 768px) {
-    font-size: var(--font-size-3xl); // TUNABLE: Mobile font size
-    line-height: 1; // TUNABLE: Slightly more spacing on mobile for readability
-    letter-spacing: 10px; // TUNABLE: Reduced letter spacing for mobile
+    font-size: var(--font-size-3xl); /* Mobile font size */
+    line-height: 1; /* Tighter spacing on mobile */
+    letter-spacing: 0.625rem; /* 10px - Reduced letter spacing for mobile */
   }
 `;
 
 // STATISTICS TEXT
 export const StatText = styled.p<StyledComponentProps>`
-  font-family: 'Inter', sans-serif; // TUNABLE: Font family - changed to Inter
-  font-size: var(--font-size-xl); // TUNABLE: Text size
-  font-weight: 400; // TUNABLE: Font weight
-  margin-top: var(
-    --spacing-3xl
-  ); // TUNABLE: Space above text (reduced from 2xl)
-  max-width: 1800px; // TUNABLE: Maximum text width (increased from 800px)
-  text-align: center; // TUNABLE: Center align the statistics text
+  font-family: var(--font-primary); /* Use standardized font family */
+  font-size: var(--font-size-xl);
+  font-weight: 400;
+  text-align: center;
 
-  // ANIMATION CONTROL - starts hidden, animates to 80% opacity
+  /* Standardized spacing */
+  margin-top: var(--spacing-3xl); /* 64px - consistent section spacing */
+
+  /* Animation control - starts hidden, animates to 80% opacity */
   opacity: 0;
   animation: ${({ isVisible }) => (isVisible ? fadeInToSeventy : 'none')} 1.6s
     ease-out forwards;
-  animation-delay: 3.8s; // TUNABLE: Delay before text appears
+  animation-delay: 3.8s; /* Delay before text appears */
 
+  /* Responsive typography using standard breakpoints */
   @media (max-width: 768px) {
-    font-size: var(--font-size-lg); // TUNABLE: Mobile text size
+    font-size: var(--font-size-lg); /* Mobile text size */
   }
 
   strong {
-    color: var(--color-text); // TUNABLE: Emphasis color
-    font-weight: 600; // TUNABLE: Bold weight for emphasis
+    color: var(--color-text); /* Emphasis color */
+    font-weight: 600; /* Bold weight for emphasis */
   }
 `;
 
-// LOGO CAROUSEL CONTAINER
+// LOGO CAROUSEL CONTAINER - Simple edge-to-edge full width
 export const LogoCarouselContainer = styled.div`
-  position: relative;
-  height: 13%; // TUNABLE: Carousel height (matches ContentContainer's 85%)
-  width: 100%;
-  overflow: hidden; // TUNABLE: Hide overflow for smooth scrolling effect
+  position: absolute; /* Position absolutely to break out of section flow */
+  bottom: var(--spacing-xl);
+  left: 0; /* Start from left edge of viewport */
+  height: 13%; /* TUNABLE: Carousel height */
+  width: 100vw; /* Full viewport width - simple! */
+
+  overflow: hidden; /* Hide overflow for smooth scrolling effect */
   background-color: transparent;
-  z-index: 2; // Above overlays
+  z-index: 2; /* Above overlays */
   display: flex;
   align-items: center;
-  // CONTAINMENT: Prevent carousel from expanding page width
-  max-width: 100vw; // Never exceed viewport width
-  min-width: 0; // Allow shrinking if needed
 `;
 
 // LOGO SLIDER ANIMATION
@@ -326,7 +318,7 @@ export const LogoSlider = styled.div`
   display: flex;
   width: fit-content;
   animation: ${slideAnimation} 60s linear infinite; // TUNABLE: Adjusted timing for 3-set seamless loop
-  height: 90%;
+  height: 100%;
   align-items: center;
   // CONTAINMENT: Ensure slider doesn't affect parent layout
   flex-shrink: 0; // Don't shrink the slider itself
@@ -338,30 +330,33 @@ export const LogoGroup = styled.div`
   display: flex;
   align-items: center;
   height: 100%;
-  gap: 60px; // TUNABLE: Spacing between logos (80px as updated)
-  // CONTAINMENT: Maintain natural width while allowing overflow containment
-  flex-shrink: 0; // Don't compress the logo group
-  min-width: max-content; // Ensure group maintains its natural width
+  flex-shrink: 0; /* Don't compress the logo group */
+  min-width: max-content; /* Ensure group maintains its natural width */
 
+  /* Standardized spacing between logos */
+  gap: var(--spacing-4xl); /* 48px - consistent with other spacing */
+
+  /* Responsive spacing using standard breakpoints */
   @media (max-width: 768px) {
-    gap: 20px; // TUNABLE: Reduced spacing on mobile for better fit
+    gap: var(--spacing-lg); /* 24px - reduced spacing on mobile */
   }
 `;
 
 // INDIVIDUAL LOGO IMAGE STYLING
 export const LogoImage = styled.img`
-  height: 90%; // TUNABLE: 90% of parent container height as requested
-  width: auto; // TUNABLE: Maintain aspect ratio
-  object-fit: contain; // TUNABLE: Preserve logo proportions without distortion
-  flex-shrink: 0; // TUNABLE: Prevent logos from shrinking
-  filter: brightness(1) contrast(1); // TUNABLE: Ensure logos are clearly visible
+  height: 90%; /* 90% of parent container height */
+  width: auto; /* Maintain aspect ratio */
+  object-fit: contain; /* Preserve logo proportions without distortion */
+  flex-shrink: 0; /* Prevent logos from shrinking */
+  filter: brightness(1) contrast(1); /* Ensure logos are clearly visible */
 
+  /* Responsive sizing using standard breakpoints */
   @media (max-width: 768px) {
-    height: 80%; // TUNABLE: Smaller logos on mobile devices
+    height: 80%; /* Smaller logos on mobile devices */
   }
 
-  @media (max-width: 480px) {
-    height: 70%; // TUNABLE: Even smaller on very small screens
+  @media (max-width: 640px) {
+    height: 70%; /* Even smaller on very small screens */
   }
 `;
 
@@ -391,7 +386,7 @@ COLORS:
 TYPOGRAPHY:
 - Font family: 'Inter', sans-serif
 - Section title: font-weight 300, left aligned, 80% opacity
-- Heading lines: font-weight 400, letter-spacing 33px, line-height 1.33
+- Heading lines: font-weight 400, letter-spacing 2.0625rem (33px), line-height 1.33
 - StatText: 80% opacity, center aligned
 
 SPACING & SIZING:
@@ -400,7 +395,7 @@ SPACING & SIZING:
 - Font sizes: var(--font-size-xl), var(--font-size-5xl)
 - Logo carousel: 15% height, 20s animation, seamless infinite loop with 3 logo sets
 - Logo height: 90% of carousel container (80% mobile, 70% small mobile)
-- Logo spacing: 80px gap (20px on mobile) with overflow containment
+- Logo spacing: 3rem gap (1.5rem on mobile) with overflow containment
 - Max width: 1800px for heading and StatText
 - StatText margin-top: var(--spacing-2xl)
 

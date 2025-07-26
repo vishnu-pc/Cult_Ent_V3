@@ -80,19 +80,20 @@ export const buttonBorderAnimation = keyframes`
  *   - ease = smooth acceleration/deceleration
  *   - infinite = never stops
  */
-export const BannerContainer = styled.section`
-  height: 100vh;
-  min-height: 100vh; /* Override global section min-height */
-  width: 100%;
+export const BannerContainer = styled.section.attrs({
+  className: 'hero-section',
+})`
+  /* Layout styling - spacing handled by .hero-section class in global.css */
+
+  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0 var(--spacing-2xl); /* Override global section padding */
   position: relative;
-  box-sizing: border-box; /* Ensure padding is included in height calculation */
+  box-sizing: border-box;
 
-  /* SUBTLE GRADIENT: Using CSS variables for consistency */
+  /* SUBTLE GRADIENT (OLD Background): Using CSS variables for consistency */
   /* background: var(--gradient-animated-subtle);
   background-size: 600% 600%;
   animation: ${gradientAnimation} 15s ease infinite;
@@ -115,9 +116,7 @@ export const BannerContainer = styled.section`
     pointer-events: none;
   }
 
-  @media (max-width: 768px) {
-    padding: 0 var(--spacing-xl);
-  }
+  /* All responsive spacing handled by .hero-section class in global.css */
 `;
 
 export const MainContent = styled.div`
@@ -126,13 +125,17 @@ export const MainContent = styled.div`
   justify-content: space-between;
   width: 100%;
   flex: 1;
-  /* margin-top: 1vh; */
-  margin-bottom: 3vh;
+
+  /* Standardized spacing using new spacing variables */
+  margin-bottom: var(
+    --spacing-2xl
+  ); /* 48px base - consistent with section spacing */
 
   @media (max-width: 768px) {
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    margin-bottom: var(--spacing-xl); /* Reduced for mobile */
   }
 `;
 
@@ -141,13 +144,13 @@ export const ContentContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-left: 1.7vw;
   z-index: 2;
-  //background: rgb(58, 11, 11);
 
   @media (max-width: 768px) {
     max-width: 100%;
-    margin-bottom: var(--spacing-2xl);
+    margin-bottom: var(
+      --spacing-3xl
+    ); /* Increased spacing between content and logo on mobile */
   }
 `;
 
@@ -157,22 +160,24 @@ export const ContentContainer = styled.div`
  * This allows the background gradient to show through while maintaining readability
  */
 export const Title = styled.h1`
-  /* font-family: -apple-system, BlinkMacSystemFont, sans-serif; */
   font-family: 'Inter', sans-serif;
   font-size: var(--font-size-xxl);
-  margin-bottom: var(--spacing-lg);
   font-weight: 900;
+
+  /* Standardized spacing using new spacing scale */
+  margin-bottom: var(--spacing-xl); /* 32px - increased for better hierarchy */
 
   color: black;
   paint-order: stroke fill;
   position: relative;
   z-index: 1;
 
-  -webkit-text-stroke: 3px var(--color-text); /* Creates white outline */
-  text-stroke: 3px var(--color-text); /* Fallback for non-webkit browsers */
+  -webkit-text-stroke: 3px var(--color-text);
+  text-stroke: 3px var(--color-text);
 
   @media (max-width: 768px) {
     font-size: var(--font-size-4xl);
+    margin-bottom: var(--spacing-lg); /* Reduced for mobile */
   }
 `;
 
@@ -191,7 +196,6 @@ export const Title = styled.h1`
  * - -webkit-text-stroke: 0: Removes outline when gradient is active
  */
 export const HighlightedWord = styled.span<{ isScrolled: boolean }>`
-  /* font-family: -apple-system, BlinkMacSystemFont, sans-serif; */
   font-family: 'Inter', sans-serif;
   position: relative;
   z-index: 1;
@@ -249,12 +253,15 @@ export const SpecialLetterK = styled.span`
 export const Subtitle = styled.p`
   font-size: var(--font-size-xl);
   color: var(--color-grey-light);
-  margin-bottom: var(--spacing-xxs);
   max-width: 80%;
+
+  /* Standardized spacing - removed bottom margin for better CTA button spacing */
+  margin-bottom: var(--spacing-xxs); /* 8px - minimal spacing before CTA */
 
   @media (max-width: 768px) {
     font-size: var(--font-size-lg);
     max-width: 100%;
+    margin-bottom: var(--spacing-md); /* Slightly more spacing on mobile */
   }
 `;
 
@@ -264,11 +271,12 @@ export const LogoContainer = styled.div`
   align-items: center;
   position: relative;
   z-index: 11;
-  /* margin-top: var(--spacing-xl); */
-  //background: rgb(60, 37, 162);
+  margin-right: -1.5rem;
 
   @media (max-width: 768px) {
-    margin-top: var(--spacing-xl);
+    margin-top: var(
+      --spacing-lg
+    ); /* Reduced mobile top margin for better balance */
   }
 `;
 
@@ -283,16 +291,25 @@ export const LogoContainer = styled.div`
  * This creates a smooth scale-up effect when hovering over the logo
  */
 export const LogoWrapper = styled(motion.div)`
-  width: 33vw;
-  height: 33vw;
+  width: 37vw;
+  height: 37vw;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: var(--spacing-xl);
 
   @media (max-width: 768px) {
-    width: 300px;
-    height: 300px;
+    /* Use standardized spacing approach - maintain proportions */
+    width: calc(75vw); /* Responsive width based on viewport */
+    height: calc(75vw); /* Maintain square aspect ratio */
+    max-width: 300px; /* Maximum size constraint */
+    max-height: 300px; /* Maximum size constraint */
+  }
+
+  @media (max-width: 640px) {
+    width: calc(80vw); /* Slightly larger on small mobile */
+    height: calc(80vw);
+    max-width: 280px;
+    max-height: 280px;
   }
 `;
 
@@ -398,23 +415,23 @@ export const DemoButton = styled(motion.button)`
     }
   }
 
-  /* Responsive Design */
+  /* Responsive Design - Using standardized spacing */
   @media (max-width: 768px) {
-    bottom: 15px;
-    right: 15px;
+    bottom: var(--spacing-md); /* 16px */
+    right: var(--spacing-md); /* 16px */
     width: 85px;
     height: 85px;
     font-size: 13px;
-    padding: 2px;
+    padding: var(--spacing-xs); /* 4px */
   }
 
-  @media (max-width: 480px) {
-    bottom: 10px;
-    right: 10px;
+  @media (max-width: 640px) {
+    bottom: var(--spacing-sm); /* 8px */
+    right: var(--spacing-sm); /* 8px */
     width: 75px;
     height: 75px;
     font-size: 12px;
-    padding: 2px;
+    padding: var(--spacing-xs); /* 4px */
   }
 `;
 
@@ -428,15 +445,15 @@ export const DemoButton = styled(motion.button)`
  * - Positioned at bottom of banner section
  */
 export const CTAButton = styled(motion.button)`
-  margin-top: var(--spacing-xl);
+  /* Standardized spacing using new spacing scale */
+  margin-top: var(--spacing-2xl); /* 48px - increased for better hierarchy */
   align-self: center;
   width: 100%;
   z-index: 11;
 
-  /* Button Dimensions */
-  padding: 16px 48px;
-  border-radius: 12px;
-  /* border: 2px solid var(--color-pink); */
+  /* Button Dimensions - Using standardized spacing */
+  padding: var(--spacing-md) var(--spacing-2xl); /* 16px 48px */
+  border-radius: var(--spacing-sm); /* 8px for subtle rounding */
   cursor: pointer;
 
   /* Typography */
@@ -500,17 +517,19 @@ export const CTAButton = styled(motion.button)`
       0 0 0 3px rgba(237, 58, 121, 0.3);
   }
 
-  /* Responsive Design */
+  /* Responsive Design - Using standardized spacing */
   @media (max-width: 768px) {
     width: 90%;
-    padding: 14px 36px;
-    font-size: 16px;
+    padding: var(--spacing-sm) var(--spacing-xl); /* 8px 32px - reduced for mobile */
+    font-size: var(--font-size-md); /* 16px */
+    margin-top: var(--spacing-xl); /* Reduced mobile top margin */
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 640px) {
     width: 95%;
-    padding: 12px 28px;
-    font-size: 14px;
+    padding: var(--spacing-sm) var(--spacing-lg); /* 8px 24px - further reduced */
+    font-size: var(--font-size-sm); /* 14px */
     letter-spacing: 0.5px;
+    margin-top: var(--spacing-lg); /* Further reduced for small mobile */
   }
 `;

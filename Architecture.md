@@ -179,10 +179,17 @@ ComponentName/
 
 ### 1. Navigation (`src/components/Navigation/`)
 
-- **Purpose**: Responsive navigation bar with hamburger menu
-- **Features**: Logo display, mobile-responsive menu, smooth transitions
+- **Purpose**: Responsive navigation bar with standard breakpoint implementation
+- **Features**: Logo display, mobile hamburger menu, gradient hover effects, smooth transitions
 - **Key Props**: None (self-contained)
-- **Styling**: Styled components with responsive breakpoints
+- **Styling**: Styled components with standard responsive breakpoints and rem-based sizing
+- **Responsive Behavior**:
+  - **Desktop (>1024px)**: Full horizontal navigation, nav height 4.5rem, logo 4.25rem
+  - **Tablet (768px-1024px)**: Increased nav height 5rem for touch, logo 3.5rem
+  - **Mobile (≤768px)**: Hamburger menu, optimized nav height 5.5rem, logo 3rem
+  - **Small Mobile (≤640px)**: Compact nav height 5rem, minimum logo 2.75rem (44px touch target)
+- **Technical Implementation**: Uses CSS variables for navigation heights and logo sizing,
+  touch-optimized dimensions, standard z-index values
 
 ### 2. LandingBanner (`src/components/LandingBanner/`)
 
@@ -257,6 +264,83 @@ ComponentName/
 - **Variants**: BRAND_PRIMARY, BRAND_SECONDARY, custom colors
 
 ## Styling System
+
+### Unified Spacing System
+
+The project implements a comprehensive spacing system optimized for 13" laptop displays with
+automatic responsive scaling.
+
+#### Spacing Scale (`src/styles/variables.css`)
+
+```css
+/* Base Spacing Scale - Optimized for 13" laptop displays */
+--spacing-xxs: 0rem; /* 0px - No spacing */
+--spacing-xs: 0.25rem; /* 4px - Micro spacing */
+--spacing-sm: 0.5rem; /* 8px - Small spacing */
+--spacing-md: 1rem; /* 16px - Standard spacing */
+--spacing-lg: 1.5rem; /* 24px - Medium spacing */
+--spacing-xl: 2rem; /* 32px - Large spacing */
+--spacing-2xl: 3rem; /* 48px - Extra large spacing */
+--spacing-3xl: 4rem; /* 64px - Section spacing */
+--spacing-4xl: 6rem; /* 96px - Large section spacing */
+--spacing-5xl: 8rem; /* 128px - Hero section spacing */
+--spacing-6xl: 12rem; /* 192px - Major section spacing */
+```
+
+#### Responsive Scaling Multipliers
+
+```css
+/* Automatic scaling based on screen size */
+--spacing-scale-desktop: 1; /* 13" laptop baseline */
+--spacing-scale-large-desktop: 1.25; /* 15"+ displays (25% larger) */
+--spacing-scale-tablet: 0.875; /* Tablets (12.5% smaller) */
+--spacing-scale-mobile: 0.75; /* Mobile (25% smaller) */
+--spacing-scale-small-mobile: 0.625; /* Small mobile (37.5% smaller) */
+```
+
+#### Section Spacing Standards
+
+```css
+/* Standardized section spacing variables */
+--section-padding-vertical: var(--spacing-4xl); /* 96px base */
+--section-padding-horizontal: var(--spacing-2xl); /* 48px base */
+--section-margin-vertical: var(--spacing-3xl); /* 64px base */
+```
+
+#### Implementation Examples
+
+```css
+/* Regular Section Implementation */
+section {
+  padding-top: var(--section-padding-vertical);
+  padding-bottom: var(--section-padding-vertical);
+  padding-left: var(--section-padding-horizontal);
+  padding-right: var(--section-padding-horizontal);
+  margin-top: var(--section-margin-vertical);
+  margin-bottom: var(--section-margin-vertical);
+}
+
+/* Hero Section Implementation */
+section.hero-section {
+  padding-top: 0;     /* Full viewport hero */
+  padding-bottom: 0;  /* Full viewport hero */
+  padding-left: var(--section-padding-horizontal);
+  padding-right: var(--section-padding-horizontal);
+  margin: 0;          /* No margins */
+  height: 100vh;      /* Full viewport height */
+  min-height: 100vh;  /* Ensure full height */
+}
+
+/* Component Spacing */
+.component {
+  margin: var(--spacing-xl);     /* 32px */
+  padding: var(--spacing-lg);    /* 24px */
+  gap: var(--spacing-md);        /* 16px */
+}
+
+/* Utility Classes Usage */
+<div className="mt-xl px-2xl py-4xl">Content</div>
+```
 
 ### CSS Custom Properties (`src/styles/variables.css`)
 
@@ -393,22 +477,90 @@ transition={{ duration: 0.6 }}
 
 ## Responsive Design
 
-### Breakpoint System
+### Standard Breakpoint System
+
+The project uses a standardized breakpoint system defined in `src/styles/variables.css`:
 
 ```css
---breakpoint-sm: 640px;
---breakpoint-md: 768px;
---breakpoint-lg: 1024px;
---breakpoint-xl: 1280px;
---breakpoint-2xl: 1536px;
+--breakpoint-sm: 640px; /* Small mobile devices */
+--breakpoint-md: 768px; /* Standard mobile/tablet transition */
+--breakpoint-lg: 1024px; /* Tablet/desktop transition */
+--breakpoint-xl: 1280px; /* Large desktop */
+--breakpoint-2xl: 1536px; /* Extra large desktop */
 ```
 
-### Mobile-First Approach
+### Responsive Implementation Standards
 
-- Base styles for mobile devices
-- Progressive enhancement for larger screens
-- Touch-friendly interactions
-- Responsive typography scaling
+#### **Sizing Units Strategy**
+
+- **Typography**: `rem` units for font sizes (user preference scaling)
+- **Spacing**: `rem` units for margins, padding, gaps (consistent scaling)
+- **Components**: `rem` or `%` for width/height (flexible layouts)
+- **Viewport Sections**: `vh`/`vw` for full-screen elements only
+- **Precise Elements**: `px` for borders, shadows, fine details
+
+#### **Mobile-First Development**
+
+- Base styles target mobile devices (320px+)
+- Progressive enhancement for larger screens using min-width queries
+- Touch-friendly interactions (minimum 44px touch targets)
+- Responsive typography scaling with CSS variables
+
+#### **Navigation Responsive Behavior**
+
+- **Desktop (>1024px)**: Full horizontal navigation with large logo
+- **Tablet (768px-1024px)**: Reduced logo size, maintained horizontal layout
+- **Mobile (≤768px)**: Hamburger menu with slide-down animation
+- **Small Mobile (≤640px)**: Compact spacing and sizing
+
+### Responsive Component Examples
+
+#### **Navigation Component Scaling**
+
+```css
+/* Desktop */
+height: var(--nav-height-desktop); /* 4.5rem / 72px */
+img {
+  height: var(--nav-logo-desktop); /* 4.25rem / 68px */
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  height: var(--nav-height-tablet); /* 5rem / 80px */
+  img {
+    height: var(--nav-logo-tablet); /* 3.5rem / 56px */
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  height: var(--nav-height-mobile); /* 5.5rem / 88px */
+  img {
+    height: var(--nav-logo-mobile); /* 3rem / 48px */
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 640px) {
+  height: var(--nav-height-small-mobile); /* 5rem / 80px */
+  img {
+    height: var(--nav-logo-small-mobile); /* 2.75rem / 44px */
+  }
+}
+```
+
+#### **Standard Spacing Pattern**
+
+```css
+/* Using CSS variables for consistency */
+padding: var(--spacing-xl); /* Desktop */
+@media (max-width: 768px) {
+  padding: var(--spacing-lg); /* Mobile */
+}
+@media (max-width: 640px) {
+  padding: var(--spacing-md); /* Small mobile */
+}
+```
 
 ## Performance Optimization
 
