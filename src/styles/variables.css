@@ -239,6 +239,7 @@
   --transition-fast: 0.2s ease;
   --transition-normal: 0.3s ease;
   --transition-slow: 0.8s ease;
+  --transition-very-slow: 0.4s ease;
 
   /* Z-index */
   --z-index-dropdown: 100;

@@ -208,8 +208,8 @@ export const GridCell = styled.div<{
     `
     background-image: url(${props.$backgroundImage});
     // background-size: cover;
-    background-size: ${props.$gridArea === 'A' ? '100% 90%' : 'cover'};
-    background-position: ${props.$gridArea === 'A' ? 'center 150%' : 'center center'};
+    background-size: ${props.$gridArea === 'A' ? 'cover' : 'cover'};
+    background-position: ${props.$gridArea === 'A' ? 'center -40%' : 'center center'};
     background-repeat: no-repeat;
     filter: grayscale(100%);
     

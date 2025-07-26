@@ -33,7 +33,7 @@ export const Tile = styled(motion.div)<{
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Flex properties for expansion */
-  flex: ${props => (props.$isExpanded ? '2' : '1')};
+  flex: ${props => (props.$isExpanded ? '2.5' : '1')};
 
   /* Grayscale filter for non-expanded tiles */
   filter: ${props =>
@@ -76,8 +76,9 @@ export const TileContent = styled(motion.div)`
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 24px;
+  padding: 22px;
   color: white;
+  line-height: 160%;
   z-index: 2;
 
   @media (max-width: 768px) {
@@ -87,9 +88,8 @@ export const TileContent = styled(motion.div)`
 
 export const TileTitle = styled(motion.h3)`
   margin: 0 0 12px 0;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 700;
-  line-height: 1.2;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 
   @media (max-width: 768px) {
@@ -100,9 +100,8 @@ export const TileTitle = styled(motion.h3)`
 
 export const TileDescription = styled(motion.p)`
   margin: 0;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.5;
+  font-weight: 300;
+  font-size: 18px;
   opacity: 0.9;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 
@@ -114,6 +113,5 @@ export const TileDescription = styled(motion.p)`
 
 export const ComponentWrapper = styled.div`
   width: 100%;
-  /* max-width: 1200px; */
   margin: 0 auto;
 `;

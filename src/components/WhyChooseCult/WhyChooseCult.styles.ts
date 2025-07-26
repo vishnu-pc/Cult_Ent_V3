@@ -1,181 +1,107 @@
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
 
-// Add to WhyChooseCult.styles.ts
-export const ResultsSection = styled.div`
-  /* padding: var(--spacing-xl) 0; */
-  text-align: center;
-  /* Background removed - inherited from CombinedWellnessSection */
-  color: var(--color-text-light);
+/**
+ * Main container for the WhyChooseCult section
+ */
+export const WhyCultContainer = styled.div`
+  /* Container for the entire WhyChooseCult section */
+  background-color: blue;
 `;
 
-export const ResultsTitle = styled.h2`
-  font-size: var(--font-size-3xl);
-  /* margin-bottom: var(--spacing-md); */
-`;
-
-export const ResultsSubtitle = styled.p`
-  font-size: var(--font-size-lg);
-  max-width: 800px;
-  margin: 0 auto;
-  opacity: 0.9;
-`;
-
+/**
+ * Section container for the expandable tiles
+ */
 export const SectionContainer = styled.section`
   height: 100%;
   width: 100%;
   max-width: 100vw;
-  /* background-color: blue; */
+
   display: flex;
   flex-direction: column;
-  /* Background removed - inherited from CombinedWellnessSection */
-  /* padding: var(--spacing-2xl) 0; */
+  /* Use standardized section spacing */
+  /* padding: var(--section-padding-vertical) var(--section-padding-horizontal); */
   overflow: hidden;
-`;
 
-export const SectionTitle = styled.h2`
-  font-size: var(--font-size-4xl);
-  text-align: center;
-  /* margin-bottom: var(--spacing-xl); */
-
-  @media (max-width: 768px) {
-    font-size: var(--font-size-3xl);
-  }
-`;
-
-export const ReasonsContainer = styled.div`
-  display: flex;
-  width: 100%;
-  height: 100%;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    height: auto;
-  }
-`;
-
-export const ReasonColumn = styled(motion.div)<{
-  $backgroundImage: string;
-  $isExpanded: boolean;
-}>`
-  position: relative;
-  flex: ${props => (props.$isExpanded ? 3 : 1)};
-  min-width: 0;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  /* padding: var(--spacing-lg); */
-  transition: flex 0.5s ease;
-  cursor: pointer;
-
-  &:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url(${props => props.$backgroundImage});
-    background-size: cover;
-    background-position: center;
-    opacity: 0.4;
-    z-index: -1;
-    transition: opacity 0.3s ease;
-  }
-
-  &:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      0deg,
-      rgba(0, 0, 0, 0.8) 0%,
-      rgba(0, 0, 0, 0.2) 100%
-    );
-    z-index: -1;
-  }
-
-  &:hover:before {
-    opacity: ${props => (props.$isExpanded ? 0.6 : 0.5)};
+  /* Responsive container padding */
+  @media (max-width: 1024px) {
+    /* padding: calc(var(--section-padding-vertical) * var(--spacing-scale-tablet))
+      calc(var(--section-padding-horizontal) * var(--spacing-scale-tablet)); */
   }
 
   @media (max-width: 768px) {
-    flex: 1;
-    height: ${props => (props.$isExpanded ? '250px' : '100px')};
-    transition: height 0.5s ease;
+    /* padding: calc(var(--section-padding-vertical) * var(--spacing-scale-mobile))
+      calc(var(--section-padding-horizontal) * var(--spacing-scale-mobile)); */
+  }
+
+  @media (max-width: 640px) {
+    /* padding: calc(
+        var(--section-padding-vertical) * var(--spacing-scale-small-mobile)
+      )
+      calc(
+        var(--section-padding-horizontal) * var(--spacing-scale-small-mobile)
+      ); */
   }
 `;
 
-export const ReasonTitle = styled.h3<{ $isExpanded: boolean }>`
-  font-size: ${props =>
-    props.$isExpanded ? 'var(--font-size-2xl)' : 'var(--font-size-lg)'};
-  /* margin-bottom: ${props =>
-    props.$isExpanded ? 'var(--spacing-md)' : '0'}; */
-  color: var(--color-text);
-  transition: all 0.3s ease;
-  writing-mode: ${props =>
-    props.$isExpanded ? 'horizontal-tb' : 'vertical-rl'};
-  transform: ${props => (props.$isExpanded ? 'rotate(0)' : 'rotate(180deg)')};
-
-  @media (max-width: 768px) {
-    writing-mode: horizontal-tb;
-    transform: rotate(0);
-    font-size: ${props =>
-      props.$isExpanded ? 'var(--font-size-xl)' : 'var(--font-size-md)'};
-  }
-`;
-
-export const ReasonDescription = styled(motion.p)`
-  font-size: var(--font-size-md);
-  color: var(--color-grey-light);
-  max-width: 90%;
-  line-height: 1.6;
-
-  @media (max-width: 768px) {
-    font-size: var(--font-size-sm);
-  }
-`;
-
-export const WhyCultContainer = styled.div`
-  /* background-color: red; */
-  /* min-height: 100vh; */
-`;
-
+/**
+ * Cult Advantage section with standardized spacing
+ */
 export const CultAdvantageSection = styled.section`
-  /* margin-left: 80px; */
-  /* min-height: 60vh; */
   width: 100%;
-  /* max-height: 10vh; */
-  /* Background removed - inherited from CombinedWellnessSection */
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-bottom: 0;
+  /* Use standardized section spacing */
+  /* padding: var(--section-padding-vertical) var(--section-padding-horizontal); */
+  padding-bottom: 0; /* No bottom padding for seamless flow */
+
+  /* Responsive spacing */
+  @media (max-width: 1024px) {
+    /* padding: calc(var(--section-padding-vertical) * var(--spacing-scale-tablet))
+      calc(var(--section-padding-horizontal) * var(--spacing-scale-tablet)); */
+    /* padding-bottom: 0; */
+  }
 
   @media (max-width: 768px) {
-    min-height: 50vh;
+    /* padding: calc(var(--section-padding-vertical) * var(--spacing-scale-mobile))
+      calc(var(--section-padding-horizontal) * var(--spacing-scale-mobile)); */
+    /* padding-bottom: 0; */
+    /* min-height: 50vh; */
+  }
+
+  @media (max-width: 640px) {
+    /* padding: calc(
+        var(--section-padding-vertical) * var(--spacing-scale-small-mobile)
+      )
+      calc(
+        var(--section-padding-horizontal) * var(--spacing-scale-small-mobile)
+      ); */
+    /* padding-bottom: 0; */
   }
 `;
 
+/**
+ * Container for cult advantage content with responsive layout
+ */
 export const CultAdvantageContainer = styled.div`
-  /* max-width: 1400px; */
   width: 100%;
+  //max-width: 1200px; /* Standardized container max-width */
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  /* Use standardized spacing */
   /* gap: var(--spacing-4xl); */
 
   @media (max-width: 768px) {
     flex-direction: column;
     text-align: center;
-    gap: var(--spacing-2xl);
+    /* gap: var(--spacing-2xl); */
   }
 `;
 
+/**
+ * Left content area
+ */
 export const LeftContent = styled.div`
   flex: 1;
   display: flex;
@@ -187,51 +113,81 @@ export const LeftContent = styled.div`
   }
 `;
 
+/**
+ * Top heading with standardized typography
+ */
 export const TopHeading = styled.h2`
-  font-size: var(--font-size-sm);
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.8);
-  letter-spacing: 0.2em;
+  margin-bottom: calc(var(--spacing-3xl) * 1.2);
+  font-size: var(--font-size-xl);
+  opacity: 0.5;
+  letter-spacing: 0.16em;
+  color: var(--color-text);
+  font-weight: 400;
   text-transform: uppercase;
-  /* margin-bottom: var(--spacing-lg); */
+  text-align: left;
 `;
 
+/**
+ * Container for main heading elements
+ */
 export const MainHeadingContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 
+  font-weight: 700;
+  font-size: var(--font-size-6xl);
+  /* line-height: 1.21; */
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0;
+
   @media (max-width: 768px) {
     align-items: center;
   }
 `;
 
+/**
+ * First line container for heading
+ */
 export const FirstLine = styled.div`
   display: flex;
   align-items: baseline;
+  /* Use standardized spacing */
   gap: var(--spacing-md);
-  /* margin-bottom: var(--spacing-lg); */
+  margin-bottom: var(--spacing-sm);
 `;
 
+/**
+ * Container for layered CULT text effect
+ */
 export const CultLayersContainer = styled.div`
-  /* margin-top: 100px; */
   position: relative;
   display: inline-block;
 `;
 
+/**
+ * Individual CULT layer with responsive positioning
+ */
 export const CultLayer = styled.span<{ $opacity: number; $zIndex: number }>`
   position: absolute;
-  top: ${props =>
-    props.$zIndex === 1 ? '-130px' : props.$zIndex === 2 ? '-100px' : '-70px'};
+  /* Convert hardcoded pixel values to responsive rem equivalents */
+  top: ${props => {
+    if (props.$zIndex === 1) return '-8.125rem'; /* -130px converted to rem */
+    if (props.$zIndex === 2) return '-6.25rem'; /* -100px converted to rem */
+    return '-4.375rem'; /* -70px converted to rem */
+  }};
   left: 0;
-  font-size: var(--font-size-6xl);
-  font-weight: 800;
+  /* font-size: var(--font-size-6xl); */
+  font-weight: 700;
   text-transform: uppercase;
+  /* background: linear-gradient(90.79deg, #FDD914 0.68%, #FF3278 102.18%); */
+
   background: ${props =>
     props.$zIndex === 3
       ? '#ff8c00'
-      : 'linear-gradient(0deg, #000000 0%, #000000 40%, #ff8c00 60%, #ff8c00 100%)'};
+      : 'linear-gradient(0deg, #000000 0%, #000000 45%, #ff8c00 70%, #ff8c00 100%)'};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -256,39 +212,63 @@ export const CultLayer = styled.span<{ $opacity: number; $zIndex: number }>`
 
   @media (max-width: 768px) {
     font-size: var(--font-size-4xl);
-    top: ${props =>
-      props.$zIndex === 1 ? '-80px' : props.$zIndex === 2 ? '-40px' : '0px'};
+    /* Responsive positioning for mobile */
+    top: ${props => {
+      if (props.$zIndex === 1) return '-5rem'; /* -80px converted to rem */
+      if (props.$zIndex === 2) return '-2.5rem'; /* -40px converted to rem */
+      return '0';
+    }};
   }
 `;
 
+/**
+ * Main heading line 1 with standardized typography
+ */
 export const MainHeadingLine1 = styled.h1`
-  font-size: var(--font-size-6xl);
-  font-weight: 800;
-  color: var(--color-text);
-  text-transform: uppercase;
   line-height: 1.1;
   margin: 0;
+  font-family: var(--font-primary);
 
   @media (max-width: 768px) {
     font-size: var(--font-size-4xl);
   }
 `;
 
+/**
+ * Main heading line 2 with standardized typography
+ */
 export const MainHeadingLine2 = styled.h1`
-  font-size: var(--font-size-6xl);
-  font-weight: 800;
-  color: var(--color-text);
-  text-transform: uppercase;
   line-height: 1.1;
   margin: 0;
+  font-family: var(--font-primary);
 
   @media (max-width: 768px) {
     font-size: var(--font-size-4xl);
   }
 `;
 
+/**
+ * Right content area with responsive sizing
+ */
 export const RightContent = styled.div`
-  flex: 0 0 500px;
+  /* Use standardized spacing instead of hardcoded pixels */
+  margin-top: var(--spacing-4xl);
+  /* 
+   * FLEX PARAMETER BREAKDOWN: flex: 0 0 38.25rem;
+   * 
+   * flex-grow: 0      = Don't grow to fill extra space (stays fixed width)
+   * flex-shrink: 0    = Don't shrink below basis width (maintains minimum width)  
+   * flex-basis: 38.25rem = Base width of 38.25rem (612px at 16px font size)
+   * 
+   * TUNING GUIDE FOR LAYOUT BALANCE:
+   * 25rem = 400px | More space for left content (70% left / 30% right)
+   * 30rem = 480px | Balanced layout (65% left / 35% right)
+   * 38.25rem = 612px | CURRENT - Slightly right-heavy (55% left / 45% right)
+   * 45rem = 720px | Right-heavy layout (45% left / 55% right)
+   * flex: 1 = Responsive width (fills remaining space)
+   */
+  margin-top: var(--spacing-4xl);
+  flex: 0 0 38.25rem; /* CURRENT: 612px fixed width | TUNE: Change rem value to adjust balance */
   text-align: left;
   display: flex;
   align-items: center;
@@ -299,11 +279,16 @@ export const RightContent = styled.div`
   }
 `;
 
+/**
+ * Right content text with standardized typography
+ */
 export const RightText = styled.p`
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-3xl);
   color: var(--color-text);
-  line-height: 1.5;
+  line-height: 1.6;
   font-weight: 400;
+  font-family: var(--font-primary);
+  margin: 0;
 
   @media (max-width: 768px) {
     font-size: var(--font-size-lg);
