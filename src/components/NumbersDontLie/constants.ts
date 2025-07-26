@@ -1,6 +1,6 @@
 import type { TableCellData } from './NumbersDontLie.types';
-import Wellness1 from '../../assets/images/Wellness/Numbers-1.png';
-import Wellness2 from '../../assets/images/Wellness/Numbers-2.jpg';
+import Wellness1 from '../../assets/images/NumbersDontLie/Numbers-1.png';
+import Wellness2 from '../../assets/images/NumbersDontLie/Numbers-2.jpg';
 
 /**
  * Grid data structure for the NumbersDontLie component.

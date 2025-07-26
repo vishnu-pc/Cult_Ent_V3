@@ -9,6 +9,7 @@ import {
   // SpecialLetterN,
   // SpecialLetterK,
   Subtitle,
+  SubtitleBold,
   LogoContainer,
   LogoWrapper,
   StyledDynamicLogo,
@@ -151,7 +152,7 @@ const LandingBanner: React.FC<LandingBannerProps> = () => {
             </Title>
             <Subtitle>
               Transform employee wellness from buzzword to business advantage
-              with <b>cult for corporates.</b>
+              with <SubtitleBold>cult for corporates.</SubtitleBold>
             </Subtitle>
 
             {/* 

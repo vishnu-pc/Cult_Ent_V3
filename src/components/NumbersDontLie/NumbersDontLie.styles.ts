@@ -1,4 +1,19 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+/**
+ * Gradient animation for NumbersText
+ */
+export const gradientShift = keyframes`
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+`;
 
 /**
  * Main section container with animated gradient background
@@ -6,9 +21,10 @@ import styled from 'styled-components';
 export const SectionContainer = styled.section`
   width: 100%;
   max-width: 100vw;
+  height: 100vh;
   box-sizing: border-box;
-  animation: gradientShift 8s ease infinite;
-  padding: var(--spacing-3xl) 0;
+  /* animation: gradientShift 8s ease infinite; */
+  /* padding: var(--spacing-3xl) 0; */
   position: relative;
   overflow: hidden;
 `;
@@ -17,62 +33,99 @@ export const SectionContainer = styled.section`
  * Content wrapper with max-width and centered alignment
  */
 export const ContentWrapper = styled.div`
-  max-width: 80vw;
+  max-width: 100vw;
   width: 100%;
+  height: 100%;
   margin: 0 auto;
-  padding: 0 var(--spacing-xl);
+  /* padding: 0 var(--spacing-xl); */
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: 1024px) {
+    /* padding: 0 var(--container-padding-tablet); */
+  }
 
   @media (max-width: 768px) {
-    padding: 0 var(--spacing-lg);
+    /* padding: 0 var(--container-padding-mobile); */
+  }
+
+  @media (max-width: 640px) {
+    /* padding: 0 var(--container-padding-small); */
   }
 `;
 
 export const HeaderSection = styled.div`
-  margin-bottom: var(--spacing-3xl);
+  /* margin-bottom: var(--spacing-md); */
   text-align: left;
+  flex-shrink: 0; /* Prevent header from shrinking */
 
   @media (max-width: 768px) {
-    margin-bottom: var(--spacing-2xl);
+    /* margin-bottom: var(--spacing-2xl); */
     text-align: center;
   }
 `;
 
 export const ProvenImpactText = styled.div`
-  font-size: var(--font-size-sm);
-  font-weight: 600;
-  letter-spacing: 0.2em;
+  font-size: var(--font-size-xl);
+  opacity: 0.5;
+  letter-spacing: 0.16em;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-sm);
+  font-weight: 400;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.7);
-  margin-bottom: var(--spacing-md);
-  font-family: var(--font-primary);
+  text-align: left;
 `;
 
 export const MainHeadline = styled.h1`
   font-family: var(--font-primary);
+  font-style: normal;
   font-weight: 700;
-  font-size: 54px;
+  font-size: 3.75vw;
   line-height: 119%;
   letter-spacing: 0.42em;
   text-transform: uppercase;
   vertical-align: middle;
-  margin-bottom: var(--spacing-lg);
+  /* Standardized spacing */
+  margin-bottom: var(--spacing-sm);
 
   @media (max-width: 1024px) {
-    font-size: 42px;
+    /* Convert hardcoded rem to closest global variable */
+    font-size: var(
+      --font-size-4xl
+    ); /* 2.25rem (36px) - closest to 2.625rem (42px) */
   }
 
   @media (max-width: 768px) {
-    font-size: 32px;
+    /* Convert hardcoded rem to exact global variable match */
+    text-align: left;
+    font-size: var(
+      --font-size-3xl
+    ); /* 2.25rem (36px) - closest to 2rem (32px) */
     letter-spacing: 0.2em;
   }
 `;
 
 export const NumbersText = styled.span`
-  background: linear-gradient(90deg, #22c55e 0%, #facc15 100%);
+  background: linear-gradient(90deg, #facc15 0%, #22c55e 50%, #40b9eb 100%);
+  /* background: linear-gradient(90.77deg, #fdd914 -18.43%, #40b9eb 79.71%); */
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 `;
 
 export const DontLieText = styled.span`
@@ -80,26 +133,31 @@ export const DontLieText = styled.span`
 `;
 
 export const Subheadline = styled.p`
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-3xl);
   color: rgba(255, 255, 255, 0.8);
   font-weight: 400;
   font-family: var(--font-primary);
+  margin-bottom: var(--spacing-xl);
 
   @media (max-width: 768px) {
+    text-align: left;
     font-size: var(--font-size-lg);
   }
 `;
 
 /**
- * Grid container with fixed height and responsive layout
+ * Grid container with flexible height to fill remaining space
  */
 export const GridContainer = styled.div`
   display: grid;
   width: 100%;
-  height: 600px;
+  /* Fix: Make grid fill remaining space in ContentWrapper */
+  flex: 1;
+  min-height: 0; /* Allow grid to shrink if needed */
   gap: 0;
-  border: 1px dotted rgba(255, 255, 255, 0.7);
-  border-radius: 20px;
+  /* Use standardized border variable */
+  border: var(--border-grid-dotted-thin);
+  border-radius: var(--border-radius-lg); /* Use standardized border radius */
   overflow: hidden;
 
   /* Desktop Layout */
@@ -112,9 +170,8 @@ export const GridContainer = styled.div`
 
   /* Mobile Layout */
   @media (max-width: 768px) {
-    height: 800px;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 3fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas:
       'A E'
       'F B'
@@ -134,6 +191,7 @@ export const GridCell = styled.div<{
 }>`
   grid-area: ${props => props.$gridArea};
   position: relative;
+  /* Use standardized padding */
   padding: var(--spacing-lg);
   display: flex;
   flex-direction: column;
@@ -141,7 +199,7 @@ export const GridCell = styled.div<{
   align-items: flex-start;
   color: var(--color-text);
   font-family: var(--font-primary);
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(255, 255, 255, 0.04);
 
   /* Background image with overlay */
   ${props =>
@@ -149,9 +207,10 @@ export const GridCell = styled.div<{
     props.$backgroundImage &&
     `
     background-image: url(${props.$backgroundImage});
-    background-size: cover;
-    // background-position: center;
-    background-position: ${props.$gridArea === 'A' ? 'center bottom' : 'center center'};
+    // background-size: cover;
+    background-size: ${props.$gridArea === 'A' ? '100% 90%' : 'cover'};
+    background-position: ${props.$gridArea === 'A' ? 'center 150%' : 'center center'};
+    background-repeat: no-repeat;
     filter: grayscale(100%);
     
     &::before {
@@ -171,7 +230,7 @@ export const GridCell = styled.div<{
     }
   `}
 
-  /* Selective borders - only between adjacent cells */
+  /* Selective borders - using standardized border variables */
   
   /* Desktop borders and alignment */
   @media (min-width: 769px) {
@@ -179,28 +238,28 @@ export const GridCell = styled.div<{
     ${props =>
       ['A', 'B', 'C'].includes(props.$gridArea) &&
       `
-      border-right: 1px dotted rgba(255, 255, 255, 0.7);
+      border-right: var(--border-grid-dotted-thin);
     `}
 
     /* Bottom borders for A, B, C, D */
     ${props =>
       ['A', 'B', 'C', 'D'].includes(props.$gridArea) &&
       `
-      border-bottom: 1px dotted rgba(255, 255, 255, 0.7);
+      border-bottom: var(--border-grid-dotted-thin);
     `}
     
     /* Right border for E */
     ${props =>
       props.$gridArea === 'E' &&
       `
-      border-right: 1px dotted rgba(255, 255, 255, 0.7);
+      border-right: var(--border-grid-dotted-thin);
     `}
     
     /* Bottom border for F */
     ${props =>
       props.$gridArea === 'F' &&
       `
-      border-bottom: 1px dotted rgba(255, 255, 255, 0.7);
+      border-bottom: var(--border-grid-dotted-thin);
     `}
 
     /* Desktop text alignment */
@@ -263,37 +322,29 @@ export const GridCell = styled.div<{
 
   /* Mobile borders */
   @media (max-width: 768px) {
+    /* Use standardized mobile padding */
+    //padding: var(--spacing-md);
+
     /* Right border for A */
     ${props =>
       props.$gridArea === 'A' &&
       `
-      border-right: 1px dotted rgba(255, 255, 255, 0.7);
+      border-right: var(--border-grid-dotted-thin);
     `}
 
-    /* Bottom borders for A, E, F */
+    /* Bottom borders for A, E, F, B, C, D */
     ${props =>
-      ['A', 'E', 'F'].includes(props.$gridArea) &&
+      ['A', 'E', 'F', 'B', 'C', 'D'].includes(props.$gridArea) &&
       `
-      border-bottom: 1px dotted rgba(255, 255, 255, 0.7);
+      border-bottom: var(--border-grid-dotted-thin);
     `}
     
     /* Right borders for F (spanning multiple rows) */
     ${props =>
       props.$gridArea === 'F' &&
       `
-      border-right: 1px dotted rgba(255, 255, 255, 0.7);
+      border-right: var(--border-grid-dotted-thin);
     `}
-    
-    /* Bottom borders for B, C */
-    ${props =>
-      ['B', 'C'].includes(props.$gridArea) &&
-      `
-      border-bottom: 1px dotted rgba(255, 255, 255, 0.7);
-    `}
-  }
-
-  @media (max-width: 768px) {
-    padding: var(--spacing-md);
   }
 `;
 
@@ -301,14 +352,16 @@ export const GridCell = styled.div<{
  * Large percentage value display
  */
 export const CellValue = styled.div`
-  font-size: var(--font-size-5xl);
+  font-size: var(--font-size-6xl);
   font-weight: 900;
+  letter-spacing: -0.05em;
   color: var(--color-text);
+  /* Use standardized spacing */
   margin-bottom: var(--spacing-sm);
   line-height: 1;
 
   @media (max-width: 768px) {
-    font-size: var(--font-size-4xl);
+    font-size: var(--font-size-3xl);
   }
 `;
 
@@ -316,11 +369,13 @@ export const CellValue = styled.div`
  * Bold title text
  */
 export const CellTitle = styled.h3`
-  font-size: var(--font-size-xl);
-  font-weight: 700;
+  font-size: var(--font-size-2xl);
+  font-weight: 900;
   color: var(--color-text);
+  /* Use standardized spacing */
   margin-bottom: var(--spacing-sm);
-  line-height: 1.2;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
 
   @media (max-width: 768px) {
     font-size: var(--font-size-lg);
@@ -331,10 +386,10 @@ export const CellTitle = styled.h3`
  * Description text
  */
 export const CellDescription = styled.p`
-  font-size: var(--font-size-md);
+  font-size: var(--font-size-lg);
   color: var(--color-text);
   opacity: 0.9;
-  line-height: 1.4;
+  line-height: 1.6;
   margin: 0;
 
   @media (max-width: 768px) {

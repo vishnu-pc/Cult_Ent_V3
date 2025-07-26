@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 // Add to WhyChooseCult.styles.ts
 export const ResultsSection = styled.div`
-  padding: var(--spacing-xl) 0;
+  /* padding: var(--spacing-xl) 0; */
   text-align: center;
   /* Background removed - inherited from CombinedWellnessSection */
   color: var(--color-text-light);
@@ -11,7 +11,7 @@ export const ResultsSection = styled.div`
 
 export const ResultsTitle = styled.h2`
   font-size: var(--font-size-3xl);
-  margin-bottom: var(--spacing-md);
+  /* margin-bottom: var(--spacing-md); */
 `;
 
 export const ResultsSubtitle = styled.p`
@@ -22,19 +22,21 @@ export const ResultsSubtitle = styled.p`
 `;
 
 export const SectionContainer = styled.section`
-  height: 100vh;
+  height: 100%;
   width: 100%;
+  max-width: 100vw;
+  /* background-color: blue; */
   display: flex;
   flex-direction: column;
   /* Background removed - inherited from CombinedWellnessSection */
-  padding: var(--spacing-2xl) 0;
+  /* padding: var(--spacing-2xl) 0; */
   overflow: hidden;
 `;
 
 export const SectionTitle = styled.h2`
   font-size: var(--font-size-4xl);
   text-align: center;
-  margin-bottom: var(--spacing-xl);
+  /* margin-bottom: var(--spacing-xl); */
 
   @media (max-width: 768px) {
     font-size: var(--font-size-3xl);
@@ -44,7 +46,7 @@ export const SectionTitle = styled.h2`
 export const ReasonsContainer = styled.div`
   display: flex;
   width: 100%;
-  height: 80%;
+  height: 100%;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -63,7 +65,7 @@ export const ReasonColumn = styled(motion.div)<{
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: var(--spacing-lg);
+  /* padding: var(--spacing-lg); */
   transition: flex 0.5s ease;
   cursor: pointer;
 
@@ -111,7 +113,8 @@ export const ReasonColumn = styled(motion.div)<{
 export const ReasonTitle = styled.h3<{ $isExpanded: boolean }>`
   font-size: ${props =>
     props.$isExpanded ? 'var(--font-size-2xl)' : 'var(--font-size-lg)'};
-  margin-bottom: ${props => (props.$isExpanded ? 'var(--spacing-md)' : '0')};
+  /* margin-bottom: ${props =>
+    props.$isExpanded ? 'var(--spacing-md)' : '0'}; */
   color: var(--color-text);
   transition: all 0.3s ease;
   writing-mode: ${props =>
@@ -138,18 +141,20 @@ export const ReasonDescription = styled(motion.p)`
 `;
 
 export const WhyCultContainer = styled.div`
-  // background-color: red;
-  // height: 100vh;
+  /* background-color: red; */
+  /* min-height: 100vh; */
 `;
 
 export const CultAdvantageSection = styled.section`
-  margin-left: 80px;
-  min-height: 60vh;
+  /* margin-left: 80px; */
+  /* min-height: 60vh; */
   width: 100%;
+  /* max-height: 10vh; */
   /* Background removed - inherited from CombinedWellnessSection */
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-bottom: 0;
 
   @media (max-width: 768px) {
     min-height: 50vh;
@@ -157,12 +162,12 @@ export const CultAdvantageSection = styled.section`
 `;
 
 export const CultAdvantageContainer = styled.div`
-  max-width: 1400px;
+  /* max-width: 1400px; */
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-4xl);
+  /* gap: var(--spacing-4xl); */
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -188,7 +193,7 @@ export const TopHeading = styled.h2`
   color: rgba(255, 255, 255, 0.8);
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  margin-bottom: var(--spacing-lg);
+  /* margin-bottom: var(--spacing-lg); */
 `;
 
 export const MainHeadingContainer = styled.div`
@@ -206,11 +211,11 @@ export const FirstLine = styled.div`
   display: flex;
   align-items: baseline;
   gap: var(--spacing-md);
-  margin-bottom: var(--spacing-lg);
+  /* margin-bottom: var(--spacing-lg); */
 `;
 
 export const CultLayersContainer = styled.div`
-  margin-top: 100px;
+  /* margin-top: 100px; */
   position: relative;
   display: inline-block;
 `;

@@ -36,7 +36,7 @@ export const fadeInToSeventy = keyframes`
     transform: translateY(1.25rem); /* 20px - slides up from below */
   }
   to {
-    opacity: 0.80; /* Final opacity at 80% */
+    opacity: 0.50; /* Final opacity at 80% */
     transform: translateY(0); /* Final position (no transform) */
   }
 `;
@@ -49,7 +49,7 @@ export const fadeInToEighty = keyframes`
     transform: translateY(1.25rem); /* 20px - slides up from below */
   }
   to {
-    opacity: 0.8; /* Final opacity at 80% */
+    opacity: 0.5; /* Final opacity at 80% */
     transform: translateY(0); /* Final position */
   }
 `;
@@ -61,7 +61,7 @@ export const fadeInToEightyMobile = keyframes`
     transform: translateY(1.25rem); /* 20px */
   }
   to {
-    opacity: 0.8;
+    opacity: 0.5;
     transform: translateY(-3vh);
   }
 `;
@@ -73,7 +73,7 @@ export const fadeInToEightySmall = keyframes`
     transform: translateY(1.25rem); /* 20px */
   }
   to {
-    opacity: 0.8;
+    opacity: 0.5;
     transform: translateY(0);
   }
 `;
@@ -208,22 +208,26 @@ export const ContentContainer = styled.div`
 
 // SECTION TITLE STYLING
 export const SectionTitle = styled.h3<StyledComponentProps>`
+  width: 100%;
   font-family: 'Inter', sans-serif; // TUNABLE: Font family - changed to Inter
   font-size: var(--font-size-xl); // TUNABLE: Title size
-  font-weight: 900; // TUNABLE: Font weight (300=Light, 400=Regular, 500=Medium)
+  font-weight: 400; // TUNABLE: Font weight (300=Light, 400=Regular, 500=Medium)
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  letter-spacing: 0;
-  width: 100%;
   text-align: left;
 
   /* Standardized spacing */
-  margin-bottom: var(--spacing-4xl);
+  margin-bottom: var(--spacing-md);
 
   /* Animation control - starts hidden, animates to 80% opacity */
   opacity: 0;
   animation: ${({ isVisible }) => (isVisible ? fadeInToEighty : 'none')} 1.6s
     ease-out forwards;
   // TUNABLE: Animation duration (1.6s) and easing
+
+  @media (min-width: 1536px) {
+    margin-bottom: var(--spacing-2xl);
+  }
 
   /* Responsive animations using standard breakpoints */
   @media (max-width: 1668px) {
@@ -242,17 +246,16 @@ export const MainHeading = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%; // Full width to allow individual line alignments
-  max-width: 1800px; // TUNABLE: Maximum width for the heading block (increased from 800px)
 `;
 
 // INDIVIDUAL HEADING LINES
 export const HeadingLine = styled.h2<HeadingLineProps & { alignment?: string }>`
   font-family: var(--font-primary); /* Use standardized font family */
   font-size: var(--font-size-5xl);
-  font-weight: 400;
+  font-weight: 300;
   text-transform: uppercase;
-  letter-spacing: 2.0625rem; /* 33px - Wide letter spacing for dramatic effect */
-  line-height: 1.77; /* Better spacing between lines */
+  letter-spacing: 0.4em; /* 33px - Wide letter spacing for dramatic effect */
+  line-height: 193%; /* Better spacing between lines */
 
   /* Individual line alignment */
   text-align: ${({ alignment }) => alignment || 'left'};
@@ -263,6 +266,9 @@ export const HeadingLine = styled.h2<HeadingLineProps & { alignment?: string }>`
     forwards;
   animation-delay: ${({ delay }) => delay}s; /* Individual line delays */
 
+  @media (min-width: 1536px) {
+    font-size: var(--font-size-6xl);
+  }
   /* Responsive typography using standard breakpoints */
   @media (max-width: 768px) {
     font-size: var(--font-size-3xl); /* Mobile font size */
@@ -273,19 +279,26 @@ export const HeadingLine = styled.h2<HeadingLineProps & { alignment?: string }>`
 
 // STATISTICS TEXT
 export const StatText = styled.p<StyledComponentProps>`
+  width: 100%;
   font-family: var(--font-primary); /* Use standardized font family */
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-2xl);
   font-weight: 400;
   text-align: center;
+  letter-spacing: -0.003em;
 
   /* Standardized spacing */
-  margin-top: var(--spacing-3xl); /* 64px - consistent section spacing */
+  margin-top: var(--spacing-sm); /* 64px - consistent section spacing */
 
   /* Animation control - starts hidden, animates to 80% opacity */
   opacity: 0;
   animation: ${({ isVisible }) => (isVisible ? fadeInToSeventy : 'none')} 1.6s
     ease-out forwards;
   animation-delay: 3.8s; /* Delay before text appears */
+
+  @media (min-width: 1536px) {
+    margin-top: var(--spacing-md);
+    font-size: var(--font-size-3xl);
+  }
 
   /* Responsive typography using standard breakpoints */
   @media (max-width: 768px) {
@@ -294,7 +307,7 @@ export const StatText = styled.p<StyledComponentProps>`
 
   strong {
     color: var(--color-text); /* Emphasis color */
-    font-weight: 600; /* Bold weight for emphasis */
+    font-weight: 700; /* Bold weight for emphasis */
   }
 `;
 

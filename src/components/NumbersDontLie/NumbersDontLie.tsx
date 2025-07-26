@@ -69,7 +69,7 @@ const NumbersDontLie: React.FC<NumbersDontLieProps> = ({
           <ProvenImpactText>Proven Impact</ProvenImpactText>
           <MainHeadline>
             <NumbersText>NUMBERS </NumbersText>
-            <DontLieText>DON'T LIE</DontLieText>
+            <DontLieText>Don't lie</DontLieText>
           </MainHeadline>
           <Subheadline>Real Results from Real Companies</Subheadline>
         </HeaderSection>

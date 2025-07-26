@@ -6,9 +6,11 @@ import { motion } from 'framer-motion';
  * Uses the animated gradient background and implements a 35/65 split layout.
  */
 export const SectionContainer = styled.section`
-  height: 100vh;
+  height: 110vh;
   width: 100%;
+  max-width: 100vw;
   display: flex;
+  /* background-color: red; */
   /* Background removed - inherited from CombinedWellnessSection */
   overflow: hidden;
   position: relative;
@@ -23,11 +25,12 @@ export const SectionContainer = styled.section`
  */
 export const BackgroundNumber = styled.div`
   position: absolute;
-  top: -2rem;
-  left: -5rem;
-  font-size: 20rem;
-  font-weight: 900;
-  color: rgba(255, 255, 255, 0.03);
+  top: -1rem;
+  left: -6rem;
+  font-size: 17rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.13);
+  letter-spacing: -0.12rem;
   z-index: 1;
   line-height: 1;
   pointer-events: none;
@@ -45,15 +48,15 @@ export const BackgroundNumber = styled.div`
  * Takes up 35% of the width with fixed dimensions.
  */
 export const ImageContainer = styled.div`
-  flex: 0 0 30%;
+  flex: 0 0 33%;
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   z-index: 2;
-  margin-left: 10%;
-  margin-top: 3vh;
-  margin-bottom: 1vh;
+  /* margin-left: 10%; */
+  /* margin-top: 3vh; */
+  /* margin-bottom: 1vh; */
 
   @media (max-width: 768px) {
     height: 40vh;
@@ -66,13 +69,13 @@ export const ImageContainer = styled.div`
  * This should be vertically aligned with the SectionTitle on the right.
  */
 export const OverlayTextContainer = styled.div`
-  padding: var(--spacing-xxs) var(--spacing-xxs);
+  //padding: var(--spacing-xxs) var(--spacing-xxs);
   z-index: 3;
   height: auto;
   flex-shrink: 0;
 
   @media (max-width: 768px) {
-    padding: var(--spacing-lg);
+    padding: var(--spacing-md) var(--spacing-xxs);
   }
 `;
 
@@ -80,26 +83,30 @@ export const OverlayTextContainer = styled.div`
  * The "WELLNESS SOLUTIONS" text overlay.
  */
 export const OverlayTitle = styled.h3`
-  font-size: var(--font-size-lg);
-  letter-spacing: 0.2em;
+  font-size: var(--font-size-xl);
+  opacity: 0.5;
+  letter-spacing: 0.16em;
   color: var(--color-text);
-  margin-bottom: var(--spacing-xxs);
-  font-weight: 500;
+  margin-bottom: var(--spacing-sm);
+  font-weight: 400;
   text-transform: uppercase;
+  text-align: left;
 `;
 
 /**
  * The "05 WAYS" text with animated gradient.
  */
 export const OverlaySubtitle = styled.h2`
-  font-size: var(--font-size-7xl);
+  font-size: 6.1vw;
   font-weight: 700;
   background: var(--gradient-animated-colour);
+  letter-spacing: -0.04em;
   background-size: 400% 400%;
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: gradientShift 21s ease infinite;
+  margin-top: var(--spacing-xxs);
   margin-bottom: var(--spacing-xxs);
 
   @keyframes gradientShift {
@@ -151,16 +158,16 @@ export const StyledImage = styled(motion.div)<{ $imageUrl: string }>`
  * Takes up 55% of the width and implements the two-part vertical structure.
  */
 export const ContentContainer = styled.div`
-  flex: 0 0 50%;
+  flex: 0 0 67%;
   display: flex;
   flex-direction: column;
-  padding: var(--spacing-xxs);
+  /* padding: var(--spacing-xxs); */
   margin-top: 3vh;
-  margin-bottom: 1vh;
+  /* margin-bottom: 1vh; */
   z-index: 2;
 
   @media (max-width: 768px) {
-    padding: var(--spacing-lg);
+    /* padding: var(--spacing-lg); */
     flex: none;
   }
 `;
@@ -173,9 +180,9 @@ export const SectionTitle = styled.h2`
   font-size: var(--font-size-2xl);
   color: var(--color-text);
   font-weight: 400;
-  line-height: 1.2;
-  margin: 0;
-  padding: var(--spacing-lg) var(--spacing-xxs);
+  line-height: 1.6;
+  margin-bottom: 0;
+  padding: var(--spacing-2xl) var(--spacing-xxs);
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -195,7 +202,7 @@ export const OptionsContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 10% var(--spacing-xxs);
+  padding: 3% var(--spacing-xxs);
 `;
 
 /**
@@ -240,8 +247,8 @@ export const OptionItem = styled(motion.div)<{
 export const OptionHeader = styled.div`
   display: flex;
   align-items: center;
-  gap: var(--spacing-lg);
-  margin-bottom: var(--spacing-sm);
+  gap: var(--spacing-xl);
+  /* margin-bottom: var(--spacing-sm); */
 `;
 
 /**
@@ -250,7 +257,7 @@ export const OptionHeader = styled.div`
 export const OptionNumber = styled.span`
   font-size: var(--font-size-3xl);
   font-weight: 700;
-  color: var(--color-grey);
+  color: var(--color-grey-darker);
   min-width: 3rem;
 `;
 
@@ -266,8 +273,10 @@ export interface OptionTitleProps {
  * Becomes bold when the description is visible (on hover).
  */
 export const OptionTitle = styled.h3<OptionTitleProps>`
-  font-size: var(--font-size-3xl);
+  font-size: ${props =>
+    props.$hasDescription ? 'var(--font-size-2xl)' : 'var(--font-size-3xl)'};
   font-weight: ${props => (props.$hasDescription ? '800' : '700')};
+  letter-spacing: -0.03em;
   color: inherit;
   margin: 0;
 
@@ -282,8 +291,8 @@ export const OptionTitle = styled.h3<OptionTitleProps>`
  */
 export const OptionDescription = styled(motion.p)`
   color: rgba(0, 0, 0);
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-xl);
   line-height: 1.5;
-  margin-top: 8px;
+  /* margin-top: 8px; */
   overflow: hidden;
 `;

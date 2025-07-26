@@ -251,18 +251,28 @@ export const SpecialLetterK = styled.span`
 `;
 
 export const Subtitle = styled.p`
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-2xl);
+  line-height: 200%;
+  letter-spacing: -0.003em;
   color: var(--color-grey-light);
   max-width: 80%;
 
   /* Standardized spacing - removed bottom margin for better CTA button spacing */
   margin-bottom: var(--spacing-xxs); /* 8px - minimal spacing before CTA */
 
+  @media (max-width: 1536px) {
+    font-size: var(--font-size-xl);
+  }
+
   @media (max-width: 768px) {
     font-size: var(--font-size-lg);
     max-width: 100%;
     margin-bottom: var(--spacing-md); /* Slightly more spacing on mobile */
   }
+`;
+
+export const SubtitleBold = styled.span`
+  font-weight: 900;
 `;
 
 export const LogoContainer = styled.div`
@@ -446,7 +456,7 @@ export const DemoButton = styled(motion.button)`
  */
 export const CTAButton = styled(motion.button)`
   /* Standardized spacing using new spacing scale */
-  margin-top: var(--spacing-2xl); /* 48px - increased for better hierarchy */
+  margin-top: var(--spacing-xl); /* 48px - increased for better hierarchy */
   align-self: center;
   width: 100%;
   z-index: 11;

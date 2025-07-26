@@ -3,11 +3,12 @@ import { motion } from 'framer-motion';
 
 export const TilesContainer = styled.div`
   display: flex;
-  height: 600px;
+  height: 70vh;
   width: 100%;
-  gap: 8px;
-  padding: 20px;
+  gap: 10px;
+  /* padding: 20px; */
   box-sizing: border-box;
+  padding-top: 0;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -32,7 +33,7 @@ export const Tile = styled(motion.div)<{
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Flex properties for expansion */
-  flex: ${props => (props.$isExpanded ? '3' : '1')};
+  flex: ${props => (props.$isExpanded ? '2' : '1')};
 
   /* Grayscale filter for non-expanded tiles */
   filter: ${props =>
@@ -113,6 +114,6 @@ export const TileDescription = styled(motion.p)`
 
 export const ComponentWrapper = styled.div`
   width: 100%;
-  max-width: 1200px;
+  /* max-width: 1200px; */
   margin: 0 auto;
 `;
