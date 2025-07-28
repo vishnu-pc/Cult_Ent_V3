@@ -6,7 +6,7 @@ interface HashtagProps {}
 
 const SectionContainer = styled.section`
   height: 50vh;
-  width: 100vw;
+  width: 10vw;
   display: flex;
   flex-direction: column;
   justify-content: center;

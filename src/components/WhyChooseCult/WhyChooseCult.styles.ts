@@ -5,7 +5,6 @@ import styled from 'styled-components';
  */
 export const WhyCultContainer = styled.div`
   /* Container for the entire WhyChooseCult section */
-  background-color: blue;
 `;
 
 /**
@@ -268,14 +267,14 @@ export const RightContent = styled.div`
    * flex: 1 = Responsive width (fills remaining space)
    */
   margin-top: var(--spacing-4xl);
-  flex: 0 0 38.25rem; /* CURRENT: 612px fixed width | TUNE: Change rem value to adjust balance */
+  flex: 0 0 29.75rem; /* CURRENT: 612px fixed width | TUNE: Change rem value to adjust balance */
   text-align: left;
   display: flex;
   align-items: center;
 
   @media (max-width: 768px) {
     flex: none;
-    text-align: center;
+    text-align: left;
   }
 `;
 

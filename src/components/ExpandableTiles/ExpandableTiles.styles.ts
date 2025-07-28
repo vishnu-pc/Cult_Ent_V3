@@ -46,8 +46,8 @@ export const Tile = styled(motion.div)<{
   /* Shadow for expanded tile */
   box-shadow: ${props =>
     props.$isExpanded
-      ? '0 20px 40px rgba(255, 107, 53, 0.3)'
-      : '0 4px 8px rgba(0, 0, 0, 0.1)'};
+      ? '0 10px 20px rgba(255, 107, 53, 0.3)'
+      : '0 2px 4px rgba(0, 0, 0, 0.1)'};
 
   @media (max-width: 768px) {
     flex: none;

@@ -7,6 +7,7 @@ import styled from 'styled-components';
  */
 export const CombinedSectionContainer = styled.section`
   width: 100%;
+  max-width: 100vw;
   min-height: 100vh;
   background: var(--gradient-animated-very-subtle);
   background-size: 400% 400%;
@@ -14,6 +15,8 @@ export const CombinedSectionContainer = styled.section`
   position: relative;
   display: flex;
   flex-direction: column;
+  margin: 0;
+  padding: 0;
 
   @keyframes gradientShift {
     0% {

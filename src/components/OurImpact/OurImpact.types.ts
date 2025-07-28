@@ -3,7 +3,7 @@ export interface VideoData {
   title: string;
   subtitle: string;
   description: string;
-  thumbnail: string;
+  thumbnail?: string; // Optional since YouTube provides its own thumbnails
   videoUrl: string;
 }
 

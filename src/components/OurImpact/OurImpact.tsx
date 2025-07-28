@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import { OurImpactDivider } from '../ui/GradientDivider';
 import type { OurImpactProps } from './OurImpact.types';
 import { DEFAULT_VIDEOS, VIDEOS_PER_PAGE } from './constants';
@@ -14,8 +14,7 @@ import {
   Description,
   VideoCardsContainer,
   VideoCard,
-  ThumbnailContainer,
-  PlayButton,
+  IframeContainer,
   CardContent,
   CardTitle,
   CardSubtitle,
@@ -25,27 +24,99 @@ import {
 } from './OurImpact.styles';
 
 const OurImpact: React.FC<OurImpactProps> = ({ videos = DEFAULT_VIDEOS }) => {
-  const [currentPage, setCurrentPage] = useState(0);
-
-  const totalPages = Math.ceil(videos.length / VIDEOS_PER_PAGE);
-  const currentVideos = videos.slice(
-    currentPage * VIDEOS_PER_PAGE,
-    (currentPage + 1) * VIDEOS_PER_PAGE
+  const [currentStartIndex, setCurrentStartIndex] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
+  const [playingVideos, setPlayingVideos] = useState(() => new Set<number>());
+  const iframeRefs = useRef<{ [key: number]: HTMLIFrameElement | null }>({});
+  const autoTransitionRef = useRef<ReturnType<typeof setTimeout> | undefined>(
+    undefined
   );
 
+  // Show 3 videos at a time, scroll by 1
+  const currentVideos = videos.slice(
+    currentStartIndex,
+    currentStartIndex + VIDEOS_PER_PAGE
+  );
+  const totalVideos = videos.length;
+  const canGoNext = currentStartIndex + VIDEOS_PER_PAGE < totalVideos;
+  const canGoPrev = currentStartIndex > 0;
+
   const handlePrevPage = useCallback(() => {
-    setCurrentPage(prev => Math.max(0, prev - 1));
-  }, []);
+    if (canGoPrev) {
+      setCurrentStartIndex(prev => Math.max(0, prev - 1));
+    }
+  }, [canGoPrev]);
 
   const handleNextPage = useCallback(() => {
-    setCurrentPage(prev => Math.min(totalPages - 1, prev + 1));
-  }, [totalPages]);
+    if (canGoNext) {
+      setCurrentStartIndex(prev =>
+        Math.min(totalVideos - VIDEOS_PER_PAGE, prev + 1)
+      );
+    }
+  }, [canGoNext, totalVideos]);
 
-  const handleVideoClick = useCallback((videoUrl: string) => {
-    // Placeholder functionality - could open modal, navigate to video, etc.
-    console.log('Opening video:', videoUrl);
-    window.open(videoUrl, '_blank');
+  const handleIframeHover = useCallback(
+    (videoId: number, isHovering: boolean) => {
+      const iframe = iframeRefs.current[videoId];
+      if (iframe && iframe.contentWindow) {
+        try {
+          const command = isHovering ? 'playVideo' : 'pauseVideo';
+          iframe.contentWindow.postMessage(
+            `{"event":"command","func":"${command}","args":""}`,
+            '*'
+          );
+
+          // Track playing videos for auto-transition logic
+          setPlayingVideos(prev => {
+            const newSet = new Set(prev);
+            if (isHovering) {
+              newSet.add(videoId);
+            } else {
+              newSet.delete(videoId);
+            }
+            return newSet;
+          });
+        } catch {
+          console.log('YouTube API not ready or not available');
+        }
+      }
+    },
+    []
+  );
+
+  const handleContainerHover = useCallback((hovering: boolean) => {
+    setIsHovering(hovering);
   }, []);
+
+  // Auto-transition logic
+  useEffect(() => {
+    const startAutoTransition = () => {
+      if (autoTransitionRef.current) {
+        clearTimeout(autoTransitionRef.current);
+      }
+
+      autoTransitionRef.current = setTimeout(() => {
+        // Only auto-transition if no videos are playing and user is not hovering
+        if (playingVideos.size === 0 && !isHovering) {
+          if (canGoNext) {
+            handleNextPage();
+          } else {
+            // Loop back to start when reaching the end
+            setCurrentStartIndex(0);
+          }
+        }
+        startAutoTransition(); // Restart the timer
+      }, 5000); // 15 seconds
+    };
+
+    startAutoTransition();
+
+    return () => {
+      if (autoTransitionRef.current) {
+        clearTimeout(autoTransitionRef.current);
+      }
+    };
+  }, [canGoNext, handleNextPage, isHovering, playingVideos.size]);
 
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -77,7 +148,10 @@ const OurImpact: React.FC<OurImpactProps> = ({ videos = DEFAULT_VIDEOS }) => {
             </DescriptionSection>
           </HeaderSection>
 
-          <VideoCardsContainer>
+          <VideoCardsContainer
+            onMouseEnter={() => handleContainerHover(true)}
+            onMouseLeave={() => handleContainerHover(false)}
+          >
             {currentVideos.map((video, index) => (
               <VideoCard
                 key={video.id}
@@ -88,12 +162,21 @@ const OurImpact: React.FC<OurImpactProps> = ({ videos = DEFAULT_VIDEOS }) => {
                 whileHover={{ y: -5 }}
                 transition={{ duration: 0.2 }}
               >
-                <ThumbnailContainer
-                  onClick={() => handleVideoClick(video.videoUrl)}
+                <IframeContainer
+                  onMouseEnter={() => handleIframeHover(video.id, true)}
+                  onMouseLeave={() => handleIframeHover(video.id, false)}
                 >
-                  <img src={video.thumbnail} alt={`${video.title} thumbnail`} />
-                  <PlayButton />
-                </ThumbnailContainer>
+                  <iframe
+                    ref={el => {
+                      iframeRefs.current[video.id] = el;
+                    }}
+                    src={`${video.videoUrl}?enablejsapi=1&mute=1&controls=1`}
+                    title={`${video.title} video`}
+                    allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+                    referrerPolicy='strict-origin-when-cross-origin'
+                    allowFullScreen
+                  />
+                </IframeContainer>
                 <CardContent>
                   <CardTitle>{video.title}</CardTitle>
                   <CardSubtitle>{video.subtitle}</CardSubtitle>
@@ -105,14 +188,14 @@ const OurImpact: React.FC<OurImpactProps> = ({ videos = DEFAULT_VIDEOS }) => {
 
           <NavigationContainer>
             <NavigationButton
-              $disabled={currentPage === 0}
+              $disabled={!canGoPrev}
               $isNext={false}
               onClick={handlePrevPage}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             />
             <NavigationButton
-              $disabled={currentPage >= totalPages - 1}
+              $disabled={!canGoNext}
               $isNext={true}
               onClick={handleNextPage}
               whileHover={{ scale: 1.05 }}

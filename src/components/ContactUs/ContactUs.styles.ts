@@ -20,57 +20,88 @@ export const gradientAnimation = keyframes`
 export const SectionContainer = styled.section`
   min-height: 100vh;
   width: 100%;
+  max-width: 100vw;
+  /* Restore original background gradient */
   background: linear-gradient(135deg, #0f0120 0%, #000000 100%);
+  /* background: blue; */
   display: flex;
   align-items: center;
+  /* Use standardized section spacing */
+  position: relative;
+  z-index: 1;
 
   @media (max-width: 768px) {
     flex-direction: column;
-    padding: var(--spacing-2xl) var(--spacing-md);
     min-height: auto;
   }
 `;
 
+/**
+ * CSS Grid container implementing the A/B+C layout structure
+ * Desktop: 2x2 grid where A spans both columns, B=40%, C=60%
+ * Mobile: Single column where B is hidden, only A and C visible
+ */
 export const ContentWrapper = styled.div`
-  max-width: 1400px;
-  margin: 0 auto;
   width: 100%;
-  display: flex;
-  align-items: flex-start;
-  gap: var(--spacing-3xl);
+
+  /* CSS Grid Layout */
+  display: grid;
+  grid-template-columns: 2fr 3fr; /* 40% + 60% = 2:3 ratio */
+  grid-template-rows: auto 1fr; /* Auto-height for title, remaining space for content */
+  //gap: var(--spacing-3xl); /* Standardized gap */
+
+  /* Grid areas for better semantic layout */
+  grid-template-areas:
+    'title title' /* A spans both columns */
+    'image form'; /* B (image) + C (form) */
 
   @media (max-width: 768px) {
-    flex-direction: column;
-    gap: var(--spacing-2xl);
+    /* Mobile: Single column layout, hide image */
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      'title' /* A - TitleSection */
+      'form'; /* C - FormSection (B/ImageSection hidden) */
+    //gap: var(--spacing-2xl);
   }
 `;
 
-export const LeftSection = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xl);
-
-  @media (max-width: 768px) {
-    order: 1;
-    width: 100%;
-  }
-`;
-
+/**
+ * A - TitleSection: Spans full width at top
+ */
 export const TitleSection = styled.div`
-  margin-bottom: var(--spacing-lg);
+  grid-area: title;
+  /* Use standardized spacing */
+  margin-bottom: var(--spacing-2xl);
+  text-align: left;
 
   @media (max-width: 768px) {
     margin-bottom: var(--spacing-xl);
-    text-align: center;
+    text-align: left;
   }
 `;
 
+/**
+ * B - ImageSection: 40% width, hidden on mobile
+ */
 export const ImageSection = styled.div`
-  margin-top: -150px;
+  grid-area: image;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 768px) {
+    /* Hide on mobile as per requirements */
+    display: none;
+  }
+`;
+
+/**
+ * C - FormSection: 60% width, full width on mobile
+ */
+export const FormSection = styled.div`
+  grid-area: form;
+  width: 100%;
 
   @media (max-width: 768px) {
     width: 100%;
@@ -80,8 +111,7 @@ export const ImageSection = styled.div`
 export const JumpingGirlImage = styled(motion.img)`
   width: 100%;
   height: auto;
-  max-height: 120vh;
-  min-height: 1000px;
+  max-height: 73vh;
   object-fit: contain;
 
   @media (max-width: 768px) {
@@ -90,31 +120,25 @@ export const JumpingGirlImage = styled(motion.img)`
   }
 `;
 
-export const FormSection = styled.div`
-  flex: 1;
-  max-width: 600px;
-
-  @media (max-width: 768px) {
-    order: 2;
-    width: 100%;
-    max-width: none;
-  }
-`;
-
 export const ContactTitle = styled.h2`
-  font-size: var(--font-size-lg);
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.8);
+  font-size: var(--font-size-xl);
+  opacity: 0.5;
+  letter-spacing: 0.16em;
+  color: var(--color-text);
   margin-bottom: var(--spacing-sm);
-  letter-spacing: 0.1em;
+  font-weight: 400;
   text-transform: uppercase;
+  text-align: left;
 `;
 
 export const MainHeadline = styled.h1`
   font-size: var(--font-size-5xl);
-  font-weight: 800;
-  line-height: 1.1;
-  margin-bottom: var(--spacing-lg);
+  line-height: 1.19;
+  font-weight: 700;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-md);
+  font-family: var(--font-primary);
 
   @media (max-width: 768px) {
     font-size: var(--font-size-4xl);
@@ -127,18 +151,34 @@ export const CutToTheText = styled.span`
 `;
 
 export const ChaseText = styled.span`
-  background: linear-gradient(90deg, #40b9eb 0%, #ff3278 100%);
-  background-size: 120% 120%;
+  background: linear-gradient(90.88deg, rgb(62, 71, 239) 0%, #ff3278 100%);
+  /* background: linear-gradient(90.88deg, #40b9eb 2.3%, #ff3278 49.42%); */
+  background-size: 150% 150%;
   font-weight: 700;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  animation: gradientShift 6s ease infinite;
   background-clip: text;
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 `;
 
 export const Subtitle = styled.p`
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-2xl);
   color: rgba(255, 255, 255, 0.9);
-  line-height: 1.4;
+  line-height: 2;
+  font-family: var(--font-primary);
+  font-weight: 400;
+  margin: 0; /* Remove default margin */
 
   @media (max-width: 768px) {
     font-size: var(--font-size-lg);
@@ -146,15 +186,16 @@ export const Subtitle = styled.p`
 `;
 
 export const Form = styled.form`
-  margin-top: 250px;
   display: flex;
   flex-direction: column;
+  /* Use standardized spacing */
   gap: var(--spacing-lg);
 `;
 
 export const FormRow = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
+  /* Use standardized spacing */
   gap: var(--spacing-lg);
 
   @media (max-width: 640px) {
@@ -175,14 +216,17 @@ export const FullWidthFormGroup = styled.div`
 `;
 
 export const Input = styled.input`
+  /* Use standardized spacing */
   padding: var(--spacing-md);
   background: transparent;
   border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: var(--border-radius-md);
+  /* Use standardized border radius */
+  border-radius: var(--border-radius-xxs);
   color: var(--color-text);
   font-size: var(--font-size-md);
   font-family: var(--font-primary);
   outline: none;
+  /* Use standardized transitions */
   transition: all var(--transition-normal);
 
   &::placeholder {
@@ -200,14 +244,17 @@ export const Input = styled.input`
 `;
 
 export const Select = styled.select`
+  /* Use standardized spacing */
   padding: var(--spacing-md);
   background: transparent;
   border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: var(--border-radius-md);
+  /* Use standardized border radius */
+  border-radius: var(--border-radius-xxs);
   color: rgba(255, 255, 255, 0.6);
   font-size: var(--font-size-md);
   font-family: var(--font-primary);
   outline: none;
+  /* Use standardized transitions */
   transition: all var(--transition-normal);
   cursor: pointer;
 
@@ -227,14 +274,17 @@ export const Select = styled.select`
 `;
 
 export const TextArea = styled.textarea`
+  /* Use standardized spacing */
   padding: var(--spacing-md);
   background: transparent;
   border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: var(--border-radius-md);
+  /* Use standardized border radius */
+  border-radius: var(--border-radius-xxs);
   color: var(--color-text);
   font-size: var(--font-size-md);
   font-family: var(--font-primary);
   outline: none;
+  /* Use standardized transitions */
   transition: all var(--transition-normal);
   min-height: 120px;
   resize: vertical;
@@ -256,6 +306,7 @@ export const TextArea = styled.textarea`
 export const RecaptchaContainer = styled.div`
   display: flex;
   align-items: center;
+  /* Use standardized spacing */
   gap: var(--spacing-md);
   margin: var(--spacing-lg) 0;
 `;
@@ -269,6 +320,7 @@ export const RecaptchaCheckbox = styled.input`
 export const RecaptchaText = styled.span`
   color: rgba(255, 255, 255, 0.8);
   font-size: var(--font-size-sm);
+  font-family: var(--font-primary);
 `;
 
 export const SubmitButton = styled(motion.button)`

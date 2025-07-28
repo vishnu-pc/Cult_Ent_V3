@@ -6,6 +6,7 @@ import EllipseBackground from '../../assets/images/OurImpact/Ellipse-1.png';
 export const SectionContainer = styled.section`
   min-height: 100vh;
   width: 100%;
+  max-width: 100vw;
   background:
     linear-gradient(
       to bottom,
@@ -21,18 +22,18 @@ export const SectionContainer = styled.section`
       /* yellow */ rgba(0, 255, 102, 0.4) 25%,
       /* green */ rgba(0, 102, 255, 0.4) 50% /* blue */
     );
-  padding: var(--spacing-3xl) var(--spacing-xl);
+  /* padding: var(--spacing-3xl) var(--spacing-xl); */
   display: flex;
   flex-direction: column;
   justify-content: center;
 
   @media (max-width: 768px) {
-    padding: var(--spacing-2xl) var(--spacing-md);
+    /* padding: var(--spacing-2xl) var(--spacing-md); */
   }
 `;
 
 export const ContentWrapper = styled.div`
-  max-width: 1400px;
+  /* max-width: 1400px; */
   margin: 0 auto;
   width: 100%;
 `;
@@ -41,12 +42,12 @@ export const HeaderSection = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--spacing-3xl);
-  gap: var(--spacing-2xl);
+  margin-bottom: var(--spacing-xl);
+  gap: 20%;
 
   @media (max-width: 768px) {
     flex-direction: column;
-    gap: var(--spacing-xl);
+    /* gap: var(--spacing-xl); */
     align-items: flex-start;
   }
 `;
@@ -56,21 +57,23 @@ export const TitleSection = styled.div`
 `;
 
 export const Subheading = styled.div`
-  font-size: var(--font-size-sm);
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.7);
+  font-size: var(--font-size-xl);
+  opacity: 0.5;
+  letter-spacing: 0.16em;
+  color: var(--color-text);
+  font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  text-align: left;
   margin-bottom: var(--spacing-md);
 `;
 
 export const MainTitle = styled.h1`
   font-size: var(--font-size-6xl);
-  font-weight: 800;
-  line-height: 1.1;
+  line-height: 1.19;
   color: var(--color-text);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-weight: 700;
+  letter-spacing: 0.42rem;
 
   @media (max-width: 768px) {
     font-size: var(--font-size-5xl);
@@ -83,9 +86,23 @@ export const MainTitle = styled.h1`
 
 export const GradientText = styled.span`
   background: linear-gradient(90deg, #a8d840 0%, #6bd6e4 50%, #4285f4 100%);
+  background-size: 150% 150%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: gradient 7s ease infinite;
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 `;
 
 export const DescriptionSection = styled.div`
@@ -99,11 +116,11 @@ export const DescriptionSection = styled.div`
 `;
 
 export const Description = styled.p`
-  font-size: var(--font-size-2xl);
+  font-size: var(--font-size-3xl);
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.9);
   line-height: 1.6;
-  max-width: 400px;
+  /* max-width: 400px; */
 
   @media (max-width: 768px) {
     font-size: var(--font-size-lg);
@@ -113,8 +130,8 @@ export const Description = styled.p`
 export const VideoCardsContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-xl);
-  margin-bottom: var(--spacing-3xl);
+  gap: var(--spacing-2xl);
+  margin-bottom: var(--spacing-2xl);
 
   @media (max-width: 1024px) {
     grid-template-columns: repeat(2, 1fr);
@@ -122,7 +139,7 @@ export const VideoCardsContainer = styled.div`
 
   @media (max-width: 640px) {
     grid-template-columns: 1fr;
-    gap: var(--spacing-lg);
+    /* gap: var(--spacing-lg); */
   }
 `;
 
@@ -133,8 +150,8 @@ export const VideoCard = styled(motion.div)`
   padding: var(--spacing-lg);
   overflow: hidden;
   transition: all var(--transition-normal);
-  width: 400px;
-  height: 450px;
+  /* width: 400px; */
+  /* height: 450px; */
 
   &:hover {
     border-color: rgba(255, 255, 255, 0.3);
@@ -145,7 +162,7 @@ export const VideoCard = styled(motion.div)`
 export const ThumbnailContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 240px;
+  max-height: 25vw;
   border-radius: var(--border-radius-md);
   overflow: hidden;
   margin-bottom: var(--spacing-lg);
@@ -160,6 +177,26 @@ export const ThumbnailContainer = styled.div`
 
   &:hover img {
     transform: scale(1.05);
+  }
+`;
+
+export const IframeContainer = styled.div`
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  margin-bottom: var(--spacing-lg);
+  cursor: pointer;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: var(--border-radius-md);
   }
 `;
 
@@ -202,21 +239,30 @@ export const CardTitle = styled.h3`
   font-size: var(--font-size-md);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.37rem;
+  line-height: 1.6;
   margin-bottom: var(--spacing-xs);
   color: var(--color-text);
 `;
 
 export const CardSubtitle = styled.div`
-  font-size: var(--font-size-sm);
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.7);
+  /* font-size: var(--font-size-sm); */
+  /* color: rgba(255, 255, 255, 0.7); */
   margin-bottom: var(--spacing-sm);
+
+  font-size: var(--font-size-md);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.37rem;
+  line-height: 1.6;
+  color: var(--color-text);
 `;
 
 export const CardDescription = styled.p`
-  font-size: var(--font-size-sm);
-  color: rgba(255, 255, 255, 0.6);
+  font-size: var(--font-size-md);
+  font-weight: 400;
+  line-height: 2;
+  color: rgba(255, 255, 255, 0.7);
   line-height: 1.5;
 `;
 

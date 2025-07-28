@@ -1,65 +1,53 @@
 import type { VideoData } from './OurImpact.types';
-import Wellness1 from '../../assets/images/Wellness/Wellness-1.png';
-import Wellness2 from '../../assets/images/Wellness/Wellness-2.png';
-import Wellness3 from '../../assets/images/Wellness/Wellness-3.png';
-import Wellness4 from '../../assets/images/Wellness/Wellness-4.png';
-import Wellness5 from '../../assets/images/Wellness/Wellness-5.png';
-import Wellness6 from '../../assets/images/Wellness/Wellness-1.png';
 
 export const DEFAULT_VIDEOS: VideoData[] = [
   {
     id: 1,
-    title: 'THE TITLE',
+    title: 'cult for Corporates',
     subtitle: '01',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna.',
-    thumbnail: Wellness1,
+      'A fitness experience your team will love, energising, uniting, and boosting performance through expert-led sessions.',
     videoUrl: 'https://www.youtube.com/embed/0HX4fNVqLC0',
   },
   {
     id: 2,
-    title: 'THE TITLE',
+    title: 'cult Corporate Wellness Connect',
     subtitle: '02',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna.',
-    thumbnail: Wellness2,
-    videoUrl: 'https://example.com/video2.mp4',
+      'A power-packed evening bringing together dynamic business leaders from the HR fraternity.',
+    videoUrl: 'https://www.youtube.com/embed/dSkz2FAZ3x4',
   },
   {
     id: 3,
-    title: 'THE TITLE',
+    title: 'Client insights',
     subtitle: '03',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna.',
-    thumbnail: Wellness3,
-    videoUrl: 'https://example.com/video3.mp4',
+      'How transformative can a fitness program be for an organisation and its employees?',
+    videoUrl: 'https://www.youtube.com/embed/-NW134dIp9o',
   },
   {
     id: 4,
-    title: 'THE TITLE',
+    title: 'Wellness That Works at Work',
     subtitle: '04',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna.',
-    thumbnail: Wellness4,
-    videoUrl: 'https://example.com/video4.mp4',
+      'Transform your workplace with a fitness program designed for employees to boost energy, foster a culture, and achieve real results.',
+    videoUrl: 'https://www.youtube.com/embed/PiYqMCf11wA',
   },
   {
     id: 5,
-    title: 'THE TITLE',
+    title: 'Work. Workout. Win.',
     subtitle: '05',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna.',
-    thumbnail: Wellness5,
-    videoUrl: 'https://example.com/video5.mp4',
+      'The ultimate employee fitness solution to inspire, engage, and boost productivity with expert-led sessions.',
+    videoUrl: 'https://www.youtube.com/embed/rk00d7LXjGc',
   },
   {
     id: 6,
-    title: 'THE TITLE',
+    title: 'Energize Your Workday with cult',
     subtitle: '06',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna.',
-    thumbnail: Wellness6,
-    videoUrl: 'https://example.com/video6.mp4',
+      'Energize your team with expert-led fitness that goes beyond sweat, driving lasting impact and better well-being.',
+    videoUrl: 'https://www.youtube.com/embed/rjeu80V4XZQ',
   },
 ];
 

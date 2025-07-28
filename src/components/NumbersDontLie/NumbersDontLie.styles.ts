@@ -200,6 +200,7 @@ export const GridCell = styled.div<{
   color: var(--color-text);
   font-family: var(--font-primary);
   background-color: rgba(255, 255, 255, 0.04);
+  /* backdrop-filter: blur(10px); */
 
   /* Background image with overlay */
   ${props =>

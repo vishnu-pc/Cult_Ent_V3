@@ -17,7 +17,6 @@ import {
   TextLine,
   WhiteText,
   GradientText,
-  MobileTestimonialContainer,
 } from './Testimonials.styles';
 
 const Testimonials: React.FC<TestimonialsProps> = ({
@@ -28,16 +27,13 @@ const Testimonials: React.FC<TestimonialsProps> = ({
       <TestimonialsDivider />
       <SectionContainer id='testimonials'>
         <ContentWrapper>
-          {/* Floating Testimonial Cards */}
+          {/* Floating Testimonial Cards with Responsive Positioning */}
           {testimonials.map((testimonial, index) => (
             <TestimonialCard
               key={testimonial.id}
               $animationType={testimonial.id}
+              $responsivePosition={testimonial.position}
               style={{
-                top: testimonial.position.top,
-                left: testimonial.position.left,
-                right: testimonial.position.right,
-                bottom: testimonial.position.bottom,
                 animationDelay: `${testimonial.animationDelay}s`,
               }}
               initial={{ opacity: 0, scale: 0.8 }}
@@ -51,34 +47,17 @@ const Testimonials: React.FC<TestimonialsProps> = ({
               <TestimonialText>{testimonial.message}</TestimonialText>
               <CompanySection>
                 <CompanyName>{testimonial.company}</CompanyName>
-                <CompanyLogo>{testimonial.logo}</CompanyLogo>
+                <CompanyLogo
+                  src={testimonial.logo}
+                  alt={`${testimonial.company} logo`}
+                />
               </CompanySection>
             </TestimonialCard>
           ))}
 
-          {/* Mobile Testimonial Container */}
-          <MobileTestimonialContainer>
-            {testimonials.map(testimonial => (
-              <TestimonialCard
-                key={`mobile-${testimonial.id}`}
-                $animationType={1}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-              >
-                <TestimonialText>{testimonial.message}</TestimonialText>
-                <CompanySection>
-                  <CompanyName>{testimonial.company}</CompanyName>
-                  <CompanyLogo>{testimonial.logo}</CompanyLogo>
-                </CompanySection>
-              </TestimonialCard>
-            ))}
-          </MobileTestimonialContainer>
-
           {/* Central Text Section */}
           <CentralTextSection>
             <QuoteSymbol src={InvertedCommaImg} alt='Quote symbol' />
-
             <TextBlock>
               <TextLine>
                 <WhiteText>SEE </WhiteText>

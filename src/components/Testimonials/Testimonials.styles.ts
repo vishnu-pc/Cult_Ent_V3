@@ -1,5 +1,6 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 import { motion } from 'framer-motion';
+import type { ResponsivePosition } from './Testimonials.types';
 
 // Floating animations with different patterns
 // Warner Brothers - Animation ID: 1
@@ -34,47 +35,115 @@ const float4 = keyframes`
   90% { transform: translateY(8px) translateX(-2px); }
 `;
 
+/**
+ * Helper function to generate responsive positioning styles
+ */
+const generateResponsivePositioning = (position: ResponsivePosition) => css`
+  /* Desktop (Large Screen) - 1536px+ */
+  @media (min-width: 1536px) {
+    ${position.desktop?.top && `top: ${position.desktop.top};`}
+    ${position.desktop?.left && `left: ${position.desktop.left};`}
+    ${position.desktop?.right && `right: ${position.desktop.right};`}
+    ${position.desktop?.bottom && `bottom: ${position.desktop.bottom};`}
+  }
+
+  /* Laptop - 1024px to 1535px */
+  @media (min-width: 1024px) and (max-width: 1535px) {
+    ${position.laptop?.top && `top: ${position.laptop.top};`}
+    ${position.laptop?.left && `left: ${position.laptop.left};`}
+    ${position.laptop?.right && `right: ${position.laptop.right};`}
+    ${position.laptop?.bottom && `bottom: ${position.laptop.bottom};`}
+  }
+
+  /* Tablet - 768px to 1023px */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    ${position.tablet?.top && `top: ${position.tablet.top};`}
+    ${position.tablet?.left && `left: ${position.tablet.left};`}
+    ${position.tablet?.right && `right: ${position.tablet.right};`}
+    ${position.tablet?.bottom && `bottom: ${position.tablet.bottom};`}
+  }
+
+  /* Mobile - 481px to 767px */
+  @media (min-width: 481px) and (max-width: 767px) {
+    ${position.mobile?.top && `top: ${position.mobile.top};`}
+    ${position.mobile?.left && `left: ${position.mobile.left};`}
+    ${position.mobile?.right && `right: ${position.mobile.right};`}
+    ${position.mobile?.bottom && `bottom: ${position.mobile.bottom};`}
+  }
+
+  /* Small Mobile - ≤480px */
+  @media (max-width: 480px) {
+    ${position.smallMobile?.top && `top: ${position.smallMobile.top};`}
+    ${position.smallMobile?.left && `left: ${position.smallMobile.left};`}
+    ${position.smallMobile?.right && `right: ${position.smallMobile.right};`}
+    ${position.smallMobile?.bottom && `bottom: ${position.smallMobile.bottom};`}
+  }
+`;
+
 export const SectionContainer = styled.section`
-  min-height: 120vh;
-  width: 100vw;
+  min-height: 110vh;
+  width: 100%;
+  max-width: 100vw;
   background: #000000;
   position: relative;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-3xl) var(--spacing-2xl);
+  /* Use standardized section spacing */
+  /* padding: var(--section-padding-vertical) var(--section-padding-horizontal); */
+
+  @media (min-width: 769px) and (max-width: 1535px) {
+    min-height: 150vh;
+  }
 
   @media (max-width: 768px) {
-    min-height: 100vh;
-    padding: var(--spacing-2xl) var(--spacing-md);
+    min-height: 125vh;
+    /* min-height: 100vh; */
+    /* Use responsive spacing */
+    /* padding: calc(var(--section-padding-vertical) * var(--spacing-scale-mobile))
+      calc(var(--section-padding-horizontal) * var(--spacing-scale-mobile)); */
   }
 `;
 
 export const ContentWrapper = styled.div`
   position: relative;
   width: 100%;
-  max-width: 1400px;
+  /* max-width: 1200px; */
+  /* margin: 0 auto; */
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
-export const TestimonialCard = styled(motion.div)<{ $animationType: number }>`
+export const TestimonialCard = styled(motion.div)<{
+  $animationType: number;
+  $responsivePosition: ResponsivePosition;
+}>`
   z-index: 13;
   position: absolute;
-  width: 480px;
-  padding: 1rem;
+
+  /* Apply responsive positioning */
+  ${props => generateResponsivePositioning(props.$responsivePosition)}
+
+  /* Default sizing and styling */
+  /* width: 570px; */
+  width: 31vw;
+  /* Use standardized spacing */
+  padding: var(--spacing-lg);
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: var(--border-radius-lg);
+  /* Use standardized border radius */
+  border-radius: var(--border-radius-md);
   color: var(--color-text);
   box-shadow:
-    0 12px 40px rgba(0, 0, 0, 0.4),
-    0 4px 12px rgba(255, 255, 255, 0.1) inset;
+    0 0.75rem 2.5rem rgba(0, 0, 0, 0.4),
+    /* 12px 40px converted to rem */ 0 0.25rem 0.75rem rgba(255, 255, 255, 0.1)
+      inset; /* 4px 12px converted to rem */
 
+  /* Floating animations remain the same for all screen sizes */
   animation: ${props => {
       switch (props.$animationType) {
         case 1:
@@ -91,30 +160,36 @@ export const TestimonialCard = styled(motion.div)<{ $animationType: number }>`
     }}
     10s ease-in-out infinite;
 
-  @media (max-width: 1024px) {
-    width: 320px;
-    padding: var(--spacing-xl);
+  /* Responsive sizing adjustments */
+  @media (min-width: 1024px) and (max-width: 1535px) {
+    /* width: 40vw; */
+    /* padding: var(--spacing-md); */
   }
 
-  @media (max-width: 768px) {
-    width: 280px;
-    padding: var(--spacing-lg);
+  @media (min-width: 768px) and (max-width: 1023px) {
+    /* width: 50vw; */
+    /* padding: var(--spacing-md); */
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    /* width: 190px; */
+    /* padding: var(--spacing-sm); */
   }
 
   @media (max-width: 480px) {
-    width: 260px;
-    position: relative;
-    margin-bottom: var(--spacing-lg);
-    animation: none;
+    width: 100%;
   }
 `;
 
 export const TestimonialText = styled.p`
   font-size: var(--font-size-lg);
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.9);
-  margin-bottom: var(--spacing-xl);
+  /* color: rgba(255, 255, 255, 0.9); */
+  /* Use standardized spacing */
+  margin-bottom: var(--spacing-sm);
   font-weight: 400;
+  font-family: var(--font-primary);
+  margin-top: 0;
 
   @media (max-width: 1024px) {
     font-size: var(--font-size-md);
@@ -134,42 +209,43 @@ export const CompanySection = styled.div`
 `;
 
 export const CompanyName = styled.div`
-  font-size: var(--font-size-xs);
-  font-weight: 600;
+  font-size: var(--font-size-md);
+  font-weight: 400;
+  letter-spacing: 0.2em;
   color: rgba(255, 255, 255, 0.7);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  font-family: var(--font-primary);
 `;
 
-export const CompanyLogo = styled.div`
+export const CompanyLogo = styled.img`
   width: 50px;
   height: 50px;
-  background: #000000;
+  /* background: #000000; */
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(20px);
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: var(--font-size-md);
-  font-weight: 700;
-  color: var(--color-text);
+
+  object-fit: contain;
+  padding: 6px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   flex-shrink: 0;
 
-  @media (max-width: 768px) {
+  @media (max-width: 768p) {
     width: 40px;
     height: 40px;
-    font-size: var(--font-size-sm);
+    padding: 0px;
   }
 `;
 
 export const CentralTextSection = styled.div`
   position: relative;
   z-index: 10;
-  text-align: center;
+  text-align: left;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-lg);
+  /* Use standardized spacing */
+  gap: var(--spacing-2xl);
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -178,25 +254,29 @@ export const CentralTextSection = styled.div`
 `;
 
 export const QuoteSymbol = styled.img`
-  height: calc(
-    var(--font-size-6xl) * 2.2
-  ); /* Height of approximately 2 lines of text */
+  height: calc(var(--font-size-5xl) * 3.2);
+  /* Font size and Height of approximately 2 lines of text */
   width: auto;
   flex-shrink: 0;
-  margin-top: -10rem;
+  margin-top: -8rem;
   object-fit: contain;
 
+  @media (max-width: 1535px) {
+    height: calc(var(--font-size-4xl) * 3.2);
+    margin-top: -11rem;
+  }
+
   @media (max-width: 1024px) {
-    height: calc(var(--font-size-5xl) * 2.2);
+    /* height: calc(var(--font-size-4xl) * 3.2); */
   }
 
   @media (max-width: 768px) {
-    height: calc(var(--font-size-4xl) * 2.2);
+    height: calc(var(--font-size-4xl) * 2);
     margin-top: -0.5rem;
   }
 
   @media (max-width: 480px) {
-    height: calc(var(--font-size-3xl) * 2.2);
+    height: calc(var(--font-size-3xl) * 2);
     margin-top: 0;
   }
 `;
@@ -246,12 +326,14 @@ export const TextBlock = styled.div`
 `;
 
 export const TextLine = styled.div`
-  font-size: var(--font-size-6xl);
-  font-weight: 800;
-  line-height: 1.1;
+  font-size: var(--font-size-5xl);
+  font-weight: 700;
+  line-height: 1.6;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.48em;
+  /* Use standardized spacing */
   margin-bottom: var(--spacing-sm);
+  font-family: var(--font-primary);
 
   @media (max-width: 1024px) {
     font-size: var(--font-size-5xl);
@@ -276,20 +358,4 @@ export const GradientText = styled.span`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-`;
-
-export const MobileTestimonialContainer = styled.div`
-  display: none;
-
-  @media (max-width: 480px) {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: var(--spacing-md);
-    overflow-y: auto;
-    z-index: 5;
-  }
 `;

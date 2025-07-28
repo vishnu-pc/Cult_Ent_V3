@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import girljumpImage from '../../assets/images/ContactUs/girljump.png';
+import girljumpImage from '../../assets/images/ContactUs/girljump-crop.png';
 import type { ContactUsProps, ContactFormData } from './ContactUs.types';
 import {
   SectionContainer,
   ContentWrapper,
-  LeftSection,
   TitleSection,
   ImageSection,
   JumpingGirlImage,
@@ -97,34 +96,37 @@ const ContactUs: React.FC<ContactUsProps> = ({ onSubmit }) => {
   return (
     <SectionContainer id='contact-us'>
       <ContentWrapper>
-        <LeftSection>
-          <TitleSection>
-            <ContactTitle>Contact Us</ContactTitle>
-            <MainHeadline>
-              <CutToTheText>LET'S CUT TO THE </CutToTheText>
-              <ChaseText>CHASE</ChaseText>
-            </MainHeadline>
-            <Subtitle>
-              Your employees want this. Your bottom line needs this. What are
-              you waiting for?
-            </Subtitle>
-          </TitleSection>
+        {/* A - TitleSection spans full width */}
+        <TitleSection>
+          <ContactTitle>Contact Us</ContactTitle>
+          <MainHeadline>
+            <CutToTheText>
+              LET'S CUT TO<br></br>THE{' '}
+            </CutToTheText>
+            <ChaseText>CHASE</ChaseText>
+          </MainHeadline>
+          <Subtitle>
+            Your employees want this. Your bottom line needs this. What are you
+            waiting for?
+          </Subtitle>
+        </TitleSection>
 
-          <ImageSection>
-            <JumpingGirlImage
-              src={girljumpImage}
-              alt='Jumping Girl'
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: 'easeOut' }}
-              whileHover={{
-                scale: 1.05,
-                transition: { duration: 0.3 },
-              }}
-            />
-          </ImageSection>
-        </LeftSection>
+        {/* B - ImageSection (40% width, hidden on mobile) */}
+        <ImageSection>
+          <JumpingGirlImage
+            src={girljumpImage}
+            alt='Jumping Girl'
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+            whileHover={{
+              scale: 1.05,
+              transition: { duration: 0.3 },
+            }}
+          />
+        </ImageSection>
 
+        {/* C - FormSection (60% width) */}
         <FormSection>
           <Form onSubmit={handleSubmit}>
             <FormRow>
