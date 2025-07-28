@@ -180,3 +180,108 @@ export const LogoGif = styled.img`
     max-width: 300px;
   }
 `;
+
+// BeBetter Hero Section Styles
+export const HeroSection = styled.div`
+  min-height: 60vh;
+  padding: var(--spacing-3xl) var(--spacing-xl);
+  background:
+    linear-gradient(
+      to bottom,
+      #000000 0%,
+      #000000 70%,
+      rgba(255, 20, 147, 0.3) 95%,
+      rgba(152, 5, 113, 0.5) 100%
+    ),
+    linear-gradient(
+      to right,
+      rgba(255, 20, 147, 0.2) 0%,
+      #000000 20%,
+      #000000 40%,
+      rgba(0, 102, 255, 0.9) 100%
+    );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-3xl);
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: var(--spacing-2xl) var(--spacing-md);
+    gap: var(--spacing-xl);
+  }
+`;
+
+export const HeroContent = styled.div`
+  flex: 1;
+  max-width: 700px;
+  text-align: left;
+`;
+
+export const HashtagText = styled.h1`
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.17em;
+  margin-bottom: var(--spacing-sm);
+  background: linear-gradient(90deg, #ff3278 -17.4%, #ffdb17 71.96%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+  @media (max-width: 768px) {
+    font-size: var(--font-size-xl);
+  }
+`;
+
+export const HeroHeading = styled.h2`
+  font-size: var(--font-size-6xl);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--color-text);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--spacing-xl);
+
+  @media (max-width: 768px) {
+    font-size: var(--font-size-4xl);
+  }
+
+  @media (max-width: 480px) {
+    font-size: var(--font-size-3xl);
+  }
+`;
+
+export const HeroDescription = styled.div`
+  flex: 1;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+`;
+
+export const DescriptionText = styled.p`
+  font-size: var(--font-size-lg);
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-md);
+
+  @media (max-width: 768px) {
+    font-size: var(--font-size-md);
+  }
+`;
+
+export const CallToAction = styled.p`
+  font-size: var(--font-size-lg);
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+
+  strong {
+    color: var(--color-text);
+    font-weight: 700;
+  }
+
+  @media (max-width: 768px) {
+    font-size: var(--font-size-md);
+  }
+`;

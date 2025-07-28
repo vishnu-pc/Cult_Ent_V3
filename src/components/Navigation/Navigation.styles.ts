@@ -158,21 +158,21 @@ export const NavLink = styled(Link)`
   @media (max-width: 768px) {
     /* --breakpoint-md */
     margin: var(--spacing-sm) 0; /* Vertical spacing for mobile menu items */
-    font-size: var(--font-size-lg); /* Larger text for mobile touchability */
+    font-size: var(--font-size-xl); /* Larger text for mobile touchability */
   }
 
   @media (max-width: 640px) {
     /* --breakpoint-sm */
-    font-size: var(--font-size-md); /* Standard size on small screens */
+    font-size: var(--font-size-lg); /* Standard size on small screens */
     margin: var(--spacing-xs) 0; /* Tighter spacing on small screens */
   }
 `;
 
 export const LoginButton = styled.button`
-  background: var(--gradient-primary);
-  color: var(--color-black);
+  background: var(--color-grey-nav);
+  color: var(--color-text);
   padding: var(--spacing-sm) var(--spacing-lg);
-  border-radius: var(--border-radius-full);
+  border-radius: var(--border-radius-sm);
   margin-left: var(--spacing-lg);
   margin-right: var(--spacing-sm);
   font-weight: 500;
@@ -182,17 +182,22 @@ export const LoginButton = styled.button`
   border: none;
   cursor: pointer;
   font-size: var(--font-size-sm);
+  border: 1px solid var(--color-grey-dark);
 
   /* Gradient hover effect */
   &:hover {
+    color: var(--color-black);
     background: var(--gradient-secondary);
     transform: translateY(-0.125rem);
     box-shadow: 0 0.25rem 0.75rem rgba(253, 217, 20, 0.3);
+    border: none;
   }
 
   /* Active/pressed effect */
   &:active {
+    color: var(--color-black);
     transform: translateY(0);
+    border: none;
   }
 
   /* STANDARD RESPONSIVE BREAKPOINTS */
@@ -206,7 +211,7 @@ export const LoginButton = styled.button`
 
   @media (max-width: 640px) {
     /* --breakpoint-sm */
-    padding: var(--spacing-md) var(--spacing-lg);
+    padding: var(--spacing-sm) var(--spacing-md);
     font-size: var(--font-size-sm);
     min-height: 2.5rem; /* 40px touch target for small screens */
   }
@@ -217,14 +222,35 @@ export const LoginButton = styled.button`
 export const HamburgerButton = styled.button<HamburgerProps>`
   display: none; /* Hidden on desktop - only shows on mobile */
   flex-direction: column; /* Stacks hamburger lines vertically */
-  justify-content: space-between; /* Equal spacing between hamburger lines */
+  justify-content: space-around; /* Closer spacing between hamburger lines */
   width: 2.5rem; /* 40px - larger touch target */
-  height: 1.75rem; /* 28px - proportional to width */
+  height: 1.5rem; /* 24px - reduced height for closer line spacing */
   background: transparent; /* Transparent background */
   border: none; /* Removes button border */
   cursor: pointer; /* Shows pointer cursor on hover */
   padding: 0.375rem; /* 6px padding for larger touch area */
   z-index: var(--z-index-modal); /* Standard z-index for overlays */
+  //overflow: visible; /* Ensure X is not clipped */
+
+  /* Remove all browser default styling and highlights */
+  outline: none; /* Removes default browser focus outline */
+  -webkit-tap-highlight-color: transparent; /* Removes orange highlight in Chrome on mobile */
+  -webkit-touch-callout: none; /* Removes callout on iOS */
+  -webkit-user-select: none; /* Prevents text selection */
+  user-select: none; /* Prevents text selection */
+
+  /* Remove any default button styling */
+  &:focus,
+  &:active,
+  &:hover {
+    outline: none; /* Ensures no outline on any interaction */
+    -webkit-tap-highlight-color: transparent; /* Prevents any tap highlights */
+  }
+
+  /* Custom focus styling for accessibility compliance (keyboard navigation only) */
+  &:focus-visible {
+    box-shadow: 0 0 0 2px var(--color-accent-primary); /* Custom focus ring for keyboard users */
+  }
 
   /* Ensure minimum touch target size (44px) */
   min-width: 2.75rem; /* 44px minimum */
@@ -239,34 +265,42 @@ export const HamburgerButton = styled.button<HamburgerProps>`
   /* HAMBURGER LINES STYLING AND ANIMATION */
   div {
     width: 1.75rem; /* 28px - fits within button padding */
-    height: 0.25rem; /* 4px - slightly thicker for better visibility */
-    background: var(--gradient-primary); /* Primary brand gradient */
-    border-radius: 0.125rem; /* 2px - proportional to thickness */
+    height: 0.2rem; /* 4px - slightly thicker for better visibility */
+    background: var(--color-text); /* White text color */
+    border-radius: 0.1rem; /* 2px - proportional to thickness */
     transition: all var(--transition-fast); /* Standard animation speed */
-    position: relative; /* Required for transformation animations */
-    transform-origin: 0.125rem; /* 2px - proportional to thickness */
+    position: absolute; /* Absolute positioning for better control */
+    right: 2%; /* Center horizontally */
+    transform-origin: center; /* Center origin for proper X formation */
 
     /* TOP LINE TRANSFORMATION - Rotates to form top of X */
     &:first-child {
+      top: ${({ isOpen }) =>
+        isOpen ? '50%' : '35%'}; /* Position for X formation */
       transform: ${({ isOpen }) =>
-        isOpen ? 'rotate(45deg)' : 'rotate(0)'}; /* 45° rotation for X shape */
+        isOpen
+          ? 'translateX(-50%) translateY(-50%) rotate(45deg)'
+          : 'translateX(-50%) translateY(-50%) rotate(0deg)'}; /* Complete X positioning */
     }
 
-    /* MIDDLE LINE TRANSFORMATION - Fades out and slides away */
+    /* MIDDLE LINE TRANSFORMATION - Fades out completely */
     &:nth-child(2) {
+      top: 50%; /* Always centered */
       opacity: ${({ isOpen }) => (isOpen ? '0' : '1')}; /* Fades middle line */
       transform: ${({ isOpen }) =>
         isOpen
-          ? 'translateX(1.25rem)'
-          : 'translateX(0)'}; /* 20px converted to rem */
+          ? 'translateX(-50%) translateY(-50%) scaleX(0)'
+          : 'translateX(-50%) translateY(-50%) scaleX(1)'}; /* Scale animation with centering */
     }
 
     /* BOTTOM LINE TRANSFORMATION - Rotates to form bottom of X */
     &:nth-child(3) {
+      top: ${({ isOpen }) =>
+        isOpen ? '50%' : '65%'}; /* Position for X formation */
       transform: ${({ isOpen }) =>
         isOpen
-          ? 'rotate(-45deg)'
-          : 'rotate(0)'}; /* -45° rotation for X shape */
+          ? 'translateX(-50%) translateY(-50%) rotate(-45deg)'
+          : 'translateX(-50%) translateY(-50%) rotate(0deg)'}; /* Complete X positioning */
     }
   }
 `;

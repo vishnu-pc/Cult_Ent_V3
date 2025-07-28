@@ -9,9 +9,7 @@ import CombinedWellnessSection from '../components/CombinedWellnessSection/Combi
 import ContactUs from '../components/ContactUs/ContactUs';
 import Testimonials from '../components/Testimonials/Testimonials';
 import OurImpact from '../components/OurImpact/OurImpact';
-import LogoLoader from '../components/LogoLoader/LogoLoader';
-import BeBetterSection from '../components/BeBetterSection/BeBetterSection';
-
+// import LogoLoader from '../components/LogoLoader/LogoLoader';
 const HomeContainer = styled.main`
   display: flex;
   flex-direction: column;
@@ -29,8 +27,7 @@ const Home: React.FC = () => {
       <ContactUs />
       <Testimonials />
       <OurImpact />
-      <LogoLoader />
-      <BeBetterSection />
+      {/* <LogoLoader /> */}
     </HomeContainer>
   );
 };

@@ -19,6 +19,11 @@
   --color-grey: #9e9e9e;
   --color-grey-dark: #424242;
   --color-grey-darker: rgba(255, 255, 255, 0.3);
+  --color-grey-nav: linear-gradient(
+    87.69deg,
+    rgba(255, 255, 255, 0.1) -5.33%,
+    rgba(255, 255, 255, 0.2) 125.56%
+  );
 
   /* Linear Gradient Accent Colors */
   --gradient-primary: linear-gradient(
@@ -30,7 +35,7 @@
     45deg,
     #ed3a79,
     #00b4ff
-  ); /* Pink to Blue */
+  ); /* Pink to Blue *
   --gradient-tertiary: linear-gradient(
     45deg,
     #00b4ff,

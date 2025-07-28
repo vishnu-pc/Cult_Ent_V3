@@ -1,11 +1,7 @@
-export interface BeBetterSectionProps {
-  className?: string;
-}
-
 export interface StatData {
   value: string;
   label: string;
-  color: 'pink' | 'gradient';
+  color: 'gradient';
 }
 
 export interface FooterLinkData {
