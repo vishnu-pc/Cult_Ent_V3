@@ -65,6 +65,11 @@ export const Subheading = styled.div`
   text-transform: uppercase;
   text-align: left;
   margin-bottom: var(--spacing-md);
+
+  @media (max-width: 768px) {
+    font-size: var(--font-size-title-mobile);
+    margin-bottom: var(--spacing-xl);
+  }
 `;
 
 export const MainTitle = styled.h1`
@@ -77,6 +82,7 @@ export const MainTitle = styled.h1`
 
   @media (max-width: 768px) {
     font-size: var(--font-size-5xl);
+    margin-bottom: var(--spacing-md);
   }
 
   @media (max-width: 480px) {
@@ -123,7 +129,8 @@ export const Description = styled.p`
   /* max-width: 400px; */
 
   @media (max-width: 768px) {
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-md);
+    // margin-bottom: var(--spacing-xxs);
   }
 `;
 
@@ -133,8 +140,9 @@ export const VideoCardsContainer = styled.div`
   gap: var(--spacing-2xl);
   margin-bottom: var(--spacing-2xl);
 
-  @media (max-width: 1024px) {
-    grid-template-columns: repeat(2, 1fr);
+  @media (max-width: 1200px) {
+    // grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
   }
 
   @media (max-width: 640px) {

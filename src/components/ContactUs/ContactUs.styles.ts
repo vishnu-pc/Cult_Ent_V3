@@ -129,6 +129,11 @@ export const ContactTitle = styled.h2`
   font-weight: 400;
   text-transform: uppercase;
   text-align: left;
+
+  @media (max-width: 768px) {
+    font-size: var(--font-size-title-mobile);
+    margin-bottom: var(--spacing-xl);
+  }
 `;
 
 export const MainHeadline = styled.h1`
@@ -141,7 +146,8 @@ export const MainHeadline = styled.h1`
   font-family: var(--font-primary);
 
   @media (max-width: 768px) {
-    font-size: var(--font-size-4xl);
+    font-size: calc(var(--font-size-4xl) * 1.05);
+    margin-bottom: var(--spacing-lg);
   }
 `;
 
@@ -181,7 +187,7 @@ export const Subtitle = styled.p`
   margin: 0; /* Remove default margin */
 
   @media (max-width: 768px) {
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-md);
   }
 `;
 

@@ -75,6 +75,11 @@ export const ProvenImpactText = styled.div`
   font-weight: 400;
   text-transform: uppercase;
   text-align: left;
+
+  @media (max-width: 768px) {
+    font-size: var(--font-size-title-mobile);
+    margin-bottom: var(--spacing-xl);
+  }
 `;
 
 export const MainHeadline = styled.h1`
@@ -99,9 +104,7 @@ export const MainHeadline = styled.h1`
   @media (max-width: 768px) {
     /* Convert hardcoded rem to exact global variable match */
     text-align: left;
-    font-size: var(
-      --font-size-3xl
-    ); /* 2.25rem (36px) - closest to 2rem (32px) */
+    font-size: var(--font-size-5xl);
     letter-spacing: 0.2em;
   }
 `;
@@ -141,7 +144,7 @@ export const Subheadline = styled.p`
 
   @media (max-width: 768px) {
     text-align: left;
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-xl);
   }
 `;
 

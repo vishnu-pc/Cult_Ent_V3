@@ -98,7 +98,7 @@ export const SectionContainer = styled.section`
   }
 
   @media (max-width: 768px) {
-    min-height: 125vh;
+    min-height: 210vh;
     /* min-height: 100vh; */
     /* Use responsive spacing */
     /* padding: calc(var(--section-padding-vertical) * var(--spacing-scale-mobile))

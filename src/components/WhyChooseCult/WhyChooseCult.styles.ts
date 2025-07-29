@@ -85,7 +85,6 @@ export const CultAdvantageSection = styled.section`
  */
 export const CultAdvantageContainer = styled.div`
   width: 100%;
-  //max-width: 1200px; /* Standardized container max-width */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -94,7 +93,8 @@ export const CultAdvantageContainer = styled.div`
 
   @media (max-width: 768px) {
     flex-direction: column;
-    text-align: center;
+    text-align: left;
+    align-items: flex-start;
     /* gap: var(--spacing-2xl); */
   }
 `;
@@ -109,7 +109,7 @@ export const LeftContent = styled.div`
   align-items: flex-start;
 
   @media (max-width: 768px) {
-    align-items: center;
+    align-items: flex-start;
   }
 `;
 
@@ -125,6 +125,12 @@ export const TopHeading = styled.h2`
   font-weight: 400;
   text-transform: uppercase;
   text-align: left;
+
+  @media (max-width: 768px) {
+    font-size: var(--font-size-title-mobile);
+    text-align: left;
+    margin-bottom: var(--spacing-3xl);
+  }
 `;
 
 /**
@@ -144,7 +150,7 @@ export const MainHeadingContainer = styled.div`
   margin-bottom: 0;
 
   @media (max-width: 768px) {
-    align-items: center;
+    align-items: flex-start;
   }
 `;
 
@@ -165,9 +171,6 @@ export const FirstLine = styled.div`
 export const CultLayersContainer = styled.div`
   position: relative;
   display: inline-block;
-  @media (max-width: 768px) {
-    display: none;
-  }
 `;
 
 /**
@@ -214,12 +217,12 @@ export const CultLayer = styled.span<{ $opacity: number; $zIndex: number }>`
   `}
 
   @media (max-width: 768px) {
-    font-size: var(--font-size-4xl);
+    font-size: var(--font-size-5xl);
     /* Responsive positioning for mobile */
     top: ${props => {
-      if (props.$zIndex === 1) return '-5rem'; /* -80px converted to rem */
-      if (props.$zIndex === 2) return '-2.5rem'; /* -40px converted to rem */
-      return '0';
+      if (props.$zIndex === 1) return '-6.5rem';
+      if (props.$zIndex === 2) return '-5rem';
+      return '-3.5rem';
     }};
   }
 `;
@@ -233,7 +236,7 @@ export const MainHeadingLine1 = styled.h1`
   font-family: var(--font-primary);
 
   @media (max-width: 768px) {
-    font-size: var(--font-size-4xl);
+    font-size: var(--font-size-5xl);
   }
 `;
 
@@ -246,7 +249,7 @@ export const MainHeadingLine2 = styled.h1`
   font-family: var(--font-primary);
 
   @media (max-width: 768px) {
-    font-size: var(--font-size-4xl);
+    font-size: var(--font-size-5xl);
   }
 `;
 
@@ -279,6 +282,7 @@ export const RightContent = styled.div`
   @media (max-width: 768px) {
     flex: none;
     text-align: left;
+    margin-top: var(--spacing-xl);
   }
 `;
 
@@ -294,6 +298,7 @@ export const RightText = styled.p`
   margin: 0;
 
   @media (max-width: 768px) {
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-xl);
+    opacity: 0.8;
   }
 `;

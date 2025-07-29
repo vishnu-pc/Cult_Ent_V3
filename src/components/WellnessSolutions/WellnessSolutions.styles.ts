@@ -46,7 +46,7 @@ export const BackgroundNumber = styled.div`
 
   @media (max-width: 768px) {
     font-size: 7rem;
-    top: 6rem;
+    top: 5.5rem;
     left: -2.5rem;
     opacity: 0.3;
   }
@@ -117,7 +117,7 @@ export const OverlayTitle = styled.h3`
 
   @media (max-width: 768px) {
     font-size: var(--font-size-title-mobile);
-    margin-bottom: var(--spacing-2xl);
+    margin-bottom: var(--spacing-xl);
   }
 `;
 
@@ -150,7 +150,7 @@ export const OverlaySubtitle = styled.h2`
   }
 
   @media (max-width: 768px) {
-    font-size: var(--font-size-4xl);
+    font-size: var(--font-size-5xl);
   }
 `;
 
@@ -227,7 +227,7 @@ export const SectionTitle = styled.h2`
 
   @media (max-width: 768px) {
     font-size: var(--font-size-lg);
-    padding: var(--spacing-sm) var(--spacing-xxs);
+    padding: var(--spacing-xs) var(--spacing-xxs);
   }
 `;
 
@@ -330,6 +330,11 @@ export const OptionNumber = styled.span`
   font-weight: 700;
   color: var(--color-grey-darker);
   min-width: 3rem;
+
+  @media (max-width: 768px) {
+    font-size: var(--font-size-4xl);
+    // min-width: 3.5rem;
+  }
 `;
 
 /**
@@ -352,7 +357,7 @@ export const OptionTitle = styled.h3<OptionTitleProps>`
   margin: 0;
 
   @media (max-width: 768px) {
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-xl);
   }
 `;
 
