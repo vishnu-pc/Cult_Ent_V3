@@ -16,7 +16,7 @@ const Navigation: React.FC<NavigationProps> = () => {
   // Close mobile menu when window is resized above mobile breakpoint
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth > 768 && isOpen) {
+      if (window.innerWidth > 1200 && isOpen) {
         setIsOpen(false);
       }
     };

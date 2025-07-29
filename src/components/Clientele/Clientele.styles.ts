@@ -17,7 +17,21 @@ export const slideAnimation = keyframes`
 
 // TEXT FADE-IN ANIMATION
 // Controls how text elements appear when triggered
+// UNIFIED FADE-IN ANIMATION
+// Animation for all text elements that fades in and slides up from below
+// Final opacity values are controlled by individual component styles
 export const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem); /* 20px - slides up from below */
+  }
+  to {
+    opacity: 0.50;
+    transform: translateY(0); /* Final position (no transform) */
+  }
+`;
+
+export const blendInHeading = keyframes`
   from {
     opacity: 0;
     transform: translateY(1.25rem); /* 20px - slides up from below */
@@ -25,56 +39,6 @@ export const fadeIn = keyframes`
   to {
     opacity: 1;
     transform: translateY(0); /* Final position (no transform) */
-  }
-`;
-
-// STATISTICS TEXT FADE-IN ANIMATION (80% opacity)
-// Custom animation for StatText that ends at 80% opacity
-export const fadeInToSeventy = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(1.25rem); /* 20px - slides up from below */
-  }
-  to {
-    opacity: 0.50; /* Final opacity at 80% */
-    transform: translateY(0); /* Final position (no transform) */
-  }
-`;
-
-// SECTION TITLE FADE-IN ANIMATION (80% opacity)
-// Custom animation for SectionTitle that ends at 80% opacity and maintains upward position
-export const fadeInToEighty = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(1.25rem); /* 20px - slides up from below */
-  }
-  to {
-    opacity: 0.5; /* Final opacity at 80% */
-    transform: translateY(0); /* Final position */
-  }
-`;
-
-// MOBILE VERSION - Section Title Animation with less upward movement
-export const fadeInToEightyMobile = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(1.25rem); /* 20px */
-  }
-  to {
-    opacity: 0.5;
-    transform: translateY(-3vh);
-  }
-`;
-
-// SMALL MOBILE VERSION - Section Title Animation with minimal upward movement
-export const fadeInToEightySmall = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(1.25rem); /* 20px */
-  }
-  to {
-    opacity: 0.5;
-    transform: translateY(0);
   }
 `;
 
@@ -196,6 +160,7 @@ export const GradientOverlay = styled.div<{ isActive: boolean }>`
 export const ContentContainer = styled.div`
   position: relative;
   height: 87%; // TUNABLE: Content area height (85% leaves 15% for logo carousel)
+  overflow: hidden; // Prevents content from spilling outside section
   width: 100%;
   margin: 0 auto; // TUNABLE: Center the container horizontally
   display: flex;
@@ -204,6 +169,11 @@ export const ContentContainer = styled.div`
   align-items: center; // TUNABLE: horizontal alignment - center the text block
   //padding: var(--spacing-6xl); // TUNABLE: Content padding
   z-index: 2; // Above overlays (z-index: 1)
+
+  /* Mobile-only: Move content to bottom with spacing above logo carousel */
+  @media (max-width: 768px) {
+    justify-content: flex-end; /* Align content to bottom */
+  }
 `;
 
 // SECTION TITLE STYLING
@@ -221,8 +191,8 @@ export const SectionTitle = styled.h3<StyledComponentProps>`
 
   /* Animation control - starts hidden, animates to 80% opacity */
   opacity: 0;
-  animation: ${({ isVisible }) => (isVisible ? fadeInToEighty : 'none')} 1.6s
-    ease-out forwards;
+  animation: ${({ isVisible }) => (isVisible ? fadeIn : 'none')} 1.6s ease-out
+    forwards;
   // TUNABLE: Animation duration (1.6s) and easing
 
   @media (min-width: 1536px) {
@@ -231,13 +201,19 @@ export const SectionTitle = styled.h3<StyledComponentProps>`
 
   /* Responsive animations using standard breakpoints */
   @media (max-width: 1668px) {
-    animation: ${({ isVisible }) => (isVisible ? fadeInToEightyMobile : 'none')}
-      1.6s ease-out forwards;
+    animation: ${({ isVisible }) => (isVisible ? fadeIn : 'none')} 1.6s ease-out
+      forwards;
   }
 
   @media (max-width: 480px) {
-    animation: ${({ isVisible }) => (isVisible ? fadeInToEightySmall : 'none')}
-      1.6s ease-out forwards;
+    animation: ${({ isVisible }) => (isVisible ? fadeIn : 'none')} 1.6s ease-out
+      forwards;
+  }
+
+  /* Mobile-only: Position absolutely at top-left of section */
+  @media (max-width: 768px) {
+    font-size: var(--font-size-title-mobile);
+    margin-bottom: 0; /* Remove margin */
   }
 `;
 
@@ -262,8 +238,8 @@ export const HeadingLine = styled.h2<HeadingLineProps & { alignment?: string }>`
 
   /* Staggered animation */
   opacity: 0;
-  animation: ${({ isVisible }) => (isVisible ? fadeIn : 'none')} 1.6s ease-out
-    forwards;
+  animation: ${({ isVisible }) => (isVisible ? blendInHeading : 'none')} 1.6s
+    ease-out forwards;
   animation-delay: ${({ delay }) => delay}s; /* Individual line delays */
 
   @media (min-width: 1536px) {
@@ -271,9 +247,9 @@ export const HeadingLine = styled.h2<HeadingLineProps & { alignment?: string }>`
   }
   /* Responsive typography using standard breakpoints */
   @media (max-width: 768px) {
-    font-size: var(--font-size-3xl); /* Mobile font size */
-    line-height: 1; /* Tighter spacing on mobile */
-    letter-spacing: 0.625rem; /* 10px - Reduced letter spacing for mobile */
+    font-size: var(--font-size-2xl); /* Mobile font size */
+    letter-spacing: 0.2em;
+    margin-bottom: var(--spacing-xxs);
   }
 `;
 
@@ -281,7 +257,8 @@ export const HeadingLine = styled.h2<HeadingLineProps & { alignment?: string }>`
 export const StatText = styled.p<StyledComponentProps>`
   width: 100%;
   font-family: var(--font-primary); /* Use standardized font family */
-  font-size: var(--font-size-2xl);
+  /* font-size: var(--font-size-2xl); */
+  font-size: 4rem;
   font-weight: 400;
   text-align: center;
   letter-spacing: -0.003em;
@@ -291,9 +268,14 @@ export const StatText = styled.p<StyledComponentProps>`
 
   /* Animation control - starts hidden, animates to 80% opacity */
   opacity: 0;
-  animation: ${({ isVisible }) => (isVisible ? fadeInToSeventy : 'none')} 1.6s
-    ease-out forwards;
+  animation: ${({ isVisible }) => (isVisible ? fadeIn : 'none')} 1.6s ease-out
+    forwards;
   animation-delay: 3.8s; /* Delay before text appears */
+
+  strong {
+    color: var(--color-text); /* Emphasis color */
+    font-weight: 700; /* Bold weight for emphasis */
+  }
 
   @media (min-width: 1536px) {
     margin-top: var(--spacing-md);
@@ -302,12 +284,9 @@ export const StatText = styled.p<StyledComponentProps>`
 
   /* Responsive typography using standard breakpoints */
   @media (max-width: 768px) {
-    font-size: var(--font-size-lg); /* Mobile text size */
-  }
-
-  strong {
-    color: var(--color-text); /* Emphasis color */
-    font-weight: 700; /* Bold weight for emphasis */
+    font-size: var(--font-size-md); /* Mobile text size */
+    text-align: justify;
+    line-height: 200%;
   }
 `;
 
@@ -351,7 +330,7 @@ export const LogoGroup = styled.div`
 
   /* Responsive spacing using standard breakpoints */
   @media (max-width: 768px) {
-    gap: var(--spacing-lg); /* 24px - reduced spacing on mobile */
+    gap: var(--spacing-3xl); /* reduced spacing on mobile */
   }
 `;
 
@@ -365,11 +344,11 @@ export const LogoImage = styled.img`
 
   /* Responsive sizing using standard breakpoints */
   @media (max-width: 768px) {
-    height: 80%; /* Smaller logos on mobile devices */
+    height: 70%; /* Smaller logos on mobile devices */
   }
 
   @media (max-width: 640px) {
-    height: 70%; /* Even smaller on very small screens */
+    height: 50%; /* Even smaller on very small screens */
   }
 `;
 

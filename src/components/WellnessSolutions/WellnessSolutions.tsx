@@ -91,6 +91,12 @@ const WellnessSolutions: React.FC<WellnessSolutionsProps> = () => {
 
       {/* The right side of the section, displaying the title and the list of solutions */}
       <ContentContainer>
+        {/* MOBILE: Overlay text moved here from ImageContainer to fill space when image is hidden */}
+        <OverlayTextContainer className='mobile-overlay'>
+          <OverlayTitle>Wellness Solutions</OverlayTitle>
+          <OverlaySubtitle>05 WAYS</OverlaySubtitle>
+        </OverlayTextContainer>
+
         <SectionTitle>
           We're crushing the corporate wellness game in India.
         </SectionTitle>

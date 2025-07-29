@@ -1,6 +1,7 @@
 import styled, { keyframes, css } from 'styled-components';
 import { motion } from 'framer-motion';
 import DynamicLogo from '../DynamicLogo';
+import CultMobileBackground from '../../assets/images/Banner/Cult-Mobile-Background.png';
 
 /**
  * BACKGROUND GRADIENT ANIMATION
@@ -86,6 +87,7 @@ export const BannerContainer = styled.section.attrs({
   /* Layout styling - spacing handled by .hero-section class in global.css */
 
   width: 100vw;
+  border-bottom: 1px solid red;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -102,6 +104,55 @@ export const BannerContainer = styled.section.attrs({
   /* NEW BLACK BASE BACKGROUND & ANIMATED GRADIENT OVERLAY*/
   background: black;
   overflow: hidden;
+
+  /* MOBILE BACKGROUND IMAGE - Absolute positioning for full screen coverage */
+  &::after {
+    @media (max-width: 768px) {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 150vh; /* Increased height to allow vertical positioning */
+      background-image: url(${CultMobileBackground});
+      background-size: cover;
+      background-position: 51.2% top; /* Move image left and higher - shows upper left portion */
+      background-repeat: no-repeat;
+      opacity: 0.05; /* 50% opacity as requested */
+      z-index: 1; /* Below gradient overlay (z-index: 3) but above base background */
+      pointer-events: none; /* Ensures content remains interactive */
+      /* Move container up to show upper part of image */
+      transform: translateY(-46vh);
+    }
+
+    /* Aspect ratio and dimension-based responsive design */
+
+    @media (max-height: 1100px) {
+      transform: translateY(-45.5vh);
+    }
+
+    @media (max-height: 900px) {
+      transform: translateY(-47vh);
+    }
+
+    @media (max-height: 800px) {
+      transform: translateY(-50vh);
+    }
+
+    @media (max-height: 700px) {
+      transform: translateY(-48vh);
+    }
+
+    @media (max-height: 675px) {
+      transform: translateY(-49.75vh);
+    }
+
+    /* Tablets Portrait (Wide and tall) */
+    /* @media (min-width: 600px) and (min-height: 800px) {
+      transform: translateY(-44vh);
+    } */
+  }
+
   &::before {
     content: '';
     position: absolute;
@@ -134,7 +185,7 @@ export const MainContent = styled.div`
   @media (max-width: 768px) {
     flex-direction: column;
     justify-content: center;
-    text-align: center;
+    text-align: left;
     margin-bottom: var(--spacing-xl); /* Reduced for mobile */
   }
 `;
@@ -151,6 +202,7 @@ export const ContentContainer = styled.div`
     margin-bottom: var(
       --spacing-3xl
     ); /* Increased spacing between content and logo on mobile */
+    order: 2; /* Places ContentContainer second on mobile (after LogoContainer) */
   }
 `;
 
@@ -176,8 +228,18 @@ export const Title = styled.h1`
   text-stroke: 3px var(--color-text);
 
   @media (max-width: 768px) {
-    font-size: var(--font-size-4xl);
+    font-size: calc(var(--font-size-5xl) * 1.05);
     margin-bottom: var(--spacing-lg); /* Reduced for mobile */
+  }
+
+  @media (max-width: 768px) and (min-width: 380px) {
+    font-size: calc(var(--font-size-5xl) * 1.2);
+    margin-bottom: var(--spacing-xl); /* Reduced for mobile */
+  }
+
+  @media (max-width: 380px) {
+    font-size: calc(var(--font-size-5xl) * 1.1);
+    margin-bottom: var(--spacing-sm); /* Reduced for mobile */
   }
 `;
 
@@ -265,9 +327,10 @@ export const Subtitle = styled.p`
   }
 
   @media (max-width: 768px) {
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-xl);
     max-width: 100%;
-    margin-bottom: var(--spacing-md); /* Slightly more spacing on mobile */
+    margin-bottom: var(--spacing-md);
+    line-height: 175%; /* Tighter line spacing between subtitle lines */
   }
 `;
 
@@ -284,9 +347,50 @@ export const LogoContainer = styled.div`
   margin-right: -1.5rem;
 
   @media (max-width: 768px) {
-    margin-top: var(
-      --spacing-lg
-    ); /* Reduced mobile top margin for better balance */
+    margin-top: var(--spacing-5xl);
+    margin-bottom: var(
+      --spacing-3xl
+    ); /* Significantly more spacing between logo and title */
+    margin-right: 0; /* Reset margin for mobile */
+    order: 1; /* Places LogoContainer first on mobile (before ContentContainer) */
+  }
+
+  /* Aspect ratio and dimension-based responsive design */
+
+  /* Narrow Tall Phones (Portrait) - Limited width, lots of height */
+  @media (max-width: 414px) and (min-height: 800px) {
+    margin-top: var(--spacing-5xl); /* 128px - Use available height */
+    margin-bottom: var(--spacing-4xl); /* 96px */
+  }
+
+  /* Very Narrow Tall Phones - Ultra portrait */
+  @media (max-width: 375px) and (min-height: 900px) {
+    margin-top: var(--spacing-6xl); /* 192px - Maximum use of height */
+    margin-bottom: var(--spacing-3xl); /* 64px */
+  }
+
+  /* Wide Short Phones/Tablets (Landscape) - Lots of width, limited height */
+  @media (min-width: 600px) and (max-height: 500px) {
+    margin-top: var(--spacing-lg); /* 24px - Conserve height */
+    margin-bottom: var(--spacing-sm); /* 8px */
+  }
+
+  /* Standard Phones (Balanced dimensions) */
+  @media (min-width: 375px) and (max-width: 599px) and (min-height: 600px) and (max-height: 899px) {
+    margin-top: var(--spacing-4xl); /* 64px - Balanced spacing */
+    margin-bottom: var(--spacing-xl); /* 48px */
+  }
+
+  /* Small Phones (Limited both width and height) */
+  @media (max-width: 374px) and (max-height: 799px) {
+    margin-top: var(--spacing-2xl); /* 48px - Compact spacing */
+    margin-bottom: var(--spacing-lg); /* 24px */
+  }
+
+  /* Tablets Portrait (Wide and tall) */
+  @media (min-width: 600px) and (min-height: 800px) {
+    margin-top: var(--spacing-4xl); /* 96px - Good use of space */
+    margin-bottom: var(--spacing-xxs); /* 48px */
   }
 `;
 
@@ -309,17 +413,16 @@ export const LogoWrapper = styled(motion.div)`
 
   @media (max-width: 768px) {
     /* Use standardized spacing approach - maintain proportions */
-    width: calc(75vw); /* Responsive width based on viewport */
-    height: calc(75vw); /* Maintain square aspect ratio */
-    max-width: 300px; /* Maximum size constraint */
-    max-height: 300px; /* Maximum size constraint */
-  }
+    width: calc(
+      81vw
+    ); /* Slightly larger for mobile - responsive width based on viewport */
+    height: calc(81vw); /* Maintain square aspect ratio */
 
-  @media (max-width: 640px) {
-    width: calc(80vw); /* Slightly larger on small mobile */
-    height: calc(80vw);
-    max-width: 280px;
-    max-height: 280px;
+    @media (min-width: 600px) and (max-height: 500px) {
+      width: 0px;
+      height: 0px;
+      margin-bottom: var(--spacing-2xl);
+    }
   }
 `;
 
@@ -528,18 +631,18 @@ export const CTAButton = styled(motion.button)`
   }
 
   /* Responsive Design - Using standardized spacing */
-  @media (max-width: 768px) {
-    width: 90%;
-    padding: var(--spacing-sm) var(--spacing-xl); /* 8px 32px - reduced for mobile */
-    font-size: var(--font-size-md); /* 16px */
-    margin-top: var(--spacing-xl); /* Reduced mobile top margin */
-  }
+  /* @media (max-width: 768px) {
+    width: 100%;
+    padding: var(--spacing-lg) var(--spacing-xl);
+    font-size: var(--font-size-lg);
+    margin-top: var(--spacing-xl);
+    text-align: center;
+  } */
 
-  @media (max-width: 640px) {
-    width: 95%;
-    padding: var(--spacing-sm) var(--spacing-lg); /* 8px 24px - further reduced */
-    font-size: var(--font-size-sm); /* 14px */
-    letter-spacing: 0.5px;
-    margin-top: var(--spacing-lg); /* Further reduced for small mobile */
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: var(--font-size-md);
+    margin-top: var(--spacing-lg);
   }
 `;

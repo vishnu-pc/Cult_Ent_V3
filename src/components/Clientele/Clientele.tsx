@@ -38,7 +38,7 @@ const Clientele: React.FC<ClienteleProps> = () => {
       {
         root: null, // Use viewport as root
         rootMargin: '0px', // No margin adjustment
-        threshold: 0.4, // TUNABLE: Text animation trigger point (0.5 = 50% visible)
+        threshold: 0.5, // TUNABLE: Text animation trigger point (0.5 = 50% visible)
         // Adjust this value to control when text starts animating:
         // - 0.3 = Text animates when 30% visible (earlier)
         // - 0.7 = Text animates when 70% visible (later)
@@ -71,7 +71,7 @@ const Clientele: React.FC<ClienteleProps> = () => {
       {
         root: null, // Use viewport as root
         rootMargin: '0px', // No margin adjustment
-        threshold: 0.7, // TUNABLE: Overlay transition trigger point (0.7 = 70% visible)
+        threshold: 0.5, // TUNABLE: Overlay transition trigger point (0.7 = 70% visible)
         // Adjust this value to control when overlay transitions:
         // - 0.3 = Transitions when 30% visible (earlier transition)
         // - 0.5 = Transitions when 50% visible (middle transition)
@@ -102,8 +102,10 @@ const Clientele: React.FC<ClienteleProps> = () => {
         {/* This overlay creates the animated gradient effect when section becomes active */}
         <GradientOverlay isActive={isActive} />
 
+        {/* SECTION TITLE - Positioned outside ContentContainer for mobile layout */}
+        <SectionTitle isVisible={isVisible}>OUR CLIENTELE</SectionTitle>
+
         <ContentContainer>
-          <SectionTitle isVisible={isVisible}>OUR CLIENTELE</SectionTitle>
           <MainHeading>
             {/* TEXT ANIMATIONS - Each line has individual delay for staggered effect */}
             <HeadingLine isVisible={isVisible} delay={1.0} alignment='right'>

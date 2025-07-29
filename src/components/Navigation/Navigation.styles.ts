@@ -23,7 +23,7 @@ export const NavContainer = styled.header`
   box-sizing: border-box; /* Includes padding and borders in element's total width/height */
 
   /* STANDARD RESPONSIVE BREAKPOINTS - Touch-optimized heights */
-  @media (max-width: 1024px) {
+  @media (max-width: 1200px) {
     /* --breakpoint-lg - tablets */
     height: var(--nav-height-tablet); /* Larger height for tablet touch */
   }
@@ -84,10 +84,12 @@ export const NavLinks = styled.nav<{ isOpen: boolean }>`
   align-items: center; /* Vertically centers navigation items */
 
   /* MOBILE MENU TRANSFORMATION - Standard responsive implementation */
-  @media (max-width: 768px) {
-    /* --breakpoint-md */
+  @media (max-width: 1200px) {
+    /* Updated breakpoint to include tablets */
     position: absolute; /* Positions mobile menu absolutely relative to NavContainer */
-    top: var(--nav-height-mobile); /* Aligns with mobile nav height */
+    top: var(
+      --nav-height-tablet
+    ); /* Aligns with tablet nav height for screens >768px */
     left: 0; /* Aligns mobile menu to left edge */
     width: 100%; /* Full width mobile menu */
     background-color: var(--color-background); /* Mobile menu background */
@@ -106,6 +108,11 @@ export const NavLinks = styled.nav<{ isOpen: boolean }>`
       opacity var(--transition-normal);
 
     z-index: var(--z-index-dropdown); /* Standard z-index layering */
+  }
+
+  @media (max-width: 768px) {
+    /* Mobile specific height adjustment */
+    top: var(--nav-height-mobile); /* Aligns with mobile nav height */
   }
 
   @media (max-width: 640px) {
@@ -155,7 +162,7 @@ export const NavLink = styled(Link)`
   }
 
   /* STANDARD RESPONSIVE BREAKPOINTS */
-  @media (max-width: 768px) {
+  @media (max-width: 1200px) {
     /* --breakpoint-md */
     margin: var(--spacing-sm) 0; /* Vertical spacing for mobile menu items */
     font-size: var(--font-size-xl); /* Larger text for mobile touchability */
@@ -201,7 +208,7 @@ export const LoginButton = styled.button`
   }
 
   /* STANDARD RESPONSIVE BREAKPOINTS */
-  @media (max-width: 768px) {
+  @media (max-width: 1200px) {
     /* --breakpoint-md */
     margin: var(--spacing-md) 0 0;
     padding: var(--spacing-md) var(--spacing-xl);
@@ -257,9 +264,9 @@ export const HamburgerButton = styled.button<HamburgerProps>`
   min-height: 2.75rem; /* 44px minimum */
 
   /* STANDARD RESPONSIVE BREAKPOINTS */
-  @media (max-width: 768px) {
-    /* --breakpoint-md */
-    display: flex; /* Makes hamburger visible on mobile screens */
+  @media (max-width: 1200px) {
+    /* Updated to match navigation collapse breakpoint */
+    display: flex; /* Makes hamburger visible on tablet and mobile screens */
   }
 
   /* HAMBURGER LINES STYLING AND ANIMATION */

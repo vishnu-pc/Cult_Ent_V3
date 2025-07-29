@@ -47,6 +47,7 @@ export const SectionContainer = styled.section`
  */
 export const CultAdvantageSection = styled.section`
   width: 100%;
+  overflow: hidden; // Prevents content from spilling outside section
   display: flex;
   align-items: center;
   justify-content: center;
@@ -164,6 +165,9 @@ export const FirstLine = styled.div`
 export const CultLayersContainer = styled.div`
   position: relative;
   display: inline-block;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 /**

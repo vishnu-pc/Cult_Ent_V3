@@ -162,6 +162,7 @@
   --font-size-8xl: 6rem; /* 96px */
   --font-size-9xl: 6.75rem; /* 112px */
   --font-size-xxl: 7.3vw; /* 128px - converted from 7.3vw for consistent scaling */
+  --font-size-title-mobile: var(--font-size-sm);
 
   /* Unified Spacing Scale - Optimized for 13" laptop displays */
   --spacing-xxs: 0rem; /* 0px - No spacing */
@@ -175,6 +176,20 @@
   --spacing-4xl: 6rem; /* 96px - Large section spacing */
   --spacing-5xl: 8rem; /* 128px - Hero section spacing */
   --spacing-6xl: 12rem; /* 192px - Major section spacing */
+  --spacing-7xl: 16rem; /* 256px - Extra major section spacing */
+  --spacing-8xl: 20rem; /* 320px - Massive section spacing */
+  --spacing-9xl: 26rem; /* 416px - Hero banner spacing */
+  --spacing-10xl: 32rem; /* 512px - Full page section spacing */
+  --spacing-11xl: 40rem; /* 640px - Large page section spacing */
+  --spacing-12xl: 48rem; /* 768px - Tablet-width spacing */
+  --spacing-13xl: 58rem; /* 928px - Large content spacing */
+  --spacing-14xl: 68rem; /* 1088px - Desktop content spacing */
+  --spacing-15xl: 80rem; /* 1280px - Large desktop spacing */
+  --spacing-16xl: 92rem; /* 1472px - Extra large desktop spacing */
+  --spacing-17xl: 106rem; /* 1696px - Massive desktop spacing */
+  --spacing-18xl: 120rem; /* 1920px - Full HD width spacing */
+  --spacing-19xl: 136rem; /* 2176px - Ultra-wide spacing */
+  --spacing-20xl: 152rem; /* 2432px - Maximum ultra-wide spacing */
 
   /* Component-Specific Spacing Standards */
   --section-padding-vertical: var(

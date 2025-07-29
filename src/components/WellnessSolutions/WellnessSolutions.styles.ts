@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 /**
  * The main container for the Wellness Solutions section.
  * Uses the animated gradient background and implements a 35/65 split layout.
+ * MOBILE: Simplified to single-column layout with full-width content
  */
 export const SectionContainer = styled.section`
   height: 110vh;
@@ -16,7 +17,14 @@ export const SectionContainer = styled.section`
   position: relative;
 
   @media (max-width: 768px) {
+    /* MOBILE CHANGE: Single column layout since ImageContainer is hidden */
     flex-direction: column;
+    /* MOBILE CHANGE: Maintain current height behavior - let content determine height */
+    height: auto;
+    min-height: 100vh;
+    /* MOBILE CHANGE: Ensure no horizontal overflow */
+    overflow-x: hidden;
+    overflow-y: visible;
   }
 `;
 
@@ -37,15 +45,17 @@ export const BackgroundNumber = styled.div`
   user-select: none;
 
   @media (max-width: 768px) {
-    font-size: 12rem;
-    top: -1rem;
-    left: -1rem;
+    font-size: 7rem;
+    top: 6rem;
+    left: -2.5rem;
+    opacity: 0.3;
   }
 `;
 
 /**
  * Container for the image display and overlay text.
  * Takes up 35% of the width with fixed dimensions.
+ * MOBILE: Hidden completely to allow ContentContainer to fill full width
  */
 export const ImageContainer = styled.div`
   flex: 0 0 33%;
@@ -59,14 +69,15 @@ export const ImageContainer = styled.div`
   /* margin-bottom: 1vh; */
 
   @media (max-width: 768px) {
-    height: 40vh;
-    flex: none;
+    /* MOBILE CHANGE: Hide entire ImageContainer to optimize space usage */
+    display: none;
   }
 `;
 
 /**
  * Container for the overlay text above the image.
  * This should be vertically aligned with the SectionTitle on the right.
+ * MOBILE: When moved to ContentContainer, only shows on mobile devices
  */
 export const OverlayTextContainer = styled.div`
   //padding: var(--spacing-xxs) var(--spacing-xxs);
@@ -76,6 +87,18 @@ export const OverlayTextContainer = styled.div`
 
   @media (max-width: 768px) {
     padding: var(--spacing-md) var(--spacing-xxs);
+  }
+
+  /* MOBILE CHANGE: Hide the mobile version on desktop screens to prevent duplication */
+  &.mobile-overlay {
+    display: none;
+
+    @media (max-width: 768px) {
+      /* MOBILE CHANGE: Show overlay text at top of ContentContainer on mobile */
+      display: block;
+      /* MOBILE CHANGE: Maintain top positioning as requested */
+      margin-bottom: var(--spacing-xxs);
+    }
   }
 `;
 
@@ -91,6 +114,11 @@ export const OverlayTitle = styled.h3`
   font-weight: 400;
   text-transform: uppercase;
   text-align: left;
+
+  @media (max-width: 768px) {
+    font-size: var(--font-size-title-mobile);
+    margin-bottom: var(--spacing-2xl);
+  }
 `;
 
 /**
@@ -122,7 +150,7 @@ export const OverlaySubtitle = styled.h2`
   }
 
   @media (max-width: 768px) {
-    font-size: var(--font-size-3xl);
+    font-size: var(--font-size-4xl);
   }
 `;
 
@@ -156,6 +184,7 @@ export const StyledImage = styled(motion.div)<{ $imageUrl: string }>`
 /**
  * Container for the content (title and options).
  * Takes up 55% of the width and implements the two-part vertical structure.
+ * MOBILE: Expands to full width when ImageContainer is hidden
  */
 export const ContentContainer = styled.div`
   flex: 0 0 67%;
@@ -167,8 +196,17 @@ export const ContentContainer = styled.div`
   z-index: 2;
 
   @media (max-width: 768px) {
-    /* padding: var(--spacing-lg); */
-    flex: none;
+    /* MOBILE CHANGE: Expand to full width since ImageContainer is hidden */
+    flex: 1;
+    width: 100%;
+    /* MOBILE CHANGE: Ensure content stays within viewport width */
+    max-width: 100vw;
+    /* MOBILE CHANGE: Add horizontal padding to prevent edge-to-edge content */
+    /* padding: 0 var(--spacing-lg); */
+    /* MOBILE CHANGE: Maintain natural height behavior as requested */
+    /* height: auto; */
+    margin-top: 0;
+    padding-top: 0;
   }
 `;
 
@@ -188,7 +226,8 @@ export const SectionTitle = styled.h2`
   align-items: center;
 
   @media (max-width: 768px) {
-    font-size: var(--font-size-2xl);
+    font-size: var(--font-size-lg);
+    padding: var(--spacing-sm) var(--spacing-xxs);
   }
 `;
 
@@ -196,6 +235,7 @@ export const SectionTitle = styled.h2`
  * Container for the list of solution options.
  * This should be vertically aligned with the ImageDisplayContainer on the left.
  * Options should take up 80% of this container's vertical space.
+ * MOBILE: Maintains proportions but fills available space without image
  */
 export const OptionsContainer = styled.div`
   flex: 1;
@@ -203,6 +243,17 @@ export const OptionsContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   padding: 3% var(--spacing-xxs);
+
+  @media (max-width: 768px) {
+    /* MOBILE CHANGE: Maintain current proportions as requested */
+    flex: 1;
+    /* MOBILE CHANGE: Ensure proper spacing in mobile layout */
+    /* padding: var(--spacing-md) 0; */
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: var(--spacing-md);
+    gap: var(--spacing-md);
+  }
 `;
 
 /**
@@ -238,6 +289,26 @@ export const OptionItem = styled(motion.div)<{
 
   @media (max-width: 768px) {
     padding: var(--spacing-md) var(--spacing-lg);
+    &:last-child {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    border-left: none; /* Removed solid red border - replaced with gradient pseudo-element */
+    position: relative; /* Required for ::before pseudo-element positioning */
+
+    /* MOBILE CHANGE: Gradient left border using pseudo-element to match $borderGradient */
+    &::before {
+      content: '';
+      position: absolute;
+      left: 1px; /* Account for the 1px border */
+      top: 2px; /* Account for the 1px top border */
+      bottom: 2px; /* Account for the 1px bottom border */
+      width: 4px;
+      background: ${props => props.$borderGradient};
+      border-radius: 90px 0 0 90px;
+      z-index: 2;
+    }
   }
 `;
 
