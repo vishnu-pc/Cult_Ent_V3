@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import { LandingBannerDivider } from '../ui/GradientDivider';
 import {
   BannerContainer,
@@ -13,8 +14,9 @@ import {
   LogoContainer,
   LogoWrapper,
   StyledDynamicLogo,
-  // DemoButton,
   CTAButton,
+  NewDemoButton,
+  NewDemoButtonText,
 } from './LandingBanner.styles';
 import type { LandingBannerProps } from './LandingBanner.types';
 
@@ -34,6 +36,7 @@ const LandingBanner: React.FC<LandingBannerProps> = () => {
   const [scrollTriggered, setScrollTriggered] = useState(false); // One-way scroll activation
   const [hoverActive, setHoverActive] = useState(false); // Hover state for desktop
   const [isMobile, setIsMobile] = useState(false); // Mobile detection state
+  const [showDemoButton, setShowDemoButton] = useState(false); // Demo button visibility state
 
   // COMMENTED OUT FOR FUTURE USE - PERSISTENT ACTIVATION
   // const [persistentActivation, setPersistentActivation] = useState(false);
@@ -92,6 +95,39 @@ const LandingBanner: React.FC<LandingBannerProps> = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, [handleScroll]);
+
+  /**
+   * DEMO BUTTON SCROLL DETECTION
+   * Shows demo button when user scrolls past the LandingBanner section
+   * Uses Intersection Observer for better performance
+   */
+  useEffect(() => {
+    const handleDemoButtonScroll = () => {
+      // Get the LandingBanner section height (100vh)
+      const viewportHeight = window.innerHeight;
+      const scrollY = window.scrollY;
+
+      // Show button when scrolled past the landing banner (100vh)
+      if (scrollY > viewportHeight && !showDemoButton) {
+        setShowDemoButton(true);
+      } else if (scrollY <= viewportHeight && showDemoButton) {
+        setShowDemoButton(false);
+      }
+    };
+
+    // Set initial state
+    handleDemoButtonScroll();
+
+    // Add scroll listener
+    window.addEventListener('scroll', handleDemoButtonScroll, {
+      passive: true,
+    });
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('scroll', handleDemoButtonScroll);
+    };
+  }, [showDemoButton]);
 
   /**
    * PRIORITY-BASED HIGHLIGHT STATE
@@ -218,6 +254,37 @@ const LandingBanner: React.FC<LandingBannerProps> = () => {
       {/* <DemoButton whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.95 }}>
         REQUEST DEMO &gt;&gt;
       </DemoButton> */}
+
+      {/* NEW DEMO BUTTON - Vertical tab design with scroll-triggered visibility */}
+      <AnimatePresence mode='wait'>
+        {showDemoButton && (
+          <NewDemoButton
+            key='demo-button'
+            initial={{ x: 100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: 100, opacity: 0 }}
+            transition={{
+              type: 'spring',
+              stiffness: 200,
+              damping: 20,
+              duration: 0.5,
+            }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={() => {
+              // Navigate to contact section
+              document
+                .getElementById('contact-us')
+                ?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            tabIndex={0}
+            role='button'
+            aria-label='Request a demo - Navigate to contact section'
+          >
+            <NewDemoButtonText>REQUEST A DEMO</NewDemoButtonText>
+          </NewDemoButton>
+        )}
+      </AnimatePresence>
     </>
   );
 };

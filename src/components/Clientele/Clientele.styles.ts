@@ -227,11 +227,11 @@ export const MainHeading = styled.div`
 // INDIVIDUAL HEADING LINES
 export const HeadingLine = styled.h2<HeadingLineProps & { alignment?: string }>`
   font-family: var(--font-primary); /* Use standardized font family */
-  font-size: var(--font-size-5xl);
+  font-size: calc(var(--font-size-5xl) * 1.3); /* 5xl Figma */
   font-weight: 300;
   text-transform: uppercase;
-  letter-spacing: 0.4em; /* 33px - Wide letter spacing for dramatic effect */
-  line-height: 193%; /* Better spacing between lines */
+  letter-spacing: 0.5em; /* 0.4em Figma */
+  line-height: 152%; /* 193% Figma */
 
   /* Individual line alignment */
   text-align: ${({ alignment }) => alignment || 'left'};
@@ -243,7 +243,9 @@ export const HeadingLine = styled.h2<HeadingLineProps & { alignment?: string }>`
   animation-delay: ${({ delay }) => delay}s; /* Individual line delays */
 
   @media (min-width: 1536px) {
-    font-size: var(--font-size-6xl);
+    font-size: calc(
+      var(--font-size-6xl) * 1.2
+    ); /* Slightly larger on large screens */
   }
   /* Responsive typography using standard breakpoints */
   @media (max-width: 768px) {
@@ -257,8 +259,8 @@ export const HeadingLine = styled.h2<HeadingLineProps & { alignment?: string }>`
 export const StatText = styled.p<StyledComponentProps>`
   width: 100%;
   font-family: var(--font-primary); /* Use standardized font family */
-  /* font-size: var(--font-size-2xl); */
-  font-size: 4rem;
+  font-size: var(--font-size-2xl);
+  // font-size: 4rem;
   font-weight: 400;
   text-align: center;
   letter-spacing: -0.003em;
@@ -336,7 +338,7 @@ export const LogoGroup = styled.div`
 
 // INDIVIDUAL LOGO IMAGE STYLING
 export const LogoImage = styled.img`
-  height: 90%; /* 90% of parent container height */
+  height: 70%; /* 80% of parent container height */
   width: auto; /* Maintain aspect ratio */
   object-fit: contain; /* Preserve logo proportions without distortion */
   flex-shrink: 0; /* Prevent logos from shrinking */
@@ -344,7 +346,7 @@ export const LogoImage = styled.img`
 
   /* Responsive sizing using standard breakpoints */
   @media (max-width: 768px) {
-    height: 70%; /* Smaller logos on mobile devices */
+    height: 60%; /* Smaller logos on mobile devices */
   }
 
   @media (max-width: 640px) {

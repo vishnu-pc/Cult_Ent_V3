@@ -549,6 +549,167 @@ export const DemoButton = styled(motion.button)`
 `;
 
 /**
+ * NEW DEMO BUTTON - Vertical tab design with camera notch shape
+ *
+ * DESIGN FEATURES:
+ * - Fixed position on right edge, vertically centered
+ * - Apple liquid glass background design
+ * - Camera notch shape (rounded left corners, flush right edge)
+ * - Vertical text orientation with logo at top
+ * - Hover and active state animations
+ */
+export const NewDemoButton = styled(motion.div)`
+  /* Fixed positioning - right edge, vertically centered */
+  position: fixed;
+  top: 50%;
+  right: 0;
+  z-index: 1000;
+
+  /* Use margin to center instead of transform to avoid conflicts */
+  margin-top: -6rem; /* Half of height (12rem / 2) to center vertically */
+
+  /* Dimensions and shape */
+  width: 3rem; /* 48px */
+  height: 12rem; /* 192px */
+
+  /* Camera notch shape - rounded left corners only */
+  border-radius: var(--border-radius-lg) 0 0 var(--border-radius-lg);
+
+  /* Padding - adjusted for 3rem width */
+  padding: var(--spacing-md) var(--spacing-xs) var(--spacing-md)
+    var(--spacing-xs);
+
+  /* Default background - glass morphism */
+  background: var(--color-grey-nav);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  /* Drop shadow */
+  box-shadow:
+    -4px 0 16px rgba(0, 0, 0, 0.1),
+    -2px 0 8px rgba(0, 0, 0, 0.05),
+    inset 1px 0 2px rgba(255, 255, 255, 0.1);
+
+  /* Layout - vertical column */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+
+  /* Remove browser default focus styles */
+  outline: none;
+  border: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+
+  /* Cursor and transitions */
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Hover state - only scale, no position change */
+  &:hover {
+    transform: scale(1.1);
+    background: var(--gradient-secondary);
+    box-shadow:
+      -6px 0 24px rgba(0, 0, 0, 0.15),
+      -4px 0 12px rgba(0, 0, 0, 0.08),
+      inset 1px 0 3px rgba(255, 255, 255, 0.15);
+  }
+
+  /* Active state - only scale, no position change */
+  &:active {
+    transform: scale(0.9);
+    transition-duration: 0.1s;
+  }
+
+  /* Focus state - custom styling without browser defaults */
+  &:focus,
+  &:focus-visible {
+    outline: none;
+    box-shadow:
+      -4px 0 16px rgba(0, 0, 0, 0.1),
+      -2px 0 8px rgba(0, 0, 0, 0.05),
+      inset 1px 0 2px rgba(255, 255, 255, 0.1),
+      0 0 0 2px var(--color-accent-primary);
+  }
+
+  /* Remove any default browser focus/active styles */
+  &:focus:not(:focus-visible) {
+    outline: none;
+    box-shadow:
+      -4px 0 16px rgba(0, 0, 0, 0.1),
+      -2px 0 8px rgba(0, 0, 0, 0.05),
+      inset 1px 0 2px rgba(255, 255, 255, 0.1);
+  }
+
+  /* Responsive behavior for mobile (≤768px) */
+  @media (max-width: 768px) {
+    transform: scale(0.8);
+    width: 2.4rem; /* 3rem * 0.8 = 2.4rem */
+    height: 9.6rem; /* 12rem * 0.8 = 9.6rem */
+    margin-top: -4.8rem; /* Half of scaled height (9.6rem / 2) */
+    padding: var(--spacing-sm) var(--spacing-xs) var(--spacing-sm)
+      var(--spacing-xs);
+
+    &:hover {
+      transform: scale(0.88); /* 0.8 * 1.1 = 0.88 */
+    }
+
+    &:active {
+      transform: scale(0.72); /* 0.8 * 0.9 = 0.72 */
+    }
+  }
+`;
+
+/**
+ * NEW DEMO BUTTON LOGO - PNG logo at the top of the vertical tab
+ */
+export const NewDemoButtonLogo = styled.img`
+  width: 1rem; /* 32px */
+  height: 1rem; /* 32px */
+  object-fit: contain;
+  filter: brightness(0) invert(1); /* Make logo white for visibility */
+
+  /* Responsive scaling */
+  @media (max-width: 768px) {
+    width: 1.6rem; /* 32px * 0.8 = 25.6px */
+    height: 1.6rem; /* 32px * 0.8 = 25.6px */
+  }
+`;
+
+/**
+ * NEW DEMO BUTTON TEXT - Vertical text label
+ */
+export const NewDemoButtonText = styled.span`
+  /* Normal text orientation with 90-degree rotation */
+  transform: rotate(270deg);
+  transform-origin: center;
+  white-space: nowrap;
+
+  /* Typography */
+  font-family: 'Inter', sans-serif;
+  font-size: var(--font-size-sm); /* 12px */
+  font-weight: 700;
+  color: var(--color-text);
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: 0.05rem;
+
+  /* Ensure text is centered and readable */
+  text-align: center;
+  display: inline-block;
+
+  /* Responsive scaling */
+  @media (max-width: 768px) {
+    font-size: calc(var(--font-size-xs) * 0.9); /* Slightly smaller on mobile */
+    letter-spacing: 0.03rem;
+  }
+`;
+
+/**
  * CTA BUTTON - Bottom section call-to-action button
  *
  * DESIGN FEATURES:

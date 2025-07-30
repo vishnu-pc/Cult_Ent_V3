@@ -47,7 +47,7 @@ export const Logo = styled(Link)`
   display: flex; /* Flexbox for centering logo image */
   align-items: center; /* Vertically centers logo within container */
   text-decoration: none; /* Removes underline from link */
-  margin-left: calc(-1 * var(--spacing-md));
+  margin-left: calc(-1 * var(--spacing-lg));
   /* border: 1px solid red; */
 
   img {
@@ -66,6 +66,7 @@ export const Logo = styled(Link)`
     /* --breakpoint-md - mobile */
     img {
       height: var(--nav-logo-mobile); /* Optimized mobile logo height */
+      margin-left: calc(1 * var(--spacing-sm));
     }
   }
 
