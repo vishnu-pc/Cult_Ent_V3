@@ -63,23 +63,52 @@ export const TopSection = styled.div`
   }
 `;
 
+/**
+ * The "WELLNESS SOLUTIONS" text overlay.
+ */
+export const OverlayTitle = styled.h3`
+  font-size: var(--font-size-xl);
+  opacity: 0.5;
+  letter-spacing: 0.16em;
+  color: var(--color-text);
+  // margin-bottom: var(--spacing-sm);
+  font-weight: 400;
+  text-transform: uppercase;
+  text-align: left;
+  position: absolute;
+  top: var(--spacing-3xl);
+  left: var(--default-padding-horizontal);
+
+  @media (max-width: 768px) {
+    font-size: var(--font-size-title-mobile);
+    position: absolute;
+    top: var(--spacing-3xl);
+    left: var(--default-padding-horizontal);
+  }
+`;
+
 export const TitleBlock = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    margin-top: var(--spacing-3xl);
+    text-align: left; /* Override parent's center alignment for mobile */
+  }
 `;
 
 export const MainTitle = styled.h1`
   font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 800;
-  line-height: 1.1;
+  font-weight: 700;
+  line-height: 119%;
+  letter-spacing: 0.48em;
   color: white;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
   // margin: 0;
 
   @media (max-width: 768px) {
-    font-size: clamp(2rem, 8vw, 3rem);
+    font-size: clamp(1.6rem, 8vw, 1.9rem);
   }
 `;
 
@@ -105,6 +134,7 @@ export const Description = styled.p`
 
   @media (max-width: 768px) {
     font-size: var(--font-size-lg);
+    text-align: justify; /* Maintain justification on mobile */
   }
 `;
 
@@ -271,7 +301,8 @@ export const HashtagText = styled.h1`
   background-clip: text;
 
   @media (max-width: 768px) {
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-3xl);
+    text-align: left;
   }
 `;
 
@@ -286,10 +317,12 @@ export const HeroHeading = styled.h2`
 
   @media (max-width: 768px) {
     font-size: var(--font-size-4xl);
+    text-align: left; /* Align text to the left */
   }
 
   @media (max-width: 480px) {
-    font-size: var(--font-size-3xl);
+    font-size: var(--font-size-4xl);
+    text-align: left; /* Align text to the left */
   }
 `;
 
@@ -309,6 +342,7 @@ export const DescriptionText = styled.p`
 
   @media (max-width: 768px) {
     font-size: var(--font-size-md);
+    text-align: justify; /* Justify text across full width */
   }
 `;
 
@@ -324,5 +358,6 @@ export const CallToAction = styled.p`
 
   @media (max-width: 768px) {
     font-size: var(--font-size-md);
+    text-align: justify; /* Justify text across full width */
   }
 `;

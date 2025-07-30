@@ -6,13 +6,12 @@ import type { LogoLoaderProps } from './LogoLoader.types';
 import {
   LoaderContainer,
   TopSection,
+  OverlayTitle,
   TitleBlock,
   MainTitle,
   GradientText,
   RightColumn,
   Description,
-  GifSection,
-  LogoGif,
   HeroSection,
   HeroContent,
   HashtagText,
@@ -21,14 +20,15 @@ import {
   DescriptionText,
   CallToAction,
 } from './LogoLoader.styles';
-import LastLogoGif from '../../assets/images/LastLogo/LastLogo.gif';
 import PDFCatalogCarousel from '../PDFCatalogCarousel';
+import ScrollRingsLogo from '../ScrollRingsLogo';
 
 export default function LogoLoader({ className }: LogoLoaderProps) {
   return (
     <>
       <LogoLoaderDivider />
       <LoaderContainer className={className}>
+        <OverlayTitle>Wellness Solutions</OverlayTitle>
         <TopSection>
           <TitleBlock>
             <MainTitle>
@@ -52,13 +52,7 @@ export default function LogoLoader({ className }: LogoLoaderProps) {
           </RightColumn>
         </TopSection>
 
-        <GifSection>
-          <LogoGif
-            src={LastLogoGif}
-            alt='Cult Entertainment Logo'
-            loading='eager'
-          />
-        </GifSection>
+        <ScrollRingsLogo />
 
         {/* BeBetter Hero Section */}
         <HeroSection>
