@@ -234,8 +234,27 @@ export const GridCell = styled.div<{
     }
   `}
 
+  /* Hide background image for grid area A (Wellness1) on mobile */
+  @media (max-width: 768px) {
+    ${props =>
+      props.$gridArea === 'A' &&
+      props.$hasBackgroundImage &&
+      `
+      background-image: none;
+      filter: none;
+      
+      &::before {
+        display: none;
+      }
+      
+      > * {
+        z-index: auto;
+      }
+    `}
+  }
+
   /* Selective borders - using standardized border variables */
-  
+
   /* Desktop borders and alignment */
   @media (min-width: 769px) {
     /* Right borders for A, B, C */

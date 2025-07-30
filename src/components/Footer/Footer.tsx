@@ -46,7 +46,7 @@ const STATS_DATA: StatData[] = [
 const FOOTER_LINKS: FooterLinkData[] = [
   {
     text: 'Contact us',
-    href: '#',
+    href: '#contact-us',
   },
 ];
 

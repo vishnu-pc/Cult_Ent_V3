@@ -11,12 +11,6 @@ import {
   GradientText,
   RightColumn,
   Description,
-  GuideBox,
-  GuideLabel,
-  GuideTitle,
-  GuideFooter,
-  CreatedBy,
-  DownloadIcon,
   GifSection,
   LogoGif,
   HeroSection,
@@ -28,6 +22,7 @@ import {
   CallToAction,
 } from './LogoLoader.styles';
 import LastLogoGif from '../../assets/images/LastLogo/LastLogo.gif';
+import PDFCatalogCarousel from '../PDFCatalogCarousel';
 
 export default function LogoLoader({ className }: LogoLoaderProps) {
   return (
@@ -47,35 +42,13 @@ export default function LogoLoader({ className }: LogoLoaderProps) {
                 INSIGHTS
               </GradientText>
             </MainTitle>
+            <Description>
+              A look into the workplace wellness challenges that matter most
+            </Description>
           </TitleBlock>
 
           <RightColumn>
-            <Description>
-              A look into the workplace
-              <br />
-              wellness challenges that matter
-              <br />
-              most
-            </Description>
-
-            <GuideBox>
-              <GuideLabel>YOUR GUIDE TO</GuideLabel>
-              <GuideTitle>
-                EMPLOYEE
-                <br />
-                HEALTH AND
-                <br />
-                WELLNESS
-              </GuideTitle>
-              <GuideFooter>
-                <CreatedBy>Created by cult</CreatedBy>
-                <DownloadIcon>
-                  <svg viewBox='0 0 24 24' fill='currentColor'>
-                    <path d='M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z' />
-                  </svg>
-                </DownloadIcon>
-              </GuideFooter>
-            </GuideBox>
+            <PDFCatalogCarousel />
           </RightColumn>
         </TopSection>
 
@@ -113,8 +86,8 @@ export default function LogoLoader({ className }: LogoLoaderProps) {
         </HeroSection>
 
         {/* BeBetter Section Divider */}
-        <BeBetterSectionDivider />
       </LoaderContainer>
+      <BeBetterSectionDivider />
     </>
   );
 }

@@ -87,7 +87,6 @@ export const BannerContainer = styled.section.attrs({
   /* Layout styling - spacing handled by .hero-section class in global.css */
 
   width: 100vw;
-  border-bottom: 1px solid red;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -570,7 +569,7 @@ export const NewDemoButton = styled(motion.div)`
 
   /* Dimensions and shape */
   width: 3rem; /* 48px */
-  height: 12rem; /* 192px */
+  height: 12rem; /* 128px */
 
   /* Camera notch shape - rounded left corners only */
   border-radius: var(--border-radius-lg) 0 0 var(--border-radius-lg);
@@ -648,8 +647,8 @@ export const NewDemoButton = styled(motion.div)`
   /* Responsive behavior for mobile (≤768px) */
   @media (max-width: 768px) {
     transform: scale(0.8);
-    width: 2.4rem; /* 3rem * 0.8 = 2.4rem */
-    height: 9.6rem; /* 12rem * 0.8 = 9.6rem */
+    width: 2rem; /* Changed from 2.4rem to 2rem */
+    height: 9.6rem; /* 12rem * 0.8 = 9.6rem - keeping height unchanged */
     margin-top: -4.8rem; /* Half of scaled height (9.6rem / 2) */
     padding: var(--spacing-sm) var(--spacing-xs) var(--spacing-sm)
       var(--spacing-xs);

@@ -203,7 +203,7 @@ const LandingBanner: React.FC<LandingBannerProps> = () => {
               onClick={() => {
                 // Handle CTA button click - can be connected to form or contact section
                 document
-                  .getElementById('contact-section')
+                  .getElementById('contact-us')
                   ?.scrollIntoView({ behavior: 'smooth' });
               }}
             >

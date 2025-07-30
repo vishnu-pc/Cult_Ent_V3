@@ -187,10 +187,28 @@ export const LoginButton = styled.button`
   transition: all var(--transition-fast);
   position: relative;
   overflow: hidden;
-  border: none;
   cursor: pointer;
   font-size: var(--font-size-sm);
   border: 1px solid var(--color-grey-dark);
+
+  /* Remove default browser focus states */
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+
+  /* Remove any default button styling on interaction */
+  &:focus,
+  &:active {
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Custom focus styling for accessibility (keyboard navigation only) */
+  &:focus-visible {
+    box-shadow: 0 0 0 2px var(--color-accent-primary);
+  }
 
   /* Gradient hover effect */
   &:hover {
@@ -198,14 +216,14 @@ export const LoginButton = styled.button`
     background: var(--gradient-secondary);
     transform: translateY(-0.125rem);
     box-shadow: 0 0.25rem 0.75rem rgba(253, 217, 20, 0.3);
-    border: none;
+    border: 1px solid var(--color-background); /* Matches container background to hide border */
   }
 
   /* Active/pressed effect */
   &:active {
     color: var(--color-black);
     transform: translateY(0);
-    border: none;
+    border: 1px solid var(--color-background); /* Matches container background to hide border */
   }
 
   /* STANDARD RESPONSIVE BREAKPOINTS */

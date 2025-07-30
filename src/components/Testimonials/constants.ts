@@ -76,11 +76,11 @@ export const testimonialsData: TestimonialData[] = [
     position: {
       desktop: {
         top: '85%',
-        left: '-1%',
+        left: '0%',
       },
       laptop: {
         top: '109%',
-        left: '3%',
+        left: '0%',
       },
       tablet: {
         top: '109%',

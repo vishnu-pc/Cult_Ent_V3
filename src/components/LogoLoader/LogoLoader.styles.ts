@@ -1,20 +1,28 @@
 import styled from 'styled-components';
 
-export const LoaderContainer = styled.div`
+export const LoaderContainer = styled.section`
   width: 100%;
-  min-height: 100vh;
+  max-width: 100vw;
+  // min-height: 100vh;
   background-color: #000000;
   display: flex;
   flex-direction: column;
-  padding: var(--spacing-xl);
+  // padding: var(--spacing-xl);
   box-sizing: border-box;
+  /* Remove top and bottom padding to allow TopSection and HeroSection to be flush */
+  padding-top: 0;
+  padding-bottom: 0;
 
   @media (max-width: 768px) {
-    padding: var(--spacing-lg);
+    // padding: var(--spacing-lg);
+    padding-top: 0;
+    padding-bottom: 0;
   }
 
   @media (max-width: 480px) {
-    padding: var(--spacing-md);
+    // padding: var(--spacing-md);
+    padding-top: 0;
+    padding-bottom: 0;
   }
 `;
 
@@ -22,15 +30,36 @@ export const TopSection = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--spacing-3xl);
-  max-width: 1200px;
-  width: 100%;
-  margin: 0 auto;
-  padding: var(--spacing-3xl) 0;
+
+  /* Full width - override any container padding, same as HeroSection */
+  width: 100vw;
+  margin-left: calc(-50vw + 50%); /* Break out of container */
+
+  /* Apply the same gradient background as HeroSection */
+  background:
+    linear-gradient(
+      to top,
+      #000000 0%,
+      #000000 3%,
+      rgba(255, 20, 147, 0.3) 95%,
+      rgba(152, 5, 113, 0.5) 100%
+    ),
+    linear-gradient(
+      to right,
+      rgba(255, 20, 147, 0.2) 0%,
+      #000000 20%,
+      #000000 40%,
+      rgba(0, 102, 255, 0.9) 100%
+    );
+
+  /* Add padding for content spacing - match global section padding */
+  padding: var(--spacing-3xl) var(--section-padding-horizontal);
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     gap: var(--spacing-2xl);
     text-align: center;
+    padding: var(--spacing-2xl) var(--section-padding-horizontal);
   }
 `;
 
@@ -47,7 +76,7 @@ export const MainTitle = styled.h1`
   color: white;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  margin: 0;
+  // margin: 0;
 
   @media (max-width: 768px) {
     font-size: clamp(2rem, 8vw, 3rem);
@@ -72,7 +101,7 @@ export const Description = styled.p`
   font-size: var(--font-size-xl);
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.6;
-  margin: 0;
+  // margin: 0;
 
   @media (max-width: 768px) {
     font-size: var(--font-size-lg);
@@ -97,7 +126,7 @@ export const GuideLabel = styled.div`
   color: rgba(255, 255, 255, 0.6);
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  margin-bottom: var(--spacing-xs);
+  // margin-bottom: var(--spacing-xs);
 `;
 
 export const GuideTitle = styled.h2`
@@ -105,7 +134,7 @@ export const GuideTitle = styled.h2`
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  margin: 0 0 var(--spacing-lg) 0;
+  // margin: 0 0 var(--spacing-lg) 0;
   background: linear-gradient(90deg, #8e44ad 0%, #e91e63 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -120,7 +149,7 @@ export const GuideFooter = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: var(--spacing-lg);
+  // margin-top: var(--spacing-lg);
 `;
 
 export const CreatedBy = styled.span`
@@ -158,17 +187,17 @@ export const GifSection = styled.div`
   align-items: center;
   justify-content: center;
   flex: 1;
-  padding: var(--spacing-3xl) 0;
+  // padding: var(--spacing-3xl) 0;
 
   @media (max-width: 768px) {
-    padding: var(--spacing-2xl) 0;
+    // padding: var(--spacing-2xl) 0;
   }
 `;
 
 export const LogoGif = styled.img`
   width: 100%;
   height: auto;
-  max-width: 600px;
+  // max-width: 600px;
   object-fit: contain;
   display: block;
 
@@ -181,15 +210,22 @@ export const LogoGif = styled.img`
   }
 `;
 
-// BeBetter Hero Section Styles
+// BeBetter Hero Section Styles - Full width at bottom
 export const HeroSection = styled.div`
-  min-height: 60vh;
-  padding: var(--spacing-3xl) var(--spacing-xl);
+  /* Full width - override any container padding */
+  width: 100vw;
+  background: red;
+  margin-left: calc(-50vw + 50%); /* Break out of container */
+
+  /* Remove any global section padding */
+  padding: var(--spacing-3xl) var(--section-padding-horizontal);
+
+  /* Keep the gradient background */
   background:
     linear-gradient(
       to bottom,
       #000000 0%,
-      #000000 70%,
+      #000000 3%,
       rgba(255, 20, 147, 0.3) 95%,
       rgba(152, 5, 113, 0.5) 100%
     ),
@@ -200,21 +236,26 @@ export const HeroSection = styled.div`
       #000000 40%,
       rgba(0, 102, 255, 0.9) 100%
     );
+
+  /* Layout and alignment */
   display: flex;
   justify-content: center;
   align-items: center;
   gap: var(--spacing-3xl);
 
+  /* Positioning at bottom */
+  margin-top: auto;
+
   @media (max-width: 768px) {
     flex-direction: column;
-    padding: var(--spacing-2xl) var(--spacing-md);
+    padding: var(--spacing-2xl) var(--section-padding-horizontal);
     gap: var(--spacing-xl);
   }
 `;
 
 export const HeroContent = styled.div`
   flex: 1;
-  max-width: 700px;
+  // max-width: 700px;
   text-align: left;
 `;
 
@@ -223,7 +264,7 @@ export const HashtagText = styled.h1`
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.17em;
-  margin-bottom: var(--spacing-sm);
+  // margin-bottom: var(--spacing-sm);
   background: linear-gradient(90deg, #ff3278 -17.4%, #ffdb17 71.96%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -241,7 +282,7 @@ export const HeroHeading = styled.h2`
   color: var(--color-text);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  margin-bottom: var(--spacing-xl);
+  // margin-bottom: var(--spacing-xl);
 
   @media (max-width: 768px) {
     font-size: var(--font-size-4xl);
@@ -264,7 +305,7 @@ export const DescriptionText = styled.p`
   font-size: var(--font-size-lg);
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.6;
-  margin-bottom: var(--spacing-md);
+  // margin-bottom: var(--spacing-md);
 
   @media (max-width: 768px) {
     font-size: var(--font-size-md);

@@ -1,39 +1,44 @@
-import type { Reason } from './WhyChooseCult.types';
+import type { TileData } from '../ExpandableTiles';
+import WhyChooseCult1 from '../../assets/images/WhyChooseCult/WhyChooseCult-1.jpg';
+import WhyChooseCult2 from '../../assets/images/WhyChooseCult/WhyChooseCult-2.jpg';
+import WhyChooseCult3 from '../../assets/images/WhyChooseCult/WhyChooseCult-3.jpg';
+import WhyChooseCult4 from '../../assets/images/WhyChooseCult/WhyChooseCult-4.jpg';
+import WhyChooseCult5 from '../../assets/images/WhyChooseCult/WhyChooseCult-5.jpg';
 
-export const reasons: Reason[] = [
+export const whyChooseCultTiles: TileData[] = [
   {
     id: 1,
-    title: 'Holistic Approach',
+    image: WhyChooseCult1,
+    title: 'Results You Can See, ROI You Can Measure',
     description:
-      'We address all aspects of wellbeing - physical, mental, emotional, and social - creating a truly comprehensive wellness experience.',
-    backgroundImage: 'holistic-bg.jpg',
+      'Analytics-powered wellness with metrics that directly impact your performance indicators.',
   },
   {
     id: 2,
-    title: 'Personalized Solutions',
+    image: WhyChooseCult2,
+    title: 'Mental Wellness',
     description:
-      'Every organization is unique. Our solutions are tailored to your specific needs, culture, and goals for maximum impact.',
-    backgroundImage: 'personalized-bg.jpg',
+      'Mindfulness and stress management programs to enhance mental clarity and emotional resilience in the workplace.',
   },
   {
     id: 3,
-    title: 'Measurable Results',
+    image: WhyChooseCult3,
+    title: 'Nutrition Guidance',
     description:
-      'Our data-driven approach provides clear metrics and analytics to track progress and demonstrate ROI on your wellness investment.',
-    backgroundImage: 'results-bg.jpg',
+      'Expert nutritional counseling and meal planning to fuel productivity and maintain optimal health throughout the workday.',
   },
   {
     id: 4,
-    title: 'Seamless Integration',
+    image: WhyChooseCult4,
+    title: 'Team Building',
     description:
-      'Our programs integrate smoothly with your existing systems and workflows, minimizing disruption while maximizing engagement.',
-    backgroundImage: 'integration-bg.jpg',
+      'Engaging group activities and challenges that strengthen team bonds while promoting healthy lifestyle choices.',
   },
   {
     id: 5,
-    title: 'Continuous Innovation',
+    image: WhyChooseCult5,
+    title: 'Recovery & Rest',
     description:
-      'We constantly evolve our offerings based on the latest research, technology, and feedback to deliver cutting-edge wellness solutions.',
-    backgroundImage: 'innovation-bg.jpg',
+      'Specialized recovery programs and sleep optimization techniques to ensure peak performance and prevent burnout.',
   },
 ];

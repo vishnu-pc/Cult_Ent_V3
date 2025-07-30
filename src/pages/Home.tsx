@@ -8,8 +8,8 @@ import CombinedWellnessSection from '../components/CombinedWellnessSection/Combi
 // import WhyChooseCult from '../components/WhyChooseCult/WhyChooseCult';
 import ContactUs from '../components/ContactUs/ContactUs';
 import Testimonials from '../components/Testimonials/Testimonials';
-import OurImpact from '../components/OurImpact/OurImpact';
-// import LogoLoader from '../components/LogoLoader/LogoLoader';
+// import OurImpact from '../components/OurImpact/OurImpact';
+import LogoLoader from '../components/LogoLoader/LogoLoader';
 const HomeContainer = styled.main`
   display: flex;
   flex-direction: column;
@@ -26,8 +26,8 @@ const Home: React.FC = () => {
       <WhyChooseCult /> */}
       <ContactUs />
       <Testimonials />
-      <OurImpact />
-      {/* <LogoLoader /> */}
+      {/* <OurImpact /> */}
+      <LogoLoader />
     </HomeContainer>
   );
 };
