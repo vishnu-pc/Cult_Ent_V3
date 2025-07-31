@@ -1,19 +1,53 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
+export const Container = styled.div`
+  width: 100%;
+  /* Desktop styling */
+  padding: var(--spacing-2xl) var(--spacing-lg);
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    /* Mobile: Create tall scroll area for sticky behavior */
+    height: 200vh; /* 4x viewport height to create sufficient scroll space */
+    padding: var(--spacing-5xl) var(--spacing-xxs);
+    position: relative;
+  }
+`;
+
+export const StickyWrapper = styled.div`
+  /* Desktop: normal behavior */
+
+  @media (max-width: 768px) {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // padding: var(--spacing-lg);
+    box-sizing: border-box;
+    z-index: 1;
+    /* Add subtle background to visualize sticky behavior in debug */
+    /* background: rgba(0, 0, 0, 0.02); */
+  }
+`;
+
 export const TilesContainer = styled.div`
   display: flex;
   height: 70vh;
   width: 100%;
   gap: 10px;
-  /* padding: 20px; */
   box-sizing: border-box;
-  padding-top: 0;
+  // padding-top: 0;
 
   @media (max-width: 768px) {
     flex-direction: column;
-    height: auto;
+    height: 100%;
+    width: 100%;
     gap: 12px;
+    justify-content: center;
   }
 `;
 
@@ -111,9 +145,4 @@ export const TileDescription = styled(motion.p)`
     font-size: 14px;
     line-height: 1.4;
   }
-`;
-
-export const ComponentWrapper = styled.div`
-  width: 100%;
-  margin: 0 auto;
 `;

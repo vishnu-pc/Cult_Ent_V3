@@ -99,19 +99,39 @@ const LandingBanner: React.FC<LandingBannerProps> = () => {
   /**
    * DEMO BUTTON SCROLL DETECTION
    * Shows demo button when user scrolls past the LandingBanner section
-   * Uses Intersection Observer for better performance
+   * and hides it when the user reaches the contact-us section.
    */
   useEffect(() => {
     const handleDemoButtonScroll = () => {
-      // Get the LandingBanner section height (100vh)
       const viewportHeight = window.innerHeight;
       const scrollY = window.scrollY;
 
-      // Show button when scrolled past the landing banner (100vh)
-      if (scrollY > viewportHeight && !showDemoButton) {
-        setShowDemoButton(true);
-      } else if (scrollY <= viewportHeight && showDemoButton) {
-        setShowDemoButton(false);
+      // Zone 1: Landing Banner (Top of the page)
+      const isInLandingBanner = scrollY <= viewportHeight;
+
+      // Zone 2: Contact Us Section
+      const contactUsSection = document.getElementById('contact-us');
+      let isInContactSection = false;
+      if (contactUsSection) {
+        const contactUsTop = contactUsSection.offsetTop;
+        const contactUsHeight = contactUsSection.offsetHeight;
+        const contactUsBottom = contactUsTop + contactUsHeight;
+
+        const viewportTop = scrollY;
+        const viewportBottom = scrollY + viewportHeight;
+
+        // Check if the viewport is intersecting with the contact-us section
+        // Hides the button if any part of the contact section is visible
+        const isIntersecting =
+          viewportBottom > contactUsTop && viewportTop < contactUsBottom;
+        isInContactSection = isIntersecting;
+      }
+
+      // Show the button only if we are NOT in the landing banner AND NOT in the contact section
+      const shouldShow = !isInLandingBanner && !isInContactSection;
+
+      if (shouldShow !== showDemoButton) {
+        setShowDemoButton(shouldShow);
       }
     };
 

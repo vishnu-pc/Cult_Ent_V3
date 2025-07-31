@@ -19,7 +19,6 @@ export const SectionContainer = styled.section`
   flex-direction: column;
   /* Use standardized section spacing */
   /* padding: var(--section-padding-vertical) var(--section-padding-horizontal); */
-  overflow: hidden;
 
   /* Responsive container padding */
   @media (max-width: 1024px) {
