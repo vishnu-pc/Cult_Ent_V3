@@ -318,8 +318,51 @@ export const OptionItem = styled(motion.div)<{
 export const OptionHeader = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between; /* Changed: Space between content and arrow */
   gap: var(--spacing-xl);
   /* margin-bottom: var(--spacing-sm); */
+`;
+
+/**
+ * Container for the left content (number + title)
+ */
+export const OptionHeaderContent = styled.div`
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xl);
+  flex: 1; /* Takes up 80% of the space */
+`;
+
+/**
+ * Container for the arrow - occupies right 20% of header, mobile only
+ */
+export const OptionArrowContainer = styled.div`
+  width: 10%; /* Occupies right 10% of the header */
+  display: flex;
+  justify-content: flex-start; /* Left-aligned within the 10% space */
+  align-items: center;
+
+  /* MOBILE ONLY: Hide on desktop/tablet */
+  display: none;
+
+  @media (max-width: 768px) {
+    display: flex; /* Show only on mobile */
+  }
+`;
+
+/**
+ * The arrow component - mobile only
+ */
+export const OptionArrow = styled.span`
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1;
+
+  /* Only visible on mobile */
+  @media (max-width: 768px) {
+    font-size: var(--font-size-4xl);
+  }
 `;
 
 /**

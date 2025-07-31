@@ -15,24 +15,24 @@ export const testimonialsData: TestimonialData[] = [
       "Our employees have greatly appreciated this program, especially at such a reasonable cost. We've successfully completed two rounds of registrations so far and look forward to more.",
     position: {
       desktop: {
-        bottom: '107%',
+        bottom: '119%',
         right: '64%',
       },
       laptop: {
-        bottom: '130%',
+        bottom: '120%',
         right: '67%',
       },
       tablet: {
-        bottom: '130%',
+        bottom: '150%',
         right: '67%',
       },
       mobile: {
-        bottom: '250%',
-        left: '3%',
+        top: '120%',
+        left: '0%',
       },
       smallMobile: {
-        bottom: '250%',
-        left: '3%',
+        top: '120%',
+        left: '0%',
       },
     },
     animationDelay: 0,
@@ -45,24 +45,24 @@ export const testimonialsData: TestimonialData[] = [
       "Since offering Cult gym benefits, we've seen a noticeable boost in employee morale and overall wellness.",
     position: {
       desktop: {
-        bottom: '88%',
-        right: '3%',
+        bottom: '98%',
+        right: '1%',
       },
       laptop: {
         bottom: '98%',
         right: '0%',
       },
       tablet: {
-        bottom: '98%',
+        bottom: '118%',
         right: '0%',
       },
       mobile: {
-        bottom: '140%',
-        right: '3%',
+        top: '210%',
+        right: '0%',
       },
       smallMobile: {
-        bottom: '140%',
-        right: '3%',
+        top: '210%',
+        right: '0%',
       },
     },
     animationDelay: 2,
@@ -75,24 +75,24 @@ export const testimonialsData: TestimonialData[] = [
       'More employees are actively leveraging the benefits of the cult for Corporate program, leading to significant rise in our collective fitness levels.',
     position: {
       desktop: {
-        top: '85%',
+        top: '95%',
         left: '0%',
       },
       laptop: {
-        top: '109%',
+        top: '115%',
         left: '0%',
       },
       tablet: {
-        top: '109%',
-        left: '3%',
+        top: '119%',
+        left: '0%',
       },
       mobile: {
-        top: '140%',
-        left: '3%',
+        top: '295%',
+        left: '0%',
       },
       smallMobile: {
-        top: '140%',
-        left: '3%',
+        top: '295%',
+        left: '0%',
       },
     },
     animationDelay: 4,
@@ -105,24 +105,24 @@ export const testimonialsData: TestimonialData[] = [
       'We witnessed a significant boost in employee participation and satisfaction through various engagement activities and campaigns.',
     position: {
       desktop: {
-        top: '117%',
+        top: '129%',
         right: '6%',
       },
       laptop: {
-        top: '139%',
+        top: '137%',
         right: '6%',
       },
       tablet: {
-        top: '139%',
+        top: '159%',
         right: '6%',
       },
       mobile: {
-        top: '250%',
-        right: '3%',
+        top: '380%',
+        right: '0%',
       },
       smallMobile: {
-        top: '250%',
-        right: '3%',
+        top: '380%',
+        right: '0%',
       },
     },
     animationDelay: 6,

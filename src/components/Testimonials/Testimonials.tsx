@@ -5,6 +5,7 @@ import { testimonialsData } from './constants';
 import InvertedCommaImg from '../../assets/images/Testimonials/Invertedcomma.png';
 import {
   SectionContainer,
+  OverlayTitle,
   ContentWrapper,
   TestimonialCard,
   TestimonialText,
@@ -26,6 +27,7 @@ const Testimonials: React.FC<TestimonialsProps> = ({
     <>
       <TestimonialsDivider />
       <SectionContainer id='testimonials'>
+        <OverlayTitle>Testimonials</OverlayTitle>
         <ContentWrapper>
           {/* Floating Testimonial Cards with Responsive Positioning */}
           {testimonials.map((testimonial, index) => (

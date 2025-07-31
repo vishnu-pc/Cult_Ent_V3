@@ -10,6 +10,9 @@ import {
   ImageDisplayContainer,
   OptionDescription,
   OptionHeader,
+  OptionHeaderContent,
+  OptionArrowContainer,
+  OptionArrow,
   OptionItem,
   OptionNumber,
   OptionsContainer,
@@ -116,12 +119,20 @@ const WellnessSolutions: React.FC<WellnessSolutionsProps> = () => {
                 // whileHover={{ x: 5 }} // A subtle hover animation for better UX (disabled for now)
               >
                 <OptionHeader>
+                  <OptionHeaderContent>
+                    {!showDescription && (
+                      <OptionNumber>#{solution.id}</OptionNumber>
+                    )}
+                    <OptionTitle $hasDescription={showDescription}>
+                      {solution.title}
+                    </OptionTitle>
+                  </OptionHeaderContent>
+                  {/* Arrow only visible on mobile and hidden when description is shown */}
                   {!showDescription && (
-                    <OptionNumber>#{solution.id}</OptionNumber>
+                    <OptionArrowContainer>
+                      <OptionArrow>›</OptionArrow>
+                    </OptionArrowContainer>
                   )}
-                  <OptionTitle $hasDescription={showDescription}>
-                    {solution.title}
-                  </OptionTitle>
                 </OptionHeader>
 
                 {/* AnimatePresence manages the mounting and unmounting of the description */}

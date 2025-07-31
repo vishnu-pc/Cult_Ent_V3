@@ -215,7 +215,7 @@ export const LoginButton = styled.button`
     color: var(--color-black);
     background: var(--gradient-secondary);
     transform: translateY(-0.125rem);
-    box-shadow: 0 0.25rem 0.75rem rgba(253, 217, 20, 0.3);
+    box-shadow: 0 0.25rem 0.75rem rgba(255, 0, 89, 0.3); //Previous rgba(152, 20, 253, 0.3)
     border: 1px solid var(--color-background); /* Matches container background to hide border */
   }
 

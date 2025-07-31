@@ -249,9 +249,10 @@ export const HeadingLine = styled.h2<HeadingLineProps & { alignment?: string }>`
   }
   /* Responsive typography using standard breakpoints */
   @media (max-width: 768px) {
-    font-size: var(--font-size-2xl); /* Mobile font size */
+    font-size: calc(var(--font-size-2xl) * 1.2); /* Mobile font size */
     letter-spacing: 0.2em;
-    margin-bottom: var(--spacing-xxs);
+    margin-bottom: var(--spacing-md);
+    line-height: 230%;
   }
 `;
 

@@ -348,25 +348,61 @@ export const GridCell = styled.div<{
     /* Use standardized mobile padding */
     //padding: var(--spacing-md);
 
-    /* Right border for A */
+    /* Right border for A - enhanced for mobile visibility */
     ${props =>
       props.$gridArea === 'A' &&
       `
-      border-right: var(--border-grid-dotted-thin);
+      border-right: 1px dotted rgba(255, 255, 255, 0.3);
     `}
 
-    /* Bottom borders for A, E, F, B, C, D */
+    /* Bottom borders for A, E, F, B, C, D - enhanced for mobile visibility */
     ${props =>
       ['A', 'E', 'F', 'B', 'C', 'D'].includes(props.$gridArea) &&
       `
-      border-bottom: var(--border-grid-dotted-thin);
+      border-bottom: 1px dotted rgba(255, 255, 255, 0.3);
     `}
     
-    /* Right borders for F (spanning multiple rows) */
+    /* Right borders for F (spanning multiple rows) - enhanced for mobile visibility */
     ${props =>
       props.$gridArea === 'F' &&
       `
-      border-right: var(--border-grid-dotted-thin);
+      border-right: 1px dotted rgba(255, 255, 255, 0.3);
+    `}
+
+    /* Top borders for mobile layout to separate rows - enhanced for mobile visibility */
+    /* F needs top border to separate from A */
+    ${props =>
+      props.$gridArea === 'F' &&
+      `
+      border-top: 1px dotted rgba(255, 255, 255, 0.3);
+    `}
+
+    /* B needs top border to separate from E */
+    ${props =>
+      props.$gridArea === 'B' &&
+      `
+      border-top: 1px dotted rgba(255, 255, 255, 0.3);
+    `}
+
+    /* C needs top border to separate from previous row */
+    ${props =>
+      props.$gridArea === 'C' &&
+      `
+      border-top: 1px dotted rgba(255, 255, 255, 0.3);
+    `}
+
+    /* D needs top border to separate from previous row */
+    ${props =>
+      props.$gridArea === 'D' &&
+      `
+      border-top: 1px dotted rgba(255, 255, 255, 0.3);
+    `}
+
+    /* G needs top border to separate from F */
+    ${props =>
+      props.$gridArea === 'G' &&
+      `
+      border-top: 1px dotted rgba(255, 255, 255, 0.3);
     `}
   }
 `;

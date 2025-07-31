@@ -64,7 +64,7 @@ export const TopSection = styled.div`
 `;
 
 /**
- * The "WELLNESS SOLUTIONS" text overlay.
+ * The "LITRATURE" text overlay.
  */
 export const OverlayTitle = styled.h3`
   font-size: var(--font-size-xl);

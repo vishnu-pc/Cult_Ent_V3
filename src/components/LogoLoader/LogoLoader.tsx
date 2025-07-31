@@ -28,7 +28,7 @@ export default function LogoLoader({ className }: LogoLoaderProps) {
     <>
       <LogoLoaderDivider />
       <LoaderContainer className={className}>
-        <OverlayTitle>Wellness Solutions</OverlayTitle>
+        <OverlayTitle>Litrature</OverlayTitle>
         <TopSection>
           <TitleBlock>
             <MainTitle>

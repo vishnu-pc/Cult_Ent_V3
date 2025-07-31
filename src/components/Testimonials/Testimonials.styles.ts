@@ -35,6 +35,34 @@ const float4 = keyframes`
   90% { transform: translateY(8px) translateX(-2px); }
 `;
 
+// Mobile-specific floating animations - more subtle for smaller screens
+// Mobile Animation ID: 1 - Gentle vertical sway
+const mobileFloat1 = keyframes`
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  50% { transform: translateY(-4px) translateX(1px); }
+`;
+
+// Mobile Animation ID: 2 - Soft circular motion
+const mobileFloat2 = keyframes`
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  25% { transform: translateY(-2.5px) translateX(1.5px); }
+  50% { transform: translateY(0px) translateX(2.5px); }
+  75% { transform: translateY(2.5px) translateX(1.5px); }
+`;
+
+// Mobile Animation ID: 3 - Subtle diagonal drift
+const mobileFloat3 = keyframes`
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  33% { transform: translateY(-3px) translateX(-1.5px); }
+  66% { transform: translateY(2px) translateX(1px); }
+`;
+
+// Mobile Animation ID: 4 - Gentle pulse effect
+const mobileFloat4 = keyframes`
+  0%, 100% { transform: translateY(0px) translateX(0px) scale(1); }
+  50% { transform: translateY(-2px) translateX(0.5px) scale(1.01); }
+`;
+
 /**
  * Helper function to generate responsive positioning styles
  */
@@ -81,7 +109,7 @@ const generateResponsivePositioning = (position: ResponsivePosition) => css`
 `;
 
 export const SectionContainer = styled.section`
-  min-height: 110vh;
+  min-height: 130vh;
   width: 100%;
   max-width: 100vw;
   background: #000000;
@@ -90,19 +118,66 @@ export const SectionContainer = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
+  /* Add bottom padding to accommodate protruding logos */
+  // padding-bottom: 50px;
   /* Use standardized section spacing */
   /* padding: var(--section-padding-vertical) var(--section-padding-horizontal); */
 
   @media (min-width: 769px) and (max-width: 1535px) {
-    min-height: 150vh;
+    min-height: 170vh;
   }
 
   @media (max-width: 768px) {
-    min-height: 210vh;
+    min-height: 260vw;
+    align-items: flex-start; /* MODIFIED: Align content to top on mobile */
+    padding-top: var(
+      --spacing-5xl
+    ); /* ADDED: Some spacing from top for overlay title */
+    //padding-bottom: 40px; /* Smaller padding for mobile */
     /* min-height: 100vh; */
     /* Use responsive spacing */
     /* padding: calc(var(--section-padding-vertical) * var(--spacing-scale-mobile))
       calc(var(--section-padding-horizontal) * var(--spacing-scale-mobile)); */
+  }
+
+  /* Aspect ratio and dimension-based responsive design */
+
+  @media (max-width: 420px) {
+    min-height: 305vw;
+  }
+
+  @media (max-width: 400px) {
+    min-height: 320vw;
+  }
+
+  @media (max-width: 380px) {
+    min-height: 350vw;
+  }
+`;
+
+/**
+ * The "TESTIMONIALS" text overlay.
+ */
+export const OverlayTitle = styled.h3`
+  font-size: var(--font-size-xl);
+  opacity: 0.5;
+  letter-spacing: 0.16em;
+  color: var(--color-text);
+  // margin-bottom: var(--spacing-sm);
+  font-weight: 400;
+  text-transform: uppercase;
+  text-align: left;
+  position: absolute;
+  top: var(--spacing-3xl);
+  left: var(
+    --section-padding-horizontal
+  ); /* MODIFIED: Moved further left using smaller spacing */
+
+  @media (max-width: 768px) {
+    font-size: var(--font-size-title-mobile);
+    position: absolute;
+    top: var(--spacing-3xl);
+    left: var(--section-padding-horizontal);
   }
 `;
 
@@ -123,6 +198,7 @@ export const TestimonialCard = styled(motion.div)<{
 }>`
   z-index: 13;
   position: absolute;
+  overflow: visible; /* Allow logo to extend outside card */
 
   /* Apply responsive positioning */
   ${props => generateResponsivePositioning(props.$responsivePosition)}
@@ -143,7 +219,7 @@ export const TestimonialCard = styled(motion.div)<{
     /* 12px 40px converted to rem */ 0 0.25rem 0.75rem rgba(255, 255, 255, 0.1)
       inset; /* 4px 12px converted to rem */
 
-  /* Floating animations remain the same for all screen sizes */
+  /* Desktop/Tablet floating animations */
   animation: ${props => {
       switch (props.$animationType) {
         case 1:
@@ -159,6 +235,25 @@ export const TestimonialCard = styled(motion.div)<{
       }
     }}
     10s ease-in-out infinite;
+
+  /* Mobile-specific animations for screens <768px */
+  @media (max-width: 768px) {
+    animation: ${props => {
+        switch (props.$animationType) {
+          case 1:
+            return mobileFloat1;
+          case 2:
+            return mobileFloat2;
+          case 3:
+            return mobileFloat3;
+          case 4:
+            return mobileFloat4;
+          default:
+            return mobileFloat1;
+        }
+      }}
+      8s ease-in-out infinite; /* Slightly faster duration for mobile */
+  }
 
   /* Responsive sizing adjustments */
   @media (min-width: 1024px) and (max-width: 1535px) {
@@ -186,7 +281,7 @@ export const TestimonialText = styled.p`
   line-height: 1.6;
   /* color: rgba(255, 255, 255, 0.9); */
   /* Use standardized spacing */
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: var(--spacing-xs);
   font-weight: 400;
   font-family: var(--font-primary);
   margin-top: 0;
@@ -197,7 +292,7 @@ export const TestimonialText = styled.p`
 
   @media (max-width: 768px) {
     font-size: var(--font-size-sm);
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-xs);
   }
 `;
 
@@ -206,6 +301,7 @@ export const CompanySection = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-top: auto;
+  margin-bottom: var(--spacing-xxs);
 `;
 
 export const CompanyName = styled.div`
@@ -218,8 +314,8 @@ export const CompanyName = styled.div`
 `;
 
 export const CompanyLogo = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
   /* background: #000000; */
   background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(20px);
@@ -230,10 +326,18 @@ export const CompanyLogo = styled.img`
   border: 1px solid rgba(255, 255, 255, 0.2);
   flex-shrink: 0;
 
-  @media (max-width: 768p) {
+  /* Position the logo to extend 50% outside the card */
+  position: relative;
+  transform: translateY(80%); /* Move down by 50% of logo height (25px) */
+  z-index: 15; /* Ensure logo stays above other elements */
+
+  @media (max-width: 768px) {
     width: 40px;
     height: 40px;
-    padding: 0px;
+    padding: 3px;
+    transform: translateY(
+      90%
+    ); /* Move down by 50% of mobile logo height (20px) */
   }
 `;
 
@@ -250,6 +354,8 @@ export const CentralTextSection = styled.div`
   @media (max-width: 768px) {
     flex-direction: column;
     gap: var(--spacing-md);
+    align-items: flex-start;
+    justify-content: center;
   }
 `;
 
@@ -290,37 +396,38 @@ export const TextBlock = styled.div`
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 800px;
-    height: 800px;
+    width: 1100px;
+    height: 1100px;
     transform: translate(-50%, -50%);
     background: radial-gradient(
       circle at center,
-      rgba(255, 50, 120, 0.4) 0%,
+      rgba(255, 50, 120, 0.3) 0%,
       rgba(255, 50, 120, 0.2) 30%,
       rgba(255, 50, 120, 0.1) 50%,
       transparent 70%
     );
+    filter: blur(20px);
     z-index: -1;
   }
 
   @media (max-width: 1024px) {
     &::before {
-      width: 600px;
-      height: 600px;
+      width: 900px;
+      height: 900px;
     }
   }
 
   @media (max-width: 768px) {
     &::before {
-      width: 400px;
-      height: 400px;
+      width: 700px;
+      height: 700px;
     }
   }
 
   @media (max-width: 480px) {
     &::before {
-      width: 300px;
-      height: 300px;
+      // width: 300px;
+      // height: 300px;
     }
   }
 `;
