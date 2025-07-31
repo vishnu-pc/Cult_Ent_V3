@@ -7,7 +7,7 @@ import {
   AnimatedSVG,
   ConcentricRing,
   LogoGroup,
-  ScrollProgressIndicator,
+  // ScrollProgressIndicator,
 } from './ScrollRingsLogo.styles';
 
 /**
@@ -46,7 +46,8 @@ const ScrollRingsLogo: React.FC<ScrollRingsLogoProps> = ({ className }) => {
   // STATE MANAGEMENT
   // 📊 SCROLL PROGRESS: 0 to 1 representing how far through the scroll section we are
   // TO MODIFY: This drives all animations - you rarely need to change this directly
-  const [scrollProgress, setScrollProgress] = useState(0); // 0 to 1
+  // 0 to 1
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   // 🎯 RING VISIBILITY: Controls which rings are currently shown
   // TO MODIFY: Change array size to add/remove rings (currently 5 rings)
@@ -66,7 +67,7 @@ const ScrollRingsLogo: React.FC<ScrollRingsLogoProps> = ({ className }) => {
   // REFS
   // 📍 CONTAINER REF: References the main scroll container for height calculations
   // TO MODIFY: Don't change this - it's essential for scroll calculations
-  const containerRef = useRef<HTMLElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   // 📌 STICKY REF: References the sticky wrapper (optional, for future enhancements)
   // TO MODIFY: Currently unused but available for advanced sticky behavior modifications
@@ -371,10 +372,14 @@ const ScrollRingsLogo: React.FC<ScrollRingsLogoProps> = ({ className }) => {
       </StickyWrapper>
 
       {/* OPTIONAL: Scroll Progress Indicator */}
+      {/* READY TO UNCOMMENT: Remove the comment below to enable scroll progress indicator */}
       {/* <ScrollProgressIndicator
         $progress={scrollProgress}
         aria-label={`Scroll progress: ${Math.round(scrollProgress * 100)}%`}
       /> */}
+
+      {/* Keep scrollProgress variable active (remove this line when uncommenting above) */}
+      {scrollProgress && null}
     </ScrollRingsContainer>
   );
 };

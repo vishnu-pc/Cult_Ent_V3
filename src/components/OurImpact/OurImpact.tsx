@@ -27,36 +27,56 @@ const OurImpact: React.FC<OurImpactProps> = ({ videos = DEFAULT_VIDEOS }) => {
   const [currentStartIndex, setCurrentStartIndex] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
   const [playingVideos, setPlayingVideos] = useState(() => new Set<number>());
+  const [isMobile, setIsMobile] = useState(false);
+  const [isRewinding, setIsRewinding] = useState(false);
+  const [isAutoTransitioning, setIsAutoTransitioning] = useState(false);
   const iframeRefs = useRef<{ [key: number]: HTMLIFrameElement | null }>({});
   const autoTransitionRef = useRef<ReturnType<typeof setTimeout> | undefined>(
     undefined
   );
 
-  // Show 3 videos at a time, scroll by 1
+  // Check if mobile view
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 1200);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Show 3 videos on desktop, 1 on mobile
+  const videosPerPage = isMobile ? 1 : VIDEOS_PER_PAGE;
   const currentVideos = videos.slice(
     currentStartIndex,
-    currentStartIndex + VIDEOS_PER_PAGE
+    currentStartIndex + videosPerPage
   );
   const totalVideos = videos.length;
-  const canGoNext = currentStartIndex + VIDEOS_PER_PAGE < totalVideos;
+  const canGoNext = currentStartIndex + videosPerPage < totalVideos;
   const canGoPrev = currentStartIndex > 0;
 
   const handlePrevPage = useCallback(() => {
     if (canGoPrev) {
-      setCurrentStartIndex(prev => Math.max(0, prev - 1));
+      const stepSize = isMobile ? 1 : 1; // Move by 1 in both cases
+      setCurrentStartIndex(prev => Math.max(0, prev - stepSize));
     }
-  }, [canGoPrev]);
+  }, [canGoPrev, isMobile]);
 
   const handleNextPage = useCallback(() => {
     if (canGoNext) {
+      const stepSize = isMobile ? 1 : 1; // Move by 1 in both cases
       setCurrentStartIndex(prev =>
-        Math.min(totalVideos - VIDEOS_PER_PAGE, prev + 1)
+        Math.min(totalVideos - videosPerPage, prev + stepSize)
       );
     }
-  }, [canGoNext, totalVideos]);
+  }, [canGoNext, isMobile, totalVideos, videosPerPage]);
 
   const handleIframeHover = useCallback(
     (videoId: number, isHovering: boolean) => {
+      // Don't respond to hover events during auto-transition
+      if (isAutoTransitioning) return;
+
       const iframe = iframeRefs.current[videoId];
       if (iframe && iframe.contentWindow) {
         try {
@@ -81,12 +101,18 @@ const OurImpact: React.FC<OurImpactProps> = ({ videos = DEFAULT_VIDEOS }) => {
         }
       }
     },
-    []
+    [isAutoTransitioning]
   );
 
-  const handleContainerHover = useCallback((hovering: boolean) => {
-    setIsHovering(hovering);
-  }, []);
+  const handleContainerHover = useCallback(
+    (hovering: boolean) => {
+      // Don't respond to hover events during auto-transition
+      if (isAutoTransitioning) return;
+
+      setIsHovering(hovering);
+    },
+    [isAutoTransitioning]
+  );
 
   // Auto-transition logic
   useEffect(() => {
@@ -98,15 +124,37 @@ const OurImpact: React.FC<OurImpactProps> = ({ videos = DEFAULT_VIDEOS }) => {
       autoTransitionRef.current = setTimeout(() => {
         // Only auto-transition if no videos are playing and user is not hovering
         if (playingVideos.size === 0 && !isHovering) {
+          setIsAutoTransitioning(true); // Disable hover interactions during transition
+
           if (canGoNext) {
             handleNextPage();
+            // Re-enable hover after transition completes
+            setTimeout(() => setIsAutoTransitioning(false), 500);
           } else {
-            // Loop back to start when reaching the end
-            setCurrentStartIndex(0);
+            // Fast rewind animation when reaching the end
+            setIsRewinding(true);
+
+            // Create a fast sequence of backwards transitions
+            const rewindSpeed = 10; // milliseconds between steps
+
+            let step = 0;
+            const rewindInterval = setInterval(() => {
+              step++;
+              const newIndex = currentStartIndex - step;
+
+              if (newIndex <= 0) {
+                setCurrentStartIndex(0);
+                setIsRewinding(false);
+                setIsAutoTransitioning(false); // Re-enable hover after rewind
+                clearInterval(rewindInterval);
+              } else {
+                setCurrentStartIndex(newIndex);
+              }
+            }, rewindSpeed);
           }
         }
         startAutoTransition(); // Restart the timer
-      }, 5000); // 15 seconds
+      }, 15000); // 5 seconds
     };
 
     startAutoTransition();
@@ -116,11 +164,23 @@ const OurImpact: React.FC<OurImpactProps> = ({ videos = DEFAULT_VIDEOS }) => {
         clearTimeout(autoTransitionRef.current);
       }
     };
-  }, [canGoNext, handleNextPage, isHovering, playingVideos.size]);
+  }, [
+    canGoNext,
+    handleNextPage,
+    isHovering,
+    playingVideos.size,
+    currentStartIndex,
+  ]);
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
+    hidden: { opacity: 0, x: 100 }, // Start from right (positive x)
+    visible: { opacity: 1, x: 0 }, // Move to center (x: 0)
+    rewind: {
+      opacity: 0.7,
+      scale: 0.95,
+      x: -50,
+      transition: { duration: 0.1 },
+    }, // Move left during rewind
   };
 
   return (
@@ -157,10 +217,13 @@ const OurImpact: React.FC<OurImpactProps> = ({ videos = DEFAULT_VIDEOS }) => {
                 key={video.id}
                 custom={index}
                 initial='hidden'
-                animate='visible'
+                animate={isRewinding ? 'rewind' : 'visible'}
                 variants={cardVariants}
-                whileHover={{ y: -5 }}
-                transition={{ duration: 0.2 }}
+                whileHover={isAutoTransitioning ? {} : { scale: 1.02 }} // Disable hover during auto-transition
+                transition={{
+                  duration: isRewinding ? 0.1 : 0.3,
+                  ease: 'easeOut',
+                }}
               >
                 <IframeContainer
                   onMouseEnter={() => handleIframeHover(video.id, true)}

@@ -141,15 +141,16 @@ export const VideoCardsContainer = styled.div`
   margin-bottom: var(--spacing-2xl);
 
   @media (max-width: 1200px) {
-    // grid-template-columns: repeat(2, 1fr);
-    grid-template-columns: 1fr;
-  }
-
-  @media (max-width: 640px) {
-    grid-template-columns: 1fr;
-    /* gap: var(--spacing-lg); */
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    margin-bottom: var(--spacing-xl);
+    justify-content: center;
   }
 `;
+
+/* Remove the complex MobileCarouselWrapper - not needed */
 
 export const VideoCard = styled(motion.div)`
   background: rgba(0, 0, 0, 0.3);
@@ -158,12 +159,17 @@ export const VideoCard = styled(motion.div)`
   padding: var(--spacing-lg);
   overflow: hidden;
   transition: all var(--transition-normal);
-  /* width: 400px; */
-  /* height: 450px; */
 
   &:hover {
     border-color: rgba(255, 255, 255, 0.3);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Mobile styling - single card takes full width */
+  @media (max-width: 1200px) {
+    width: 100%;
+    max-width: 90vw; /* Prevent card from being too wide */
+    margin: 0 auto;
   }
 `;
 
@@ -278,6 +284,11 @@ export const NavigationContainer = styled.div`
   display: flex;
   justify-content: center;
   gap: var(--spacing-md);
+
+  @media (max-width: 1200px) {
+    margin-top: var(--spacing-lg);
+    padding: 0 var(--spacing-lg);
+  }
 `;
 
 export const NavigationButton = styled(motion.button)<{
@@ -312,6 +323,10 @@ export const NavigationButton = styled(motion.button)<{
 
   &:active {
     transform: scale(0.95);
+  }
+
+  &:focus {
+    outline: none; /* Remove default browser focus outline */
   }
 
   &:disabled {

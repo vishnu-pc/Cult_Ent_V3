@@ -35,6 +35,7 @@ const ExpandableTiles: React.FC<ExpandableTilesProps> = ({ tiles }) => {
               $backgroundImage={tile.image}
               $isExpanded={isExpanded}
               $isGrayscale={isGrayscale}
+              $backgroundPosition={tile.backgroundPosition}
               onMouseEnter={() => handleTileHover(tile.id)}
               onTouchStart={() => handleTileHover(tile.id)}
               initial={{ opacity: 0, scale: 0.9 }}

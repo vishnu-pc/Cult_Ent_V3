@@ -21,11 +21,13 @@ export const Tile = styled(motion.div)<{
   $backgroundImage: string;
   $isExpanded: boolean;
   $isGrayscale: boolean;
+  $backgroundPosition?: string;
 }>`
   position: relative;
   background-image: url(${props => props.$backgroundImage});
   background-size: cover;
-  background-position: center;
+  background-position: ${props =>
+    props.$isExpanded ? 'center' : props.$backgroundPosition || 'center'};
   background-repeat: no-repeat;
   border-radius: 16px;
   overflow: hidden;
