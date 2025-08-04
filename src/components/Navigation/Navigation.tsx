@@ -29,10 +29,19 @@ const Navigation: React.FC<NavigationProps> = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
+      // Temporarily disable pointer events during auto-scroll to prevent interference
+      document.body.style.pointerEvents = 'none';
+      
       element.scrollIntoView({
         behavior: 'smooth',
         block: 'start',
       });
+
+      // Re-enable pointer events after scroll completes
+      // We use a timeout that's longer than typical scroll duration
+      setTimeout(() => {
+        document.body.style.pointerEvents = 'auto';
+      }, 1000);
     }
     // Close mobile menu after clicking
     setIsOpen(false);
