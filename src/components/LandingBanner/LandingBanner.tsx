@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { LandingBannerDivider } from '../ui/GradientDivider';
 import {
@@ -43,15 +43,16 @@ const LandingBanner: React.FC<LandingBannerProps> = () => {
   // This can be used later to maintain state across page reloads/navigation
 
   /**
-   * MOBILE DETECTION LOGIC
+   * MOBILE DETECTION LOGIC (MEMOIZED)
    * Detects mobile devices based on project's standard breakpoint (768px)
    * Disables hover interactions on mobile devices
+   * Memoized to avoid repeated function creation
    */
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768); // Project standard mobile breakpoint
-    };
+  const checkMobile = useCallback(() => {
+    setIsMobile(window.innerWidth <= 768); // Project standard mobile breakpoint
+  }, []);
 
+  useEffect(() => {
     // Set initial mobile state
     checkMobile();
 
@@ -61,7 +62,7 @@ const LandingBanner: React.FC<LandingBannerProps> = () => {
     return () => {
       window.removeEventListener('resize', checkMobile);
     };
-  }, []);
+  }, [checkMobile]);
 
   /**
    * SCROLL DETECTION LOGIC WITH DEBOUNCING
@@ -97,41 +98,51 @@ const LandingBanner: React.FC<LandingBannerProps> = () => {
   }, [handleScroll]);
 
   /**
-   * DEMO BUTTON SCROLL DETECTION
+   * DEMO BUTTON SCROLL DETECTION (OPTIMIZED)
    * Shows demo button when user scrolls past the LandingBanner section
    * and hides it when the user reaches the contact-us section.
+   * Throttled for better performance
    */
   useEffect(() => {
+    let ticking = false;
+    
     const handleDemoButtonScroll = () => {
-      const viewportHeight = window.innerHeight;
-      const scrollY = window.scrollY;
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const viewportHeight = window.innerHeight;
+          const scrollY = window.scrollY;
 
-      // Zone 1: Landing Banner (Top of the page)
-      const isInLandingBanner = scrollY <= viewportHeight;
+          // Zone 1: Landing Banner (Top of the page)
+          const isInLandingBanner = scrollY <= viewportHeight;
 
-      // Zone 2: Contact Us Section
-      const contactUsSection = document.getElementById('contact-us');
-      let isInContactSection = false;
-      if (contactUsSection) {
-        const contactUsTop = contactUsSection.offsetTop;
-        const contactUsHeight = contactUsSection.offsetHeight;
-        const contactUsBottom = contactUsTop + contactUsHeight;
+          // Zone 2: Contact Us Section
+          const contactUsSection = document.getElementById('contact-us');
+          let isInContactSection = false;
+          if (contactUsSection) {
+            const contactUsTop = contactUsSection.offsetTop;
+            const contactUsHeight = contactUsSection.offsetHeight;
+            const contactUsBottom = contactUsTop + contactUsHeight;
 
-        const viewportTop = scrollY;
-        const viewportBottom = scrollY + viewportHeight;
+            const viewportTop = scrollY;
+            const viewportBottom = scrollY + viewportHeight;
 
-        // Check if the viewport is intersecting with the contact-us section
-        // Hides the button if any part of the contact section is visible
-        const isIntersecting =
-          viewportBottom > contactUsTop && viewportTop < contactUsBottom;
-        isInContactSection = isIntersecting;
-      }
+            // Check if the viewport is intersecting with the contact-us section
+            // Hides the button if any part of the contact section is visible
+            const isIntersecting =
+              viewportBottom > contactUsTop && viewportTop < contactUsBottom;
+            isInContactSection = isIntersecting;
+          }
 
-      // Show the button only if we are NOT in the landing banner AND NOT in the contact section
-      const shouldShow = !isInLandingBanner && !isInContactSection;
+          // Show the button only if we are NOT in the landing banner AND NOT in the contact section
+          const shouldShow = !isInLandingBanner && !isInContactSection;
 
-      if (shouldShow !== showDemoButton) {
-        setShowDemoButton(shouldShow);
+          if (shouldShow !== showDemoButton) {
+            setShowDemoButton(shouldShow);
+          }
+          
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
@@ -150,36 +161,56 @@ const LandingBanner: React.FC<LandingBannerProps> = () => {
   }, [showDemoButton]);
 
   /**
-   * PRIORITY-BASED HIGHLIGHT STATE
+   * PRIORITY-BASED HIGHLIGHT STATE (MEMOIZED)
    * Scroll takes priority over hover for seamless transitions
    * - If scroll is triggered: Always highlighted (hover state irrelevant)
    * - If no scroll: Hover can activate/deactivate freely
    * - Mobile: Only scroll triggers highlight (no hover)
+   * Memoized to prevent unnecessary recalculations
    */
-  const getHighlightState = (): boolean => {
+  const isHighlighted = useMemo(() => {
     if (scrollTriggered) return true; // Scroll always wins
     if (isMobile) return false; // No hover on mobile
     return hoverActive; // Hover only when no scroll and not mobile
-  };
-
-  const isHighlighted = getHighlightState();
+  }, [scrollTriggered, isMobile, hoverActive]);
 
   /**
-   * HOVER EVENT HANDLERS
+   * HOVER EVENT HANDLERS (MEMOIZED)
    * Only active on desktop devices
    * Smooth transitions: 0.3s duration (tunable in styles)
+   * Memoized to prevent unnecessary re-renders
    */
-  const handleMouseEnter = () => {
+  const handleMouseEnter = useCallback(() => {
     if (!isMobile) {
       setHoverActive(true);
     }
-  };
+  }, [isMobile]);
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = useCallback(() => {
     if (!isMobile) {
       setHoverActive(false);
     }
-  };
+  }, [isMobile]);
+
+  /**
+   * MEMOIZED SCROLL HANDLER FOR CTA BUTTON
+   * Prevents unnecessary function recreation on each render
+   */
+  const handleCTAClick = useCallback(() => {
+    document
+      .getElementById('contact-us')
+      ?.scrollIntoView({ behavior: 'smooth' });
+  }, []);
+
+  /**
+   * MEMOIZED SCROLL HANDLER FOR DEMO BUTTON
+   * Prevents unnecessary function recreation on each render
+   */
+  const handleDemoClick = useCallback(() => {
+    document
+      .getElementById('contact-us')
+      ?.scrollIntoView({ behavior: 'smooth' });
+  }, []);
 
   return (
     <>
@@ -220,12 +251,7 @@ const LandingBanner: React.FC<LandingBannerProps> = () => {
             <CTAButton
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
-              onClick={() => {
-                // Handle CTA button click - can be connected to form or contact section
-                document
-                  .getElementById('contact-us')
-                  ?.scrollIntoView({ behavior: 'smooth' });
-              }}
+              onClick={handleCTAClick}
             >
               Request A Demo
             </CTAButton>
@@ -291,12 +317,7 @@ const LandingBanner: React.FC<LandingBannerProps> = () => {
             }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            onClick={() => {
-              // Navigate to contact section
-              document
-                .getElementById('contact-us')
-                ?.scrollIntoView({ behavior: 'smooth' });
-            }}
+            onClick={handleDemoClick}
             tabIndex={0}
             role='button'
             aria-label='Request a demo - Navigate to contact section'
@@ -309,4 +330,4 @@ const LandingBanner: React.FC<LandingBannerProps> = () => {
   );
 };
 
-export default LandingBanner;
+export default React.memo(LandingBanner);

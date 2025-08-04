@@ -1,5 +1,5 @@
 import type { TableCellData } from './NumbersDontLie.types';
-import Wellness1 from '../../assets/images/NumbersDontLie/Numbers-1.png';
+import Wellness1 from '../../assets/images/NumbersDontLie/Numbers-1.webp';
 import Wellness2 from '../../assets/images/NumbersDontLie/Numbers-2.jpg';
 
 /**

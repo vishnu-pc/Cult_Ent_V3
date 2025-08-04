@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import backgroundImage from '../../assets/images/Our_Clientele/Our_Clientele.jpg';
+import backgroundImage from '../../assets/images/Our_Clientele/Our_Clientele.webp';
 import type { StyledComponentProps, HeadingLineProps } from './Clientele.types';
 
 // LOGO CAROUSEL ANIMATION

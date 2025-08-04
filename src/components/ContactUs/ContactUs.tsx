@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import girljumpImage from '../../assets/images/ContactUs/girljump-crop.png';
+import girljumpImage from '../../assets/images/ContactUs/girljump-crop.webp';
 import type { ContactUsProps, ContactFormData } from './ContactUs.types';
 import {
   SectionContainer,

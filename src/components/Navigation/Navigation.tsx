@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import cultLogo from '../../assets/icons/Cult_Navbar_Logo_New.png';
+import cultLogo from '../../assets/icons/Cult_Navbar_Logo_New.webp';
 import type { NavigationProps } from './Navigation.types';
 import {
   NavContainer,

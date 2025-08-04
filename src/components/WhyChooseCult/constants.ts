@@ -1,9 +1,9 @@
 import type { TileData } from '../ExpandableTiles';
-import WhyChooseCult1 from '../../assets/images/WhyChooseCult/WhyChooseCult-1.jpg';
-import WhyChooseCult2 from '../../assets/images/WhyChooseCult/WhyChooseCult-2.jpg';
-import WhyChooseCult3 from '../../assets/images/WhyChooseCult/WhyChooseCult-3.jpg';
-import WhyChooseCult4 from '../../assets/images/WhyChooseCult/WhyChooseCult-4.jpg';
-import WhyChooseCult5 from '../../assets/images/WhyChooseCult/WhyChooseCult-5.jpg';
+import WhyChooseCult1 from '../../assets/images/WhyChooseCult/WhyChooseCult-1.webp';
+import WhyChooseCult2 from '../../assets/images/WhyChooseCult/WhyChooseCult-2.webp';
+import WhyChooseCult3 from '../../assets/images/WhyChooseCult/WhyChooseCult-3.webp';
+import WhyChooseCult4 from '../../assets/images/WhyChooseCult/WhyChooseCult-4.webp';
+import WhyChooseCult5 from '../../assets/images/WhyChooseCult/WhyChooseCult-5.webp';
 
 export const whyChooseCultTiles: TileData[] = [
   {
