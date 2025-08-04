@@ -1,15 +1,25 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import styled from 'styled-components';
 import LandingBanner from '../components/LandingBanner/LandingBanner';
-import Clientele from '../components/Clientele/Clientele';
-import CombinedWellnessSection from '../components/CombinedWellnessSection/CombinedWellnessSection';
-// import WellnessSolutions from '../components/WellnessSolutions/WellnessSolutions';
-// import NumbersDontLie from '../components/NumbersDontLie/NumbersDontLie';
-// import WhyChooseCult from '../components/WhyChooseCult/WhyChooseCult';
-import ContactUs from '../components/ContactUs/ContactUs';
-import Testimonials from '../components/Testimonials/Testimonials';
-import OurImpact from '../components/OurImpact/OurImpact';
-import LogoLoader from '../components/LogoLoader/LogoLoader';
+
+// Lazy load heavy components for better performance
+const Clientele = React.lazy(() => import('../components/Clientele/Clientele'));
+const CombinedWellnessSection = React.lazy(() => import('../components/CombinedWellnessSection/CombinedWellnessSection'));
+const ContactUs = React.lazy(() => import('../components/ContactUs/ContactUs'));
+const Testimonials = React.lazy(() => import('../components/Testimonials/Testimonials'));
+const OurImpact = React.lazy(() => import('../components/OurImpact/OurImpact'));
+const LogoLoader = React.lazy(() => import('../components/LogoLoader/LogoLoader'));
+
+// Loading fallback component
+const LoadingFallback = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  color: var(--color-text);
+  font-size: var(--font-size-md);
+`;
+
 const HomeContainer = styled.main`
   display: flex;
   flex-direction: column;
@@ -19,15 +29,27 @@ const Home: React.FC = () => {
   return (
     <HomeContainer>
       <LandingBanner />
-      <Clientele />
-      <CombinedWellnessSection />
+      <Suspense fallback={<LoadingFallback>Loading...</LoadingFallback>}>
+        <Clientele />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback>Loading...</LoadingFallback>}>
+        <CombinedWellnessSection />
+      </Suspense>
       {/* <WellnessSolutions />
       <NumbersDontLie />
       <WhyChooseCult /> */}
-      <ContactUs />
-      <Testimonials />
-      <OurImpact />
-      <LogoLoader />
+      <Suspense fallback={<LoadingFallback>Loading...</LoadingFallback>}>
+        <ContactUs />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback>Loading...</LoadingFallback>}>
+        <Testimonials />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback>Loading...</LoadingFallback>}>
+        <OurImpact />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback>Loading...</LoadingFallback>}>
+        <LogoLoader />
+      </Suspense>
     </HomeContainer>
   );
 };
