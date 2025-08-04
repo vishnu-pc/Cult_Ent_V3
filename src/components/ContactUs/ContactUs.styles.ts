@@ -234,6 +234,14 @@ export const Input = styled.input`
   outline: none;
   /* Use standardized transitions */
   transition: all var(--transition-normal);
+  
+  /* Safari-specific fixes for consistent styling */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  
+  /* Remove default border radius on iOS Safari */
+  -webkit-border-radius: var(--border-radius-xxs);
 
   &::placeholder {
     color: rgba(255, 255, 255, 0.6);
@@ -246,6 +254,18 @@ export const Input = styled.input`
 
   &:hover {
     border-color: rgba(255, 255, 255, 0.5);
+  }
+  
+  /* Remove spinner arrows for number inputs on Safari */
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  /* Firefox number input fixes */
+  &[type="number"] {
+    -moz-appearance: textfield;
   }
 `;
 
@@ -263,19 +283,74 @@ export const Select = styled.select`
   /* Use standardized transitions */
   transition: all var(--transition-normal);
   cursor: pointer;
+  
+  /* Aggressive Safari-specific fixes for consistent styling */
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  
+  /* Force border radius on Safari/WebKit */
+  -webkit-border-radius: var(--border-radius-xxs) !important;
+  -moz-border-radius: var(--border-radius-xxs) !important;
+  
+  /* Force rectangular shape by overriding all border radius properties */
+  border-top-left-radius: var(--border-radius-xxs) !important;
+  border-top-right-radius: var(--border-radius-xxs) !important;
+  border-bottom-left-radius: var(--border-radius-xxs) !important;
+  border-bottom-right-radius: var(--border-radius-xxs) !important;
+  
+  /* Override any system styling */
+  -webkit-box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  box-sizing: border-box !important;
+  
+  /* Ensure proper width and height */
+  width: 100%;
+  height: auto;
+  min-height: 48px;
+  
+  /* Custom dropdown arrow to replace the default one */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.6)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right var(--spacing-md) center;
+  background-size: 16px;
+  padding-right: calc(var(--spacing-md) + 24px); /* Account for arrow space */
 
   &:focus {
     border-color: #b96aff;
     box-shadow: 0 0 0 1px #b96aff;
+    -webkit-appearance: none !important;
+    appearance: none !important;
   }
 
   &:hover {
     border-color: rgba(255, 255, 255, 0.5);
+    -webkit-appearance: none !important;
+    appearance: none !important;
   }
 
   option {
     background-color: #0f0120;
     color: var(--color-text);
+    padding: var(--spacing-sm);
+    -webkit-appearance: none !important;
+    appearance: none !important;
+  }
+  
+  /* Remove any webkit styling for number inputs (shouldn't apply to select but being safe) */
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0;
+  }
+  
+  /* Specifically target Safari's select arrow */
+  &::-webkit-button {
+    display: none !important;
+  }
+  
+  &::-webkit-contact-picker-icon {
+    display: none !important;
   }
 `;
 
@@ -294,6 +369,14 @@ export const TextArea = styled.textarea`
   transition: all var(--transition-normal);
   min-height: 120px;
   resize: vertical;
+  
+  /* Safari-specific fixes for consistent styling */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  
+  /* Remove default border radius on iOS Safari */
+  -webkit-border-radius: var(--border-radius-xxs);
 
   &::placeholder {
     color: rgba(255, 255, 255, 0.6);

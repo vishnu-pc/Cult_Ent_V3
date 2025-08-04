@@ -670,3 +670,52 @@ section.hero-section {
     font-size: 12px;
   }
 }
+
+/* Safari-specific form fixes - Global overrides for consistent form styling */
+/* These rules specifically target Safari's default form element styling */
+@supports (-webkit-appearance: none) {
+  select {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    -webkit-border-radius: 4px !important;
+    border-radius: 4px !important;
+  }
+  
+  /* Target Safari's internal select button/arrow */
+  select::-webkit-button {
+    display: none !important;
+  }
+  
+  select::-webkit-contact-picker-icon {
+    display: none !important;
+  }
+  
+  /* Additional Safari select fixes */
+  select::-webkit-date-and-time-value {
+    -webkit-appearance: none !important;
+  }
+}
+
+/* Force rectangular appearance on all form elements in Safari */
+input, select, textarea {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  -webkit-border-radius: inherit !important;
+  border-radius: inherit !important;
+}
+
+/* Specific targeting for our form selects */
+select[name="industry"], 
+select[name="employeeStrength"] {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  -webkit-border-radius: 4px !important;
+  -moz-border-radius: 4px !important;
+  border-radius: 4px !important;
+  border-top-left-radius: 4px !important;
+  border-top-right-radius: 4px !important;
+  border-bottom-left-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
+}
