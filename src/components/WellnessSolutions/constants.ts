@@ -1,7 +1,7 @@
 import type { Solution } from './WellnessSolutions.types';
 
 import Wellness1 from '../../assets/images/Wellness/Wellness-1.webp';
-import Wellness2 from '../../assets/images/Wellness/Wellness-2.png';
+import Wellness2 from '../../assets/images/Wellness/Wellness-2.webp';
 import Wellness3 from '../../assets/images/Wellness/Wellness-3.webp';
 import Wellness4 from '../../assets/images/Wellness/Wellness-4.webp';
 import Wellness5 from '../../assets/images/Wellness/Wellness-5.webp';
