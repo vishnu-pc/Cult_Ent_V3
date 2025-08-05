@@ -9,7 +9,7 @@ export const Container = styled.div`
 
   @media (max-width: 768px) {
     /* Mobile: Create tall scroll area for sticky behavior */
-    height: 200vh; /* 4x viewport height to create sufficient scroll space */
+    height: 300vh; /* 4x viewport height to create sufficient scroll space */
     padding: var(--spacing-5xl) var(--spacing-xxs);
     position: relative;
   }

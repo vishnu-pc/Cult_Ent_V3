@@ -33,11 +33,11 @@ export const ScrollRingsContainer = styled.div`
 
   /* 📱 RESPONSIVE SCROLL DISTANCES - Adjust for different devices */
   @media (max-width: 768px) {
-    --ring-scroll-steps: 1.5; /* Increased for tablets */
+    --ring-scroll-steps: 2; /* Increased for tablets */
   }
 
   @media (max-width: 480px) {
-    --ring-scroll-steps: 1.5; /* Increased for mobile */
+    --ring-scroll-steps: 2; /* Increased for mobile */
   }
 `;
 

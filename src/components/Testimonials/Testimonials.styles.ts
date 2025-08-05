@@ -109,7 +109,7 @@ const generateResponsivePositioning = (position: ResponsivePosition) => css`
 `;
 
 export const SectionContainer = styled.section`
-  min-height: 130vh;
+  min-height: 70vw;
   width: 100%;
   max-width: 100vw;
   background: #000000;

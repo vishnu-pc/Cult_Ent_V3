@@ -84,7 +84,14 @@ export default function Footer() {
             </LeftLinks>
             <SocialSection>
               <SocialText>Stay connected</SocialText>
-              <SocialIcon />
+              <a
+                href='https://www.linkedin.com/company/cult.fit/'
+                target='_blank'
+                rel='noopener noreferrer'
+                aria-label='Visit cult.fit LinkedIn page'
+              >
+                <SocialIcon />
+              </a>
             </SocialSection>
           </FooterLinks>
         </StatsAndLinks>
