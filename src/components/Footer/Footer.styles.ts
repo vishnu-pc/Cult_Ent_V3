@@ -76,7 +76,7 @@ export const CompanyTitle = styled.h3`
 
 export const CompanyDescription = styled.p`
   font-family: var(--font-primary);
-  font-size: var(--font-size-lg); /* 18px - Standard paragraph size */
+  font-size: var(--font-size-xl); /* 18px - Standard paragraph size */
   font-weight: 300;
   color: rgba(255, 255, 255, 0.7);
   line-height: 1.6;

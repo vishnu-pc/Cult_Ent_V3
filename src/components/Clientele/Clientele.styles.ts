@@ -63,11 +63,12 @@ export const gradientShift = keyframes`
 // MAIN SECTION CONTAINER
 export const ClienteleSection = styled.section<{ isActive: boolean }>`
   position: relative;
-  height: 100vh; // TUNABLE: Section height (100vh = full viewport height)
+  min-height: 100vh; // TUNABLE: Section height (100vh = full viewport height)
   // Alternative values: 80vh, 120vh, 800px
   width: 100vw;
   display: flex;
   flex-direction: column;
+  justify-content: space-between; // Distribute space between title, content, and logos
   background-image: url(${backgroundImage}); // Base background image
   background-size: cover; // TUNABLE: cover, contain, or specific size (e.g., 150%)
   background-position: top; // TUNABLE: center, top, bottom, left, right
@@ -159,20 +160,25 @@ export const GradientOverlay = styled.div<{ isActive: boolean }>`
 // Holds all text content and positions it above overlays
 export const ContentContainer = styled.div`
   position: relative;
-  height: 87%; // TUNABLE: Content area height (85% leaves 15% for logo carousel)
+  flex: 1; // Take up remaining space between title and logo carousel
   overflow: hidden; // Prevents content from spilling outside section
   width: 100%;
   margin: 0 auto; // TUNABLE: Center the container horizontally
   display: flex;
   flex-direction: column;
-  justify-content: top; // TUNABLE: vertical alignment (flex-start, flex-end, center)
+  justify-content: flex-end; // TUNABLE: vertical alignment - align content to end (bottom) of available space
   align-items: center; // TUNABLE: horizontal alignment - center the text block
   //padding: var(--spacing-6xl); // TUNABLE: Content padding
   z-index: 2; // Above overlays (z-index: 1)
+  padding-bottom: 8%; // Add some space above the logo carousel
 
-  /* Mobile-only: Move content to bottom with spacing above logo carousel */
+  /* Mobile-only: Adjust padding for mobile layout */
   @media (max-width: 768px) {
-    justify-content: flex-end; /* Align content to bottom */
+    justify-content: flex-end; /* Align content to bottom on mobile */
+    padding-bottom: var(
+      --spacing-4xl
+    ); /* Add bottom margin for mobile using standardized spacing */
+    margin-bottom: var(--spacing-xl); /* Additional bottom margin for mobile */
   }
 `;
 
@@ -260,7 +266,7 @@ export const HeadingLine = styled.h2<HeadingLineProps & { alignment?: string }>`
 export const StatText = styled.p<StyledComponentProps>`
   width: 100%;
   font-family: var(--font-primary); /* Use standardized font family */
-  font-size: var(--font-size-2xl);
+  font-size: var(--font-size-xl);
   // font-size: 4rem;
   font-weight: 400;
   text-align: center;

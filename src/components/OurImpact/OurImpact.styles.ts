@@ -73,12 +73,12 @@ export const Subheading = styled.div`
 `;
 
 export const MainTitle = styled.h1`
-  font-size: var(--font-size-6xl);
+  font-size: var(--font-size-5xl);
   line-height: 1.19;
   color: var(--color-text);
   text-transform: uppercase;
   font-weight: 700;
-  letter-spacing: 0.42rem;
+  letter-spacing: 0.42em;
 
   @media (max-width: 768px) {
     font-size: var(--font-size-5xl);
@@ -115,18 +115,23 @@ export const DescriptionSection = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
+  justify-content: flex-end; /* Align content to the right */
+  /* margin-right: var(--spacing-xl); */
 
   @media (max-width: 768px) {
     align-items: flex-start;
+    justify-content: flex-start; /* Reset to left alignment on mobile */
+    margin-right: 0; /* Remove right margin on mobile */
   }
 `;
 
 export const Description = styled.p`
-  font-size: var(--font-size-3xl);
+  font-size: var(--font-size-xl);
   font-weight: 400;
   color: rgba(255, 255, 255, 0.9);
   line-height: 1.6;
   /* max-width: 400px; */
+  text-align: right; /* Align text to the right */
 
   @media (max-width: 768px) {
     font-size: var(--font-size-md);

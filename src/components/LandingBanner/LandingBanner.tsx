@@ -105,7 +105,7 @@ const LandingBanner: React.FC<LandingBannerProps> = () => {
    */
   useEffect(() => {
     let ticking = false;
-    
+
     const handleDemoButtonScroll = () => {
       if (!ticking) {
         requestAnimationFrame(() => {
@@ -139,7 +139,7 @@ const LandingBanner: React.FC<LandingBannerProps> = () => {
           if (shouldShow !== showDemoButton) {
             setShowDemoButton(shouldShow);
           }
-          
+
           ticking = false;
         });
         ticking = true;
