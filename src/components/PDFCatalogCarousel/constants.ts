@@ -1,5 +1,5 @@
 import type { CatalogItem } from './PDFCatalogCarousel.types';
-import Catalog1 from '../../assets/images/Banner/Catalogue-1.png';
+import Catalog1 from '../../assets/images/LastLogo/Catalogue-1.webp';
 import CorporatePDF from '../../assets/images/LastLogo/cult_for_corporate logo.pdf';
 
 /**
