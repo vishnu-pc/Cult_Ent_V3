@@ -19,7 +19,7 @@ export const whyChooseCultTiles: TileData[] = [
     image: WhyChooseCult2,
     title: 'Mental Wellness',
     description:
-      'Mindfulness and stress management programs to enhance mental clarity and emotional resilience in the workplace.',
+      'our company culture is one-of-a-kind. Your wellness strategy should match its DNA.',
     backgroundPosition: 'center 55%',
   },
   {
@@ -27,7 +27,7 @@ export const whyChooseCultTiles: TileData[] = [
     image: WhyChooseCult3,
     title: 'Nutrition Guidance',
     description:
-      'Expert nutritional counseling and meal planning to fuel productivity and maintain optimal health throughout the workday.',
+      "Just like your ambitious expansion plans, we've got India covered.",
     backgroundPosition: 'center 30%',
   },
   {
@@ -35,7 +35,7 @@ export const whyChooseCultTiles: TileData[] = [
     image: WhyChooseCult4,
     title: 'Team Building',
     description:
-      'Engaging group activities and challenges that strengthen team bonds while promoting healthy lifestyle choices.',
+      'Multiple wellness vendors create multiple headaches. We’re your comprehensive answer to employee wellbeing.',
     backgroundPosition: 'center 18%',
   },
   {
@@ -43,7 +43,7 @@ export const whyChooseCultTiles: TileData[] = [
     image: WhyChooseCult5,
     title: 'Recovery & Rest',
     description:
-      'Specialized recovery programs and sleep optimization techniques to ensure peak performance and prevent burnout.',
+      'Why experiment when you can implement what’s already proven successful for companies like yours?',
     backgroundPosition: 'center 39%',
   },
 ];
