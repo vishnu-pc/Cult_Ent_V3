@@ -136,7 +136,7 @@ export const DontLieText = styled.span`
 `;
 
 export const Subheadline = styled.p`
-  font-size: var(--font-size-3xl);
+  font-size: var(--font-size-xl);
   color: rgba(255, 255, 255, 0.8);
   font-weight: 400;
   font-family: var(--font-primary);

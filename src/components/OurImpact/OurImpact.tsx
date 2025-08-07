@@ -194,7 +194,7 @@ const OurImpact: React.FC<OurImpactProps> = ({ videos = DEFAULT_VIDEOS }) => {
               <MainTitle>
                 WELLNESS
                 <br />
-                IN <GradientText>M O T I O N</GradientText>
+                IN <GradientText>MOTION</GradientText>
               </MainTitle>
             </TitleSection>
             <DescriptionSection>

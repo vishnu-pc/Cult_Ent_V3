@@ -335,7 +335,7 @@ export const HeroDescription = styled.div`
 `;
 
 export const DescriptionText = styled.p`
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-xl);
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.6;
   // margin-bottom: var(--spacing-md);
@@ -347,7 +347,7 @@ export const DescriptionText = styled.p`
 `;
 
 export const CallToAction = styled.p`
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-xl);
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.6;
 

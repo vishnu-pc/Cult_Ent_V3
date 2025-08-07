@@ -272,16 +272,19 @@ export const RightContent = styled.div`
    * 45rem = 720px | Right-heavy layout (45% left / 55% right)
    * flex: 1 = Responsive width (fills remaining space)
    */
-  margin-top: var(--spacing-4xl);
-  flex: 0 0 29.75rem; /* CURRENT: 612px fixed width | TUNE: Change rem value to adjust balance */
+  flex: 0 0 38.25rem; /* Fixed width to maintain layout balance */
   text-align: left;
   display: flex;
   align-items: center;
+  justify-content: flex-end; /* Align content to the right */
+  margin-right: var(--spacing-xl);
 
   @media (max-width: 768px) {
     flex: none;
     text-align: left;
     margin-top: var(--spacing-xl);
+    justify-content: flex-start; /* Reset to left alignment on mobile */
+    margin-right: 0; /* Remove right margin on mobile */
   }
 `;
 
@@ -289,7 +292,7 @@ export const RightContent = styled.div`
  * Right content text with standardized typography
  */
 export const RightText = styled.p`
-  font-size: var(--font-size-3xl);
+  font-size: var(--font-size-xl);
   color: var(--color-text);
   line-height: 1.6;
   font-weight: 400;

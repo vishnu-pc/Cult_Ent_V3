@@ -215,7 +215,7 @@ export const ContentContainer = styled.div`
  * This should be vertically aligned with the OverlayTextContainer on the left.
  */
 export const SectionTitle = styled.h2`
-  font-size: var(--font-size-2xl);
+  font-size: var(--font-size-xl);
   color: var(--color-text);
   font-weight: 400;
   line-height: 1.6;

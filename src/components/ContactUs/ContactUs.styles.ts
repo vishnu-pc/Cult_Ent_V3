@@ -21,14 +21,21 @@ export const SectionContainer = styled.section`
   min-height: 100vh;
   width: 100%;
   max-width: 100vw;
-  /* Restore original background gradient */
+  /* Restore original background gradient - Safari compatible */
   background: linear-gradient(135deg, #0f0120 0%, #000000 100%);
+  /* Fallback background for Safari */
+  background-color: #000000;
   /* background: blue; */
   display: flex;
   align-items: center;
   /* Use standardized section spacing */
   position: relative;
   z-index: 1;
+
+  /* Safari-specific fixes */
+  -webkit-transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -44,7 +51,7 @@ export const SectionContainer = styled.section`
 export const ContentWrapper = styled.div`
   width: 100%;
 
-  /* CSS Grid Layout */
+  /* CSS Grid Layout - Safari compatible */
   display: grid;
   grid-template-columns: 2fr 3fr; /* 40% + 60% = 2:3 ratio */
   grid-template-rows: auto 1fr; /* Auto-height for title, remaining space for content */
@@ -55,6 +62,11 @@ export const ContentWrapper = styled.div`
     'title title' /* A spans both columns */
     'image form'; /* B (image) + C (form) */
 
+  /* Safari-specific grid fixes */
+  -webkit-grid-template-columns: 2fr 3fr;
+  -webkit-grid-template-rows: auto 1fr;
+  -webkit-grid-template-areas: 'title title' 'image form';
+
   @media (max-width: 768px) {
     /* Mobile: Single column layout, hide image */
     grid-template-columns: 1fr;
@@ -63,6 +75,11 @@ export const ContentWrapper = styled.div`
       'title' /* A - TitleSection */
       'form'; /* C - FormSection (B/ImageSection hidden) */
     //gap: var(--spacing-2xl);
+
+    /* Safari mobile grid fixes */
+    -webkit-grid-template-columns: 1fr;
+    -webkit-grid-template-rows: auto auto;
+    -webkit-grid-template-areas: 'title' 'form';
   }
 `;
 
@@ -179,7 +196,7 @@ export const ChaseText = styled.span`
 `;
 
 export const Subtitle = styled.p`
-  font-size: var(--font-size-2xl);
+  font-size: var(--font-size-xl);
   color: rgba(255, 255, 255, 0.9);
   line-height: 2;
   font-family: var(--font-primary);
@@ -234,12 +251,12 @@ export const Input = styled.input`
   outline: none;
   /* Use standardized transitions */
   transition: all var(--transition-normal);
-  
+
   /* Safari-specific fixes for consistent styling */
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  
+
   /* Remove default border radius on iOS Safari */
   -webkit-border-radius: var(--border-radius-xxs);
 
@@ -255,16 +272,16 @@ export const Input = styled.input`
   &:hover {
     border-color: rgba(255, 255, 255, 0.5);
   }
-  
+
   /* Remove spinner arrows for number inputs on Safari */
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
-  
+
   /* Firefox number input fixes */
-  &[type="number"] {
+  &[type='number'] {
     -moz-appearance: textfield;
   }
 `;
@@ -283,32 +300,32 @@ export const Select = styled.select`
   /* Use standardized transitions */
   transition: all var(--transition-normal);
   cursor: pointer;
-  
+
   /* Aggressive Safari-specific fixes for consistent styling */
   -webkit-appearance: none !important;
   -moz-appearance: none !important;
   appearance: none !important;
-  
+
   /* Force border radius on Safari/WebKit */
   -webkit-border-radius: var(--border-radius-xxs) !important;
   -moz-border-radius: var(--border-radius-xxs) !important;
-  
+
   /* Force rectangular shape by overriding all border radius properties */
   border-top-left-radius: var(--border-radius-xxs) !important;
   border-top-right-radius: var(--border-radius-xxs) !important;
   border-bottom-left-radius: var(--border-radius-xxs) !important;
   border-bottom-right-radius: var(--border-radius-xxs) !important;
-  
+
   /* Override any system styling */
   -webkit-box-sizing: border-box !important;
   -moz-box-sizing: border-box !important;
   box-sizing: border-box !important;
-  
+
   /* Ensure proper width and height */
   width: 100%;
   height: auto;
   min-height: 48px;
-  
+
   /* Custom dropdown arrow to replace the default one */
   background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.6)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
   background-repeat: no-repeat;
@@ -336,19 +353,19 @@ export const Select = styled.select`
     -webkit-appearance: none !important;
     appearance: none !important;
   }
-  
+
   /* Remove any webkit styling for number inputs (shouldn't apply to select but being safe) */
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
     -webkit-appearance: none !important;
     margin: 0;
   }
-  
+
   /* Specifically target Safari's select arrow */
   &::-webkit-button {
     display: none !important;
   }
-  
+
   &::-webkit-contact-picker-icon {
     display: none !important;
   }
@@ -369,12 +386,12 @@ export const TextArea = styled.textarea`
   transition: all var(--transition-normal);
   min-height: 120px;
   resize: vertical;
-  
+
   /* Safari-specific fixes for consistent styling */
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  
+
   /* Remove default border radius on iOS Safari */
   -webkit-border-radius: var(--border-radius-xxs);
 

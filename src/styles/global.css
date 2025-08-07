@@ -12,6 +12,14 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
+  /* Safari-specific fixes for black screen issues */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Force hardware acceleration on Safari */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 body {
@@ -20,6 +28,12 @@ body {
   color: var(--color-text);
   line-height: 1.5;
   overflow-x: hidden;
+  /* Safari-specific fixes */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Ensure proper rendering on Safari */
+  min-height: 100vh;
+  position: relative;
 }
 
 h1,
@@ -680,16 +694,16 @@ section.hero-section {
     -webkit-border-radius: 4px !important;
     border-radius: 4px !important;
   }
-  
+
   /* Target Safari's internal select button/arrow */
   select::-webkit-button {
     display: none !important;
   }
-  
+
   select::-webkit-contact-picker-icon {
     display: none !important;
   }
-  
+
   /* Additional Safari select fixes */
   select::-webkit-date-and-time-value {
     -webkit-appearance: none !important;
@@ -697,7 +711,9 @@ section.hero-section {
 }
 
 /* Force rectangular appearance on all form elements in Safari */
-input, select, textarea {
+input,
+select,
+textarea {
   -webkit-appearance: none !important;
   -moz-appearance: none !important;
   appearance: none !important;
@@ -706,8 +722,8 @@ input, select, textarea {
 }
 
 /* Specific targeting for our form selects */
-select[name="industry"], 
-select[name="employeeStrength"] {
+select[name='industry'],
+select[name='employeeStrength'] {
   -webkit-appearance: none !important;
   -moz-appearance: none !important;
   appearance: none !important;

@@ -175,7 +175,10 @@ export const ContentContainer = styled.div`
   /* Mobile-only: Adjust padding for mobile layout */
   @media (max-width: 768px) {
     justify-content: flex-end; /* Align content to bottom on mobile */
-    padding-bottom: var(--spacing-lg); /* Less padding on mobile */
+    padding-bottom: var(
+      --spacing-4xl
+    ); /* Add bottom margin for mobile using standardized spacing */
+    margin-bottom: var(--spacing-xl); /* Additional bottom margin for mobile */
   }
 `;
 
@@ -263,7 +266,7 @@ export const HeadingLine = styled.h2<HeadingLineProps & { alignment?: string }>`
 export const StatText = styled.p<StyledComponentProps>`
   width: 100%;
   font-family: var(--font-primary); /* Use standardized font family */
-  font-size: var(--font-size-2xl);
+  font-size: var(--font-size-xl);
   // font-size: 4rem;
   font-weight: 400;
   text-align: center;
