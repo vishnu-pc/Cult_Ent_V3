@@ -32,13 +32,15 @@ interface.
 - **Linting**: ESLint 9.25.0 with TypeScript ESLint
 - **Code Formatting**: Prettier 3.4.2 (mandatory)
 - **CSS Processing**: PostCSS 8.5.6 with Autoprefixer
-- **Utility Libraries**: clsx 2.1.1, tailwind-merge 3.3.1
+- **Utility Libraries**: clsx 2.1.1, tailwind-merge 3.3.1 (present; Tailwind utility classes are not
+  used in code)
 - **Package Manager**: npm
-- **UI Components**: Potential integration with Shadcn/UI and Radix UI
+- **UI Components**: No third-party UI kits in use
 
 ### Additional Integrations
 
-- **API Integration**: Salesforce (ready for production)
+- **API Integration**: Salesforce service scaffold with simulated submission and placeholder
+  endpoint
 - **Form Handling**: Custom implementation with validation
 - **Asset Management**: Vite-based asset optimization
 
@@ -57,7 +59,7 @@ Cult_Ent_V3/
 │   │   │   ├── ContactUs/           # Contact section images
 │   │   │   ├── Footer/              # Footer assets
 │   │   │   ├── LastLogo/            # Logo animations
-│   │   │   ├── NumbersDon'tLie/     # Statistics section images
+│   │   │   ├── NumbersDontLie/      # Statistics section images
 │   │   │   ├── Our_Clientele/       # Client logos and images
 │   │   │   ├── OurImpact/           # Impact metrics visuals
 │   │   │   ├── Testimonials/        # Testimonial assets
@@ -73,7 +75,7 @@ Cult_Ent_V3/
 │   │   ├── Gradient_Pack.svg        # Gradient design elements
 │   │   └── react.svg                # React logo
 │   ├── components/                  # React components
-│   │   ├── BeBetterSection/         # "Be Better" content section
+│   │
 │   │   ├── Clientele/               # Client showcase with carousel
 │   │   ├── ContactUs/               # Contact form with Salesforce integration
 │   │   ├── DynamicLogo/             # Animated SVG logo component
@@ -84,7 +86,8 @@ Cult_Ent_V3/
 │   │   ├── Layout/                  # Main layout wrapper
 │   │   ├── LogoLoader/              # Loading animation component
 │   │   ├── Navigation/              # Responsive navigation bar
-│   │   ├── NumbersDontLie/          # Statistics and metrics display
+│   │   ├── CombinedWellnessSection/  # Combined wellness section
+│   │   ├── NumbersDontLie/           # Statistics and metrics display
 │   │   ├── OurImpact/               # Impact metrics visualization
 │   │   ├── ProvenImpact/            # Impact proof section
 │   │   ├── Testimonials/            # Client testimonials carousel
@@ -205,19 +208,18 @@ ComponentName/
 - **Key Props**: `className`, `forceHighlight`
 - **Styling**: SVG-based with gradient animations
 
-### 4. WellnessSolutions (`src/components/WellnessSolutions/`)
+### 4. CombinedWellnessSection (`src/components/CombinedWellnessSection/`)
 
-- **Purpose**: Interactive showcase of wellness solutions
-- **Features**: Image gallery, hover effects, animated descriptions
-- **Key Props**: WellnessSolutionsProps (extensible)
-- **Data**: 5 wellness solutions with images and descriptions
+- **Purpose**: Unified wrapper combining WellnessSolutions, NumbersDontLie, and WhyChooseCult
+- **Features**: Shared animated background, seamless stacking, preserves individual behaviors
+- **Key Props**: None (composes child sections)
 
 ### 5. ContactUs (`src/components/ContactUs/`)
 
 - **Purpose**: Contact form with Salesforce integration
 - **Features**: Form validation, reCAPTCHA, animated elements
 - **Key Props**: `onSubmit` callback
-- **Integration**: Salesforce API ready
+- **Integration**: Wired to Salesforce service (placeholder endpoint in service)
 
 ### 6. NumbersDontLie (`src/components/NumbersDontLie/`)
 
@@ -366,7 +368,7 @@ section.hero-section {
 #### Typography
 
 ```css
---font-primary: 'Poppins', sans-serif;
+--font-primary: 'Inter', sans-serif;
 --font-secondary: 'Inter', sans-serif;
 --font-size-xs: 0.75rem; /* 12px */
 --font-size-sm: 0.875rem; /* 14px */
@@ -391,7 +393,9 @@ section.hero-section {
 - **Reset**: CSS reset with box-sizing border-box
 - **Typography**: Responsive font sizing with breakpoints
 - **Accessibility**: Screen reader support and reduced motion preferences
-- **Utility Classes**: Common layout and positioning utilities
+- **Utility Classes**: Common layout and positioning utilities (e.g., `.mt-xl`, `.px-2xl`, `.flex`,
+  `.items-center`)
+- **Variables**: Uses `src/styles/variables.css` for colors, spacing, typography, breakpoints
 
 ## Data Management
 
@@ -434,7 +438,8 @@ export interface Solution {
 
 #### Service Functions
 
-- `submitLeadToSalesforce(data: LeadData)`: Production API submission
+- `submitLeadToSalesforce(data: LeadData)`: Submits to placeholder endpoint `/api/salesforce/lead`
+  (replace with real endpoint for production)
 - `simulateSalesforceSubmission(data: LeadData)`: Development simulation
 
 #### Data Structure
@@ -474,6 +479,13 @@ initial={{ opacity: 0, y: 20 }}
 animate={{ opacity: 1, y: 0 }}
 transition={{ duration: 0.6 }}
 ```
+
+### Code Splitting and Lazy Loading
+
+- Route-level lazy loading via `React.lazy` and `<Suspense>` in `src/App.tsx`
+- Component-level lazy loading for heavy sections in `src/pages/Home.tsx` (Clientele,
+  CombinedWellnessSection, ContactUs, Testimonials, OurImpact, LogoLoader)
+- Loading fallbacks implemented for good UX while chunks load
 
 ## Responsive Design
 
@@ -567,9 +579,10 @@ padding: var(--spacing-xl); /* Desktop */
 ### Build Configuration
 
 - **Vite**: Fast build tool with HMR
-- **Code Splitting**: Automatic code splitting
-- **Asset Optimization**: Image optimization and lazy loading
-- **Bundle Analysis**: Build size optimization
+- **Manual Code Splitting**: Custom `manualChunks` for vendor and component-based chunking
+- **Minifier**: Terser with console/debugger removal and dead code elimination
+- **CSS Code Splitting**: Enabled for better caching
+- **Asset Handling**: WebP/PNG/JPG/SVG included
 
 ### Runtime Performance
 
@@ -584,10 +597,12 @@ padding: var(--spacing-xl); /* Desktop */
 
 ```json
 {
-  "dev": "vite", // Development server
-  "build": "tsc -b && vite build", // Production build
-  "lint": "eslint .", // Code linting
-  "preview": "vite preview" // Preview production build
+  "dev": "vite",
+  "build": "tsc -b && vite build",
+  "lint": "eslint .",
+  "preview": "vite preview",
+  "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,css,md,json}\"",
+  "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,css,md,json}\""
 }
 ```
 
@@ -603,8 +618,8 @@ padding: var(--spacing-xl); /* Desktop */
 ### Build Process
 
 1. TypeScript compilation check
-2. Vite production build
-3. Asset optimization
+2. Vite production build with Terser minification
+3. Asset optimization and CSS code splitting
 4. Bundle generation in `dist/` directory
 
 ### Environment Configuration
@@ -725,7 +740,7 @@ padding: var(--spacing-xl); /* Desktop */
 - **Version**: 0.0.0
 - **Technology Stack**: React 19.1.0 + TypeScript 5.8.3 + Vite 6.3.5
 - **Created**: 2025-01-27
-- **Last Updated**: 2025-01-27
+- **Last Updated**: 2025-08-09
 - **License**: Proprietary and confidential
 - **Repository**: Private repository
 

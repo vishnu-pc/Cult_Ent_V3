@@ -1,16 +1,17 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import { imagetools } from 'vite-imagetools';
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), imagetools()],
   build: {
     // Increase chunk size warning limit to 1MB to reduce noise
     chunkSizeWarningLimit: 1000,
     rollupOptions: {
       output: {
         // Manual chunking strategy
-        manualChunks: (id) => {
+        manualChunks: id => {
           // Vendor chunk for React and core libraries
           if (id.includes('node_modules')) {
             if (id.includes('react') || id.includes('react-dom')) {
@@ -28,7 +29,7 @@ export default defineConfig({
             // Other vendor libraries
             return 'vendor-other';
           }
-          
+
           // Component-based chunking
           if (id.includes('src/components/Testimonials')) {
             return 'chunk-testimonials';
@@ -48,11 +49,8 @@ export default defineConfig({
           if (id.includes('src/components/ContactUs')) {
             return 'chunk-contact';
           }
-          
-          // Assets chunking
-          if (id.includes('src/assets/images')) {
-            return 'chunk-images';
-          }
+
+          // Note: Avoid grouping images into a JS chunk so the browser can cache and request images independently
         },
         // Optimize chunk naming for caching
         chunkFileNames: 'assets/[name]-[hash].js',
@@ -78,8 +76,14 @@ export default defineConfig({
   },
   // Optimize dependencies
   optimizeDeps: {
-    include: ['react', 'react-dom', 'react-router-dom', 'framer-motion', 'styled-components'],
+    include: [
+      'react',
+      'react-dom',
+      'react-router-dom',
+      'framer-motion',
+      'styled-components',
+    ],
   },
   // Asset optimization
   assetsInclude: ['**/*.webp', '**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.svg'],
-})
+});

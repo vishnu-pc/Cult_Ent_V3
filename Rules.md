@@ -778,9 +778,9 @@ const StyledLink = styled.a`
   - Small Mobile: `var(--nav-height-small-mobile)` (5rem / 80px)
 - **Logo sizing**: Proportional to navigation height using CSS variables
   - Desktop: `var(--nav-logo-desktop)` (4.25rem / 68px)
-  - Tablet: `var(--nav-logo-tablet)` (3.5rem / 56px)
-  - Mobile: `var(--nav-logo-mobile)` (3rem / 48px)
-  - Small Mobile: `var(--nav-logo-small-mobile)` (2.75rem / 44px)
+  - Tablet: `var(--nav-logo-tablet)` (4.25rem / 68px)
+  - Mobile: `var(--nav-logo-mobile)` (4rem / 64px)
+  - Small Mobile: `var(--nav-logo-small-mobile)` (4rem / 64px)
 - **Touch targets**: Minimum 44px (2.75rem) for all interactive elements
 - **Spacing**: Use CSS variables (`var(--spacing-xl)`, etc.) for consistent margins
 

@@ -245,7 +245,9 @@ export const LoginButton = styled.button`
 
 // Hamburger menu button with standard responsive behavior
 // Creates animated hamburger icon that transforms into an X when opened
-export const HamburgerButton = styled.button<HamburgerProps>`
+export const HamburgerButton = styled.button.withConfig({
+  shouldForwardProp: prop => prop !== 'isOpen',
+})<HamburgerProps>`
   display: none; /* Hidden on desktop - only shows on mobile */
   flex-direction: column; /* Stacks hamburger lines vertically */
   justify-content: space-around; /* Closer spacing between hamburger lines */

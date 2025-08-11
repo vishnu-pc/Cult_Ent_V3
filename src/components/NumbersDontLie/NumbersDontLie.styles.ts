@@ -191,6 +191,7 @@ export const GridCell = styled.div<{
   $gridArea: string;
   $hasBackgroundImage?: boolean;
   $backgroundImage?: string;
+  $backgroundImageSet?: string;
 }>`
   grid-area: ${props => props.$gridArea};
   position: relative;
@@ -210,7 +211,7 @@ export const GridCell = styled.div<{
     props.$hasBackgroundImage &&
     props.$backgroundImage &&
     `
-    background-image: url(${props.$backgroundImage});
+    background-image: ${props.$backgroundImageSet ? `image-set(${props.$backgroundImageSet})` : `url(${props.$backgroundImage})`};
     // background-size: cover;
     background-size: ${props.$gridArea === 'A' ? 'cover' : 'cover'};
     background-position: ${props.$gridArea === 'A' ? 'center -40%' : 'center center'};

@@ -31,7 +31,7 @@ const Navigation: React.FC<NavigationProps> = () => {
     if (element) {
       // Temporarily disable pointer events during auto-scroll to prevent interference
       document.body.style.pointerEvents = 'none';
-      
+
       element.scrollIntoView({
         behavior: 'smooth',
         block: 'start',
@@ -56,7 +56,15 @@ const Navigation: React.FC<NavigationProps> = () => {
   return (
     <NavContainer>
       <Logo to='/'>
-        <img src={cultLogo} alt='Cult for Corporates' />
+        <img
+          src={cultLogo}
+          alt='Cult for Corporates'
+          width={2422}
+          height={800}
+          loading='eager'
+          decoding='async'
+          fetchPriority='high'
+        />
       </Logo>
 
       <HamburgerButton

@@ -48,6 +48,7 @@ const NumbersDontLie: React.FC<NumbersDontLieProps> = ({
         $gridArea={cellData.gridArea}
         $hasBackgroundImage={hasBackgroundImage}
         $backgroundImage={cellData.backgroundImage}
+        $backgroundImageSet={cellData.backgroundImageSet}
       >
         {/* Large percentage value (e.g., "70%", "40%") */}
         {cellData.value && <CellValue>{cellData.value}</CellValue>}

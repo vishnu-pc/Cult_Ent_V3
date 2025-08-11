@@ -1,6 +1,40 @@
 import type { TableCellData } from './NumbersDontLie.types';
-import Wellness1 from '../../assets/images/NumbersDontLie/Numbers-1.webp';
-import Wellness2 from '../../assets/images/NumbersDontLie/Numbers-2.webp';
+// @ts-ignore
+import Wellness1Picture from '../../assets/images/NumbersDontLie/Numbers-1.webp?w=640;1280;1920&format=avif;webp&as=picture';
+// @ts-ignore
+import Wellness2Picture from '../../assets/images/NumbersDontLie/Numbers-2.webp?w=640;1280;1920&format=avif;webp&as=picture';
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const toImageSet = (picture: any): string => {
+  // Handle different possible formats from vite-imagetools
+  if (!picture) return '';
+
+  // If picture is just a string (simple import), return empty
+  if (typeof picture === 'string') return '';
+
+  // Check if sources exists and is an array
+  if (!picture.sources || !Array.isArray(picture.sources)) {
+    console.warn(
+      'Expected picture.sources to be an array, got:',
+      typeof picture.sources,
+      picture
+    );
+    return '';
+  }
+
+  const avif =
+    picture.sources.find((s: any) => s?.type === 'image/avif')?.srcset || '';
+  const webp =
+    picture.sources.find((s: any) => s?.type === 'image/webp')?.srcset || '';
+
+  if (!avif && !webp) return '';
+
+  return `${avif} type('image/avif'), ${webp} type('image/webp')`;
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const imgSrc = (picture: any): string =>
+  typeof picture?.img === 'string' ? picture.img : picture?.img?.src || '';
 
 /**
  * Grid data structure for the NumbersDontLie component.
@@ -26,7 +60,8 @@ export const tableData: readonly TableCellData[] = [
     id: 1,
     value: '70%',
     description: 'increase in employee engagement',
-    backgroundImage: Wellness1,
+    backgroundImage: imgSrc(Wellness1Picture),
+    backgroundImageSet: toImageSet(Wellness1Picture),
     gridArea: 'A',
   },
   // Grid Area B - Cell 2: Significant reduction
@@ -62,7 +97,8 @@ export const tableData: readonly TableCellData[] = [
     id: 6,
     title: '100% Customized Programs',
     description: 'tailored to your company culture',
-    backgroundImage: Wellness2,
+    backgroundImage: imgSrc(Wellness2Picture),
+    backgroundImageSet: toImageSet(Wellness2Picture),
     gridArea: 'F',
   },
   // Grid Area G - Cell 7: ISO 9001 & 45001

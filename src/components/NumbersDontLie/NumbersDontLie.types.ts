@@ -23,6 +23,8 @@ export interface TableCellData {
   description: string;
   /** Optional background image URL for overlay effect */
   backgroundImage?: string;
+  /** Optional CSS image-set string for responsive backgrounds */
+  backgroundImageSet?: string;
   /** Grid area assignment for CSS Grid layout */
   gridArea: 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G';
 }

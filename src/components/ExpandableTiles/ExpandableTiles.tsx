@@ -135,6 +135,7 @@ const ExpandableTiles: React.FC<ExpandableTilesProps> = ({ tiles }) => {
               <Tile
                 key={tile.id}
                 $backgroundImage={tile.image}
+                $backgroundImageSet={tile.imageSet}
                 $isExpanded={isExpanded}
                 $isGrayscale={isGrayscale}
                 $backgroundPosition={tile.backgroundPosition}

@@ -18,6 +18,8 @@ export interface CompanyLogo {
   name: string;
   src: string;
   alt: string;
+  width?: number;
+  height?: number;
 }
 
 // Array of company logos for the carousel
@@ -27,72 +29,96 @@ export const companyLogos: CompanyLogo[] = [
     name: 'Accenture',
     src: accenture,
     alt: 'Accenture company logo',
+    width: 140,
+    height: 56,
   },
   {
     id: 'american-express',
     name: 'American Express',
     src: americanExp,
     alt: 'American Express company logo',
+    width: 140,
+    height: 56,
   },
   {
     id: 'bcg',
     name: 'Boston Consulting Group',
     src: bcg,
     alt: 'BCG company logo',
+    width: 140,
+    height: 56,
   },
   {
     id: 'bosch',
     name: 'Bosch',
     src: bosch,
     alt: 'Bosch company logo',
+    width: 140,
+    height: 56,
   },
   {
     id: 'citibank',
     name: 'Citibank',
     src: citibank,
     alt: 'Citibank company logo',
+    width: 140,
+    height: 56,
   },
   {
     id: 'daimler',
     name: 'Daimler',
     src: daimler,
     alt: 'Daimler company logo',
+    width: 140,
+    height: 56,
   },
   {
     id: 'procter-gamble',
     name: 'Procter & Gamble',
     src: pg,
     alt: 'P&G company logo',
+    width: 140,
+    height: 56,
   },
   {
     id: 'deloitte',
     name: 'Deloitte',
     src: deloitte,
     alt: 'Deloitte company logo',
+    width: 140,
+    height: 56,
   },
   {
     id: 'ernst-young',
     name: 'Ernst & Young',
     src: ey,
     alt: 'EY company logo',
+    width: 140,
+    height: 56,
   },
   {
     id: 'fidelity',
     name: 'Fidelity',
     src: fidelity,
     alt: 'Fidelity company logo',
+    width: 140,
+    height: 56,
   },
   {
     id: 'kansai-nerolac',
     name: 'Kansai Nerolac',
     src: kansaiNerolac,
     alt: 'Kansai Nerolac company logo',
+    width: 140,
+    height: 56,
   },
   {
     id: 'optum',
     name: 'Optum',
     src: optum,
     alt: 'Optum company logo',
+    width: 140,
+    height: 56,
   },
 ];
 

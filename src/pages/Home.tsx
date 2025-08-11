@@ -1,14 +1,23 @@
 import React, { Suspense } from 'react';
 import styled from 'styled-components';
 import LandingBanner from '../components/LandingBanner/LandingBanner';
+import NumbersDontLie from '../components/NumbersDontLie/NumbersDontLie';
+import WhyChooseCult from '../components/WhyChooseCult/WhyChooseCult';
+import WellnessSolutions from '../components/WellnessSolutions/WellnessSolutions';
 
 // Lazy load heavy components for better performance
 const Clientele = React.lazy(() => import('../components/Clientele/Clientele'));
-const CombinedWellnessSection = React.lazy(() => import('../components/CombinedWellnessSection/CombinedWellnessSection'));
+const CombinedWellnessSection = React.lazy(
+  () => import('../components/CombinedWellnessSection/CombinedWellnessSection')
+);
 const ContactUs = React.lazy(() => import('../components/ContactUs/ContactUs'));
-const Testimonials = React.lazy(() => import('../components/Testimonials/Testimonials'));
+const Testimonials = React.lazy(
+  () => import('../components/Testimonials/Testimonials')
+);
 const OurImpact = React.lazy(() => import('../components/OurImpact/OurImpact'));
-const LogoLoader = React.lazy(() => import('../components/LogoLoader/LogoLoader'));
+const LogoLoader = React.lazy(
+  () => import('../components/LogoLoader/LogoLoader')
+);
 
 // Loading fallback component
 const LoadingFallback = styled.div`
@@ -35,9 +44,15 @@ const Home: React.FC = () => {
       <Suspense fallback={<LoadingFallback>Loading...</LoadingFallback>}>
         <CombinedWellnessSection />
       </Suspense>
-      {/* <WellnessSolutions />
-      <NumbersDontLie />
-      <WhyChooseCult /> */}
+      <Suspense fallback={<LoadingFallback>Loading...</LoadingFallback>}>
+        <WellnessSolutions />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback>Loading...</LoadingFallback>}>
+        <NumbersDontLie />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback>Loading...</LoadingFallback>}>
+        <WhyChooseCult />
+      </Suspense>
       <Suspense fallback={<LoadingFallback>Loading...</LoadingFallback>}>
         <ContactUs />
       </Suspense>

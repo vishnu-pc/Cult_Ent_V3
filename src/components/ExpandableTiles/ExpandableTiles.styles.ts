@@ -53,12 +53,16 @@ export const TilesContainer = styled.div`
 
 export const Tile = styled(motion.div)<{
   $backgroundImage: string;
+  $backgroundImageSet?: string;
   $isExpanded: boolean;
   $isGrayscale: boolean;
   $backgroundPosition?: string;
 }>`
   position: relative;
-  background-image: url(${props => props.$backgroundImage});
+  background-image: ${props =>
+    props.$backgroundImageSet
+      ? `image-set(${props.$backgroundImageSet})`
+      : `url(${props.$backgroundImage})`};
   background-size: cover;
   background-position: ${props =>
     props.$isExpanded ? 'center' : props.$backgroundPosition || 'center'};

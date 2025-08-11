@@ -3,6 +3,7 @@ import { TestimonialsDivider } from '../ui/GradientDivider';
 import type { TestimonialsProps } from './Testimonials.types';
 import { testimonialsData } from './constants';
 import InvertedCommaImg from '../../assets/images/Testimonials/Invertedcomma.png';
+// TODO: Replace with AVIF/WebP responsive sources when provided
 import {
   SectionContainer,
   OverlayTitle,
@@ -52,6 +53,10 @@ const Testimonials: React.FC<TestimonialsProps> = ({
                 <CompanyLogo
                   src={testimonial.logo}
                   alt={`${testimonial.company} logo`}
+                  loading='lazy'
+                  decoding='async'
+                  width={70}
+                  height={70}
                 />
               </CompanySection>
             </TestimonialCard>
@@ -59,7 +64,14 @@ const Testimonials: React.FC<TestimonialsProps> = ({
 
           {/* Central Text Section */}
           <CentralTextSection>
-            <QuoteSymbol src={InvertedCommaImg} alt='Quote symbol' />
+            <QuoteSymbol
+              src={InvertedCommaImg}
+              alt='Quote symbol'
+              loading='lazy'
+              decoding='async'
+              width={160}
+              height={160}
+            />
             <TextBlock>
               <TextLine>
                 <WhiteText>SEE </WhiteText>

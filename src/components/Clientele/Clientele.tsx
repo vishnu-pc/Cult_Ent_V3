@@ -136,6 +136,11 @@ const Clientele: React.FC<ClienteleProps> = () => {
                   key={`${logo.id}-${index}`}
                   src={logo.src}
                   alt={logo.alt}
+                  loading='lazy'
+                  decoding='async'
+                  width={logo.width || 140}
+                  height={logo.height || 56}
+                  fetchPriority='low'
                 />
               ))}
             </LogoGroup>

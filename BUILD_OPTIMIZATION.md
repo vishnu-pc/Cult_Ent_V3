@@ -9,17 +9,18 @@ bundle size optimization.
 
 ### 1. **Manual Code Splitting (Vite Config)**
 
-- **Vendor Chunking**: Separated React, Router, Animations, and Styling libraries into dedicated
-  chunks
+- **Vendor Chunking**: Separated React core (includes `react-router-dom` in the React vendor chunk),
+  Animations, and Styling libraries into dedicated chunks
 - **Component Chunking**: Split large components (Testimonials, Landing, Wellness, etc.) into
   separate chunks
 - **Asset Chunking**: Grouped image imports into a dedicated chunk
 
 ### 2. **Lazy Loading Implementation**
 
-- **Route-level**: Lazy loaded the Home page using `React.lazy()`
-- **Component-level**: Lazy loaded heavy components (Clientele, Wellness, Testimonials, etc.)
-- **Suspense Boundaries**: Added proper loading fallbacks for better UX
+- **Route-level**: Lazy loaded the Home page using `React.lazy()` in `src/App.tsx`
+- **Component-level**: Lazy loaded heavy components in `src/pages/Home.tsx` (Clientele,
+  CombinedWellnessSection, ContactUs, Testimonials, OurImpact, LogoLoader)
+- **Suspense Boundaries**: Added loading fallbacks for route and component boundaries
 
 ### 3. **Bundle Optimization**
 
@@ -30,8 +31,10 @@ bundle size optimization.
 ### 4. **Image Loading Optimization**
 
 - **Created Image Utilities**: Added lazy loading and optimization utilities
-- **Preloading Strategy**: Implemented critical image preloading for better performance
-- **Intersection Observer**: Added support for lazy image loading when components come into view
+  (`src/utils/imageLoader.ts`)
+- **Preloading Strategy**: Implemented critical and priority image preloading
+  (`src/utils/imagePreloader.ts`) and wired in `src/main.tsx`
+- **Intersection Observer**: Utility for lazy image loading when components come into view
 
 ### 5. **Build Configuration Enhancements**
 
@@ -51,19 +54,29 @@ bundle size optimization.
 
 - **Largest JS chunk**: 210.33 kB (vendor-react - React core)
 - **Other chunks**: All under 80kB
-- **Effective chunking**: 13 separate JS chunks for better caching
+- **Effective chunking**: 14 separate JS chunks for better caching
 - **Lazy loading**: Components load only when needed
 
 ### Chunk Breakdown
 
 ```
-vendor-react-D9y7y53k.js        210.33 kB │ gzip: 67.29 kB  (React core)
-vendor-animations-BihINLN7.js    77.99 kB │ gzip: 24.42 kB  (Framer Motion)
-vendor-other-Tf-hcGOU.js         52.93 kB │ gzip: 19.56 kB  (Other libs)
-chunk-wellness-nJodkVYx.js       34.33 kB │ gzip:  8.68 kB  (Wellness component)
-LogoLoader-SigvNvP7.js           29.94 kB │ gzip:  9.16 kB  (Logo Loader)
-index-BXxAxXRT.js                26.78 kB │ gzip:  7.27 kB  (Main app)
-chunk-landing-C9hmR8gD.js        26.54 kB │ gzip:  8.28 kB  (Landing Banner)
+Home-BLKIWyI9.js                 2.16 kB │ gzip:  0.72 kB  (Home route wrapper)
+chunk-impact-DZ_L8i9O.js        11.05 kB │ gzip:  3.78 kB  (OurImpact component)
+chunk-images-DKyWN96S.js        12.67 kB │ gzip:  8.71 kB  (Images group)
+chunk-testimonials-Cl7ADEcS.js  13.82 kB │ gzip:  3.87 kB  (Testimonials component)
+chunk-clientele-C4RfF51T.js     15.85 kB │ gzip:  5.21 kB  (Clientele component)
+chunk-contact-DAE_b7WR.js       15.88 kB │ gzip:  4.20 kB  (ContactUs component)
+vendor-styling-DN4-_wp2.js      17.29 kB │ gzip:  6.46 kB  (styled-components)
+chunk-landing-w61ecuDk.js       26.54 kB │ gzip:  8.28 kB  (Landing Banner)
+index-CIPkP0LX.js               27.04 kB │ gzip:  7.41 kB  (Main app)
+LogoLoader-DdWp_Dbp.js          29.94 kB │ gzip:  9.16 kB  (Logo Loader)
+chunk-wellness-BpNlk5UL.js      34.39 kB │ gzip:  8.67 kB  (CombinedWellnessSection)
+vendor-other-Tf-hcGOU.js        52.93 kB │ gzip: 19.56 kB  (Other libs)
+vendor-animations-BihINLN7.js   77.99 kB │ gzip: 24.42 kB  (Framer Motion)
+vendor-react-D9y7y53k.js       210.33 kB │ gzip: 67.29 kB  (React core incl. router)
+
+CSS:
+index-CjvZjYFA.css              15.30 kB │ gzip:  3.36 kB
 ```
 
 ## Performance Benefits
